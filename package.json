@@ -17,11 +17,11 @@
     "hint"
   ],
   "dependencies": {
-
+    "gonzales-pe": "^3.0.0-26",
+    "meow": "^3.1.0",
+    "rcfinder": "^0.1.8"
   },
-  "devDependencies": {
-
-  },
+  "devDependencies": {},
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/jwilsson/lesshint/issues"
