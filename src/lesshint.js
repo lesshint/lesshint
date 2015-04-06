@@ -5,7 +5,7 @@ var gonzales = require('gonzales-pe');
 var RcFinder = require('rcfinder');
 var stripJsonComments = require('strip-json-comments');
 
-var lesshint = function (path, options) {
+module.exports = function lesshint (path, options) {
     var config;
     var rcfinder;
     var linters = [
@@ -14,7 +14,7 @@ var lesshint = function (path, options) {
 
     if (!options.c || !options.config) {
         rcfinder = new RcFinder('.lesshintrc', {
-            loader: function (path) {
+            loader: function configLoader (path) {
                 var data = fs.readFileSync(path, 'utf8');
 
                 data = stripJsonComments(data);
@@ -26,7 +26,7 @@ var lesshint = function (path, options) {
         config = rcfinder.find(__dirname);
     }
 
-    fs.readFile(path, 'utf8', function (err, data) {
+    fs.readFile(path, 'utf8', function fileLoader (err, data) {
         var ast;
 
         if (err) {
@@ -37,7 +37,7 @@ var lesshint = function (path, options) {
             syntax: 'less'
         });
 
-        ast.map(function (node) {
+        ast.map(function runLinter (node) {
             var i;
 
             for (i = 0; i < linters.length; i++) {
@@ -46,5 +46,3 @@ var lesshint = function (path, options) {
         });
     });
 };
-
-module.exports = lesshint;
