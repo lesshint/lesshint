@@ -9,4 +9,4 @@ var cli = meow({
     pkg: '../package.json'
 });
 
-lesshint(cli.input[0]);
+lesshint(cli.input[0], cli.flags);
