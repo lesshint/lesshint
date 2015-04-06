@@ -1,7 +1,6 @@
 'use strict';
 
 var fs = require('fs');
-var gonzales = require('gonzales-pe');
 var RcFinder = require('rcfinder');
 var stripJsonComments = require('strip-json-comments');
 
@@ -15,10 +14,8 @@ var loadConfig = function loadConfig (path) {
 
 module.exports = function LessHint (path, options) {
     var config;
+    var linter;
     var rcfinder;
-    var linters = [
-        require('./linters/space_before_brace')
-    ];
 
     // Check if a config file is passed and try to load it, otherwise try and find one
     if (options.c || options.config) {
@@ -32,23 +29,6 @@ module.exports = function LessHint (path, options) {
         config = rcfinder.find(__dirname);
     }
 
-    fs.readFile(path, 'utf8', function fileLoader (err, data) {
-        var ast;
-
-        if (err) {
-            throw err;
-        }
-
-        ast = gonzales.parse(data, {
-            syntax: 'less'
-        });
-
-        ast.map(function runLinter (node) {
-            var i;
-
-            for (i = 0; i < linters.length; i++) {
-                linters[i].call(null, node, config);
-            }
-        });
-    });
+    linter = require('./linter');
+    linter.lint(path, config);
 };
