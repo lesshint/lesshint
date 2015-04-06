@@ -8,6 +8,9 @@ var stripJsonComments = require('strip-json-comments');
 var lesshint = function (path, options) {
     var config;
     var rcfinder;
+    var linters = [
+        require('./linters/space_before_brace')
+    ];
 
     if (!options.c || !options.config) {
         rcfinder = new RcFinder('.lesshintrc', {
@@ -23,20 +26,24 @@ var lesshint = function (path, options) {
         config = rcfinder.find(__dirname);
     }
 
-    console.log(config);
-
     fs.readFile(path, 'utf8', function (err, data) {
-        var result;
+        var ast;
 
         if (err) {
             throw err;
         }
 
-        result = gonzales.parse(data, {
+        ast = gonzales.parse(data, {
             syntax: 'less'
         });
 
-        console.log(result);
+        ast.map(function (node) {
+            var i;
+
+            for (i = 0; i < linters.length; i++) {
+                linters[i].call(null, node, config);
+            }
+        });
     });
 };
 
