@@ -1,0 +1,12 @@
+#! /usr/bin/env node
+
+'use strict';
+
+var meow = require('meow');
+var lesshint = require('../src/lesshint.js');
+
+var cli = meow({
+    pkg: '../package.json'
+});
+
+lesshint(cli.input[0]);
