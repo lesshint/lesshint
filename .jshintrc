@@ -1,0 +1,7 @@
+{
+    "immed": true,
+    "latedef": true,
+    "newcap": true,
+    "node": true,
+    "quotmark": "single"
+}

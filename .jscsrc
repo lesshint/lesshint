@@ -1,0 +1,25 @@
+{
+    "preset": "google",
+
+    "disallowMultipleVarDecl": "strict",
+    "maximumLineLength": 120,
+    "validateIndentation": 4,
+
+    "requireSpacesInFunction": {
+        "beforeOpeningRoundBrace": true,
+        "beforeOpeningCurlyBrace": true
+    },
+
+    "requireSpaceAfterKeywords": [
+        "if",
+        "else",
+        "for",
+        "while",
+        "do",
+        "switch",
+        "return",
+        "try",
+        "catch",
+        "function"
+    ]
+}
