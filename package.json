@@ -1,0 +1,29 @@
+{
+  "name": "lesshint",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "author": {
+    "name": "Jonathan Wilsson",
+    "email": "jonathan.wilsson@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jwilsson/lesshint.git"
+  },
+  "keywords": [
+    "less",
+    "lint",
+    "hint"
+  ],
+  "dependencies": {
+
+  },
+  "devDependencies": {
+
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jwilsson/lesshint/issues"
+  }
+}
