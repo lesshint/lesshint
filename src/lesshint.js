@@ -13,7 +13,7 @@ var loadConfig = function loadConfig (path) {
     return JSON.parse(data);
 };
 
-module.exports = function lesshint (path, options) {
+module.exports = function LessHint (path, options) {
     var config;
     var rcfinder;
     var linters = [
