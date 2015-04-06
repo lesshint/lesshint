@@ -5,6 +5,14 @@ var gonzales = require('gonzales-pe');
 var RcFinder = require('rcfinder');
 var stripJsonComments = require('strip-json-comments');
 
+var loadConfig = function loadConfig (path) {
+    var data = fs.readFileSync(path, 'utf8');
+
+    data = stripJsonComments(data);
+
+    return JSON.parse(data);
+};
+
 module.exports = function lesshint (path, options) {
     var config;
     var rcfinder;
@@ -12,15 +20,13 @@ module.exports = function lesshint (path, options) {
         require('./linters/space_before_brace')
     ];
 
-    if (!options.c || !options.config) {
+    // Check if a config file is passed and try to load it, otherwise try and find one
+    if (options.c || options.config) {
+        config = options.c || options.config;
+        config = loadConfig(config);
+    } else {
         rcfinder = new RcFinder('.lesshintrc', {
-            loader: function configLoader (path) {
-                var data = fs.readFileSync(path, 'utf8');
-
-                data = stripJsonComments(data);
-
-                return JSON.parse(data);
-            }
+            loader: loadConfig
         });
 
         config = rcfinder.find(__dirname);
