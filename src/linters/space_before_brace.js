@@ -14,7 +14,7 @@ module.exports = function spaceBeforeBrace (node, options) {
         return null;
     }
 
-    selector = node.content[0].content.pop();
+    selector = node.content.pop().content.pop();
 
     if (selector.type !== 'space' && selector.content !== ' ') {
         console.log(
