@@ -11,3 +11,12 @@ but all linter options (available settings, default values etc.) and other featu
 will be submitted as issues/pull requests and are subject to discussion with the community before merging.
 
 And of course, bug reports and feedback is greatly appreciated!
+
+## Installation
+*[Node.js](https://nodejs.org/) or [io.js](https://iojs.org/) is required.*
+
+Run the following command from the command line (add -g to install globally):
+
+```
+npm install lesshint
+```
