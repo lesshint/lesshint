@@ -1,6 +1,7 @@
 'use strict';
 
 var fs = require('fs');
+var path = require('path');
 var gonzales = require('gonzales-pe');
 
 module.exports = {
@@ -8,11 +9,11 @@ module.exports = {
         require('./linters/space_before_brace')
     ],
 
-    lint: function lint (path, config) {
+    lint: function lint (file, config) {
         var _this = this;
 
         // Load the specified LESS file and lint it!
-        fs.readFile(path, 'utf8', function loadFile (err, data) {
+        fs.readFile(file, 'utf8', function loadFile (err, data) {
             var ast;
 
             if (err) {
@@ -26,8 +27,9 @@ module.exports = {
 
                 for (i = 0; i < _this.linters.length; i++) {
                     result = _this.linters[i].call(null, {
-                        node: node,
-                        config: config
+                        config: config,
+                        file: path.basename(file),
+                        node: node
                     });
                 }
             });

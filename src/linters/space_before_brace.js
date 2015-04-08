@@ -20,7 +20,8 @@ module.exports = function spaceBeforeBrace (options) {
 
     if (selector.type !== 'space' && selector.content !== ' ') {
         console.log(
-            'spaceBeforeBrace %d:%d Opening curly brace should be preceded by one space.',
+            'spaceBeforeBrace %s:%d:%d Opening curly brace should be preceded by one space.',
+            options.file,
             selector.start.line,
             selector.start.column
         );
