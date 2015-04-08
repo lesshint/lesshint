@@ -1,11 +1,13 @@
 'use strict';
 
-module.exports = function spaceBeforeBrace (node, options) {
+module.exports = function spaceBeforeBrace (options) {
+    var node = options.node;
+    var config = options.config;
     var status = 0;
     var selector;
 
     // Bail if the linter isn't wanted
-    if (options.spaceBeforeBrace && !options.spaceBeforeBrace.enabled) {
+    if (config.spaceBeforeBrace && !config.spaceBeforeBrace.enabled) {
         return null;
     }
 

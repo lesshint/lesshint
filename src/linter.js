@@ -25,7 +25,10 @@ module.exports = {
                 var i;
 
                 for (i = 0; i < _this.linters.length; i++) {
-                    result = _this.linters[i].call(null, node, config);
+                    result = _this.linters[i].call(null, {
+                        node: node,
+                        config: config
+                    });
                 }
             });
         });
