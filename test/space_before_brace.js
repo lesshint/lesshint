@@ -8,7 +8,7 @@ describe('lesshint', function () {
         it('should not tolerate missing space', function () {
             var source = '.foo{ color: red; }';
             var ast;
-            var config = {
+            var options = {
                 spaceBeforeBrace: {
                     enabled: true
                 }
@@ -17,13 +17,16 @@ describe('lesshint', function () {
             ast = linter.parseAST(source);
             ast = ast.first().first('selector');
 
-            assert.equal(1, spaceBeforeBrace(ast, config));
+            assert.equal(1, spaceBeforeBrace({
+                node: ast,
+                config: options
+            }));
         });
 
         it('should allow one space', function () {
             var source = '.foo { color: red; }';
             var ast;
-            var config = {
+            var options = {
                 spaceBeforeBrace: {
                     enabled: true
                 }
@@ -32,13 +35,16 @@ describe('lesshint', function () {
             ast = linter.parseAST(source);
             ast = ast.first().first('selector');
 
-            assert.equal(0, spaceBeforeBrace(ast, config));
+            assert.equal(0, spaceBeforeBrace({
+                node: ast,
+                config: options
+            }));
         });
 
         it('should handle multiple simple selectors', function () {
             var source = '.foo, .bar { color: red; }';
             var ast;
-            var config = {
+            var options = {
                 spaceBeforeBrace: {
                     enabled: true
                 }
@@ -47,13 +53,16 @@ describe('lesshint', function () {
             ast = linter.parseAST(source);
             ast = ast.first().first('selector');
 
-            assert.equal(0, spaceBeforeBrace(ast, config));
+            assert.equal(0, spaceBeforeBrace({
+                node: ast,
+                config: options
+            }));
         });
 
         it('should fail with multiple simple selectors and no space', function () {
             var source = '.foo, .bar{ color: red; }';
             var ast;
-            var config = {
+            var options = {
                 spaceBeforeBrace: {
                     enabled: true
                 }
@@ -62,13 +71,16 @@ describe('lesshint', function () {
             ast = linter.parseAST(source);
             ast = ast.first().first('selector');
 
-            assert.equal(1, spaceBeforeBrace(ast, config));
+            assert.equal(1, spaceBeforeBrace({
+                node: ast,
+                config: options
+            }));
         });
 
         it('should return null run when disabled', function () {
             var source = '.foo{ color: red; }';
             var ast;
-            var config = {
+            var options = {
                 spaceBeforeBrace: {
                     enabled: false
                 }
@@ -77,7 +89,10 @@ describe('lesshint', function () {
             ast = linter.parseAST(source);
             ast = ast.first().first('selector');
 
-            assert.equal(null, spaceBeforeBrace(ast, config));
+            assert.equal(null, spaceBeforeBrace({
+                node: ast,
+                config: options
+            }));
         });
     });
 });
