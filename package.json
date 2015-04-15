@@ -2,7 +2,7 @@
   "name": "lesshint",
   "version": "0.1.0",
   "description": "",
-  "main": "./src/lesshint.js",
+  "main": "./lib/lesshint.js",
   "author": {
     "name": "Jonathan Wilsson",
     "email": "jonathan.wilsson@gmail.com"
@@ -31,7 +31,7 @@
     "lesshint": "bin/lesshint"
   },
   "scripts": {
-    "pretest": "jshint src && jscs src",
+    "pretest": "jshint lib && jscs lib",
     "test": "mocha"
   },
   "license": "MIT",
