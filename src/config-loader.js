@@ -12,14 +12,11 @@ var loadConfig = function loadConfig (path) {
     return JSON.parse(data);
 };
 
-module.exports = function LessHint (path, options) {
-    var config;
-    var linter;
+module.exports = function (config) {
     var rcfinder;
 
     // Check if a config file is passed and try to load it, otherwise try and find one
-    if (options.c || options.config) {
-        config = options.c || options.config;
+    if (config) {
         config = loadConfig(config);
     } else {
         rcfinder = new RcFinder('.lesshintrc', {
@@ -29,6 +26,5 @@ module.exports = function LessHint (path, options) {
         config = rcfinder.find(__dirname);
     }
 
-    linter = require('./linter');
-    linter.lint(path, config);
+    return config;
 };
