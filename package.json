@@ -20,7 +20,8 @@
     "gonzales-pe": "^3.0.0-26",
     "meow": "^3.1.0",
     "rcfinder": "^0.1.8",
-    "strip-json-comments": "^1.0.2"
+    "strip-json-comments": "^1.0.2",
+    "vow-fs": "^0.3.4"
   },
   "devDependencies": {
     "jscs": "^1.12.0",
