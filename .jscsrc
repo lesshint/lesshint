@@ -1,7 +1,9 @@
+
 {
     "preset": "google",
 
     "disallowMultipleVarDecl": "strict",
+    "disallowSpacesInAnonymousFunctionExpression": null,
     "maximumLineLength": 120,
     "validateIndentation": 4,
 
