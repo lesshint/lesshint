@@ -12,6 +12,7 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 1,
+                file: 'test.less',
                 line: 1,
                 linter: 'spaceBeforeBrace',
                 message: 'Opening curly brace should be preceded by one space.'
@@ -26,8 +27,9 @@ describe('lesshint', function () {
             ast = linter.parseAST(source);
             ast = ast.first().first('selector');
             actual = spaceBeforeBrace({
+                config: options,
                 node: ast,
-                config: options
+                path: 'test.less'
             });
 
             assert.deepEqual(actual, expected);
@@ -47,8 +49,8 @@ describe('lesshint', function () {
             ast = ast.first().first('selector');
 
             assert.equal(true, spaceBeforeBrace({
-                node: ast,
-                config: options
+                config: options,
+                node: ast
             }));
         });
 
@@ -66,8 +68,8 @@ describe('lesshint', function () {
             ast = ast.first().first('selector');
 
             assert.equal(true, spaceBeforeBrace({
-                node: ast,
-                config: options
+                config: options,
+                node: ast
             }));
         });
 
@@ -78,6 +80,7 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 7,
+                file: 'test.less',
                 line: 1,
                 linter: 'spaceBeforeBrace',
                 message: 'Opening curly brace should be preceded by one space.'
@@ -92,8 +95,9 @@ describe('lesshint', function () {
             ast = linter.parseAST(source);
             ast = ast.first().first('selector');
             actual = spaceBeforeBrace({
+                config: options,
                 node: ast,
-                config: options
+                path: 'test.less'
             });
 
             assert.deepEqual(actual, expected);
@@ -112,8 +116,8 @@ describe('lesshint', function () {
             ast = ast.first().first('selector');
 
             assert.equal(null, spaceBeforeBrace({
-                node: ast,
-                config: options
+                config: options,
+                node: ast
             }));
         });
     });
