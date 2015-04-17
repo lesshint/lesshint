@@ -1,8 +1,8 @@
 var assert = require('assert');
 
 describe('lesshint', function () {
-    var linter = require('../lib/linter');
-    var spaceBeforeBrace = require('../lib/linters/space_before_brace');
+    var linter = require('../../lib/linter');
+    var spaceBeforeBrace = require('../../lib/linters/space_before_brace');
 
     describe('#spaceBeforeBrace()', function () {
         it('should not tolerate missing space', function () {

@@ -33,7 +33,7 @@
   },
   "scripts": {
     "pretest": "jshint lib && jscs lib",
-    "test": "mocha"
+    "test": "mocha test/specs/**/*.js"
   },
   "license": "MIT",
   "bugs": {
