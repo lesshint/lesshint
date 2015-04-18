@@ -1,5 +1,6 @@
 {
     "spaceBeforeBrace": {
-        "enabled": true
+        "enabled": true,
+        "style": "space"
     }
 }
