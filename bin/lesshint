@@ -1,4 +1,21 @@
 #! /usr/bin/env node
 
 var cli = require('../lib/cli');
-cli();
+
+/**
+ * Command line interface for lesshint.
+ *
+ * Simple usage example:
+ * lesshint file1 dir1
+ */
+
+var program = require('commander');
+
+program
+    .version(require('../package.json').version)
+    .usage('[options] <file ...>')
+    .description('A tool to aid you in writing clean and consistent Less.')
+    .option('-c, --config [path]', 'configuration file path')
+    .parse(process.argv);
+
+cli(program);
