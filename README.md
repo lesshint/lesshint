@@ -9,7 +9,7 @@
 ## Important information
 This is the final project for a associate degree, because of this pull requests cannot be accepted until mid-June 2015.
 
-However, I (([jwilsson](https://github.com/jwilsson))) will need your help to decide which options that should be available for each linter
+However, I ([jwilsson](https://github.com/jwilsson)) will need your help to decide which options that should be available for each linter
 and which option that should be the default value. For each linter that I add, I'll open a corresponding issue where a discussion/vote will 
 take place for which options that should be included and which one should be the default. Therefore, I highly recommend users of this tool
 to not trust the defaults until a `1.0` release since some default values will change. In short, be extremely specific about which options
