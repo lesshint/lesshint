@@ -191,5 +191,23 @@ describe('lesshint', function () {
                 node: ast
             }), Error);
         });
+
+        it('should return null run when disabled', function () {
+            var source = '.foo { color:red; }';
+            var ast;
+            var options = {
+                spaceAfterPropertyColon: {
+                    enabled: false
+                }
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first().first('block').first('declaration');
+
+            assert.equal(null, spaceAfterPropertyColon({
+                config: options,
+                node: ast
+            }));
+        });
     });
 });
