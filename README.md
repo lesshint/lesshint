@@ -1,6 +1,7 @@
 # lesshint
 
 [![Build Status](https://travis-ci.org/jwilsson/lesshint.svg?branch=master)](https://travis-ci.org/jwilsson/lesshint)
+[![Windows CI](https://ci.appveyor.com/api/projects/status/github/jwilsson/lesshint?svg=true)](https://ci.appveyor.com/project/jwilsson/lesshint/branch/master)
 
 `lesshint` is a tool to aid you in writing clean and consistent [Less](http://lesscss.org/).
 
