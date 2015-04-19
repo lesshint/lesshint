@@ -40,6 +40,6 @@ Each option is specifed by it's own JSON object, for example:
 }
 ```
 
-Create a `.lesshintrc` file in your project root and it will be automatically loaded and merged with the default values.
+Create a `.lesshintrc` file in your project root and add your settings to it. It will be automatically loaded and merged with the default values.
 
 If you're running `lesshint` from the command line, the `-c` or `--config` flags can be used to load any valid configuration file.
