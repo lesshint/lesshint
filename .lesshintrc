@@ -1,4 +1,9 @@
 {
+    "spaceAfterPropertyColon": {
+        "enabled": true,
+        "style": "one_space"
+    },
+
     "spaceBeforeBrace": {
         "enabled": true,
         "style": "space"
