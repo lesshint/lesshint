@@ -5,6 +5,150 @@ describe('lesshint', function () {
     var spaceBeforeBrace = require('../../../lib/linters/space_before_brace');
 
     describe('#spaceBeforeBrace()', function () {
+        it('should allow no space when style is "no_space"', function () {
+            var source = '.foo{ color: red; }';
+            var ast;
+
+            var options = {
+                spaceBeforeBrace: {
+                    enabled: true,
+                    style: 'no_space'
+                }
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first().first('selector');
+
+            assert.equal(true, spaceBeforeBrace({
+                config: options,
+                node: ast
+            }));
+        });
+
+        it('should not allow one space when style is "no_space"', function () {
+            var source = '.foo { color: red; }';
+            var actual;
+            var ast;
+
+            var expected = {
+                column: 5,
+                file: 'test.less',
+                line: 1,
+                linter: 'spaceBeforeBrace',
+                message: 'Opening curly brace should not be preceded a space or new line.'
+            };
+
+            var options = {
+                spaceBeforeBrace: {
+                    enabled: true,
+                    style: 'no_space'
+                }
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first().first('selector');
+            actual = spaceBeforeBrace({
+                config: options,
+                node: ast,
+                path: 'test.less'
+            });
+
+            assert.deepEqual(actual, expected);
+        });
+
+        it('should not allow multiple spaces when style is "no_space"', function () {
+            var source = '.foo  { color: red; }';
+            var actual;
+            var ast;
+
+            var expected = {
+                column: 5,
+                file: 'test.less',
+                line: 1,
+                linter: 'spaceBeforeBrace',
+                message: 'Opening curly brace should not be preceded a space or new line.'
+            };
+
+            var options = {
+                spaceBeforeBrace: {
+                    enabled: true,
+                    style: 'no_space'
+                }
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first().first('selector');
+            actual = spaceBeforeBrace({
+                config: options,
+                node: ast,
+                path: 'test.less'
+            });
+
+            assert.deepEqual(actual, expected);
+        });
+
+        it('should not allow one new line when style is "no_space"', function () {
+            var source = '.foo\n{ color: red; }';
+            var actual;
+            var ast;
+
+            var expected = {
+                column: 5,
+                file: 'test.less',
+                line: 1,
+                linter: 'spaceBeforeBrace',
+                message: 'Opening curly brace should not be preceded a space or new line.'
+            };
+
+            var options = {
+                spaceBeforeBrace: {
+                    enabled: true,
+                    style: 'no_space'
+                }
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first().first('selector');
+            actual = spaceBeforeBrace({
+                config: options,
+                node: ast,
+                path: 'test.less'
+            });
+
+            assert.deepEqual(actual, expected);
+        });
+
+        it('should not allow multiple new lines when style is "no_space"', function () {
+            var source = '.foo\n\n{ color: red; }';
+            var actual;
+            var ast;
+
+            var expected = {
+                column: 5,
+                file: 'test.less',
+                line: 1,
+                linter: 'spaceBeforeBrace',
+                message: 'Opening curly brace should not be preceded a space or new line.'
+            };
+
+            var options = {
+                spaceBeforeBrace: {
+                    enabled: true,
+                    style: 'no_space'
+                }
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first().first('selector');
+            actual = spaceBeforeBrace({
+                config: options,
+                node: ast,
+                path: 'test.less'
+            });
+
+            assert.deepEqual(actual, expected);
+        });
+
         it('should allow one space when style is "one_space"', function () {
             var source = '.foo { color: red; }';
             var ast;
