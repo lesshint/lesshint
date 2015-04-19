@@ -3,14 +3,15 @@
 `lesshint` is a tool to aid you in writing clean and consistent [Less](http://lesscss.org/).
 
 ## Important information
-Since this is the final project for a associate degree pull requests cannot be accepted until mid-June 2015.
+This is the final project for a associate degree, because of this pull requests cannot be accepted until mid-June 2015.
 
-However, this project will employ the [GitHub Flow](https://guides.github.com/introduction/flow/).
-Basically, this means that all code will be written by me ([jwilsson](https://github.com/jwilsson))
-but all linter options (available settings, default values etc.) and other features
-will be submitted as issues/pull requests and are subject to discussion with the community before merging.
+However, I (([jwilsson](https://github.com/jwilsson))) will need your help to decide which options that should be available for each linter
+and which option that should be the default value. For each linter that I add, I'll open a corresponding issue where a discussion/vote will 
+take place for which options that should be included and which one should be the default. Therefore, I highly recommend users of this tool
+to not trust the defaults until a `1.0` release since some default values will change. In short, be extremely specific about which options
+you specify, don't trust the defaults just yet.
 
-And of course, bug reports and feedback is greatly appreciated!
+Please feel free to submit bug reports and other forms of feedback. That's greatly appreciated!
 
 ## Installation
 *[Node.js](https://nodejs.org/) or [io.js](https://iojs.org/) is required.*
