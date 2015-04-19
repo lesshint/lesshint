@@ -10,6 +10,7 @@
 * [Requirements](#requirements)
 * [Installation](#installation)
 * [Configuration](#configuration)
+* [Known issues](#known-issues)
 
 ## Important information
 This is the final project for a associate degree, because of this pull requests cannot be accepted until mid-June 2015.
@@ -48,3 +49,10 @@ Each option is specifed by it's own JSON object, for example:
 Create a `.lesshintrc` file in your project root and add your settings to it. It will be automatically loaded and merged with the default values.
 
 If you're running `lesshint` from the command line, the `-c` or `--config` flags can be used to load any valid configuration file.
+
+## Known issues
+We are aware of some instances where some Less features won't be properly parsed. In those cases the whole file will simply be ignored by `lesshint`.
+
+* Not all forms of `:extend()` rules are supported. Related [issue](https://github.com/tonyganch/gonzales-pe/issues/15).
+* Using variables in `@media` directives are not supported. Related [issue](https://github.com/tonyganch/gonzales-pe/issues/17).
+* Passing Rulesets to Mixins, i.e. [detached rulesets](http://lesscss.org/features/#detached-rulesets-feature) are not supported. Related [issue](https://github.com/tonyganch/gonzales-pe/issues/22).
