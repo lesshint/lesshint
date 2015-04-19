@@ -2,6 +2,10 @@
 
 `lesshint` is a tool to aid you in writing clean and consistent [Less](http://lesscss.org/).
 
+* [Requirements](#requirements)
+* [Installation](#installation)
+* [Configuration](#configuration)
+
 ## Important information
 This is the final project for a associate degree, because of this pull requests cannot be accepted until mid-June 2015.
 
