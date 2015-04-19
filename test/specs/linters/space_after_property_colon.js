@@ -17,7 +17,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('block').first('declaration')
+            ast = ast.first().first('block').first('declaration');
 
             assert.equal(true, spaceAfterPropertyColon({
                 config: options,
@@ -46,7 +46,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('block').first('declaration')
+            ast = ast.first().first('block').first('declaration');
 
             actual = spaceAfterPropertyColon({
                 config: options,
@@ -78,7 +78,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('block').first('declaration')
+            ast = ast.first().first('block').first('declaration');
 
             actual = spaceAfterPropertyColon({
                 config: options,
@@ -101,7 +101,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('block').first('declaration')
+            ast = ast.first().first('block').first('declaration');
 
             assert.equal(true, spaceAfterPropertyColon({
                 config: options,
@@ -130,7 +130,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('block').first('declaration')
+            ast = ast.first().first('block').first('declaration');
 
             actual = spaceAfterPropertyColon({
                 config: options,
@@ -162,7 +162,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('block').first('declaration')
+            ast = ast.first().first('block').first('declaration');
 
             actual = spaceAfterPropertyColon({
                 config: options,
@@ -171,6 +171,25 @@ describe('lesshint', function () {
             });
 
             assert.deepEqual(actual, expected);
+        });
+
+        it('should throw on invalid "style" value', function () {
+            var source = '.foo { color:red; }';
+            var ast;
+            var options = {
+                spaceAfterPropertyColon: {
+                    enabled: true,
+                    style: "invalid"
+                }
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first().first('block').first('declaration');
+
+            assert.throws(spaceAfterPropertyColon.bind(null, {
+                config: options,
+                node: ast
+            }), Error);
         });
     });
 });
