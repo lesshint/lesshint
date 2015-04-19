@@ -23,3 +23,19 @@ Run the following command from the command line (add -g to install globally):
 ```
 npm install lesshint
 ```
+
+## Configuration
+`lesshint` is customizable and we highly recommend you to look at the [available options](lib/linters/README.md) to tailor it to your needs.
+
+Each option is specifed by it's own JSON object, for example:
+
+```json
+"spaceAfterPropertyColon": {
+    "enabled": true,
+    "style": "one_space" // Comments are allowed
+}
+```
+
+Create a `.lesshintrc` file in your project root and it will be automatically loaded and merged with the default values.
+
+If you're running `lesshint` from the command line, the `-c` or `--config` flags can be used to load any valid configuration file.

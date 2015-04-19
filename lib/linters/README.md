@@ -2,6 +2,8 @@
 
 *Warning: Before we hit 1.0 don't trust the default values, they are subject to change after votes by the community. Always specify exactly what you want to report.*
 
+Each linter also accept a `enabled` option to turn if off/on completely.
+
 ## spaceAfterPropertyColon
 Each colon in property declarations should be followed by a space. For example:
 
