@@ -33,7 +33,7 @@ npm install lesshint
 
 Each option is specifed by it's own JSON object, for example:
 
-```json
+```js
 "spaceAfterPropertyColon": {
     "enabled": true,
     "style": "one_space" // Comments are allowed
