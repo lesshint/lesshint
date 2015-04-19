@@ -35,7 +35,7 @@ describe('lesshint', function () {
                 file: 'test.less',
                 line: 1,
                 linter: 'spaceBeforeBrace',
-                message: 'Opening curly brace should not be preceded a space or new line.'
+                message: 'Opening curly brace should not be preceded by a space or new line.'
             };
 
             var options = {
@@ -66,7 +66,7 @@ describe('lesshint', function () {
                 file: 'test.less',
                 line: 1,
                 linter: 'spaceBeforeBrace',
-                message: 'Opening curly brace should not be preceded a space or new line.'
+                message: 'Opening curly brace should not be preceded by a space or new line.'
             };
 
             var options = {
@@ -97,7 +97,7 @@ describe('lesshint', function () {
                 file: 'test.less',
                 line: 1,
                 linter: 'spaceBeforeBrace',
-                message: 'Opening curly brace should not be preceded a space or new line.'
+                message: 'Opening curly brace should not be preceded by a space or new line.'
             };
 
             var options = {
@@ -128,7 +128,7 @@ describe('lesshint', function () {
                 file: 'test.less',
                 line: 1,
                 linter: 'spaceBeforeBrace',
-                message: 'Opening curly brace should not be preceded a space or new line.'
+                message: 'Opening curly brace should not be preceded by a space or new line.'
             };
 
             var options = {
