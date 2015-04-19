@@ -19,7 +19,7 @@ describe('lesshint', function () {
             ast = linter.parseAST(source);
             ast = ast.first().first('selector');
 
-            assert.equal(true, spaceBeforeBrace({
+            assert.strictEqual(true, spaceBeforeBrace({
                 config: options,
                 node: ast
             }));
@@ -163,7 +163,7 @@ describe('lesshint', function () {
             ast = linter.parseAST(source);
             ast = ast.first().first('selector');
 
-            assert.equal(true, spaceBeforeBrace({
+            assert.strictEqual(true, spaceBeforeBrace({
                 config: options,
                 node: ast
             }));
@@ -214,7 +214,7 @@ describe('lesshint', function () {
             ast = linter.parseAST(source);
             ast = ast.first().first('selector');
 
-            assert.equal(true, spaceBeforeBrace({
+            assert.strictEqual(true, spaceBeforeBrace({
                 config: options,
                 node: ast
             }));
@@ -327,7 +327,7 @@ describe('lesshint', function () {
             ast = linter.parseAST(source);
             ast = ast.first().first('selector');
 
-            assert.equal(true, spaceBeforeBrace({
+            assert.strictEqual(true, spaceBeforeBrace({
                 config: options,
                 node: ast
             }));
@@ -347,7 +347,7 @@ describe('lesshint', function () {
             ast = linter.parseAST(source);
             ast = ast.first().first('selector');
 
-            assert.equal(true, spaceBeforeBrace({
+            assert.strictEqual(true, spaceBeforeBrace({
                 config: options,
                 node: ast
             }));
