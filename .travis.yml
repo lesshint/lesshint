@@ -6,6 +6,10 @@ node_js:
   - "0.12"
   - "iojs"
 
+before_script:
+  - node --version
+  - npm --version
+
 script: npm test
 
 matrix:
