@@ -1,0 +1,12 @@
+sudo: false
+
+language: node_js
+node_js:
+  - "0.10"
+  - "0.12"
+  - "iojs"
+
+script: npm test
+
+matrix:
+  fast_finish: true

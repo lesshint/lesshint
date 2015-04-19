@@ -1,5 +1,7 @@
 # lesshint
 
+[![Build Status](https://travis-ci.org/jwilsson/lesshint.svg?branch=master)](https://travis-ci.org/jwilsson/lesshint)
+
 `lesshint` is a tool to aid you in writing clean and consistent [Less](http://lesscss.org/).
 
 * [Requirements](#requirements)
