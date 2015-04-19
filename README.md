@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/jwilsson/lesshint.svg?branch=master)](https://travis-ci.org/jwilsson/lesshint)
 [![Windows CI](https://ci.appveyor.com/api/projects/status/github/jwilsson/lesshint?svg=true)](https://ci.appveyor.com/project/jwilsson/lesshint/branch/master)
+[![Dependency Status](https://david-dm.org/jwilsson/lesshint.svg?theme=shields.io&style=flat)](https://david-dm.org/jwilsson/lesshint)
+[![devDependency Status](https://david-dm.org/jwilsson/lesshint/dev-status.svg?theme=shields.io&style=flat)](https://david-dm.org/jwilsson/lesshint#info=devDependencies)
 
 `lesshint` is a tool to aid you in writing clean and consistent [Less](http://lesscss.org/).
 
