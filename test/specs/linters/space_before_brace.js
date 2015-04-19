@@ -21,7 +21,7 @@ describe('lesshint', function () {
             var options = {
                 spaceBeforeBrace: {
                     enabled: true,
-                    style: 'space'
+                    style: 'one_space'
                 }
             };
 
@@ -43,7 +43,7 @@ describe('lesshint', function () {
             var options = {
                 spaceBeforeBrace: {
                     enabled: true,
-                    style: 'space'
+                    style: 'one_space'
                 }
             };
 
@@ -63,7 +63,7 @@ describe('lesshint', function () {
             var options = {
                 spaceBeforeBrace: {
                     enabled: true,
-                    style: 'space'
+                    style: 'one_space'
                 }
             };
 
@@ -92,7 +92,7 @@ describe('lesshint', function () {
             var options = {
                 spaceBeforeBrace: {
                     enabled: true,
-                    style: 'space'
+                    style: 'one_space'
                 }
             };
 
@@ -123,7 +123,7 @@ describe('lesshint', function () {
             var options = {
                 spaceBeforeBrace: {
                     enabled: true,
-                    style: 'space'
+                    style: 'one_space'
                 }
             };
 
@@ -154,7 +154,7 @@ describe('lesshint', function () {
             var options = {
                 spaceBeforeBrace: {
                     enabled: true,
-                    style: 'space'
+                    style: 'one_space'
                 }
             };
 

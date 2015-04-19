@@ -6,6 +6,6 @@
 
     "spaceBeforeBrace": {
         "enabled": true,
-        "style": "space"
+        "style": "one_space"
     }
 }
