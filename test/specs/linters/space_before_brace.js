@@ -5,7 +5,27 @@ describe('lesshint', function () {
     var spaceBeforeBrace = require('../../../lib/linters/space_before_brace');
 
     describe('#spaceBeforeBrace()', function () {
-        it('should not tolerate missing space', function () {
+        it('should allow one space when style is "one_space"', function () {
+            var source = '.foo { color: red; }';
+            var ast;
+
+            var options = {
+                spaceBeforeBrace: {
+                    enabled: true,
+                    style: 'one_space'
+                }
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first().first('selector');
+
+            assert.equal(true, spaceBeforeBrace({
+                config: options,
+                node: ast
+            }));
+        });
+
+        it('should not allow missing space when style option is "one_space"', function () {
             var source = '.foo{ color: red; }';
             var actual;
             var ast;
@@ -36,27 +56,7 @@ describe('lesshint', function () {
             assert.deepEqual(actual, expected);
         });
 
-        it('should allow one space', function () {
-            var source = '.foo { color: red; }';
-            var ast;
-
-            var options = {
-                spaceBeforeBrace: {
-                    enabled: true,
-                    style: 'one_space'
-                }
-            };
-
-            ast = linter.parseAST(source);
-            ast = ast.first().first('selector');
-
-            assert.equal(true, spaceBeforeBrace({
-                config: options,
-                node: ast
-            }));
-        });
-
-        it('should handle multiple simple selectors with one space', function () {
+        it('should allow one space when multiple simple selectors are used and style is "one_space"', function () {
             var source = '.foo, .bar { color: red; }';
             var ast;
 
@@ -76,7 +76,7 @@ describe('lesshint', function () {
             }));
         });
 
-        it('should not tolerate multiple simple selectors with missing space', function () {
+        it('should not allow missing space when multiple simple selectors are used and style is "one_space"', function () {
             var source = '.foo, .bar{ color: red; }';
             var actual;
             var ast;
@@ -107,7 +107,7 @@ describe('lesshint', function () {
             assert.deepEqual(actual, expected);
         });
 
-        it('should not tolerate multiple spaces', function () {
+        it('should not allow multiple spaces when style is "one_space"', function () {
             var source = '.foo  { color: red; }';
             var actual;
             var ast;
@@ -138,7 +138,7 @@ describe('lesshint', function () {
             assert.deepEqual(actual, expected);
         });
 
-        it('should not tolerate multiple simple selectors with multiple spaces', function () {
+        it('should not allow multiple spaces when multiple simple selectors are used and style is "one_space"', function () {
             var source = '.foo, .bar  { color: red; }';
             var actual;
             var ast;
@@ -169,7 +169,7 @@ describe('lesshint', function () {
             assert.deepEqual(actual, expected);
         });
 
-        it('should allow one new line', function () {
+        it('should allow one new line when style is "new_line"', function () {
             var source = '.foo\n{ color: red; }';
             var ast;
 
@@ -189,7 +189,7 @@ describe('lesshint', function () {
             }));
         });
 
-        it('should handle multiple simple selectors with one new line', function () {
+        it('should allow one new line when multiple simple selectors are used and style is "new_line"', function () {
             var source = '.foo, .bar\n{ color: red; }';
             var ast;
 
@@ -209,7 +209,7 @@ describe('lesshint', function () {
             }));
         });
 
-        it('should not tolerate multiple new lines', function () {
+        it('should not allow multiple new lines when style is "new_line"', function () {
             var source = '.foo\n\n{ color: red; }';
             var actual;
             var ast;
@@ -240,7 +240,7 @@ describe('lesshint', function () {
             assert.deepEqual(actual, expected);
         });
 
-        it('should not tolerate multiple simple selectors with multiple new lines', function () {
+        it('should not allow multiple new lines when multiple simple selectors are used and style is "new_line"', function () {
             var source = '.foo, .bar\n\n{ color: red; }';
             var actual;
             var ast;
