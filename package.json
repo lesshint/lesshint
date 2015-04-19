@@ -1,5 +1,6 @@
 {
   "name": "lesshint",
+  "description": "A tool to aid you in writing clean and consistent Less.",
   "version": "0.1.2",
   "description": "",
   "main": "./lib/lesshint.js",
