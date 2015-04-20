@@ -1,5 +1,8 @@
 # Changelog
 
+### 0.1.4 (2015-04-20)
+* Fixed incorrect dependency name.
+
 ### 0.1.3 (2015-04-20)
 * Fixed some issues where the default config wasn't properly loaded.
 * Fixed an issue when the CLI was passed multiple directories and files, they weren't all linted.
