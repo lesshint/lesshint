@@ -21,11 +21,4 @@ describe('config-loader', function () {
 
         assert.deepEqual(actual, expected);
     });
-
-    it('should just use the defaults if no other config file is specified', function () {
-        var expected = require(path.resolve(process.cwd() + '/lib/config/defaults.json'));
-        var actual = configLoader();
-
-        assert.deepEqual(actual, expected);
-    });
 });
