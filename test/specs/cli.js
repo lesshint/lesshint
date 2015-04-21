@@ -23,7 +23,8 @@ describe('cli', function () {
             config: path.resolve(process.cwd() + '/test/data/config/invalid.json')
         });
 
-        assert(console.error.getCall(0).args[0] === 'Something\'s wrong with the config file.');
+        // We can't really be sure of the JSON.parse() error message, so we'll just check that the beginning is correct
+        assert(console.error.getCall(0).args[0].indexOf('Something\'s wrong with the config file. Error: ') === 0);
         console.error.restore();
     });
 
