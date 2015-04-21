@@ -19,10 +19,22 @@ describe('cli', function () {
         sinon.spy(console, 'error');
 
         cli({
-            config: path.resolve(process.cwd() + './test/data/config/invalid.json')
+            args: ['test.less'],
+            config: path.resolve(process.cwd() + '/test/data/config/invalid.json')
         });
 
         assert(console.error.getCall(0).args[0] === 'Something\'s wrong with the config file.');
+        console.error.restore();
+    });
+
+    it('should print error when no files are passed', function () {
+        sinon.spy(console, 'error');
+
+        cli({
+            args: []
+        });
+
+        assert(console.error.getCall(0).args[0] === 'No files to lint were passed. See lesshint -h');
         console.error.restore();
     });
 });
