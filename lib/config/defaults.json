@@ -1,4 +1,9 @@
 {
+    "borderZero": {
+        "enabled": true,
+        "style": "zero"
+    },
+
     "spaceAfterPropertyColon": {
         "enabled": true,
         "style": "one_space"
