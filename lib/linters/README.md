@@ -4,6 +4,27 @@
 
 Each linter also accept a `enabled` option to turn if off/on completely.
 
+## borderZero
+Prefer `0` over `none` in border declarations.
+
+Option     | Description
+---------- | ----------
+`style`    | `none`, `zero` (**default**)
+
+### none
+```css
+.foo {
+    border: none;
+}
+```
+
+### zero
+```css
+.foo {
+    border: 0;
+}
+```
+
 ## spaceAfterPropertyColon
 Each colon in property declarations should be followed by a space.
 
