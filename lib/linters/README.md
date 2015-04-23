@@ -5,27 +5,51 @@
 Each linter also accept a `enabled` option to turn if off/on completely.
 
 ## spaceAfterPropertyColon
-Each colon in property declarations should be followed by a space. For example:
+Each colon in property declarations should be followed by a space.
 
+Option     | Description
+---------- | ----------
+`style`    | `no_space`, `one_space` (**default**)
+
+### no_space
+```css
+.foo {
+    margin:0;
+}
+```
+
+### one_space
 ```css
 .foo {
     margin: 0;
 }
 ```
 
+## spaceBeforeBrace
+A space should be present before opening braces.
+
 Option     | Description
 ---------- | ----------
-`style`    | `no_space`, `one_space` (**default**)
+`style`    | `no_space`, `one_space` (**default**), `new_line`
 
-## spaceBeforeBrace
-A space should be present before opening braces. For example:
+### no_space
+```css
+.foo{
+    color: red;
+}
+```
 
+### one_space
 ```css
 .foo {
     color: red;
 }
 ```
 
-Option     | Description
----------- | ----------
-`style`    | `no_space`, `one_space` (**default**), `new_line`
+## new_line
+```css
+.foo
+{
+    color: red;
+}
+```
