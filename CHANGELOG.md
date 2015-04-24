@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.5 (2015-04-24)
+* The default options are now always loaded, regardless if `lesshint` is running from the CLI or another module.
+* If no files are passed via the CLI, an error is now printed.
+* When something's wrong with a passed config file, the error message from `JSON.parse()` is also shown.
+
 ### 0.1.4 (2015-04-20)
 * Fixed incorrect dependency name.
 
