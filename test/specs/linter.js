@@ -22,7 +22,7 @@ describe('linter', function () {
 
             actual = linter.lint(source, path, config);
 
-            assert.equal(2, actual.length);
+            assert.ok(actual.length === 2);
         });
     });
 
