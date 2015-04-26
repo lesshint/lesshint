@@ -123,7 +123,7 @@ Option     | Description
 ### no_space
 ```css
 .foo {
-    margin : 0;
+    margin: 0;
 }
 ```
 
