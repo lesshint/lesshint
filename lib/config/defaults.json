@@ -9,6 +9,11 @@
         "style": "long"
     },
 
+    "hexNotation": {
+        "enabled": true,
+        "style": "lowercase"
+    },
+
     "spaceAfterPropertyColon": {
         "enabled": true,
         "style": "one_space"
