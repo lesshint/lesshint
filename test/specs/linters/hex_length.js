@@ -129,7 +129,7 @@ describe('lesshint', function () {
             }));
         });
 
-        it('should find colors in background declarations', function () {
+        it('should find hex values in background declarations', function () {
             var source = '.foo { background: url(test.png) no-repeat #AABBCC; }';
             var ast;
 
@@ -180,21 +180,19 @@ describe('lesshint', function () {
             }));
         });
 
-        it('should not do anything when the linter is disabled', function () {
-            var source = '.foo { color: #aabbcc; }';
+        it('should return null run when disabled', function () {
+            var source = '.foo { color: #abc; }';
             var ast;
-
             var options = {
                 hexLength: {
-                    enabled: false,
-                    style: 'long'
+                    enabled: false
                 }
             };
 
             ast = linter.parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.strictEqual(null, hexLength({
+            assert.equal(null, hexLength({
                 config: options,
                 node: ast
             }));
