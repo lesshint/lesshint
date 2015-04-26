@@ -4,6 +4,11 @@
         "style": "zero"
     },
 
+    "hexLength": {
+        "enabled": true,
+        "style": "long"
+    },
+
     "spaceAfterPropertyColon": {
         "enabled": true,
         "style": "one_space"
