@@ -25,6 +25,27 @@ Option     | Description
 }
 ```
 
+## hexLength
+Prefer longhand hex color declarations over short hand ones.
+
+Option     | Description
+---------- | ----------
+`style`    | `long` (**default**), `short`
+
+### long
+```css
+.foo {
+    color: #000000;
+}
+```
+
+### zero
+```css
+.foo {
+    color: #000;
+}
+```
+
 ## spaceAfterPropertyColon
 Each colon in property declarations should be followed by a space.
 
