@@ -105,6 +105,27 @@ Option     | Description
 }
 ```
 
+## spaceAfterPropertyName
+The colon in property declarations shouldn't be preceded by any space.
+
+Option     | Description
+---------- | ----------
+`style`    | `no_space` (**default**), `one_space`
+
+### no_space
+```css
+.foo {
+    margin : 0;
+}
+```
+
+### one_space
+```css
+.foo {
+    margin : 0;
+}
+```
+
 ## spaceBeforeBrace
 A space should be present before opening braces.
 

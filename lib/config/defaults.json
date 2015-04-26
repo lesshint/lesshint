@@ -23,6 +23,11 @@
         "style": "one_space"
     },
 
+    "spaceAfterPropertyName": {
+        "enabled": true,
+        "style": "no_space"
+    },
+
     "spaceBeforeBrace": {
         "enabled": true,
         "style": "one_space"
