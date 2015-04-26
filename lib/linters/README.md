@@ -4,6 +4,14 @@
 
 Each linter also accept a `enabled` option to turn if off/on completely.
 
+* [borderZero](#borderzero)
+* [hexLength](#hexlength)
+* [hexNotation](#hexnotation)
+* [hexValidation](#hexvalidation)
+* [spaceAfterPropertyColon](#spaceafterpropertycolon)
+* [spaceAfterPropertyName](#spaceafterpropertyname)
+* [spaceBeforeBrace](#spacebeforebrace)
+
 ## borderZero
 Prefer `0` over `none` in border declarations.
 
@@ -147,7 +155,7 @@ Option     | Description
 }
 ```
 
-## new_line
+### new_line
 ```css
 .foo
 {
