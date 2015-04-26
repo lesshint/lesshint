@@ -209,6 +209,24 @@ describe('lesshint', function () {
             }));
         });
 
+        it('should return null run when disabled', function () {
+            var source = '.foo { border: none; }';
+            var ast;
+            var options = {
+                borderZero: {
+                    enabled: false
+                }
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first().first('block').first('declaration');
+
+            assert.equal(null, borderZero({
+                config: options,
+                node: ast
+            }));
+        });
+
         it('should throw on invalid "style" value', function () {
             var source = '.foo { border: 0; }';
             var ast;
