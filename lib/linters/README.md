@@ -67,6 +67,23 @@ Option     | Description
 }
 ```
 
+## hexValidation
+Check if hex color declarations are valid.
+
+### invalid
+```css
+.foo {
+    color: #ab;
+}
+```
+
+### valid
+```css
+.foo {
+    color: #abc;
+}
+```
+
 ## spaceAfterPropertyColon
 Each colon in property declarations should be followed by a space.
 
