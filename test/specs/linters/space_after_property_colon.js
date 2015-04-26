@@ -35,7 +35,7 @@ describe('lesshint', function () {
                 file: 'test.less',
                 line: 1,
                 linter: 'spaceAfterPropertyColon',
-                message: 'Colon after property should be followed by one space.'
+                message: 'Colon after property name should be followed by one space.'
             };
 
             var options = {
@@ -67,7 +67,7 @@ describe('lesshint', function () {
                 file: 'test.less',
                 line: 1,
                 linter: 'spaceAfterPropertyColon',
-                message: 'Colon after property should be followed by one space.'
+                message: 'Colon after property name should be followed by one space.'
             };
 
             var options = {
@@ -89,7 +89,7 @@ describe('lesshint', function () {
             assert.deepEqual(actual, expected);
         });
 
-        it('shouldn\'t allow any space when style is "no_space"', function () {
+        it('should not allow any space when style is "no_space"', function () {
             var source = '.foo { color:red; }';
             var ast;
 
@@ -119,7 +119,7 @@ describe('lesshint', function () {
                 file: 'test.less',
                 line: 1,
                 linter: 'spaceAfterPropertyColon',
-                message: 'Colon after property shouldn\'t be followed by any spaces.'
+                message: 'Colon after property name should not be followed by any spaces.'
             };
 
             var options = {
@@ -151,7 +151,7 @@ describe('lesshint', function () {
                 file: 'test.less',
                 line: 1,
                 linter: 'spaceAfterPropertyColon',
-                message: 'Colon after property shouldn\'t be followed by any spaces.'
+                message: 'Colon after property name should not be followed by any spaces.'
             };
 
             var options = {
