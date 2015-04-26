@@ -39,10 +39,31 @@ Option     | Description
 }
 ```
 
-### zero
+### short
 ```css
 .foo {
     color: #000;
+}
+```
+
+## hexNotation
+Hex color declarations should be written in lowercase.
+
+Option     | Description
+---------- | ----------
+`style`    | `lowercase` (**default**), `uppercase`
+
+### lowercase
+```css
+.foo {
+    color: #abcdef;
+}
+```
+
+### uppercase
+```css
+.foo {
+    color: #ABCDEF;
 }
 ```
 
