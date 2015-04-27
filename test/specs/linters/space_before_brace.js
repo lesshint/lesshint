@@ -175,7 +175,7 @@ describe('lesshint', function () {
             var ast;
 
             var expected = {
-                column: 1,
+                column: 5,
                 file: 'test.less',
                 line: 1,
                 linter: 'spaceBeforeBrace',
@@ -226,7 +226,7 @@ describe('lesshint', function () {
             var ast;
 
             var expected = {
-                column: 7,
+                column: 11,
                 file: 'test.less',
                 line: 1,
                 linter: 'spaceBeforeBrace',
@@ -257,7 +257,7 @@ describe('lesshint', function () {
             var ast;
 
             var expected = {
-                column: 5,
+                column: 7,
                 file: 'test.less',
                 line: 1,
                 linter: 'spaceBeforeBrace',
@@ -288,7 +288,7 @@ describe('lesshint', function () {
             var ast;
 
             var expected = {
-                column: 11,
+                column: 13,
                 file: 'test.less',
                 line: 1,
                 linter: 'spaceBeforeBrace',
