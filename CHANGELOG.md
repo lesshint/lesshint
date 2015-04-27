@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.2.0 (2015-04-27)
+* Added the following linters:
+    * `borderZero`
+    * `hexLength`
+    * `hexNotation`
+    * `hexValidation`
+    * `spaceAfterPropertyName`
+* `lesshint` will now exit with proper status codes. E.g. `1` when there's a lint error in a checked file, thus failing builds etc.
+* Made some improvements to CLI output, added colors and made it easier to read.
+* Fixed an issue where the `spaceBeforeBrace` linter would report the wrong column when `style` is `one_space` ([`#4`](https://github.com/jwilsson/lesshint/issues/4)).
+
 ## 0.1.5 (2015-04-24)
 * The default options are now always loaded, regardless if `lesshint` is running from the CLI or another module.
 * If no files are passed via the CLI, an error is now printed.
