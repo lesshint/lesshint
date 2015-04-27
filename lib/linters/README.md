@@ -11,6 +11,7 @@ Each linter also accept a `enabled` option to turn if off/on completely.
 * [spaceAfterPropertyColon](#spaceafterpropertycolon)
 * [spaceAfterPropertyName](#spaceafterpropertyname)
 * [spaceBeforeBrace](#spacebeforebrace)
+* [trailingSemicolon](#trailingsemicolon)
 
 ## borderZero
 Prefer `0` over `none` in border declarations.
