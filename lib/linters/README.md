@@ -5,6 +5,7 @@
 Each linter also accept a `enabled` option to turn if off/on completely.
 
 * [borderZero](#borderzero)
+* [emptyRule](#emptyrule)
 * [hexLength](#hexlength)
 * [hexNotation](#hexnotation)
 * [hexValidation](#hexvalidation)
@@ -31,6 +32,23 @@ Option     | Description
 ```css
 .foo {
     border: 0;
+}
+```
+
+## emptyRule
+There shouldn't be any empty rules present.
+
+### invalid
+```css
+.foo {
+    
+}
+```
+
+### valid
+```css
+.foo {
+    color: red;
 }
 ```
 

@@ -4,6 +4,10 @@
         "style": "zero"
     },
 
+    "emptyRule": {
+        "enabled": true
+    },
+
     "hexLength": {
         "enabled": true,
         "style": "long"
