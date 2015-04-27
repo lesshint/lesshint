@@ -31,5 +31,9 @@
     "spaceBeforeBrace": {
         "enabled": true,
         "style": "one_space"
+    },
+
+    "trailingSemicolon": {
+        "enabled": true
     }
 }

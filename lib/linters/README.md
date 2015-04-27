@@ -162,3 +162,20 @@ Option     | Description
     color: red;
 }
 ```
+
+## trailingSemicolon
+All property declarations should end with a semicolon.
+
+### invalid
+```css
+.foo {
+    color: red
+}
+```
+
+### valid
+```css
+.foo {
+    color: red;
+}
+```
