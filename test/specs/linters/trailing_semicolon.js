@@ -54,6 +54,24 @@ describe('lesshint', function () {
             }));
         });
 
+        it('should ignore empty rules', function () {
+            var source = '.foo {}';
+            var ast;
+            var options = {
+                trailingSemicolon: {
+                    enabled: true
+                }
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first().first('block');
+
+            assert.equal(null, trailingSemicolon({
+                config: options,
+                node: ast
+            }));
+        });
+
         it('should return null run when disabled', function () {
             var source = '.foo { color: red }';
             var ast;
