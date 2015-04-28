@@ -26,6 +26,10 @@
         "enabled": true
     },
 
+    "idSelector": {
+        "enabled": true
+    },
+
     "spaceAfterPropertyColon": {
         "enabled": true,
         "style": "one_space"

@@ -10,6 +10,7 @@ Each linter also accept a `enabled` option to turn if off/on completely.
 * [hexLength](#hexlength)
 * [hexNotation](#hexnotation)
 * [hexValidation](#hexvalidation)
+* [idSelector](#idselector)
 * [spaceAfterPropertyColon](#spaceafterpropertycolon)
 * [spaceAfterPropertyName](#spaceafterpropertyname)
 * [spaceBeforeBrace](#spacebeforebrace)
@@ -127,6 +128,23 @@ Check if hex color declarations are valid.
 ```css
 .foo {
     color: #abc;
+}
+```
+
+## idSelector
+Disallow the usage of ID selectors.
+
+### invalid
+```css
+#foo {
+    color: red;
+}
+```
+
+### valid
+```css
+.foo {
+    color: red;
 }
 ```
 
