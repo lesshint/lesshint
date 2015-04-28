@@ -12,6 +12,10 @@
         "enabled": true
     },
 
+    "finalNewline": {
+        "enabled": true
+    },
+
     "hexLength": {
         "enabled": true,
         "style": "long"

@@ -5,7 +5,7 @@ describe('linter', function () {
 
     describe('lint', function () {
         it('should return array of errors', function () {
-            var source = '.foo{ color:red; }';
+            var source = '.foo{ color:red; }\n';
             var path = 'test.less';
             var actual;
 

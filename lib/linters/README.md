@@ -7,6 +7,7 @@ Each linter also accept a `enabled` option to turn if off/on completely.
 * [borderZero](#borderzero)
 * [duplicateProperty](#duplicateproperty)
 * [emptyRule](#emptyrule)
+* [finalNewline](#finalnewline)
 * [hexLength](#hexlength)
 * [hexNotation](#hexnotation)
 * [hexValidation](#hexvalidation)
@@ -70,6 +71,24 @@ There shouldn't be any empty rules present.
 .foo {
     color: red;
 }
+```
+
+## finalNewline
+All files should end with a empty line.
+
+### invalid
+```css
+.foo {
+    color: red;
+}
+```
+
+### valid
+```css
+.foo {
+    color: red;
+}
+
 ```
 
 ## hexLength
