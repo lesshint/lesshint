@@ -4,6 +4,10 @@
         "style": "zero"
     },
 
+    "duplicateProperty": {
+        "enabled": true
+    },
+
     "emptyRule": {
         "enabled": true
     },

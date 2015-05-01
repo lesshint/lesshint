@@ -5,6 +5,7 @@
 Each linter also accept a `enabled` option to turn if off/on completely.
 
 * [borderZero](#borderzero)
+* [duplicateProperty](#duplicateproperty)
 * [emptyRule](#emptyrule)
 * [hexLength](#hexlength)
 * [hexNotation](#hexnotation)
@@ -32,6 +33,24 @@ Option     | Description
 ```css
 .foo {
     border: 0;
+}
+```
+
+## duplicateProperty
+There shouldn't be any duplicate properties.
+
+### invalid
+```css
+.foo {
+    color: red;
+    color: blue;
+}
+```
+
+### valid
+```css
+.foo {
+    color: red;
 }
 ```
 
