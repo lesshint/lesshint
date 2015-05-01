@@ -15,7 +15,7 @@ describe('lesshint', function () {
                 file: 'test.less',
                 line: 1,
                 linter: 'hexNotation',
-                message: 'Hexadecimal colors should be written in lowercase.'
+                message: '#AABBCC should be written in lowercase.'
             };
 
             var options = {
@@ -67,7 +67,7 @@ describe('lesshint', function () {
                 file: 'test.less',
                 line: 1,
                 linter: 'hexNotation',
-                message: 'Hexadecimal colors should be written in uppercase.'
+                message: '#aabbcc should be written in uppercase.'
             };
 
             var options = {
@@ -118,7 +118,7 @@ describe('lesshint', function () {
                 file: 'test.less',
                 line: 1,
                 linter: 'hexNotation',
-                message: 'Hexadecimal colors should be written in lowercase.'
+                message: '#AABBCC should be written in lowercase.'
             };
 
             var options = {
