@@ -34,7 +34,7 @@ describe('lesshint', function () {
                 file: 'test.less',
                 line: 1,
                 linter: 'hexValidation',
-                message: 'Hexadecimal colors should be either three or six characters long.'
+                message: 'Hexadecimal color "#AABBC" should be either three or six characters long.'
             };
 
             var options = {
@@ -64,7 +64,7 @@ describe('lesshint', function () {
                 file: 'test.less',
                 line: 1,
                 linter: 'hexValidation',
-                message: 'Hexadecimal colors should be either three or six characters long.'
+                message: 'Hexadecimal color "#AABBC" should be either three or six characters long.'
             };
 
             var options = {
