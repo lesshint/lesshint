@@ -1,5 +1,16 @@
 # Changelog
 
+### 0.3.0 (2015-05-01)
+* Added the following linters:
+    * `emptyRule`
+    * `finalNewline`
+    * `idSelector`
+    * `trailingSemicolon`
+    * `urlFormat`
+    * `urlQuotes`
+* Better error messages, the property or value that caused the error are now more clearly described.
+* Internal code cleanup.
+
 ## 0.2.0 (2015-04-27)
 * Added the following linters:
     * `borderZero`
