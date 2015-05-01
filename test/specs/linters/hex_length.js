@@ -15,7 +15,7 @@ describe('lesshint', function () {
                 file: 'test.less',
                 line: 1,
                 linter: 'hexLength',
-                message: 'Hexadecimal colors should be written in the long-form format.'
+                message: '#ABC should be written in the long-form format.'
             };
 
             var options = {
@@ -67,7 +67,7 @@ describe('lesshint', function () {
                 file: 'test.less',
                 line: 1,
                 linter: 'hexLength',
-                message: 'Hexadecimal colors should be written in the short-form format.'
+                message: '#AABBCC should be written in the short-form format.'
             };
 
             var options = {
@@ -138,7 +138,7 @@ describe('lesshint', function () {
                 file: 'test.less',
                 line: 1,
                 linter: 'hexLength',
-                message: 'Hexadecimal colors should be written in the short-form format.'
+                message: '#AABBCC should be written in the short-form format.'
             };
 
             var options = {
