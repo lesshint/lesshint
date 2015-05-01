@@ -89,6 +89,7 @@ All files should end with a empty line.
     color: red;
 }
 
+...
 ```
 
 ## hexLength
