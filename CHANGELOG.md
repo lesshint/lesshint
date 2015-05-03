@@ -1,6 +1,14 @@
 # Changelog
 
-### 0.3.0 (2015-05-01)
+## 0.3.1 (2015-05-03)
+* When running from the CLI and a line or column is `null`, it's no longer printed.
+* Fixed an issue where the only error reported was a missing final newline.
+* Fixed an issue that prevented errors on the last ruleset from being shown when a final newline was missing.
+* Fixed an issue where `emptyRule` would incorrectly report errors on rules that only contain a mixin ([#16](https://github.com/jwilsson/lesshint/issues/16)).
+* Fixed an issue where `trailingSemicolon` would fail on an empty rule.
+* Fixed an issue where `trailingSemicolon` would incorrectly report errors in rules containing variables inside `@media` directives ([#15](https://github.com/jwilsson/lesshint/issues/15)).
+
+## 0.3.0 (2015-05-01)
 * Added the following linters:
     * `duplicateProperty`
     * `emptyRule`
