@@ -37,7 +37,7 @@ describe('lesshint', function () {
 
     describe('checkString', function () {
         it('should check a string', function () {
-            var string = '.foo{ color: red; }';
+            var string = '.foo{ color: red; }\n';
             var lesshint = new LessHint();
             var errors = lesshint.checkString(string);
 
