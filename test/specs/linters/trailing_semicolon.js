@@ -84,6 +84,24 @@ describe('lesshint', function () {
             ast = linter.parseAST(source);
             ast = ast.first().first('block');
 
+            assert.equal(null, trailingSemicolon({
+                config: options,
+                node: ast
+            }));
+        });
+
+        it('should allow semicolons in rulesets in @media declarations (#15)', function () {
+            var source = '@media screen and (max-width: 768px) { @color: red; .div { color: @color; } }';
+            var ast;
+            var options = {
+                trailingSemicolon: {
+                    enabled: true
+                }
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first().first('block');
+
             assert.equal(true, trailingSemicolon({
                 config: options,
                 node: ast
