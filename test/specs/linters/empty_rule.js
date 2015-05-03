@@ -55,6 +55,25 @@ describe('lesshint', function () {
             assert.deepEqual(actual, expected);
         });
 
+        it('should allow rules with only mixins (#16)', function () {
+            var source = '.foo { .mixin(); }';
+            var ast;
+
+            var options = {
+                emptyRule: {
+                    enabled: true
+                }
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first();
+
+            assert.strictEqual(true, emptyRule({
+                config: options,
+                node: ast
+            }));
+        });
+
         it('should return null run when disabled', function () {
             var source = '.foo {}';
             var ast;
