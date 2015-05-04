@@ -21,7 +21,6 @@
     "commander": "^2.8.0",
     "exit": "^0.1.2",
     "gonzales-pe": "^3.0.0-26",
-    "lodash.clone": "^3.0.1",
     "lodash.findindex": "^3.2.0",
     "lodash.flatten": "^3.0.2",
     "lodash.merge": "^3.2.0",
