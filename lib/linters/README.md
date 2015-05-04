@@ -39,7 +39,11 @@ Option     | Description
 ```
 
 ## duplicateProperty
-There shouldn't be any duplicate properties.
+There shouldn't be any duplicate properties since this is usually an error, causing unexpected bugs.
+
+However, sometimes, there might be valid reasons such as a fallback for older browsers. 
+In these cases `lesshint` won't be able to know your intentions and will still report it,
+if this is undesired the best option right now is to disable this linter altogether until we have a better solution in place.
 
 ### invalid
 ```css
@@ -74,7 +78,7 @@ There shouldn't be any empty rules present.
 ```
 
 ## finalNewline
-All files should end with a empty line.
+All files should end with a empty line to help create better diffs since the last line will always be untouched and therefore not marked as changed.
 
 ### invalid
 ```css
@@ -93,7 +97,7 @@ All files should end with a empty line.
 ```
 
 ## hexLength
-Prefer longhand hex color declarations over short hand ones.
+Prefer longhand hex color declarations over short hand ones to be consistent with colors than can't be written using shorthand notation.
 
 Option     | Description
 ---------- | ----------
@@ -114,7 +118,7 @@ Option     | Description
 ```
 
 ## hexNotation
-Hex color declarations should be written in lowercase.
+Hex color declarations should be written in lowercase to aid readability.
 
 Option     | Description
 ---------- | ----------
@@ -153,6 +157,7 @@ Check if hex color declarations are valid.
 
 ## idSelector
 Disallow the usage of ID selectors.
+ID selectors should be avoided since they introduce unnecessarily specific selectors which can't be easily overridden.
 
 ### invalid
 ```css
@@ -169,7 +174,7 @@ Disallow the usage of ID selectors.
 ```
 
 ## spaceAfterPropertyColon
-Each colon in property declarations should be followed by a space.
+Each colon in property declarations should be followed by a space to aid readability.
 
 Option     | Description
 ---------- | ----------
@@ -211,7 +216,7 @@ Option     | Description
 ```
 
 ## spaceBeforeBrace
-A space should be present before opening braces.
+A space should be present before opening braces to aid readability.
 
 Option     | Description
 ---------- | ----------
@@ -241,6 +246,7 @@ Option     | Description
 
 ## trailingSemicolon
 All property declarations should end with a semicolon.
+Semicolons are optional after the last property in a ruleset but it's a good habit to always add them since one doesn't need to think about it when adding new properties afterwards.
 
 ### invalid
 ```css
@@ -255,3 +261,5 @@ All property declarations should end with a semicolon.
     color: red;
 }
 ```
+
+Most of these rules are based on [@mdo](twitter.com/mdo)s [code guide](http://codeguide.co/#css).
