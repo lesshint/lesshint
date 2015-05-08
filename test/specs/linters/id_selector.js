@@ -72,5 +72,21 @@ describe('lesshint', function () {
                 node: ast
             }));
         });
+
+        it('should return null when disabled via shorthand', function () {
+            var source = '.foo #bar {}';
+            var ast;
+            var options = {
+                idSelector: false
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first().first('selector');
+
+            assert.equal(null, idSelector({
+                config: options,
+                node: ast
+            }));
+        });
     });
 });
