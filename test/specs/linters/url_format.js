@@ -259,6 +259,22 @@ describe('lesshint', function () {
             }));
         });
 
+        it('should return null when disabled via shorthand', function () {
+            var source = '.foo { background-image: url(http://example.com/img/image.jpg); }';
+            var ast;
+            var options = {
+                urlFormat: false
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first().first('block').first('declaration');
+
+            assert.equal(null, urlFormat({
+                config: options,
+                node: ast
+            }));
+        });
+
         it('should throw on invalid "style" value', function () {
             var source = '.foo { background-image: url(img/image.jpg); }';
             var ast;
