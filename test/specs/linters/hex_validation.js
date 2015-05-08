@@ -122,5 +122,21 @@ describe('lesshint', function () {
                 node: ast
             }));
         });
+
+        it('should return null when disabled via shorthand', function () {
+            var source = '.foo { color: #AABBC; }';
+            var ast;
+            var options = {
+                hexValidation: false
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first().first('block').first('declaration');
+
+            assert.equal(null, hexValidation({
+                config: options,
+                node: ast
+            }));
+        });
     });
 });
