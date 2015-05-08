@@ -72,5 +72,21 @@ describe('lesshint', function () {
                 node: ast
             }));
         });
+
+        it('should return null when disabled via shorthand', function () {
+            var source = '.foo { color: red; color: blue; }';
+            var ast;
+            var options = {
+                duplicateProperty: false
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first().first('block');
+
+            assert.equal(null, duplicateProperty({
+                config: options,
+                node: ast
+            }));
+        });
     });
 });
