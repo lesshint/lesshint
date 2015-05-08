@@ -2,7 +2,7 @@
 
 *Warning: Before we hit 1.0 don't trust the default values, they are subject to change after votes by the community. Always specify exactly what you want to report.*
 
-Each linter also accept a `enabled` option to turn if off/on completely.
+Each linter also accept a `enabled` option to turn if off/on completely. Another way of disabling a linter is by setting the whole property to `false`.
 
 * [borderZero](#borderzero)
 * [duplicateProperty](#duplicateproperty)
