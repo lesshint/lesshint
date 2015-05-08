@@ -12,6 +12,7 @@ Each linter also accept a `enabled` option to turn if off/on completely. Another
 * [hexNotation](#hexnotation)
 * [hexValidation](#hexvalidation)
 * [idSelector](#idselector)
+* [importantRule](#importantrule)
 * [spaceAfterPropertyColon](#spaceafterpropertycolon)
 * [spaceAfterPropertyName](#spaceafterpropertyname)
 * [spaceBeforeBrace](#spacebeforebrace)
@@ -154,6 +155,24 @@ Check if hex color declarations are valid.
 ```css
 .foo {
     color: #abc;
+}
+```
+
+## importantRule
+Disallow the usage of !important.
+The use of !important is often due to a lack of understanding of CSS specificity.
+
+### invalid
+```css
+#foo {
+    color: red !important;
+}
+```
+
+### valid
+```css
+.foo {
+    color: red;
 }
 ```
 
