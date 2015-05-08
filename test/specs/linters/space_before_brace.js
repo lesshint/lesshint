@@ -451,5 +451,21 @@ describe('lesshint', function () {
                 node: ast
             }));
         });
+
+        it('should return null when disabled via shorthand', function () {
+            var source = '.foo{ color: red; }';
+            var ast;
+            var options = {
+                spaceBeforeBrace: false
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first().first('selector');
+
+            assert.equal(null, spaceBeforeBrace({
+                config: options,
+                node: ast
+            }));
+        });
     });
 });
