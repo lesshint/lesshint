@@ -4,7 +4,7 @@
 
     "disallowMultipleVarDecl": "strict",
     "disallowSpacesInAnonymousFunctionExpression": null,
-    "maximumLineLength": 120,
+    "maximumLineLength": null,
     "validateIndentation": 4,
 
     "requireSpacesInFunction": {
