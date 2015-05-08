@@ -125,5 +125,21 @@ describe('lesshint', function () {
                 node: ast
             }));
         });
+
+        it('should return null when disabled via shorthand', function () {
+            var source = '.foo { color: red }';
+            var ast;
+            var options = {
+                trailingSemicolon: false
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first().first('block').first('declaration');
+
+            assert.equal(null, trailingSemicolon({
+                config: options,
+                node: ast
+            }));
+        });
     });
 });
