@@ -69,5 +69,20 @@ describe('lesshint', function () {
                 node: ast
             }));
         });
+
+        it('should return null when disabled via shorthand', function () {
+            var source = '.foo {}';
+            var ast;
+            var options = {
+                finalNewline: false
+            };
+
+            ast = linter.parseAST(source);
+
+            assert.equal(null, finalNewline({
+                config: options,
+                node: ast
+            }));
+        });
     });
 });
