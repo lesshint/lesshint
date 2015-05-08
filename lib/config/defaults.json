@@ -56,5 +56,10 @@
     "urlFormat": {
         "enabled": true,
         "style": "relative"
+    },
+
+    "urlQuotes": {
+        "enabled": true,
+        "style": "single"
     }
 }
