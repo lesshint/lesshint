@@ -209,7 +209,7 @@ describe('lesshint', function () {
             }));
         });
 
-        it('should return null run when disabled', function () {
+        it('should return null when disabled', function () {
             var source = '.foo { border: none; }';
             var ast;
             var options = {

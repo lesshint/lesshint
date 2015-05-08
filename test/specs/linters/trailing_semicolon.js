@@ -108,7 +108,7 @@ describe('lesshint', function () {
             }));
         });
 
-        it('should return null run when disabled', function () {
+        it('should return null when disabled', function () {
             var source = '.foo { color: red }';
             var ast;
             var options = {

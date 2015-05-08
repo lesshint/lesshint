@@ -55,7 +55,7 @@ describe('lesshint', function () {
             assert.deepEqual(actual, expected);
         });
 
-        it('should return null run when disabled', function () {
+        it('should return null when disabled', function () {
             var source = '.foo #bar {}';
             var ast;
             var options = {
