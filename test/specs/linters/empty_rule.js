@@ -91,5 +91,21 @@ describe('lesshint', function () {
                 node: ast
             }));
         });
+
+        it('should return null when disabled via shorthand', function () {
+            var source = '.foo {}';
+            var ast;
+            var options = {
+                emptyRule: false
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first();
+
+            assert.equal(null, emptyRule({
+                config: options,
+                node: ast
+            }));
+        });
     });
 });
