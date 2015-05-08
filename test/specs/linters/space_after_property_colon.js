@@ -209,5 +209,21 @@ describe('lesshint', function () {
                 node: ast
             }));
         });
+
+        it('should return null when disabled via shorthand', function () {
+            var source = '.foo { color:red; }';
+            var ast;
+            var options = {
+                spaceAfterPropertyColon: false
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first().first('block').first('declaration');
+
+            assert.equal(null, spaceAfterPropertyColon({
+                config: options,
+                node: ast
+            }));
+        });
     });
 });
