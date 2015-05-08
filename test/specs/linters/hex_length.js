@@ -198,6 +198,22 @@ describe('lesshint', function () {
             }));
         });
 
+        it('should return null when disabled via shorthand', function () {
+            var source = '.foo { color: #abc; }';
+            var ast;
+            var options = {
+                hexLength: false
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first().first('block').first('declaration');
+
+            assert.equal(null, hexLength({
+                config: options,
+                node: ast
+            }));
+        });
+
         it('should throw on invalid "style" value', function () {
             var source = '.foo { color: #aabbcc; }';
             var ast;
