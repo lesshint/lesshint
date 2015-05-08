@@ -16,6 +16,9 @@ install:
 test_script:
   - npm test
 
+shallow_clone: true
+clone_depth: 1
+
 cache:
   - node_modules
 
