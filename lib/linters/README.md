@@ -16,6 +16,7 @@ Each linter also accept a `enabled` option to turn if off/on completely.
 * [spaceAfterPropertyName](#spaceafterpropertyname)
 * [spaceBeforeBrace](#spacebeforebrace)
 * [trailingSemicolon](#trailingsemicolon)
+* [urlFormat](#urlformat)
 
 ## borderZero
 Prefer `0` over `none` in border declarations.
@@ -259,6 +260,30 @@ Semicolons are optional after the last property in a ruleset but it's a good hab
 ```css
 .foo {
     color: red;
+}
+```
+
+## urlFormat
+All URLs should be relative.
+Using relative URLs increases portability and is actually recommended by the [CSS spec](http://dev.w3.org/csswg/css-values/#relative-urls).
+
+Option     | Description
+---------- | ----------
+`style`    | `absolute`, `relative` (**default**)
+
+### invalid
+```css
+.foo {
+    background-image: url(http://example.com/img/image.jpg);
+}
+```
+
+### valid
+```css
+.foo {
+    .foo {
+        background-image: url(img/image.jpg);
+    }
 }
 ```
 
