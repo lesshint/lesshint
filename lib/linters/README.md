@@ -316,16 +316,14 @@ Option     | Description
 ### invalid
 ```css
 .foo {
-    background-image: url(http://example.com/img/image.jpg);
+    background-image: url('http://example.com/img/image.jpg');
 }
 ```
 
 ### valid
 ```css
 .foo {
-    .foo {
-        background-image: url(img/image.jpg);
-    }
+    background-image: url('img/image.jpg');
 }
 ```
 
