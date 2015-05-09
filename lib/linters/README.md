@@ -160,8 +160,8 @@ Check if hex color declarations are valid.
 ```
 
 ## importantRule
-Disallow the usage of !important.
-The use of !important is often due to a lack of understanding of CSS specificity.
+Disallow the usage of `!important`.
+The use of `!important` is often due to a lack of understanding of CSS specificity.
 
 ### invalid
 ```css
