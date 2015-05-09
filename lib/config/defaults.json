@@ -68,7 +68,6 @@
     },
 
     "urlQuotes": {
-        "enabled": true,
-        "style": "single"
+        "enabled": true
     }
 }

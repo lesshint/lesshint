@@ -334,15 +334,10 @@ All URLs should be enclosed in quotes.
 Using quotes around URLs allows them to be treated as strings, making escaping of characters easier.
 The [CSS spec](http://dev.w3.org/csswg/css-values/#url-value) also recommends the use of quotes.
 
-Option     | Description
----------- | ----------
-`style`    | `no_quotes`, `double`, `single` (**default**)
-
 ### invalid
 ```css
 .foo {
     background-image: url(img/image.jpg);
-    background-image: url("img/image.jpg");
 }
 ```
 
