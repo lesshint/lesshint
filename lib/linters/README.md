@@ -16,6 +16,7 @@ Each linter also accept a `enabled` option to turn if off/on completely. Another
 * [spaceAfterPropertyColon](#spaceafterpropertycolon)
 * [spaceAfterPropertyName](#spaceafterpropertyname)
 * [spaceBeforeBrace](#spacebeforebrace)
+* [stringQuotes](#stringquotes)
 * [trailingSemicolon](#trailingsemicolon)
 * [urlFormat](#urlformat)
 * [urlQuotes](#urlquotes)
@@ -262,6 +263,27 @@ Option     | Description
 .foo
 {
     color: red;
+}
+```
+
+## stringQuotes
+All strings should use single quotes since they are often easier to type since the `Shift` key doesn't need to be pressed.
+
+Option     | Description
+---------- | ----------
+`style`    | `double`, `single` (**default**)
+
+### invalid
+```css
+.foo {
+    content: "Hello world";
+}
+```
+
+### valid
+```css
+.foo {
+    content: 'Hello world';
 }
 ```
 

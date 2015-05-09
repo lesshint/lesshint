@@ -53,6 +53,11 @@
         "style": "one_space"
     },
 
+    "stringQuotes": {
+        "enabled": true,
+        "style": "single"
+    },
+
     "trailingSemicolon": {
         "enabled": true
     },
