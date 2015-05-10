@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.4.0 (2015-05-10)
+* **Breaking change:** The `LessHint` class is now called `Lesshint`.
+* The following linters have been added:
+    * `importantRule`
+    * `stringQuotes`
+    * `urlFormat`
+    * `urlQuotes`
+* All linters can now be disabled by simply setting the respective property to `false`. No need to set `enabled: false` anymore.
+* Some other improvements to the linters.
+
 ## 0.3.1 (2015-05-03)
 * When running from the CLI and a line or column is `null`, it's no longer printed.
 * Fixed an issue where the only error reported was a missing final newline.
