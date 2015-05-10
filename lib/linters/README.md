@@ -159,14 +159,14 @@ Check if hex color declarations are valid.
 }
 ```
 
-## importantRule
-Disallow the usage of `!important`.
-The use of `!important` is often due to a lack of understanding of CSS specificity.
+## idSelector
+Disallow the usage of ID selectors.
+ID selectors should be avoided since they introduce unnecessarily specific selectors which can't be easily overridden.
 
 ### invalid
 ```css
 #foo {
-    color: red !important;
+    color: red;
 }
 ```
 
@@ -177,14 +177,14 @@ The use of `!important` is often due to a lack of understanding of CSS specifici
 }
 ```
 
-## idSelector
-Disallow the usage of ID selectors.
-ID selectors should be avoided since they introduce unnecessarily specific selectors which can't be easily overridden.
+## importantRule
+Disallow the usage of `!important`.
+The use of `!important` is often due to a lack of understanding of CSS specificity.
 
 ### invalid
 ```css
 #foo {
-    color: red;
+    color: red !important;
 }
 ```
 
