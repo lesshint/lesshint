@@ -93,6 +93,37 @@ describe('lesshint', function () {
             }));
         });
 
+        it('should not allow unquoted URLs strings surrounded by spaces (#22)', function () {
+            var source = '.foo { background-image: url( img/image.jpg ); }';
+            var actual;
+            var ast;
+
+            var expected = {
+                column: 26,
+                file: 'test.less',
+                line: 1,
+                linter: 'urlQuotes',
+                message: 'URLs should enclosed in quotes.'
+            };
+
+            var options = {
+                urlQuotes: {
+                    enabled: true
+                }
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first().first('block').first('declaration');
+
+            actual = urlQuotes({
+                config: options,
+                node: ast,
+                path: 'test.less'
+            });
+
+            assert.deepEqual(actual, expected);
+        });
+
         it('should return null when disabled', function () {
             var source = '.foo { background-image: url(http://example.com/img/image.jpg); }';
             var ast;
