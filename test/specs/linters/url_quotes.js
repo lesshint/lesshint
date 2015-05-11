@@ -74,6 +74,25 @@ describe('lesshint', function () {
             assert.deepEqual(actual, expected);
         });
 
+        it('should allow quoted URLs strings surrounded by spaces (#22)', function () {
+            var source = ".foo { background-image: url( 'img/image.jpg' ); }";
+            var ast;
+
+            var options = {
+                urlQuotes: {
+                    enabled: true
+                }
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first().first('block').first('declaration');
+
+            assert.strictEqual(true, urlQuotes({
+                config: options,
+                node: ast
+            }));
+        });
+
         it('should return null when disabled', function () {
             var source = '.foo { background-image: url(http://example.com/img/image.jpg); }';
             var ast;
