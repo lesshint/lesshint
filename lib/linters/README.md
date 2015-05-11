@@ -101,7 +101,7 @@ All files should end with a empty line to help create better diffs since the las
 ```
 
 ## hexLength
-Prefer longhand hex color declarations over short hand ones to be consistent with colors than can't be written using shorthand notation.
+Prefer longhand hex color declarations over short hand ones to be consistent with colors that can't be written using shorthand notation.
 
 Option     | Description
 ---------- | ----------
