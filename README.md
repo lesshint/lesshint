@@ -24,8 +24,7 @@ you specify, don't trust the defaults just yet.
 Please feel free to submit bug reports and other forms of feedback. That's greatly appreciated!
 
 ## Requirements
-* [Node.js](https://nodejs.org/) 0.10 or later
-* [io.js](https://iojs.org/) 1.0 or later
+[Node.js](https://nodejs.org/) 0.10 (or later) or [io.js](https://iojs.org/) 1.0 (or later).
 
 ## Installation
 Run the following command from the command line (add -g to install globally):
