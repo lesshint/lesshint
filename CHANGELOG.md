@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.4.1 (2015-05-11)
+* Fixed two issues with `urlFormat` and `urlQuotes` where they would incorrectly report errors when the URLs were surrounded by spaces.
+
 ## 0.4.0 (2015-05-10)
 * **Breaking change:** The `LessHint` class is now called `Lesshint`.
 * The following linters have been added:
