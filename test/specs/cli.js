@@ -7,12 +7,17 @@ describe('cli', function () {
     var cli = rewire('../../lib/cli');
 
     beforeEach(function() {
+        sinon.stub(process.stdout, 'write');
         sinon.stub(process.stderr, 'write');
 
         cli.__set__('exit', function () {});
     });
 
     afterEach(function () {
+        if (process.stdout.write.restore) {
+            process.stdout.write.restore();
+        }
+
         if (process.stderr.write.restore) {
             process.stderr.write.restore();
         }
@@ -53,6 +58,8 @@ describe('cli', function () {
     it('should exit with a non-zero status code when lint errors were found', function () {
         var result;
 
+        sinon.spy(console, 'log');
+
         result = cli({
             args: [path.dirname(__dirname) + '/data/files/file.less'],
             config: path.resolve(process.cwd() + '/lib/config/defaults.json')
@@ -60,6 +67,8 @@ describe('cli', function () {
 
         return result.fail(function (status) {
             assert.ok(status === 1);
+
+            console.log.restore();
         });
     });
 
