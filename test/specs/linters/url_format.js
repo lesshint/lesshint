@@ -241,6 +241,26 @@ describe('lesshint', function () {
             }));
         });
 
+        it('should handle URLs surrounded by spaces (#22)', function () {
+            var source = ".foo { background-image: url( 'img/image.jpg' ); }";
+            var ast;
+
+            var options = {
+                urlFormat: {
+                    enabled: true,
+                    style: 'relative'
+                }
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first().first('block').first('declaration');
+
+            assert.strictEqual(true, urlFormat({
+                config: options,
+                node: ast
+            }));
+        });
+
         it('should return null when disabled', function () {
             var source = '.foo { background-image: url(http://example.com/img/image.jpg); }';
             var ast;
