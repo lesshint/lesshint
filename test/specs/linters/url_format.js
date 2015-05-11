@@ -241,8 +241,28 @@ describe('lesshint', function () {
             }));
         });
 
-        it('should handle URLs surrounded by spaces (#22)', function () {
+        it('should handle quoted relative URLs surrounded by spaces (#22)', function () {
             var source = ".foo { background-image: url( 'img/image.jpg' ); }";
+            var ast;
+
+            var options = {
+                urlFormat: {
+                    enabled: true,
+                    style: 'relative'
+                }
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first().first('block').first('declaration');
+
+            assert.strictEqual(true, urlFormat({
+                config: options,
+                node: ast
+            }));
+        });
+
+        it('should handle unquoted URLs surrounded by spaces (#22)', function () {
+            var source = ".foo { background-image: url( img/image.jpg ); }";
             var ast;
 
             var options = {
