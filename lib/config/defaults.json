@@ -67,6 +67,11 @@
         "enabled": true
     },
 
+    "trailingZero": {
+        "enabled": true,
+        "style": "exclude_zero"
+    },
+
     "urlFormat": {
         "enabled": true,
         "style": "relative"

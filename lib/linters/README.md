@@ -19,6 +19,7 @@ Each linter also accept a `enabled` option to turn if off/on completely. Another
 * [spaceBeforeBrace](#spacebeforebrace)
 * [stringQuotes](#stringquotes)
 * [trailingSemicolon](#trailingsemicolon)
+* [trailingZero](#trailingzero)
 * [urlFormat](#urlformat)
 * [urlQuotes](#urlquotes)
 
@@ -324,6 +325,27 @@ Semicolons are optional after the last property in a ruleset but it's a good hab
 ```css
 .foo {
     color: red;
+}
+```
+
+## trailingZero
+Numbers should be written without leading zeros since the number has the same meaning anyway and just adds unnecessary bytes to the CSS.
+
+Option     | Description
+---------- | ----------
+`style`    | `exclude_zero`  (**default**), `include_zero`
+
+### invalid
+```css
+#foo {
+    font-size: 1.50em;
+}
+```
+
+### valid
+```css
+.foo {
+    font-size: 1.5em;
 }
 ```
 
