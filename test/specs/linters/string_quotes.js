@@ -6,7 +6,7 @@ describe('lesshint', function () {
 
     describe('#stringQuotes()', function () {
         it('should allow single quotes when "style" is "single"', function () {
-            var source = ".foo { content: 'Hello world' }";
+            var source = ".foo { content: 'Hello world'; }";
             var ast;
 
             var options = {
@@ -17,7 +17,6 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('block').first('declaration');
 
             assert.strictEqual(true, stringQuotes({
                 config: options,
@@ -26,17 +25,17 @@ describe('lesshint', function () {
         });
 
         it('should not allow double quotes when "style" is "single"', function () {
-            var source = '.foo { content: "Hello world" }';
+            var source = '.foo { content: "Hello world"; }';
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 17,
                 file: 'test.less',
                 line: 1,
                 linter: 'stringQuotes',
                 message: 'Strings should use single quotes.'
-            };
+            }];
 
             var options = {
                 stringQuotes: {
@@ -46,7 +45,6 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('block').first('declaration');
 
             actual = stringQuotes({
                 config: options,
@@ -58,7 +56,7 @@ describe('lesshint', function () {
         });
 
         it('should allow double quotes when "style" is "double"', function () {
-            var source = '.foo { content: "Hello world" }';
+            var source = '.foo { content: "Hello world"; }';
             var ast;
 
             var options = {
@@ -69,7 +67,6 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('block').first('declaration');
 
             assert.strictEqual(true, stringQuotes({
                 config: options,
@@ -78,17 +75,17 @@ describe('lesshint', function () {
         });
 
         it('should not allow single quotes when "style" is "double"', function () {
-            var source = ".foo { content: 'Hello world' }";
+            var source = ".foo { content: 'Hello world'; }";
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 17,
                 file: 'test.less',
                 line: 1,
                 linter: 'stringQuotes',
                 message: 'Strings should use double quotes.'
-            };
+            }];
 
             var options = {
                 stringQuotes: {
@@ -98,7 +95,6 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('block').first('declaration');
 
             actual = stringQuotes({
                 config: options,
@@ -121,7 +117,6 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('block').first('declaration');
 
             assert.strictEqual(true, stringQuotes({
                 config: options,
@@ -141,12 +136,111 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('block').first('declaration');
 
             assert.strictEqual(true, stringQuotes({
                 config: options,
                 node: ast
             }));
+        });
+
+        it('should allow single quotes in variable declarations when "style" is "single"', function () {
+            var source = "@foo: 'Hello world';";
+            var ast;
+
+            var options = {
+                stringQuotes: {
+                    enabled: true,
+                    style: 'single'
+                }
+            };
+
+            ast = linter.parseAST(source);
+
+            assert.strictEqual(true, stringQuotes({
+                config: options,
+                node: ast
+            }));
+        });
+
+        it('should not allow double quotes in variable declarations when "style" is "single"', function () {
+            var source = '@foo: "Hello world";';
+            var actual;
+            var ast;
+
+            var expected = [{
+                column: 7,
+                file: 'test.less',
+                line: 1,
+                linter: 'stringQuotes',
+                message: 'Strings should use single quotes.'
+            }];
+
+            var options = {
+                stringQuotes: {
+                    enabled: true,
+                    style: 'single'
+                }
+            };
+
+            ast = linter.parseAST(source);
+
+            actual = stringQuotes({
+                config: options,
+                node: ast,
+                path: 'test.less'
+            });
+
+            assert.deepEqual(actual, expected);
+        });
+
+        it('should allow double quotes in variable declarations when "style" is "double"', function () {
+            var source = '@foo: "Hello world";';
+            var ast;
+
+            var options = {
+                stringQuotes: {
+                    enabled: true,
+                    style: 'double'
+                }
+            };
+
+            ast = linter.parseAST(source);
+
+            assert.strictEqual(true, stringQuotes({
+                config: options,
+                node: ast
+            }));
+        });
+
+        it('should not allow single quotes in variable declarations when "style" is "double"', function () {
+            var source = "@foo: 'Hello world';";
+            var actual;
+            var ast;
+
+            var expected = [{
+                column: 7,
+                file: 'test.less',
+                line: 1,
+                linter: 'stringQuotes',
+                message: 'Strings should use double quotes.'
+            }];
+
+            var options = {
+                stringQuotes: {
+                    enabled: true,
+                    style: 'double'
+                }
+            };
+
+            ast = linter.parseAST(source);
+
+            actual = stringQuotes({
+                config: options,
+                node: ast,
+                path: 'test.less'
+            });
+
+            assert.deepEqual(actual, expected);
         });
 
         it('should return null when disabled', function () {
@@ -159,7 +253,6 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('block').first('declaration');
 
             assert.equal(null, stringQuotes({
                 config: options,
@@ -175,7 +268,6 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('block').first('declaration');
 
             assert.equal(null, stringQuotes({
                 config: options,
@@ -195,7 +287,6 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('block').first('declaration');
 
             assert.throws(stringQuotes.bind(null, {
                 config: options,

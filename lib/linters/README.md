@@ -4,7 +4,9 @@
 
 Each linter also accept a `enabled` option to turn if off/on completely. Another way of disabling a linter is by setting the whole property to `false`.
 
+* [attributeQuotes](#attributequotes)
 * [borderZero](#borderzero)
+* [Comment](#comment)
 * [duplicateProperty](#duplicateproperty)
 * [emptyRule](#emptyrule)
 * [finalNewline](#finalnewline)
@@ -13,13 +15,42 @@ Each linter also accept a `enabled` option to turn if off/on completely. Another
 * [hexValidation](#hexvalidation)
 * [idSelector](#idselector)
 * [importantRule](#importantrule)
+* [leadingZero](#leadingzero)
 * [spaceAfterPropertyColon](#spaceafterpropertycolon)
 * [spaceAfterPropertyName](#spaceafterpropertyname)
 * [spaceBeforeBrace](#spacebeforebrace)
 * [stringQuotes](#stringquotes)
 * [trailingSemicolon](#trailingsemicolon)
+* [trailingZero](#trailingzero)
 * [urlFormat](#urlformat)
 * [urlQuotes](#urlquotes)
+* [zeroUnit](#zerounit)
+
+## attributeQuotes
+All values in attribute selectors should be enclosed in quotes.
+Since some values require quotes it's better for consistency to always quote the values.
+
+Option     | Description
+---------- | ----------
+`style`    | `double`, `single` (**default**)
+
+### invalid
+```css
+input[type="text"] {
+    color: red;
+}
+
+input[type=text] {
+    color: red;
+}
+```
+
+### valid
+```css
+input[type='text'] {
+    color: red;
+}
+```
 
 ## borderZero
 Prefer `0` over `none` in border declarations.
@@ -42,12 +73,34 @@ Option     | Description
 }
 ```
 
+## Comment
+Prefer single-line comments (`//`) over multiline (`/* ... */`) since they're not rendered in the final CSS.
+
+Option     | Description
+---------- | ----------
+`allowed`  | A regexp to match allowed comments. The default is `^!` allowing comments starting with a bang, i.e. `/*! Copyright... */`.
+
+### invalid
+```css
+/* Will get rendered */
+```
+
+### valid
+// Won't get rendered
+
+/*! Will get rendered, but it's OK */
+```
+
 ## duplicateProperty
 There shouldn't be any duplicate properties since this is usually an error, causing unexpected bugs.
 
 However, sometimes, there might be valid reasons such as a fallback for older browsers. 
 In these cases `lesshint` won't be able to know your intentions and will still report it,
 if this is undesired the best option right now is to disable this linter altogether until we have a better solution in place.
+
+Option     | Description
+---------- | ----------
+`exclude`  | Array of properties to exclude, for example `background-color` when used with a fallback.
 
 ### invalid
 ```css
@@ -163,6 +216,10 @@ Check if hex color declarations are valid.
 Disallow the usage of ID selectors.
 ID selectors should be avoided since they introduce unnecessarily specific selectors which can't be easily overridden.
 
+Option     | Description
+---------- | ----------
+`exclude`  | Array of IDs to exclude (with our without "#").
+
 ### invalid
 ```css
 #foo {
@@ -192,6 +249,27 @@ The use of `!important` is often due to a lack of understanding of CSS specifici
 ```css
 .foo {
     color: red;
+}
+```
+
+## leadingZero
+Numbers should be written with a leading zero.
+
+Option     | Description
+---------- | ----------
+`style`    | `exclude_zero`, `include_zero` (**default**)
+
+### invalid
+```css
+#foo {
+    font-size: .5em;
+}
+```
+
+### valid
+```css
+.foo {
+    font-size: 0.5em;
 }
 ```
 
@@ -305,6 +383,27 @@ Semicolons are optional after the last property in a ruleset but it's a good hab
 }
 ```
 
+## trailingZero
+Numbers should be written without leading zeros since the number has the same meaning anyway and just adds unnecessary bytes to the CSS.
+
+Option     | Description
+---------- | ----------
+`style`    | `exclude_zero`  (**default**), `include_zero`
+
+### invalid
+```css
+#foo {
+    font-size: 1.50em;
+}
+```
+
+### valid
+```css
+.foo {
+    font-size: 1.5em;
+}
+```
+
 ## urlFormat
 All URLs should be relative.
 Using relative URLs increases portability and is actually recommended by the [CSS spec](http://dev.w3.org/csswg/css-values/#relative-urls).
@@ -345,5 +444,29 @@ The [CSS spec](http://dev.w3.org/csswg/css-values/#url-value) also recommends th
     background-image: url('img/image.jpg');
 }
 ```
+
+## zeroUnit
+Length units should be omitted on zero values.
+
+Option     | Description
+---------- | ----------
+`style`    | `no_unit` (**default**), `keep_unit`
+
+### no_unit
+```css
+.foo {
+    margin-right: 0;
+}
+```
+
+### keep_unit
+```css
+.foo {
+    margin-right: 0px;
+}
+```
+
+*Note: This rule doesn't apply to [angles](https://developer.mozilla.org/en-US/docs/Web/CSS/angle) or [time units](https://developer.mozilla.org/en-US/docs/Web/CSS/time) since they always require a unit.*
+
 
 Most of these rules are based on [@mdo](twitter.com/mdo)s [code guide](http://codeguide.co/#css).

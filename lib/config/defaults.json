@@ -1,11 +1,22 @@
 {
+    "attributeQuotes": {
+        "enabled": true,
+        "style": "single"
+    },
+
     "borderZero": {
         "enabled": true,
         "style": "zero"
     },
 
-    "duplicateProperty": {
+    "comment": {
+        "allowed": "^!",
         "enabled": true
+    },
+
+    "duplicateProperty": {
+        "enabled": true,
+        "exclude": []
     },
 
     "emptyRule": {
@@ -31,11 +42,17 @@
     },
 
     "idSelector": {
-        "enabled": true
+        "enabled": true,
+        "exclude": []
     },
 
     "importantRule": {
         "enabled": true
+    },
+
+    "leadingZero": {
+        "enabled": true,
+        "style": "include_zero"
     },
 
     "spaceAfterPropertyColon": {
@@ -62,6 +79,11 @@
         "enabled": true
     },
 
+    "trailingZero": {
+        "enabled": true,
+        "style": "exclude_zero"
+    },
+
     "urlFormat": {
         "enabled": true,
         "style": "relative"
@@ -69,5 +91,10 @@
 
     "urlQuotes": {
         "enabled": true
+    },
+
+    "zeroUnit": {
+        "enabled": true,
+        "style": "no_unit"
     }
 }
