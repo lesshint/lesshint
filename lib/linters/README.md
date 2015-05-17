@@ -6,7 +6,7 @@ Each linter also accept a `enabled` option to turn if off/on completely. Another
 
 * [attributeQuotes](#attributequotes)
 * [borderZero](#borderzero)
-* [Comment](#comment)
+* [comment](#comment)
 * [duplicateProperty](#duplicateproperty)
 * [emptyRule](#emptyrule)
 * [finalNewline](#finalnewline)
