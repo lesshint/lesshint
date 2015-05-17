@@ -9,6 +9,11 @@
         "style": "zero"
     },
 
+    "comment": {
+        "allowed": "^!",
+        "enabled": true
+    },
+
     "duplicateProperty": {
         "enabled": true,
         "exclude": []

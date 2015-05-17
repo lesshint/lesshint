@@ -6,6 +6,7 @@ Each linter also accept a `enabled` option to turn if off/on completely. Another
 
 * [attributeQuotes](#attributequotes)
 * [borderZero](#borderzero)
+* [Comment](#comment)
 * [duplicateProperty](#duplicateproperty)
 * [emptyRule](#emptyrule)
 * [finalNewline](#finalnewline)
@@ -70,6 +71,24 @@ Option     | Description
 .foo {
     border: 0;
 }
+```
+
+## Comment
+Prefer single-line comments (`//`) over multiline (`/* ... */`) since they're not rendered in the final CSS.
+
+Option     | Description
+---------- | ----------
+`allowed`  | A regexp to match allowed comments. The default is `^!` allowing comments starting with a bang, i.e. `/*! Copyright... */`.
+
+### invalid
+```css
+/* Will get rendered */
+```
+
+### valid
+// Won't get rendered
+
+/*! Will get rendered, but it's OK */
 ```
 
 ## duplicateProperty
