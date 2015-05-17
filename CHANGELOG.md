@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.5.0 (2015-05-17)
+* Added the following linters:
+    * `attributeQuotes`
+    * `comment`
+    * `leadingZero`
+    * `trailingZero`
+    * `zeroUnit`
+* Added an `exclude` option to the following linters:
+    * `duplicateProperty`
+    * `idSelector`
+* The `stringQuotes` linter now checks strings everywhere, not just in rulesets.
+
 ## 0.4.1 (2015-05-11)
 * Fixed two issues with `urlFormat` and `urlQuotes` where they would incorrectly report errors when the URLs were surrounded by spaces ([#22](https://github.com/jwilsson/lesshint/issues/22)).
 
