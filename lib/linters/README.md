@@ -74,7 +74,7 @@ Option     | Description
 ```
 
 ## Comment
-Prefer single-line comments (`//`) over multiline (`/* ... */`) since they're not rendered in the final CSS.
+Prefer single-line comments (`//`) over multi-line (`/* ... */`) since they're not rendered in the final CSS.
 
 Option     | Description
 ---------- | ----------
@@ -94,7 +94,7 @@ Option     | Description
 ## duplicateProperty
 There shouldn't be any duplicate properties since this is usually an error, causing unexpected bugs.
 
-However, sometimes, there might be valid reasons such as a fallback for older browsers. 
+However, sometimes, there might be valid reasons such as a fallback for older browsers.
 In these cases `lesshint` won't be able to know your intentions and will still report it,
 if this is undesired the best option right now is to disable this linter altogether until we have a better solution in place.
 
@@ -123,7 +123,7 @@ There shouldn't be any empty rules present.
 ### invalid
 ```css
 .foo {
-    
+
 }
 ```
 

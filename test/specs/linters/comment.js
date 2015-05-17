@@ -23,7 +23,7 @@ describe('lesshint', function () {
             }));
         });
 
-        it('should not allow multiline comments', function () {
+        it('should not allow multi-line comments', function () {
             var source = '/* Hello world */';
             var actual;
             var ast;
@@ -33,7 +33,7 @@ describe('lesshint', function () {
                 file: 'test.less',
                 line: 1,
                 linter: 'comment',
-                message: 'There shouldn\'t be any multiline comments.'
+                message: 'There shouldn\'t be any multi-line comments.'
             };
 
             var options = {
