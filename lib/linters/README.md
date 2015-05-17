@@ -51,6 +51,10 @@ However, sometimes, there might be valid reasons such as a fallback for older br
 In these cases `lesshint` won't be able to know your intentions and will still report it,
 if this is undesired the best option right now is to disable this linter altogether until we have a better solution in place.
 
+Option     | Description
+---------- | ----------
+`exclude`  | Array of properties to exclude, for example `background-color` when used with a fallback.
+
 ### invalid
 ```css
 .foo {

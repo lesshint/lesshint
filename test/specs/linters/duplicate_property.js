@@ -11,7 +11,8 @@ describe('lesshint', function () {
 
             var options = {
                 duplicateProperty: {
-                    enabled: true
+                    enabled: true,
+                    exclude: []
                 }
             };
 
@@ -39,7 +40,60 @@ describe('lesshint', function () {
 
             var options = {
                 duplicateProperty: {
-                    enabled: true
+                    enabled: true,
+                    exclude: []
+                }
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first().first('block');
+
+            actual = duplicateProperty({
+                config: options,
+                node: ast,
+                path: 'test.less'
+            });
+
+            assert.deepEqual(actual, expected);
+        });
+
+        it('should allow excluded properties', function () {
+            var source = '.foo { color: red; color: green; }';
+            var ast;
+
+            var options = {
+                duplicateProperty: {
+                    enabled: true,
+                    exclude: ['color']
+                }
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first().first('block');
+
+            assert.strictEqual(true, duplicateProperty({
+                config: options,
+                node: ast
+            }));
+        });
+
+        it('should not allow duplicates of properties that are not excluded', function () {
+            var source = '.foo { color: red; color: green; }';
+            var actual;
+            var ast;
+
+            var expected = [{
+                column: 20,
+                file: 'test.less',
+                line: 1,
+                linter: 'duplicateProperty',
+                message: 'Duplicate property: "color".'
+            }];
+
+            var options = {
+                duplicateProperty: {
+                    enabled: true,
+                    exclude: ['background']
                 }
             };
 
@@ -60,7 +114,8 @@ describe('lesshint', function () {
             var ast;
             var options = {
                 duplicateProperty: {
-                    enabled: false
+                    enabled: false,
+                    exclude: []
                 }
             };
 
