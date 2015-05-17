@@ -86,6 +86,7 @@ Option     | Description
 ```
 
 ### valid
+```css
 // Won't get rendered
 
 /*! Will get rendered, but it's OK */
