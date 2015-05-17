@@ -81,5 +81,10 @@
 
     "urlQuotes": {
         "enabled": true
+    },
+
+    "zeroUnit": {
+        "enabled": true,
+        "style": "no_unit"
     }
 }

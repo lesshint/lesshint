@@ -22,6 +22,7 @@ Each linter also accept a `enabled` option to turn if off/on completely. Another
 * [trailingZero](#trailingzero)
 * [urlFormat](#urlformat)
 * [urlQuotes](#urlquotes)
+* [zeroUnit](#zerounit)
 
 ## borderZero
 Prefer `0` over `none` in border declarations.
@@ -397,5 +398,29 @@ The [CSS spec](http://dev.w3.org/csswg/css-values/#url-value) also recommends th
     background-image: url('img/image.jpg');
 }
 ```
+
+## zeroUnit
+Length units should be omitted on zero values.
+
+Option     | Description
+---------- | ----------
+`style`    | `no_unit` (**default**), `keep_unit`
+
+### no_unit
+```css
+.foo {
+    margin-right: 0;
+}
+```
+
+### keep_unit
+```css
+.foo {
+    margin-right: 0px;
+}
+```
+
+*Note: This rule doesn't apply to [angles](https://developer.mozilla.org/en-US/docs/Web/CSS/angle) or [time units](https://developer.mozilla.org/en-US/docs/Web/CSS/time) since they always require a unit.*
+
 
 Most of these rules are based on [@mdo](twitter.com/mdo)s [code guide](http://codeguide.co/#css).
