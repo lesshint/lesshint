@@ -38,6 +38,11 @@
         "enabled": true
     },
 
+    "leadingZero": {
+        "enabled": true,
+        "style": "include_zero"
+    },
+
     "spaceAfterPropertyColon": {
         "enabled": true,
         "style": "one_space"

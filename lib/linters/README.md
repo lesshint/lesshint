@@ -13,6 +13,7 @@ Each linter also accept a `enabled` option to turn if off/on completely. Another
 * [hexValidation](#hexvalidation)
 * [idSelector](#idselector)
 * [importantRule](#importantrule)
+* [leadingZero](#leadingzero)
 * [spaceAfterPropertyColon](#spaceafterpropertycolon)
 * [spaceAfterPropertyName](#spaceafterpropertyname)
 * [spaceBeforeBrace](#spacebeforebrace)
@@ -192,6 +193,27 @@ The use of `!important` is often due to a lack of understanding of CSS specifici
 ```css
 .foo {
     color: red;
+}
+```
+
+## leadingZero
+Numbers should be written with a leading zero.
+
+Option     | Description
+---------- | ----------
+`style`    | `exclude_zero`, `include_zero` (**default**)
+
+### invalid
+```css
+#foo {
+    font-size: .5em;
+}
+```
+
+### valid
+```css
+.foo {
+    font-size: 0.5em;
 }
 ```
 
