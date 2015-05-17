@@ -31,7 +31,8 @@
     },
 
     "idSelector": {
-        "enabled": true
+        "enabled": true,
+        "exclude": []
     },
 
     "importantRule": {

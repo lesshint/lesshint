@@ -165,6 +165,10 @@ Check if hex color declarations are valid.
 Disallow the usage of ID selectors.
 ID selectors should be avoided since they introduce unnecessarily specific selectors which can't be easily overridden.
 
+Option     | Description
+---------- | ----------
+`exclude`  | Array of IDs to exclude (with our without "#").
+
 ### invalid
 ```css
 #foo {
