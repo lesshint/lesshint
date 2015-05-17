@@ -1,4 +1,9 @@
 {
+    "attributeQuotes": {
+        "enabled": true,
+        "style": "single"
+    },
+
     "borderZero": {
         "enabled": true,
         "style": "zero"

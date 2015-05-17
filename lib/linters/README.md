@@ -4,6 +4,7 @@
 
 Each linter also accept a `enabled` option to turn if off/on completely. Another way of disabling a linter is by setting the whole property to `false`.
 
+* [attributeQuotes](#attributequotes)
 * [borderZero](#borderzero)
 * [duplicateProperty](#duplicateproperty)
 * [emptyRule](#emptyrule)
@@ -23,6 +24,32 @@ Each linter also accept a `enabled` option to turn if off/on completely. Another
 * [urlFormat](#urlformat)
 * [urlQuotes](#urlquotes)
 * [zeroUnit](#zerounit)
+
+## attributeQuotes
+All values in attribute selectors should be enclosed in quotes.
+Since some values require quotes it's better for consistency to always quote the values.
+
+Option     | Description
+---------- | ----------
+`style`    | `double`, `single` (**default**)
+
+### invalid
+```css
+input[type="text"] {
+    color: red;
+}
+
+input[type=text] {
+    color: red;
+}
+```
+
+### valid
+```css
+input[type='text'] {
+    color: red;
+}
+```
 
 ## borderZero
 Prefer `0` over `none` in border declarations.
