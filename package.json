@@ -30,6 +30,8 @@
     "vow-fs": "^0.3.4"
   },
   "devDependencies": {
+    "coveralls": "^2.11.2",
+    "istanbul": "^0.3.14",
     "jscs": "^1.12.0",
     "jshint": "^2.6.3",
     "mocha": "^2.2.1",
@@ -41,6 +43,7 @@
     "lesshint": "bin/lesshint"
   },
   "scripts": {
+    "cover": "istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec test/specs && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "pretest": "jshint lib && jscs lib",
     "test": "mocha"
   },
