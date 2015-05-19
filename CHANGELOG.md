@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.5.1 (2015-05-19)
+* Fixed issues with `hexLength`, `hexNotation`, and `hexValidation` where they wouldn't check for hex colors outside declarations (for example variables).
+
 ## 0.5.0 (2015-05-17)
 * Added the following linters:
     * `attributeQuotes`
