@@ -11,7 +11,11 @@ before_script:
   - node --version
   - npm --version
 
-script: npm test
+script:
+  - npm test
+
+after_script:
+  - npm run cover
 
 matrix:
   fast_finish: true
