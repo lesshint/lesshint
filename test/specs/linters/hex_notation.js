@@ -5,13 +5,13 @@ describe('lesshint', function () {
     var hexNotation = require('../../../lib/linters/hex_notation');
 
     describe('#hexNotation()', function () {
-        it('should not allow uppercase hex values when "style" is "lowercase', function () {
-            var source = '.foo { color: #AABBCC; }';
+        it('should not allow uppercase hex values when "style" is "lowercase"', function () {
+            var source = 'color: #AABBCC;';
             var actual;
             var ast;
 
             var expected = {
-                column: 15,
+                column: 8,
                 file: 'test.less',
                 line: 1,
                 linter: 'hexNotation',
@@ -26,7 +26,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('block').first('declaration');
+            ast = ast.first('declaration').first('value').first('color');
 
             actual = hexNotation({
                 config: options,
@@ -37,8 +37,8 @@ describe('lesshint', function () {
             assert.deepEqual(actual, expected);
         });
 
-        it('should allow lowercase hex values when "style" is "lowercase', function () {
-            var source = '.foo { color: #aabbcc; }';
+        it('should allow lowercase hex values when "style" is "lowercase"', function () {
+            var source = 'color: #aabbcc;';
             var ast;
 
             var options = {
@@ -49,7 +49,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('block').first('declaration');
+            ast = ast.first('declaration').first('value').first('color');
 
             assert.strictEqual(true, hexNotation({
                 config: options,
@@ -57,13 +57,13 @@ describe('lesshint', function () {
             }));
         });
 
-        it('should not allow lowercase hex values when "style" is "uppercase', function () {
-            var source = '.foo { color: #aabbcc; }';
+        it('should not allow lowercase hex values when "style" is "uppercase"', function () {
+            var source = 'color: #aabbcc;';
             var actual;
             var ast;
 
             var expected = {
-                column: 15,
+                column: 8,
                 file: 'test.less',
                 line: 1,
                 linter: 'hexNotation',
@@ -78,7 +78,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('block').first('declaration');
+            ast = ast.first('declaration').first('value').first('color');
 
             actual = hexNotation({
                 config: options,
@@ -89,8 +89,8 @@ describe('lesshint', function () {
             assert.deepEqual(actual, expected);
         });
 
-        it('should allow uppercase hex values when "style" is "uppercase', function () {
-            var source = '.foo { color: #AABBCC; }';
+        it('should allow uppercase hex values when "style" is "uppercase"', function () {
+            var source = 'color: #AABBCC;';
             var ast;
 
             var options = {
@@ -101,7 +101,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('block').first('declaration');
+            ast = ast.first('declaration').first('value').first('color');
 
             assert.strictEqual(true, hexNotation({
                 config: options,
@@ -110,11 +110,11 @@ describe('lesshint', function () {
         });
 
         it('should find hex values in background declarations', function () {
-            var source = '.foo { background: url(test.png) no-repeat #AABBCC; }';
+            var source = 'background: url(test.png) no-repeat #AABBCC;';
             var ast;
 
             var expected = {
-                column: 44,
+                column: 37,
                 file: 'test.less',
                 line: 1,
                 linter: 'hexNotation',
@@ -129,7 +129,71 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('block').first('declaration');
+            ast = ast.first('declaration').first('value').first('color');
+
+            actual = hexNotation({
+                config: options,
+                node: ast,
+                path: 'test.less'
+            });
+
+            assert.deepEqual(actual, expected);
+        });
+
+        it('should not allow uppercase hex values in variables when "style" is "lowercase" (#28)', function () {
+            var source = '@color: #AABBCC;';
+            var actual;
+            var ast;
+
+            var expected = {
+                column: 9,
+                file: 'test.less',
+                line: 1,
+                linter: 'hexNotation',
+                message: '#AABBCC should be written in lowercase.'
+            };
+
+            var options = {
+                hexNotation: {
+                    enabled: true,
+                    style: 'lowercase'
+                }
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first().first('color');
+
+            actual = hexNotation({
+                config: options,
+                node: ast,
+                path: 'test.less'
+            });
+
+            assert.deepEqual(actual, expected);
+        });
+
+        it('should not allow lowercase hex values in variables when "style" is "uppercase" (#28)', function () {
+            var source = '@color: #aabbcc;';
+            var actual;
+            var ast;
+
+            var expected = {
+                column: 9,
+                file: 'test.less',
+                line: 1,
+                linter: 'hexNotation',
+                message: '#aabbcc should be written in uppercase.'
+            };
+
+            var options = {
+                hexNotation: {
+                    enabled: true,
+                    style: 'uppercase'
+                }
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first().first('color');
 
             actual = hexNotation({
                 config: options,
@@ -141,7 +205,7 @@ describe('lesshint', function () {
         });
 
         it('should return null when disabled', function () {
-            var source = '.foo { color: #abc; }';
+            var source = 'color: #abc;';
             var ast;
             var options = {
                 hexNotation: {
@@ -150,7 +214,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('block').first('declaration');
+            ast = ast.first('declaration').first('value').first('color');
 
             assert.equal(null, hexNotation({
                 config: options,
@@ -159,14 +223,14 @@ describe('lesshint', function () {
         });
 
         it('should return null when disabled via shorthand', function () {
-            var source = '.foo { color: #abc; }';
+            var source = 'color: #abc;';
             var ast;
             var options = {
                 hexNotation: false
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('block').first('declaration');
+            ast = ast.first('declaration').first('value').first('color');
 
             assert.equal(null, hexNotation({
                 config: options,
@@ -175,7 +239,7 @@ describe('lesshint', function () {
         });
 
         it('should throw on invalid "style" value', function () {
-            var source = '.foo { color: #aabbcc; }';
+            var source = 'color: #aabbcc;';
             var ast;
 
             var options = {
@@ -186,7 +250,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('block').first('declaration');
+            ast = ast.first('declaration').first('value').first('color');
 
             assert.throws(hexNotation.bind(null, {
                 config: options,
