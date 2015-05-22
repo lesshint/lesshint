@@ -96,8 +96,7 @@ Option     | Description
 There shouldn't be any duplicate properties since this is usually an error, causing unexpected bugs.
 
 However, sometimes, there might be valid reasons such as a fallback for older browsers.
-In these cases `lesshint` won't be able to know your intentions and will still report it,
-if this is undesired the best option right now is to disable this linter altogether until we have a better solution in place.
+In those cases, it's best to set the `exclude` option to stop `lesshint` from reporting those properties.
 
 Option     | Description
 ---------- | ----------
