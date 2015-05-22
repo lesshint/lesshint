@@ -18,6 +18,7 @@ Each linter also accept a `enabled` option to turn if off/on completely. Another
 * [leadingZero](#leadingzero)
 * [spaceAfterPropertyColon](#spaceafterpropertycolon)
 * [spaceAfterPropertyName](#spaceafterpropertyname)
+* [spaceAfterPropertyValue](#spaceafterpropertyvalue)
 * [spaceBeforeBrace](#spacebeforebrace)
 * [stringQuotes](#stringquotes)
 * [trailingSemicolon](#trailingsemicolon)
@@ -351,6 +352,27 @@ Option     | Description
 ```css
 .foo {
     margin : 0;
+}
+```
+
+## spaceAfterPropertyValue
+The semicolon in property declarations shouldn't be preceded by any space.
+
+Option     | Description
+---------- | ----------
+`style`    | `no_space` (**default**), `one_space`
+
+### no_space
+```css
+.foo {
+    margin: 0;
+}
+```
+
+### one_space
+```css
+.foo {
+    margin: 0 ;
 }
 ```
 

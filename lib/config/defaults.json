@@ -72,6 +72,11 @@
         "style": "no_space"
     },
 
+    "spaceAfterPropertyValue": {
+        "enabled": true,
+        "style": "no_space"
+    },
+
     "spaceBeforeBrace": {
         "enabled": true,
         "style": "one_space"
