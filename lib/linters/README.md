@@ -219,7 +219,7 @@ ID selectors should be avoided since they introduce unnecessarily specific selec
 
 Option     | Description
 ---------- | ----------
-`exclude`  | Array of IDs to exclude (with our without "#").
+`exclude`  | Array of IDs to exclude (with or without "#").
 
 ### invalid
 ```css
