@@ -5,7 +5,7 @@ describe('lesshint', function () {
     var spaceAfterPropertyName = require('../../../lib/linters/space_after_property_name');
 
     describe('#spaceAfterPropertyName()', function () {
-        it('should allow a missing space when style is "no_space"', function () {
+        it('should allow a missing space when "style" is "no_space"', function () {
             var source = '.foo { color: red; }';
             var ast;
 
@@ -25,7 +25,7 @@ describe('lesshint', function () {
             }));
         });
 
-        it('should not allow any space when style is "no_space"', function () {
+        it('should not allow any space when "style" is "no_space"', function () {
             var source = '.foo { color : red; }';
             var actual;
             var ast;
@@ -57,7 +57,7 @@ describe('lesshint', function () {
             assert.deepEqual(actual, expected);
         });
 
-        it('should allow one space when style is "one_space"', function () {
+        it('should allow one space when "style" is "one_space"', function () {
             var source = '.foo { color : red; }';
             var ast;
 
@@ -77,7 +77,7 @@ describe('lesshint', function () {
             }));
         });
 
-        it('should not allow a missing space when style is "one_space"', function () {
+        it('should not allow a missing space when "style" is "one_space"', function () {
             var source = '.foo { color: red; }';
             var actual;
             var ast;
@@ -107,25 +107,6 @@ describe('lesshint', function () {
             });
 
             assert.deepEqual(actual, expected);
-        });
-
-        it('should throw on invalid style value', function () {
-            var source = '.foo { color:red; }';
-            var ast;
-            var options = {
-                spaceAfterPropertyName: {
-                    enabled: true,
-                    style: "invalid"
-                }
-            };
-
-            ast = linter.parseAST(source);
-            ast = ast.first().first('block').first('declaration');
-
-            assert.throws(spaceAfterPropertyName.bind(null, {
-                config: options,
-                node: ast
-            }), Error);
         });
 
         it('should return null when disabled', function () {
@@ -160,6 +141,25 @@ describe('lesshint', function () {
                 config: options,
                 node: ast
             }));
+        });
+
+        it('should throw on invalid "style" value', function () {
+            var source = '.foo { color:red; }';
+            var ast;
+            var options = {
+                spaceAfterPropertyName: {
+                    enabled: true,
+                    style: "invalid"
+                }
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first().first('block').first('declaration');
+
+            assert.throws(spaceAfterPropertyName.bind(null, {
+                config: options,
+                node: ast
+            }), Error);
         });
     });
 });

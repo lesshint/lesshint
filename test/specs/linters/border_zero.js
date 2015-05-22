@@ -5,7 +5,7 @@ describe('lesshint', function () {
     var borderZero = require('../../../lib/linters/border_zero');
 
     describe('#borderZero()', function () {
-        it('should allow "none" as a value when style is "none" and the property is "border"', function () {
+        it('should allow "none" as a value when "style" is "none" and the property is "border"', function () {
             var source = '.foo { border: none; }';
             var ast;
 
@@ -25,7 +25,7 @@ describe('lesshint', function () {
             }));
         });
 
-        it('should allow 0 as a value when style is "zero" and the property is "border"', function () {
+        it('should allow 0 as a value when "style" is "zero" and the property is "border"', function () {
             var source = '.foo { border: 0; }';
             var ast;
 
@@ -45,7 +45,7 @@ describe('lesshint', function () {
             }));
         });
 
-        it('should not allow 0 as a value when style is "none" and the property is "border"', function () {
+        it('should not allow 0 as a value when "style" is "none" and the property is "border"', function () {
             var source = '.foo { border: 0; }';
             var actual;
             var ast;
@@ -77,7 +77,7 @@ describe('lesshint', function () {
             assert.deepEqual(actual, expected);
         });
 
-        it('should not allow "none" as a value when style is "zero" and the property is "border"', function () {
+        it('should not allow "none" as a value when "style" is "zero" and the property is "border"', function () {
             var source = '.foo { border: none; }';
             var actual;
             var ast;
@@ -109,7 +109,7 @@ describe('lesshint', function () {
             assert.deepEqual(actual, expected);
         });
 
-        it('should allow "none" as a value when style is "none" and the property is "border-bottom"', function () {
+        it('should allow "none" as a value when "style" is "none" and the property is "border-bottom"', function () {
             var source = '.foo { border-bottom: none; }';
             var ast;
 
@@ -129,7 +129,7 @@ describe('lesshint', function () {
             }));
         });
 
-        it('should allow "none" as a value when style is "none" and the property is "border-left"', function () {
+        it('should allow "none" as a value when "style" is "none" and the property is "border-left"', function () {
             var source = '.foo { border-left: none; }';
             var ast;
 
@@ -149,7 +149,7 @@ describe('lesshint', function () {
             }));
         });
 
-        it('should allow "none" as a value when style is "none" and the property is "border-right"', function () {
+        it('should allow "none" as a value when "style" is "none" and the property is "border-right"', function () {
             var source = '.foo { border-right: none; }';
             var ast;
 
@@ -169,7 +169,7 @@ describe('lesshint', function () {
             }));
         });
 
-        it('should allow "none" as a value when style is "none" and the property is "border-top"', function () {
+        it('should allow "none" as a value when "style" is "none" and the property is "border-top"', function () {
             var source = '.foo { border-top: none; }';
             var ast;
 
