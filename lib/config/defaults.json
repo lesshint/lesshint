@@ -55,6 +55,13 @@
         "style": "include_zero"
     },
 
+    "qualifyingElement": {
+        "enabled": true,
+        "allowWithId": false,
+        "allowWithClass": false,
+        "allowWithAttribute": false
+    },
+
     "spaceAfterPropertyColon": {
         "enabled": true,
         "style": "one_space"

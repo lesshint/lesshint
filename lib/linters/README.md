@@ -274,6 +274,45 @@ Option     | Description
 }
 ```
 
+## qualifyingElement
+Selectors should not include a qualifying element since this will just add unnecessary specificity.
+
+Option               | Description
+-------------------- | ----------
+`allowWithAttribute` | `false` (**default**), `true`
+`allowWithClass`     | `false` (**default**), `true`
+`allowWithId`        | `false` (**default**), `true`
+
+### invalid
+```css
+div[foo=bar] {
+    color: red;
+}
+
+div.foo {
+    color: red;
+}
+
+div#foo {
+    color: red;
+}
+```
+
+### valid
+```css
+[foo=bar] {
+    color: red;
+}
+
+.foo {
+    color: red;
+}
+
+#foo {
+    color: red;
+}
+```
+
 ## spaceAfterPropertyColon
 Each colon in property declarations should be followed by a space to aid readability.
 
