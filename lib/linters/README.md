@@ -16,6 +16,7 @@ Each linter also accept a `enabled` option to turn if off/on completely. Another
 * [idSelector](#idselector)
 * [importantRule](#importantrule)
 * [leadingZero](#leadingzero)
+* [qualifyingElement](#qualifyingelement)
 * [spaceAfterPropertyColon](#spaceafterpropertycolon)
 * [spaceAfterPropertyName](#spaceafterpropertyname)
 * [spaceAfterPropertyValue](#spaceafterpropertyvalue)
