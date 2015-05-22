@@ -108,6 +108,24 @@ describe('lesshint', function () {
             }));
         });
 
+        it('should not report a missing when there\'s a space before the semicolon', function () {
+            var source = '.foo { color: red ; }';
+            var ast;
+            var options = {
+                trailingSemicolon: {
+                    enabled: true
+                }
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first().first('block');
+
+            assert.equal(true, trailingSemicolon({
+                config: options,
+                node: ast
+            }));
+        });
+
         it('should return null when disabled', function () {
             var source = '.foo { color: red }';
             var ast;
