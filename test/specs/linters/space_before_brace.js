@@ -415,6 +415,26 @@ describe('lesshint', function () {
             assert.deepEqual(actual, expected);
         });
 
+        it('should handle mixins', function () {
+            var source = '.foo() { color: red; }';
+            var ast;
+
+            var options = {
+                spaceBeforeBrace: {
+                    enabled: true,
+                    style: 'one_space'
+                }
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first().first('selector');
+
+            assert.strictEqual(true, spaceBeforeBrace({
+                config: options,
+                node: ast
+            }));
+        });
+
         it('should return null when disabled', function () {
             var source = '.foo{ color: red; }';
             var ast;
