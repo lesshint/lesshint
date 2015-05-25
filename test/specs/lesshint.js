@@ -13,6 +13,15 @@ describe('lesshint', function () {
                 assert.ok(errors.length === 2);
             });
         });
+
+        it('should ignore dotfiles', function () {
+            var lesshint = new Lesshint();
+            var testPath = path.dirname(__dirname) + '/data/ignored-files';
+
+            return lesshint.checkDirectory(testPath).then(function (errors) {
+                assert.ok(errors.length === 0);
+            });
+        });
     });
 
     describe('checkFile', function () {
