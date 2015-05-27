@@ -204,6 +204,26 @@ describe('lesshint', function () {
             assert.deepEqual(actual, expected);
         });
 
+        it('should ignore colors with only numbers', function () {
+            var source = 'color: #123456;';
+            var ast;
+
+            var options = {
+                hexNotation: {
+                    enabled: true,
+                    style: 'lowercase'
+                }
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first('declaration').first('value').first('color');
+
+            assert.strictEqual(null, hexNotation({
+                config: options,
+                node: ast
+            }));
+        })
+
         it('should return null when disabled', function () {
             var source = 'color: #abc;';
             var ast;
