@@ -5,7 +5,7 @@
     * `qualifyingElement`
     * `spaceAfterPropertyValue`
 * Fixed an issue where `trailingSemicolon` would fail when a space was preceding the semicolon.
-* Fixed an issue where hexNotation would incorrectly report colors with only numbers.
+* Fixed an issue where `hexNotation` would incorrectly report colors with only numbers.
 * Fixed an issue in idSelector due to a changed AST from `gonzales-pe`.
 * The `detached rulesets` feature of Less is now supported thanks to a upstream patch in `gonzales-pe`.
 * Increased test coverage.
