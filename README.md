@@ -55,4 +55,3 @@ We are aware of some instances where some Less features won't be properly parsed
 
 * Not all forms of `:extend()` rules are supported. Related [issue](https://github.com/tonyganch/gonzales-pe/issues/15).
 * Using variables in `@media` directives are not supported. Related [issue](https://github.com/tonyganch/gonzales-pe/issues/17).
-* Passing Rulesets to Mixins, i.e. [detached rulesets](http://lesscss.org/features/#detached-rulesets-feature) are not supported. Related [issue](https://github.com/tonyganch/gonzales-pe/issues/22).
