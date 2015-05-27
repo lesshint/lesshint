@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.6.0 (2015-05-27)
+* Added the following linters:
+    * `qualifyingElement`
+    * `spaceAfterPropertyValue`
+* Fixed an issue where `trailingSemicolon` would fail when a space was preceding the semicolon.
+* Fixed an issue where hexNotation would incorrectly report colors with only numbers.
+* Fixed an issue in idSelector due to a changed AST from `gonzales-pe`.
+* The `detached rulesets` feature of Less is now supported thanks to a upstream patch in `gonzales-pe`.
+* Increased test coverage.
+
 ## 0.5.1 (2015-05-19)
 * Fixed issues with `hexLength`, `hexNotation`, and `hexValidation` where they wouldn't check for hex colors outside declarations (in variables for example) ([#28](https://github.com/jwilsson/lesshint/issues/28)).
 
