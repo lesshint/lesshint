@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.6.1 (2015-05-28)
+* Lock `gonzales-pe` dependency to stop things from breaking due to changes there.
+
 ## 0.6.0 (2015-05-27)
 * Added the following linters:
     * `qualifyingElement`
