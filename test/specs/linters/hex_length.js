@@ -236,9 +236,29 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first('declaration').first('value').first('ident')
+            ast = ast.first('declaration').first('value').first('ident');
 
             assert.strictEqual(null, hexLength({
+                config: options,
+                node: ast
+            }));
+        });
+
+        it('should ignore invalid colors', function () {
+            var source = 'color: #abc1;';
+            var ast;
+
+            var options = {
+                hexLength: {
+                    enabled: true,
+                    style: 'long'
+                }
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first('declaration').first('value').first('color');
+
+            assert.strictEqual(true, hexLength({
                 config: options,
                 node: ast
             }));
