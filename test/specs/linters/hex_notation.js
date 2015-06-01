@@ -222,7 +222,27 @@ describe('lesshint', function () {
                 config: options,
                 node: ast
             }));
-        })
+        });
+
+        it('should ignore invalid colors', function () {
+            var source = 'color: #abc1;';
+            var ast;
+
+            var options = {
+                hexNotation: {
+                    enabled: true,
+                    style: 'lowercase'
+                }
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first('declaration').first('value').first('color');
+
+            assert.strictEqual(true, hexNotation({
+                config: options,
+                node: ast
+            }));
+        });
 
         it('should return null when disabled', function () {
             var source = 'color: #abc;';
