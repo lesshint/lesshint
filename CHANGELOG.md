@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.6.2 (2015-06-01)
+* Stopped `hexLength` and `hexNotation` from reporting on invalid hex colors.
+
 ## 0.6.1 (2015-05-28)
 * Lock `gonzales-pe` dependency to stop things from breaking due to changes there.
 
