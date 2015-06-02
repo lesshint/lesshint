@@ -11,6 +11,7 @@
 * [Requirements](#requirements)
 * [Installation](#installation)
 * [Configuration](#configuration)
+* [CLI usage](#cli-usage)
 * [Known issues](#known-issues)
 
 ## Important information
@@ -48,7 +49,18 @@ Each option is then specifed by it's own JSON object, for example:
 }
 ```
 
-If you're running `lesshint` from the command line, the `-c` or `--config` flags can be used to load any valid configuration file.
+## CLI usage
+Run `lesshint` from the command-line by passing one or more files/directories to recursively scan.
+
+```
+lesshint src/less/ lib/style.less
+```
+
+Available Flags     | Description
+--------------------|----------------------------------------------
+`-c`/`--config`     | Specify the configuration file to use (will be merged with defaults).
+`-e`/`--exclude`    | A [minimatch glob pattern](https://github.com/isaacs/minimatch) or a file to exclude form being linted.
+`-V`/`--version`    | Show version.
 
 ## Known issues
 We are aware of some instances where some Less features won't be properly parsed. In those cases the whole file will simply be ignored by `lesshint`.
