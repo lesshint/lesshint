@@ -43,10 +43,34 @@ Start by creating a `.lesshintrc` file in your project root and add your setting
 Each option is then specifed by it's own JSON object, for example:
 
 ```js
+"fileExtensions": [".less", ".css"],
+
+"excludedFiles": ["vendor.less"],
+
 "spaceAfterPropertyColon": {
     "enabled": true,
     "style": "one_space" // Comments are allowed
 }
+```
+
+### Options
+
+#### fileExtensions
+Array of file extensions to check. Either an array of extensions or `"*"` to allow all files. For example:
+
+```
+"fileExtensions": [".less", ".css"] // Allow ".less" and ".css" files. Can be passed with or without a dot.
+
+"fileExtensions": "*" // Allow all files
+```
+
+#### excludedFiles
+Array of [minimatch glob patterns](https://github.com/isaacs/minimatch) or a file to exclude. For example:
+
+```
+"excludedFiles": ["vendor/*.less"] // Ignore all files in "vendor/"
+
+"excludedFiles": ["vendor.less"] // Ignore a file named "vendor.less"
 ```
 
 ## CLI usage
