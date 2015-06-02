@@ -16,6 +16,7 @@ program
     .usage('[options] <file ...>')
     .description('A tool to aid you in writing clean and consistent Less.')
     .option('-c, --config [path]', 'configuration file path')
+    .option('-e, --exclude [pattern]', 'path pattern to exclude')
     .parse(process.argv);
 
 cli(program);

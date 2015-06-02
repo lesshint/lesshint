@@ -109,4 +109,17 @@ describe('cli', function () {
             assert.ok(status === 78);
         });
     });
+
+    it('should ignore excluded files', function () {
+        var result;
+
+        result = cli({
+            args: [path.dirname(__dirname) + '/data/files'],
+            exclude: '*.less'
+        });
+
+        return result.then(function (status) {
+            assert.ok(status === 0);
+        });
+    });
 });

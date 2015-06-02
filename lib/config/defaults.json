@@ -1,4 +1,6 @@
 {
+    "excludedFiles": [],
+
     "attributeQuotes": {
         "enabled": true,
         "style": "single"
