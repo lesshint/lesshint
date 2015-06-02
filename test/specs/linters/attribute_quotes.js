@@ -17,7 +17,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('selector');
+            ast = ast.first().first('selector').first('simpleSelector').first('attribute');
 
             assert.strictEqual(true, attributeQuotes({
                 config: options,
@@ -30,13 +30,13 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = [{
+            var expected = {
                 column: 12,
                 file: 'test.less',
                 line: 1,
                 linter: 'attributeQuotes',
                 message: 'Attribute selectors should use single quotes.'
-            }];
+            };
 
             var options = {
                 attributeQuotes: {
@@ -46,7 +46,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('selector');
+            ast = ast.first().first('selector').first('simpleSelector').first('attribute');
 
             actual = attributeQuotes({
                 config: options,
@@ -62,13 +62,13 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = [{
+            var expected = {
                 column: 12,
                 file: 'test.less',
                 line: 1,
                 linter: 'attributeQuotes',
                 message: 'Attribute selectors should use single quotes.'
-            }];
+            };
 
             var options = {
                 attributeQuotes: {
@@ -78,7 +78,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('selector');
+            ast = ast.first().first('selector').first('simpleSelector').first('attribute');
 
             actual = attributeQuotes({
                 config: options,
@@ -101,7 +101,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('selector');
+            ast = ast.first().first('selector').first('simpleSelector').first('attribute');
 
             assert.strictEqual(true, attributeQuotes({
                 config: options,
@@ -114,13 +114,13 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = [{
+            var expected = {
                 column: 12,
                 file: 'test.less',
                 line: 1,
                 linter: 'attributeQuotes',
                 message: 'Attribute selectors should use double quotes.'
-            }];
+            };
 
             var options = {
                 attributeQuotes: {
@@ -130,7 +130,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('selector');
+            ast = ast.first().first('selector').first('simpleSelector').first('attribute');
 
             actual = attributeQuotes({
                 config: options,
@@ -146,13 +146,13 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = [{
+            var expected = {
                 column: 12,
                 file: 'test.less',
                 line: 1,
                 linter: 'attributeQuotes',
                 message: 'Attribute selectors should use double quotes.'
-            }];
+            };
 
             var options = {
                 attributeQuotes: {
@@ -162,7 +162,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('selector');
+            ast = ast.first().first('selector').first('simpleSelector').first('attribute');
 
             actual = attributeQuotes({
                 config: options,
@@ -183,7 +183,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('selector');
+            ast = ast.first().first('selector').first('simpleSelector').first('attribute');
 
             assert.equal(null, attributeQuotes({
                 config: options,
@@ -199,7 +199,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('selector');
+            ast = ast.first().first('selector').first('simpleSelector').first('attribute');
 
             assert.equal(null, attributeQuotes({
                 config: options,
@@ -219,7 +219,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('selector');
+            ast = ast.first().first('selector').first('simpleSelector').first('attribute');
 
             assert.throws(attributeQuotes.bind(null, {
                 config: options,
