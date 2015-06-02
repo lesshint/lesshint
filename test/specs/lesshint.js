@@ -121,6 +121,19 @@ describe('lesshint', function () {
 
             assert.ok(errors.length === 1);
         });
+
+        it('should return an empty array on invalid input', function () {
+            var string = '.foo{';
+
+            var lesshint = new Lesshint();
+            var errors;
+
+            lesshint.configure();
+
+            errors = lesshint.checkString(string);
+
+            assert.ok(errors.length === 0);
+        });
     });
 
     describe('configure', function () {
