@@ -32,13 +32,55 @@ describe('lesshint', function () {
             var testPath = path.dirname(__dirname) + '/data/excluded-files';
             var lesshint = new Lesshint();
             var config = {
-                excludedFiles: ['*.css']
+                excludedFiles: ['vendor.less']
             };
 
             lesshint.configure(config);
 
             return lesshint.checkDirectory(testPath).then(function (errors) {
                 assert.ok(errors.length === 0);
+            });
+        });
+
+        it('should only check files with the correct extension and a leading dot', function () {
+            var testPath = path.dirname(__dirname) + '/data/excluded-files';
+            var lesshint = new Lesshint();
+            var config = {
+                fileExtensions: ['.less']
+            };
+
+            lesshint.configure(config);
+
+            return lesshint.checkDirectory(testPath).then(function (errors) {
+                assert.ok(errors.length === 1);
+            });
+        });
+
+        it('should only check files with the correct extension and without a leading dot', function () {
+            var testPath = path.dirname(__dirname) + '/data/excluded-files';
+            var lesshint = new Lesshint();
+            var config = {
+                fileExtensions: ['less']
+            };
+
+            lesshint.configure(config);
+
+            return lesshint.checkDirectory(testPath).then(function (errors) {
+                assert.ok(errors.length === 1);
+            });
+        });
+
+        it('should allow all extensions when "*" is passed', function () {
+            var testPath = path.dirname(__dirname) + '/data/excluded-files';
+            var lesshint = new Lesshint();
+            var config = {
+                fileExtensions: '*'
+            };
+
+            lesshint.configure(config);
+
+            return lesshint.checkDirectory(testPath).then(function (errors) {
+                assert.ok(errors.length === 2);
             });
         });
     });
