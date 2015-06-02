@@ -16,7 +16,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('selector');
+            ast = ast.first().first('selector').first('simpleSelector');
 
             assert.strictEqual(true, qualifyingElement({
                 config: options,
@@ -29,13 +29,13 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = [{
+            var expected = {
                 column: 4,
                 file: 'test.less',
                 line: 1,
                 linter: 'qualifyingElement',
                 message: 'ID selectors should not include a qualifying element.'
-            }];
+            };
 
             var options = {
                 qualifyingElement: {
@@ -44,7 +44,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('selector');
+            ast = ast.first().first('selector').first('simpleSelector');
 
             actual = qualifyingElement({
                 config: options,
@@ -60,13 +60,13 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = [{
+            var expected = {
                 column: 4,
                 file: 'test.less',
                 line: 1,
                 linter: 'qualifyingElement',
                 message: 'Class selectors should not include a qualifying element.'
-            }];
+            };
 
             var options = {
                 qualifyingElement: {
@@ -75,7 +75,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('selector');
+            ast = ast.first().first('selector').first('simpleSelector');
 
             actual = qualifyingElement({
                 config: options,
@@ -91,13 +91,13 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = [{
+            var expected = {
                 column: 4,
                 file: 'test.less',
                 line: 1,
                 linter: 'qualifyingElement',
                 message: 'Attribute selectors should not include a qualifying element.'
-            }];
+            };
 
             var options = {
                 qualifyingElement: {
@@ -106,7 +106,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('selector');
+            ast = ast.first().first('selector').first('simpleSelector');
 
             actual = qualifyingElement({
                 config: options,
@@ -129,7 +129,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('selector');
+            ast = ast.first().first('selector').first('simpleSelector');
 
             assert.strictEqual(true, qualifyingElement({
                 config: options,
@@ -149,7 +149,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('selector');
+            ast = ast.first().first('selector').first('simpleSelector');
 
             assert.strictEqual(true, qualifyingElement({
                 config: options,
@@ -169,7 +169,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('selector');
+            ast = ast.first().first('selector').first('simpleSelector');
 
             assert.strictEqual(true, qualifyingElement({
                 config: options,
@@ -182,13 +182,13 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = [{
+            var expected = {
                 column: 9,
                 file: 'test.less',
                 line: 1,
                 linter: 'qualifyingElement',
                 message: 'Class selectors should not include a qualifying element.'
-            }];
+            };
 
             var options = {
                 qualifyingElement: {
@@ -197,38 +197,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('selector');
-
-            actual = qualifyingElement({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
-
-            assert.deepEqual(actual, expected);
-        });
-
-        it('should not allow a class with a qualifying element in a selector group', function () {
-            var source = '.foo, div.bar {}';
-            var actual;
-            var ast;
-
-            var expected = [{
-                column: 10,
-                file: 'test.less',
-                line: 1,
-                linter: 'qualifyingElement',
-                message: 'Class selectors should not include a qualifying element.'
-            }];
-
-            var options = {
-                qualifyingElement: {
-                    enabled: true
-                }
-            };
-
-            ast = linter.parseAST(source);
-            ast = ast.first().first('selector');
+            ast = ast.first().first('selector').first('simpleSelector');
 
             actual = qualifyingElement({
                 config: options,
@@ -249,7 +218,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('selector');
+            ast = ast.first().first('selector').first('simpleSelector');
 
             assert.equal(null, qualifyingElement({
                 config: options,
@@ -265,7 +234,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('selector');
+            ast = ast.first().first('selector').first('simpleSelector');
 
             assert.equal(null, qualifyingElement({
                 config: options,
