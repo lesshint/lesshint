@@ -224,8 +224,28 @@ describe('lesshint', function () {
             }));
         });
 
-        it('should ignore invalid colors', function () {
+        it('should ignore colors with invalid length', function () {
             var source = 'color: #abc1;';
+            var ast;
+
+            var options = {
+                hexNotation: {
+                    enabled: true,
+                    style: 'lowercase'
+                }
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first('declaration').first('value').first('color');
+
+            assert.strictEqual(true, hexNotation({
+                config: options,
+                node: ast
+            }));
+        });
+
+        it('should ignore colors with invalid characters', function () {
+            var source = 'color: #abck;';
             var ast;
 
             var options = {
