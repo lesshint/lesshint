@@ -58,7 +58,7 @@ Each option is then specifed by it's own JSON object, for example:
 #### fileExtensions
 Array of file extensions to check. Either an array of extensions or `"*"` to allow all files. For example:
 
-```
+```js
 "fileExtensions": [".less", ".css"] // Allow ".less" and ".css" files. Can be passed with or without a dot.
 
 "fileExtensions": "*" // Allow all files
@@ -67,7 +67,7 @@ Array of file extensions to check. Either an array of extensions or `"*"` to all
 #### excludedFiles
 Array of [minimatch glob patterns](https://github.com/isaacs/minimatch) or a file to exclude. For example:
 
-```
+```js
 "excludedFiles": ["vendor/*.less"] // Ignore all files in "vendor/"
 
 "excludedFiles": ["vendor.less"] // Ignore a file named "vendor.less"
