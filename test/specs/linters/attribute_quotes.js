@@ -19,7 +19,7 @@ describe('lesshint', function () {
             ast = linter.parseAST(source);
             ast = ast.first().first('selector').first('simpleSelector').first('attribute');
 
-            assert.strictEqual(true, attributeQuotes({
+            assert.strictEqual(null, attributeQuotes({
                 config: options,
                 node: ast
             }));
@@ -103,7 +103,7 @@ describe('lesshint', function () {
             ast = linter.parseAST(source);
             ast = ast.first().first('selector').first('simpleSelector').first('attribute');
 
-            assert.strictEqual(true, attributeQuotes({
+            assert.strictEqual(null, attributeQuotes({
                 config: options,
                 node: ast
             }));

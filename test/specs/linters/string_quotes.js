@@ -18,7 +18,7 @@ describe('lesshint', function () {
 
             ast = linter.parseAST(source);
 
-            assert.strictEqual(true, stringQuotes({
+            assert.strictEqual(null, stringQuotes({
                 config: options,
                 node: ast
             }));
@@ -68,7 +68,7 @@ describe('lesshint', function () {
 
             ast = linter.parseAST(source);
 
-            assert.strictEqual(true, stringQuotes({
+            assert.strictEqual(null, stringQuotes({
                 config: options,
                 node: ast
             }));
@@ -118,7 +118,7 @@ describe('lesshint', function () {
 
             ast = linter.parseAST(source);
 
-            assert.strictEqual(true, stringQuotes({
+            assert.strictEqual(null, stringQuotes({
                 config: options,
                 node: ast
             }));
@@ -137,7 +137,7 @@ describe('lesshint', function () {
 
             ast = linter.parseAST(source);
 
-            assert.strictEqual(true, stringQuotes({
+            assert.strictEqual(null, stringQuotes({
                 config: options,
                 node: ast
             }));
@@ -156,7 +156,7 @@ describe('lesshint', function () {
 
             ast = linter.parseAST(source);
 
-            assert.strictEqual(true, stringQuotes({
+            assert.strictEqual(null, stringQuotes({
                 config: options,
                 node: ast
             }));
@@ -206,7 +206,7 @@ describe('lesshint', function () {
 
             ast = linter.parseAST(source);
 
-            assert.strictEqual(true, stringQuotes({
+            assert.strictEqual(null, stringQuotes({
                 config: options,
                 node: ast
             }));

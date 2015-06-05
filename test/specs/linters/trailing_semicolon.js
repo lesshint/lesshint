@@ -48,7 +48,7 @@ describe('lesshint', function () {
             ast = linter.parseAST(source);
             ast = ast.first().first('block');
 
-            assert.equal(true, trailingSemicolon({
+            assert.equal(null, trailingSemicolon({
                 config: options,
                 node: ast
             }));
@@ -102,7 +102,7 @@ describe('lesshint', function () {
             ast = linter.parseAST(source);
             ast = ast.first().first('block');
 
-            assert.equal(true, trailingSemicolon({
+            assert.equal(null, trailingSemicolon({
                 config: options,
                 node: ast
             }));
@@ -120,7 +120,7 @@ describe('lesshint', function () {
             ast = linter.parseAST(source);
             ast = ast.first().first('block');
 
-            assert.equal(true, trailingSemicolon({
+            assert.equal(null, trailingSemicolon({
                 config: options,
                 node: ast
             }));

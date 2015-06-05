@@ -18,7 +18,7 @@ describe('lesshint', function () {
             ast = linter.parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.equal(true, trailingZero({
+            assert.equal(null, trailingZero({
                 config: options,
                 node: ast
             }));
@@ -69,7 +69,7 @@ describe('lesshint', function () {
             ast = linter.parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.equal(true, trailingZero({
+            assert.equal(null, trailingZero({
                 config: options,
                 node: ast
             }));
@@ -120,7 +120,7 @@ describe('lesshint', function () {
             ast = linter.parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.equal(true, trailingZero({
+            assert.equal(null, trailingZero({
                 config: options,
                 node: ast
             }));

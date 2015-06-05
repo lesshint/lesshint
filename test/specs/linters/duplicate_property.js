@@ -19,7 +19,7 @@ describe('lesshint', function () {
             ast = linter.parseAST(source);
             ast = ast.first().first('block');
 
-            assert.strictEqual(true, duplicateProperty({
+            assert.strictEqual(null, duplicateProperty({
                 config: options,
                 node: ast
             }));
@@ -71,7 +71,7 @@ describe('lesshint', function () {
             ast = linter.parseAST(source);
             ast = ast.first().first('block');
 
-            assert.strictEqual(true, duplicateProperty({
+            assert.strictEqual(null, duplicateProperty({
                 config: options,
                 node: ast
             }));

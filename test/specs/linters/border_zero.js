@@ -19,7 +19,7 @@ describe('lesshint', function () {
             ast = linter.parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.strictEqual(true, borderZero({
+            assert.strictEqual(null, borderZero({
                 config: options,
                 node: ast
             }));
@@ -39,7 +39,7 @@ describe('lesshint', function () {
             ast = linter.parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.strictEqual(true, borderZero({
+            assert.strictEqual(null, borderZero({
                 config: options,
                 node: ast
             }));
@@ -123,7 +123,7 @@ describe('lesshint', function () {
             ast = linter.parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.strictEqual(true, borderZero({
+            assert.strictEqual(null, borderZero({
                 config: options,
                 node: ast
             }));
@@ -143,7 +143,7 @@ describe('lesshint', function () {
             ast = linter.parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.strictEqual(true, borderZero({
+            assert.strictEqual(null, borderZero({
                 config: options,
                 node: ast
             }));
@@ -163,7 +163,7 @@ describe('lesshint', function () {
             ast = linter.parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.strictEqual(true, borderZero({
+            assert.strictEqual(null, borderZero({
                 config: options,
                 node: ast
             }));
@@ -183,7 +183,7 @@ describe('lesshint', function () {
             ast = linter.parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.strictEqual(true, borderZero({
+            assert.strictEqual(null, borderZero({
                 config: options,
                 node: ast
             }));

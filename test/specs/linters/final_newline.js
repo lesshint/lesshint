@@ -17,7 +17,7 @@ describe('lesshint', function () {
 
             ast = linter.parseAST(source);
 
-            assert.strictEqual(true, finalNewline({
+            assert.strictEqual(null, finalNewline({
                 config: options,
                 node: ast
             }));

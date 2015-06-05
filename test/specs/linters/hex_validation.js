@@ -18,7 +18,7 @@ describe('lesshint', function () {
             ast = linter.parseAST(source);
             ast = ast.first('declaration').first('value').first('color');
 
-            assert.strictEqual(true, hexValidation({
+            assert.strictEqual(null, hexValidation({
                 config: options,
                 node: ast
             }));

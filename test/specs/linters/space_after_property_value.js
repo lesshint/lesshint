@@ -19,7 +19,7 @@ describe('lesshint', function () {
             ast = linter.parseAST(source);
             ast = ast.first().first('block');
 
-            assert.strictEqual(true, spaceAfterPropertyValue({
+            assert.strictEqual(null, spaceAfterPropertyValue({
                 config: options,
                 node: ast
             }));
@@ -71,7 +71,7 @@ describe('lesshint', function () {
             ast = linter.parseAST(source);
             ast = ast.first().first('block');
 
-            assert.strictEqual(true, spaceAfterPropertyValue({
+            assert.strictEqual(null, spaceAfterPropertyValue({
                 config: options,
                 node: ast
             }));

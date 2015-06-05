@@ -18,7 +18,7 @@ describe('lesshint', function () {
             ast = linter.parseAST(source);
             ast = ast.first();
 
-            assert.strictEqual(true, emptyRule({
+            assert.strictEqual(null, emptyRule({
                 config: options,
                 node: ast
             }));
@@ -68,7 +68,7 @@ describe('lesshint', function () {
             ast = linter.parseAST(source);
             ast = ast.first();
 
-            assert.strictEqual(true, emptyRule({
+            assert.strictEqual(null, emptyRule({
                 config: options,
                 node: ast
             }));

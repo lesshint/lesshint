@@ -51,7 +51,7 @@ describe('lesshint', function () {
             ast = linter.parseAST(source);
             ast = ast.first('declaration').first('value').first('color');
 
-            assert.strictEqual(true, hexLength({
+            assert.strictEqual(null, hexLength({
                 config: options,
                 node: ast
             }));
@@ -103,7 +103,7 @@ describe('lesshint', function () {
             ast = linter.parseAST(source);
             ast = ast.first('declaration').first('value').first('color');
 
-            assert.strictEqual(true, hexLength({
+            assert.strictEqual(null, hexLength({
                 config: options,
                 node: ast
             }));
@@ -123,7 +123,7 @@ describe('lesshint', function () {
             ast = linter.parseAST(source);
             ast = ast.first('declaration').first('value').first('color');
 
-            assert.strictEqual(true, hexLength({
+            assert.strictEqual(null, hexLength({
                 config: options,
                 node: ast
             }));
@@ -258,7 +258,7 @@ describe('lesshint', function () {
             ast = linter.parseAST(source);
             ast = ast.first('declaration').first('value').first('color');
 
-            assert.strictEqual(true, hexLength({
+            assert.strictEqual(null, hexLength({
                 config: options,
                 node: ast
             }));

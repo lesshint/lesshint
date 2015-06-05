@@ -66,7 +66,7 @@ describe('lesshint', function () {
 
             ast = linter.parseAST(source).first('multilineComment');
 
-            assert.strictEqual(true, comment({
+            assert.strictEqual(null, comment({
                 config: options,
                 node: ast
             }));
