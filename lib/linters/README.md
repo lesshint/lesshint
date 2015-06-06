@@ -17,6 +17,7 @@ Each linter also accept a `enabled` option to turn if off/on completely. Another
 * [importantRule](#importantrule)
 * [leadingZero](#leadingzero)
 * [qualifyingElement](#qualifyingelement)
+* [spaceAfterComma](#spaceaftercomma)
 * [spaceAfterPropertyColon](#spaceafterpropertycolon)
 * [spaceAfterPropertyName](#spaceafterpropertyname)
 * [spaceAfterPropertyValue](#spaceafterpropertyvalue)
@@ -311,6 +312,27 @@ div#foo {
 
 #foo {
     color: red;
+}
+```
+
+## spaceAfterComma
+Each comma in functions, mixins, etc. should be followed by a space to aid readability.
+
+Option     | Description
+---------- | ----------
+`style`    | `no_space`, `one_space` (**default**)
+
+### no_space
+```css
+.foo {
+    color: rgb(255,255,255);
+}
+```
+
+### one_space
+```css
+.foo {
+    color: rgb(255, 255, 255);
 }
 ```
 

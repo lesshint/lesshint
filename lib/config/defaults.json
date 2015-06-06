@@ -66,6 +66,11 @@
         "allowWithAttribute": false
     },
 
+    "spaceAfterComma": {
+        "enabled": true,
+        "style": "one_space"
+    },
+
     "spaceAfterPropertyColon": {
         "enabled": true,
         "style": "one_space"
