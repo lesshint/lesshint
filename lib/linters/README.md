@@ -22,6 +22,7 @@ Each linter also accept a `enabled` option to turn if off/on completely. Another
 * [spaceAfterPropertyName](#spaceafterpropertyname)
 * [spaceAfterPropertyValue](#spaceafterpropertyvalue)
 * [spaceBeforeBrace](#spacebeforebrace)
+* [spaceBeforeComma](#spacebeforecomma)
 * [stringQuotes](#stringquotes)
 * [trailingSemicolon](#trailingsemicolon)
 * [trailingZero](#trailingzero)
@@ -425,6 +426,27 @@ Option     | Description
 .foo
 {
     color: red;
+}
+```
+
+## spaceBeforeComma
+Each comma in functions, mixins, etc. shouldn't be preceded by any space.
+
+Option     | Description
+---------- | ----------
+`style`    | `no_space` (**default**), `one_space`
+
+### no_space
+```css
+.foo {
+    color: rgb(255, 255, 255);
+}
+```
+
+### one_space
+```css
+.foo {
+    color: rgb(255 , 255 , 255);
 }
 ```
 
