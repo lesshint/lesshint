@@ -89,5 +89,4 @@ Available Flags     | Description
 ## Known issues
 We are aware of some instances where some Less features won't be properly parsed. In those cases the whole file will simply be ignored by `lesshint`.
 
-* Not all forms of `:extend()` rules are supported. Related [issue](https://github.com/tonyganch/gonzales-pe/issues/15).
 * Using variables in `@media` directives are not supported. Related [issue](https://github.com/tonyganch/gonzales-pe/issues/17).
