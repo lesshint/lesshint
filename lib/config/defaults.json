@@ -66,6 +66,11 @@
         "allowWithAttribute": false
     },
 
+    "spaceAfterComma": {
+        "enabled": true,
+        "style": "one_space"
+    },
+
     "spaceAfterPropertyColon": {
         "enabled": true,
         "style": "one_space"
@@ -84,6 +89,11 @@
     "spaceBeforeBrace": {
         "enabled": true,
         "style": "one_space"
+    },
+
+    "spaceBeforeComma": {
+        "enabled": true,
+        "style": "no_space"
     },
 
     "stringQuotes": {
