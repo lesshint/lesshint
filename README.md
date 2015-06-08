@@ -90,3 +90,4 @@ Available Flags     | Description
 We are aware of some instances where some Less features won't be properly parsed. In those cases the whole file will simply be ignored by `lesshint`.
 
 * Using variables in `@media` directives are not supported. Related [issue](https://github.com/tonyganch/gonzales-pe/issues/17).
+* Using variables in selectors are not supported. Related [issue](https://github.com/tonyganch/gonzales-pe/issues/75).
