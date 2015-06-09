@@ -91,3 +91,4 @@ We are aware of some instances where some Less features won't be properly parsed
 
 * Using variables in `@media` directives are not supported. Related [issue](https://github.com/tonyganch/gonzales-pe/issues/17).
 * Using variables in selectors are not supported. Related [issue](https://github.com/tonyganch/gonzales-pe/issues/75).
+* Using double parentheses around calculations etc. are not supported. Related [issue](https://github.com/tonyganch/gonzales-pe/issues/76).
