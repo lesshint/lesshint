@@ -29,13 +29,20 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 19,
                 file: 'test.less',
                 line: 1,
                 linter: 'spaceBeforeComma',
                 message: 'Commas should be preceded by one space.'
-            };
+            },
+            {
+                column: 24,
+                file: 'test.less',
+                line: 1,
+                linter: 'spaceBeforeComma',
+                message: 'Commas should be preceded by one space.'
+            }];
 
             var options = {
                 spaceBeforeComma: {
@@ -61,13 +68,20 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 22,
                 file: 'test.less',
                 line: 1,
                 linter: 'spaceBeforeComma',
                 message: 'Commas should be preceded by one space.'
-            };
+            },
+            {
+                column: 28,
+                file: 'test.less',
+                line: 1,
+                linter: 'spaceBeforeComma',
+                message: 'Commas should be preceded by one space.'
+            }];
 
             var options = {
                 spaceBeforeComma: {
@@ -112,13 +126,20 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 22,
                 file: 'test.less',
                 line: 1,
                 linter: 'spaceBeforeComma',
                 message: 'Commas should not be preceded by any space.'
-            };
+            },
+            {
+                column: 27,
+                file: 'test.less',
+                line: 1,
+                linter: 'spaceBeforeComma',
+                message: 'Commas should not be preceded by any space.'
+            }];
 
             var options = {
                 spaceBeforeComma: {
@@ -144,13 +165,21 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 22,
                 file: 'test.less',
                 line: 1,
                 linter: 'spaceBeforeComma',
                 message: 'Commas should not be preceded by any space.'
-            };
+            },
+            {
+                column: 28,
+                file: 'test.less',
+                line: 1,
+                linter: 'spaceBeforeComma',
+                message: 'Commas should not be preceded by any space.'
+
+            }];
 
             var options = {
                 spaceBeforeComma: {
@@ -195,13 +224,13 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 8,
                 file: 'test.less',
                 line: 1,
                 linter: 'spaceBeforeComma',
                 message: 'Commas should be preceded by one space.'
-            };
+            }];
 
             var options = {
                 spaceBeforeComma: {
@@ -227,13 +256,13 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 15,
                 file: 'test.less',
                 line: 1,
                 linter: 'spaceBeforeComma',
                 message: 'Commas should be preceded by one space.'
-            };
+            }];
 
             var options = {
                 spaceBeforeComma: {
@@ -278,13 +307,13 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 15,
                 file: 'test.less',
                 line: 1,
                 linter: 'spaceBeforeComma',
                 message: 'Commas should not be preceded by any space.'
-            };
+            }];
 
             var options = {
                 spaceBeforeComma: {
@@ -310,13 +339,13 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 15,
                 file: 'test.less',
                 line: 1,
                 linter: 'spaceBeforeComma',
                 message: 'Commas should not be preceded by any space.'
-            };
+            }];
 
             var options = {
                 spaceBeforeComma: {
