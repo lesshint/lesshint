@@ -55,6 +55,37 @@ describe('lesshint', function () {
             assert.deepEqual(actual, expected);
         });
 
+        it('should not allow empty rules with a space', function () {
+            var source = '.foo { }';
+            var actual;
+            var ast;
+
+            var expected = {
+                column: 1,
+                file: 'test.less',
+                line: 1,
+                linter: 'emptyRule',
+                message: 'There shouldn\'t be any empty rules present.'
+            };
+
+            var options = {
+                emptyRule: {
+                    enabled: true
+                }
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first();
+
+            actual = emptyRule({
+                config: options,
+                node: ast,
+                path: 'test.less'
+            });
+
+            assert.deepEqual(actual, expected);
+        });
+
         it('should allow rules with only mixins (#16)', function () {
             var source = '.foo { .mixin(); }';
             var ast;
