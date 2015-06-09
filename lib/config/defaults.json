@@ -96,6 +96,11 @@
         "style": "no_space"
     },
 
+    "spaceBetweenParens": {
+        "enabled": true,
+        "style": "no_space"
+    },
+
     "stringQuotes": {
         "enabled": true,
         "style": "single"

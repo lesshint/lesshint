@@ -23,6 +23,7 @@ Each linter also accept a `enabled` option to turn if off/on completely. Another
 * [spaceAfterPropertyValue](#spaceafterpropertyvalue)
 * [spaceBeforeBrace](#spacebeforebrace)
 * [spaceBeforeComma](#spacebeforecomma)
+* [spaceBetweenParens](#spacebetweenparens)
 * [stringQuotes](#stringquotes)
 * [trailingSemicolon](#trailingsemicolon)
 * [trailingZero](#trailingzero)
@@ -447,6 +448,27 @@ Option     | Description
 ```css
 .foo {
     color: rgb(255 , 255 , 255);
+}
+```
+
+## spaceBetweenParens
+There shouldn't be any space before or after parentheses.
+
+Option     | Description
+---------- | ----------
+`style`    | `no_space` (**default**), `one_space`
+
+### no_space
+```css
+.foo {
+    color: rgb(255, 255, 255);
+}
+```
+
+### one_space
+```css
+.foo {
+    color: rgb( 255, 255, 255 );
 }
 ```
 
