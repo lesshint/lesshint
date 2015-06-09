@@ -29,13 +29,20 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 23,
                 file: 'test.less',
                 line: 1,
                 linter: 'spaceAfterComma',
                 message: 'Commas should be followed by one space.'
-            };
+            },
+            {
+                column: 27,
+                file: 'test.less',
+                line: 1,
+                linter: 'spaceAfterComma',
+                message: 'Commas should be followed by one space.'
+            }];
 
             var options = {
                 spaceAfterComma: {
@@ -61,13 +68,20 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 23,
                 file: 'test.less',
                 line: 1,
                 linter: 'spaceAfterComma',
                 message: 'Commas should be followed by one space.'
-            };
+            },
+            {
+                column: 29,
+                file: 'test.less',
+                line: 1,
+                linter: 'spaceAfterComma',
+                message: 'Commas should be followed by one space.'
+            }];
 
             var options = {
                 spaceAfterComma: {
@@ -112,13 +126,20 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 23,
                 file: 'test.less',
                 line: 1,
                 linter: 'spaceAfterComma',
                 message: 'Commas should not be followed by any space.'
-            };
+            },
+            {
+                column: 28,
+                file: 'test.less',
+                line: 1,
+                linter: 'spaceAfterComma',
+                message: 'Commas should not be followed by any space.'
+            }];
 
             var options = {
                 spaceAfterComma: {
@@ -144,13 +165,20 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 23,
                 file: 'test.less',
                 line: 1,
                 linter: 'spaceAfterComma',
                 message: 'Commas should not be followed by any space.'
-            };
+            },
+            {
+                column: 29,
+                file: 'test.less',
+                line: 1,
+                linter: 'spaceAfterComma',
+                message: 'Commas should not be followed by any space.'
+            }];
 
             var options = {
                 spaceAfterComma: {
@@ -195,13 +223,13 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 16,
                 file: 'test.less',
                 line: 1,
                 linter: 'spaceAfterComma',
                 message: 'Commas should be followed by one space.'
-            };
+            }];
 
             var options = {
                 spaceAfterComma: {
@@ -227,13 +255,13 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 16,
                 file: 'test.less',
                 line: 1,
                 linter: 'spaceAfterComma',
                 message: 'Commas should be followed by one space.'
-            };
+            }];
 
             var options = {
                 spaceAfterComma: {
@@ -278,13 +306,13 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 16,
                 file: 'test.less',
                 line: 1,
                 linter: 'spaceAfterComma',
                 message: 'Commas should not be followed by any space.'
-            };
+            }];
 
             var options = {
                 spaceAfterComma: {
@@ -310,13 +338,13 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 16,
                 file: 'test.less',
                 line: 1,
                 linter: 'spaceAfterComma',
                 message: 'Commas should not be followed by any space.'
-            };
+            }];
 
             var options = {
                 spaceAfterComma: {
