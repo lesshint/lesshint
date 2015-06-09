@@ -30,13 +30,13 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 18,
                 file: 'test.less',
                 line: 1,
                 linter: 'spaceAfterPropertyValue',
                 message: 'Semicolon after property value should not be preceded by any space.'
-            };
+            }];
 
             var options = {
                 spaceAfterPropertyValue: {
@@ -82,13 +82,91 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 8,
                 file: 'test.less',
                 line: 1,
                 linter: 'spaceAfterPropertyValue',
                 message: 'Semicolon after property value should be preceded by one space.'
+            }];
+
+            var options = {
+                spaceAfterPropertyValue: {
+                    enabled: true,
+                    style: 'one_space'
+                }
             };
+
+            ast = linter.parseAST(source);
+            ast = ast.first().first('block');
+
+            actual = spaceAfterPropertyValue({
+                config: options,
+                node: ast,
+                path: 'test.less'
+            });
+
+            assert.deepEqual(actual, expected);
+        });
+
+        it('should not allow any space on multiple property values when "style" is "no_space"', function () {
+            var source = '.foo { color: red ; margin-right: 10px ; }';
+            var actual;
+            var ast;
+
+            var expected = [{
+                column: 18,
+                file: 'test.less',
+                line: 1,
+                linter: 'spaceAfterPropertyValue',
+                message: 'Semicolon after property value should not be preceded by any space.',
+            },
+            {
+                column: 39,
+                file: 'test.less',
+                line: 1,
+                linter: 'spaceAfterPropertyValue',
+                message: 'Semicolon after property value should not be preceded by any space.'
+            }];
+
+            var options = {
+                spaceAfterPropertyValue: {
+                    enabled: true,
+                    style: 'no_space'
+                }
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first().first('block');
+
+            actual = spaceAfterPropertyValue({
+                config: options,
+                node: ast,
+                path: 'test.less'
+            });
+
+            assert.deepEqual(actual, expected);
+        });
+
+        it('should not allow a missing space on multiple property values when "style" is "one_space"', function () {
+            var source = '.foo { color: red; margin-right: 10px; }';
+            var actual;
+            var ast;
+
+            var expected = [{
+                column: 8,
+                file: 'test.less',
+                line: 1,
+                linter: 'spaceAfterPropertyValue',
+                message: 'Semicolon after property value should be preceded by one space.'
+            },
+            {
+                column: 20,
+                file: 'test.less',
+                line: 1,
+                linter: 'spaceAfterPropertyValue',
+                message: 'Semicolon after property value should be preceded by one space.'
+            }];
 
             var options = {
                 spaceAfterPropertyValue: {
