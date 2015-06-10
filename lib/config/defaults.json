@@ -54,6 +54,13 @@
         "enabled": true
     },
 
+    "importPath": {
+        "enabled": true,
+        "exclude": [],
+        "filenameExtension": false,
+        "leadingUnderscore": false
+    },
+
     "leadingZero": {
         "enabled": true,
         "style": "include_zero"

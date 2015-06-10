@@ -15,6 +15,7 @@ Each linter also accept a `enabled` option to turn if off/on completely. Another
 * [hexValidation](#hexvalidation)
 * [idSelector](#idselector)
 * [importantRule](#importantrule)
+* [importPath](#importpath)
 * [leadingZero](#leadingzero)
 * [propertyUnits](#propertyunits)
 * [qualifyingElement](#qualifyingelement)
@@ -256,6 +257,27 @@ The use of `!important` is often due to a lack of understanding of CSS specifici
 .foo {
     color: red;
 }
+```
+
+## importPath
+Imported files should not include a leading underscore or the filename extension.
+
+Option               | Description
+-------------------- | ----------
+`filenameExtension`  | `false` (**default**), `true`
+`leadingUnderscore`  | `false` (**default**), `true`
+`exclude`            | Array of files to exclude
+
+### invalid
+```css
+@import 'foo.less';
+@import '_bar';
+```
+
+### valid
+```css
+@import 'foo';
+@import 'bar';
 ```
 
 ## leadingZero
