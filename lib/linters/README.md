@@ -16,6 +16,7 @@ Each linter also accept a `enabled` option to turn if off/on completely. Another
 * [idSelector](#idselector)
 * [importantRule](#importantrule)
 * [leadingZero](#leadingzero)
+* [propertyUnits](#propertyunits)
 * [qualifyingElement](#qualifyingelement)
 * [spaceAfterComma](#spaceaftercomma)
 * [spaceAfterPropertyColon](#spaceafterpropertycolon)
@@ -275,6 +276,36 @@ Option     | Description
 ```css
 .foo {
     font-size: 0.5em;
+}
+```
+
+## propertyUnits
+Specify which units are allowed for property values.
+
+By default all properties can have any value.
+The `global` option can be used to specify global units that are allowed 
+and the `properties` option can be used to fine tune units for each property.
+
+*Note: Shorthands are not supported by the `properties` option. For example, to specify units for `margin`, all margin-* properties must be specified.*
+
+Option       | Description
+------------ | ----------
+`global`     | Allowed units (by default all units are allowed)
+`properties` | Object with property names and allowed units (empty by default)
+
+```js
+"propertyUnits": {
+    "global": ["rem", "vw"],
+    "properties": {
+        "line-height": []
+    }
+}
+```
+
+```css
+.foo {
+    font-size: 1.5rem; // Allowed
+    line-height: 30px; // Not allowed
 }
 ```
 

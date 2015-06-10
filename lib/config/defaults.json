@@ -59,6 +59,21 @@
         "style": "include_zero"
     },
 
+    "propertyUnits": {
+        "enabled": true,
+        "global": [
+            "ch", "em", "ex", "rem",                 // Font-relative lengths
+            "cm", "in", "mm", "pc", "pt", "px", "q", // Absolute lengths
+            "vh", "vw", "vmin", "vmax",              // Viewport-percentage lengths
+            "deg", "grad", "rad", "turn",            // Angle
+            "ms", "s",                               // Duration
+            "Hz", "kHz",                             // Frequency
+            "dpi", "dpcm", "dppx",                   // Resolution
+            "%"                                      // Other
+        ],
+        "properties": {}
+    },
+
     "qualifyingElement": {
         "enabled": true,
         "allowWithId": false,
