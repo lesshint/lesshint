@@ -261,6 +261,7 @@ The use of `!important` is often due to a lack of understanding of CSS specifici
 
 ## importPath
 Imported files should not include a leading underscore or the filename extension.
+The filename extension isn't required and underscores should be reserved for usage with config-files, such as `_vars.less`.
 
 Option               | Description
 -------------------- | ----------
