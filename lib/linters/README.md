@@ -317,9 +317,9 @@ Option       | Description
 
 ```js
 "propertyUnits": {
-    "global": ["rem", "vw"],
+    "global": ["rem", "vw"], // These units are allowed for all properties
     "properties": {
-        "line-height": []
+        "line-height": [] // No units are allowed for line-height
     }
 }
 ```
