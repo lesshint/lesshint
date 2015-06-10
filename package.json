@@ -45,7 +45,7 @@
   },
   "scripts": {
     "cover": "istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec test/specs && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-    "pretest": "jshint lib && jscs lib",
+    "pretest": "jshint lib test && jscs lib test",
     "test": "mocha"
   },
   "license": "MIT",

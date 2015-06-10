@@ -6,7 +6,7 @@ describe('lesshint', function () {
 
     describe('#comment()', function () {
         it('should allow single line comments', function () {
-            var source = "// Hello world";
+            var source = '// Hello world';
             var ast;
 
             var options = {
@@ -54,7 +54,7 @@ describe('lesshint', function () {
         });
 
         it('should allow comments matching "allowed" option regexp', function () {
-            var source = "/*! Hello world */";
+            var source = '/*! Hello world */';
             var ast;
 
             var options = {

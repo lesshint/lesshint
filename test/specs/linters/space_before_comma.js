@@ -211,7 +211,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('parentheses')
+            ast = ast.first().first('selector').first('simpleSelector').first('parentheses');
 
             assert.equal(null, spaceBeforeComma({
                 config: options,
@@ -240,7 +240,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('parentheses')
+            ast = ast.first().first('selector').first('simpleSelector').first('parentheses');
 
             actual = spaceBeforeComma({
                 config: options,
@@ -272,7 +272,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('parentheses')
+            ast = ast.first().first('selector').first('simpleSelector').first('parentheses');
 
             actual = spaceBeforeComma({
                 config: options,
@@ -294,7 +294,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('parentheses')
+            ast = ast.first().first('selector').first('simpleSelector').first('parentheses');
 
             assert.equal(null, spaceBeforeComma({
                 config: options,
@@ -323,7 +323,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('parentheses')
+            ast = ast.first().first('selector').first('simpleSelector').first('parentheses');
 
             actual = spaceBeforeComma({
                 config: options,
@@ -355,7 +355,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('parentheses')
+            ast = ast.first().first('selector').first('simpleSelector').first('parentheses');
 
             actual = spaceBeforeComma({
                 config: options,

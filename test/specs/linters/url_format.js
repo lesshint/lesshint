@@ -262,7 +262,7 @@ describe('lesshint', function () {
         });
 
         it('should handle unquoted URLs surrounded by spaces (#22)', function () {
-            var source = ".foo { background-image: url( img/image.jpg ); }";
+            var source = '.foo { background-image: url( img/image.jpg ); }';
             var ast;
 
             var options = {

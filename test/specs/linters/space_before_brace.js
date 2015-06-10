@@ -475,7 +475,7 @@ describe('lesshint', function () {
             var options = {
                 spaceBeforeBrace: {
                     enabled: true,
-                    style: "invalid"
+                    style: 'invalid'
                 }
             };
 

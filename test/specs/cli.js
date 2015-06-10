@@ -6,7 +6,7 @@ var path = require('path');
 describe('cli', function () {
     var cli = rewire('../../lib/cli');
 
-    beforeEach(function() {
+    beforeEach(function () {
         sinon.stub(process.stdout, 'write');
         sinon.stub(process.stderr, 'write');
 

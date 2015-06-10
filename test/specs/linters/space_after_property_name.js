@@ -149,7 +149,7 @@ describe('lesshint', function () {
             var options = {
                 spaceAfterPropertyName: {
                     enabled: true,
-                    style: "invalid"
+                    style: 'invalid'
                 }
             };
 

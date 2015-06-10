@@ -22,5 +22,10 @@
         "try",
         "catch",
         "function"
-    ]
+    ],
+
+    "validateQuoteMarks": {
+        "escape": true,
+        "mark": "'"
+    }
 }
