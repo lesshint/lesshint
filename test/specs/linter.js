@@ -31,7 +31,7 @@ describe('linter', function () {
             var source = '.foo { color: red; }';
             var ast = linter.parseAST(source);
 
-            assert.ok(ast.toCSS); // If the returned object has the 'toCSS' method, we'll consider it a success
+            assert.ok(ast.toString); // If the returned object has the 'toString' method, we'll consider it a success
         });
     });
 });
