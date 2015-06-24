@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.7.0 (2015-06-24)
+* `lesshint` has a new home: https://github.com/lesshint/lesshint
+* Added the following linters
+    * `importPath`
+    * `propertyUnits`
+    * `spaceAfterComma`
+    * `spaceBeforeComma`
+    * `spaceBetweenParens`
+* Updated `gonzales-pe` dependency, adding support for all forms of `:extend()`.
+* Added the possibility to exclude files. See the `excludedFiles` option and `-e`/`--exclude` flags.
+* Added the possibility to specify which file extensions to check, see the `fileExtensions` option.
+* Fixed an issue where `lesshint` wouldn't report any more errors when the parser encountered a problem.
+* Fixed an issue where `hexNotation` would report hex codes with invalid characters.
+* Fixed an issue where `spaceAfterPropertyValue` wouldn't report multiple errors in the same block.
+
 ## 0.6.2 (2015-06-01)
 * Stopped `hexLength` and `hexNotation` from reporting on invalid hex colors.
 
