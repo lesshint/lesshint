@@ -300,6 +300,24 @@ describe('lesshint', function () {
             }));
         });
 
+        it('should ignore other at-rules', function () {
+            var source = '@charset "UTF-8";';
+            var ast;
+            var options = {
+                importPath: {
+                    enabled: true
+                }
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first();
+
+            assert.equal(null, importPath({
+                config: options,
+                node: ast
+            }));
+        });
+
         it('should return null when disabled', function () {
             var source = '@import "foo.less";';
             var ast;
@@ -311,7 +329,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('selector');
+            ast = ast.first();
 
             assert.equal(null, importPath({
                 config: options,
@@ -327,7 +345,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('selector');
+            ast = ast.first();
 
             assert.equal(null, importPath({
                 config: options,
