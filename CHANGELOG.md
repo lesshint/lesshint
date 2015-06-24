@@ -17,7 +17,7 @@
 * Increased test coverage.
 
 ## 0.5.1 (2015-05-19)
-* Fixed issues with `hexLength`, `hexNotation`, and `hexValidation` where they wouldn't check for hex colors outside declarations (in variables for example) ([#28](https://github.com/jwilsson/lesshint/issues/28)).
+* Fixed issues with `hexLength`, `hexNotation`, and `hexValidation` where they wouldn't check for hex colors outside declarations (in variables for example) ([#28](https://github.com/lesshint/lesshint/issues/28)).
 
 ## 0.5.0 (2015-05-17)
 * Added the following linters:
@@ -32,7 +32,7 @@
 * The `stringQuotes` linter now checks strings everywhere, not just in rulesets.
 
 ## 0.4.1 (2015-05-11)
-* Fixed two issues with `urlFormat` and `urlQuotes` where they would incorrectly report errors when the URLs were surrounded by spaces ([#22](https://github.com/jwilsson/lesshint/issues/22)).
+* Fixed two issues with `urlFormat` and `urlQuotes` where they would incorrectly report errors when the URLs were surrounded by spaces ([#22](https://github.com/lesshint/lesshint/issues/22)).
 
 ## 0.4.0 (2015-05-10)
 * **Breaking change:** The `LessHint` class is now called `Lesshint`.
@@ -48,9 +48,9 @@
 * When running from the CLI and a line or column is `null`, it's no longer printed.
 * Fixed an issue where the only error reported was a missing final newline.
 * Fixed an issue that prevented errors on the last ruleset from being shown when a final newline was missing.
-* Fixed an issue where `emptyRule` would incorrectly report errors on rules that only contain a mixin ([#16](https://github.com/jwilsson/lesshint/issues/16)).
+* Fixed an issue where `emptyRule` would incorrectly report errors on rules that only contain a mixin ([#16](https://github.com/lesshint/lesshint/issues/16)).
 * Fixed an issue where `trailingSemicolon` would fail on an empty rule.
-* Fixed an issue where `trailingSemicolon` would incorrectly report errors in rules containing variables inside `@media` directives ([#15](https://github.com/jwilsson/lesshint/issues/15)).
+* Fixed an issue where `trailingSemicolon` would incorrectly report errors in rules containing variables inside `@media` directives ([#15](https://github.com/lesshint/lesshint/issues/15)).
 
 ## 0.3.0 (2015-05-01)
 * Added the following linters:
@@ -71,7 +71,7 @@
     * `spaceAfterPropertyName`
 * `lesshint` will now exit with proper status codes. E.g. `1` when there's a lint error in a checked file, thus failing builds etc.
 * Made some improvements to CLI output, added colors and made it easier to read.
-* Fixed an issue where the `spaceBeforeBrace` linter would report the wrong column when `style` is `one_space` ([`#4`](https://github.com/jwilsson/lesshint/issues/4)).
+* Fixed an issue where the `spaceBeforeBrace` linter would report the wrong column when `style` is `one_space` ([`#4`](https://github.com/lesshint/lesshint/issues/4)).
 
 ## 0.1.5 (2015-04-24)
 * The default options are now always loaded, regardless if `lesshint` is running from the CLI or another module.
