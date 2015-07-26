@@ -140,6 +140,10 @@
         "enabled": true
     },
 
+    "trailingWhitespace": {
+        "enabled": true
+    },
+
     "trailingZero": {
         "enabled": true,
         "style": "exclude_zero"

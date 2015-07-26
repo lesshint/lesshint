@@ -30,6 +30,7 @@ Each linter also accept a `enabled` option to turn if off/on completely. Another
 * [spaceBetweenParens](#spacebetweenparens)
 * [stringQuotes](#stringquotes)
 * [trailingSemicolon](#trailingsemicolon)
+* [trailingWhitespace](#trailingwhitespace)
 * [trailingZero](#trailingzero)
 * [urlFormat](#urlformat)
 * [urlQuotes](#urlquotes)
@@ -608,6 +609,9 @@ Semicolons are optional after the last property in a ruleset but it's a good hab
     color: red;
 }
 ```
+
+## trailingWhitespace
+There should't be any trailing whitespace since this will mess up diffs etc.
 
 ## trailingZero
 Numbers should be written without leading zeros since the number has the same meaning anyway and just adds unnecessary bytes to the CSS.
