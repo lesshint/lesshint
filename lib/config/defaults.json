@@ -92,6 +92,10 @@
         "enabled": true
     },
 
+    "singleLinePerSelector": {
+        "enabled": true
+    },
+
     "spaceAfterComma": {
         "enabled": true,
         "style": "one_space"

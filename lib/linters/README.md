@@ -20,6 +20,7 @@ Each linter also accept a `enabled` option to turn if off/on completely. Another
 * [propertyUnits](#propertyunits)
 * [qualifyingElement](#qualifyingelement)
 * [singleLinePerProperty](#singlelineperproperty)
+* [singleLinePerSelector](#singlelineperselector)
 * [spaceAfterComma](#spaceaftercomma)
 * [spaceAfterPropertyColon](#spaceafterpropertycolon)
 * [spaceAfterPropertyName](#spaceafterpropertyname)
@@ -391,6 +392,24 @@ Each property should be on it's own line.
     margin-right: 10px;
 }
 
+.bar {
+    color: red;
+}
+```
+
+## singleLinePerSelector
+Each selector should be on it's own line.
+
+### invalid
+```css
+.foo, .bar {
+    color: red;
+}
+```
+
+### valid
+```css
+.foo,
 .bar {
     color: red;
 }
