@@ -14,11 +14,12 @@ Each linter also accept a `enabled` option to turn if off/on completely. Another
 * [hexNotation](#hexnotation)
 * [hexValidation](#hexvalidation)
 * [idSelector](#idselector)
-* [importantRule](#importantrule)
 * [importPath](#importpath)
+* [importantRule](#importantrule)
 * [leadingZero](#leadingzero)
 * [propertyUnits](#propertyunits)
 * [qualifyingElement](#qualifyingelement)
+* [singleLinePerProperty](#singlelineperproperty)
 * [spaceAfterComma](#spaceaftercomma)
 * [spaceAfterPropertyColon](#spaceafterpropertycolon)
 * [spaceAfterPropertyName](#spaceafterpropertyname)
@@ -306,7 +307,7 @@ Option     | Description
 Specify which units are allowed for property values.
 
 By default all properties can have any value.
-The `global` option can be used to specify global units that are allowed 
+The `global` option can be used to specify global units that are allowed
 and the `properties` option can be used to fine tune units for each property.
 
 *Note: Shorthands are not supported by the `properties` option. For example, to specify units for `margin`, all margin-* properties must be specified.*
@@ -367,6 +368,30 @@ div#foo {
 }
 
 #foo {
+    color: red;
+}
+```
+
+## singleLinePerProperty
+Each property should be on it's own line.
+
+### invalid
+```css
+.foo {
+    color: red; margin-right: 10px;
+}
+
+.bar { color: red; }
+```
+
+### valid
+```css
+.foo {
+    color: red;
+    margin-right: 10px;
+}
+
+.bar {
     color: red;
 }
 ```

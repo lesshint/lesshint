@@ -88,6 +88,10 @@
         "allowWithAttribute": false
     },
 
+    "singleLinePerProperty": {
+        "enabled": true
+    },
+
     "spaceAfterComma": {
         "enabled": true,
         "style": "one_space"
