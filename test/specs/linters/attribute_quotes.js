@@ -17,7 +17,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('attribute');
+            ast = ast.first().first('selector').first('simpleSelector');
 
             assert.strictEqual(null, attributeQuotes({
                 config: options,
@@ -46,7 +46,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('attribute');
+            ast = ast.first().first('selector').first('simpleSelector');
 
             actual = attributeQuotes({
                 config: options,
@@ -78,7 +78,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('attribute');
+            ast = ast.first().first('selector').first('simpleSelector');
 
             actual = attributeQuotes({
                 config: options,
@@ -101,7 +101,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('attribute');
+            ast = ast.first().first('selector').first('simpleSelector');
 
             assert.strictEqual(null, attributeQuotes({
                 config: options,
@@ -130,7 +130,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('attribute');
+            ast = ast.first().first('selector').first('simpleSelector');
 
             actual = attributeQuotes({
                 config: options,
@@ -162,7 +162,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('attribute');
+            ast = ast.first().first('selector').first('simpleSelector');
 
             actual = attributeQuotes({
                 config: options,
@@ -183,7 +183,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('attribute');
+            ast = ast.first().first('selector').first('simpleSelector');
 
             assert.equal(null, attributeQuotes({
                 config: options,
@@ -199,7 +199,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('attribute');
+            ast = ast.first().first('selector').first('simpleSelector');
 
             assert.equal(null, attributeQuotes({
                 config: options,
@@ -219,7 +219,7 @@ describe('lesshint', function () {
             };
 
             ast = linter.parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('attribute');
+            ast = ast.first().first('selector').first('simpleSelector');
 
             assert.throws(attributeQuotes.bind(null, {
                 config: options,
