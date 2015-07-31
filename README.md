@@ -73,6 +73,7 @@ Available Flags     | Description
 --------------------|----------------------------------------------
 `-c`/`--config`     | Specify the configuration file to use (will be merged with defaults).
 `-e`/`--exclude`    | A [minimatch glob pattern](https://github.com/isaacs/minimatch) or a file to exclude form being linted.
+`-r`/`--reporter`   | The reporter to use. Possible values: `stylish` or a path to a custom reporter.
 `-V`/`--version`    | Show version.
 
 ## Known issues

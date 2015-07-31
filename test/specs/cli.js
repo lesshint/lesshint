@@ -122,4 +122,43 @@ describe('cli', function () {
             assert.ok(status === 0);
         });
     });
+
+    it('should exit without errors when passed a built-in reporter name', function () {
+        var result;
+
+        result = cli({
+            args: [path.dirname(__dirname) + '/data/files/ok.less'],
+            reporter: 'stylish'
+        });
+
+        return result.then(function (status) {
+            assert.ok(status === 0);
+        });
+    });
+
+    it('should exit without errors when passed a reporter path', function () {
+        var result;
+
+        result = cli({
+            args: [path.dirname(__dirname) + '/data/files/ok.less'],
+            reporter: '../../lib/reporters/stylish.js'
+        });
+
+        return result.then(function (status) {
+            assert.ok(status === 0);
+        });
+    });
+
+    it('should exit with error when passed a invalid reporter name', function () {
+        var result;
+
+        result = cli({
+            args: [path.dirname(__dirname) + '/data/files'],
+            reporter: 'invalid-reporter'
+        });
+
+        return result.fail(function (status) {
+            assert.ok(status === 1);
+        });
+    });
 });
