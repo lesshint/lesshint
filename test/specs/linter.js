@@ -35,7 +35,34 @@ describe('linter', function () {
                 file: 'file.less',
                 line: 1,
                 linter: 'spaceBeforeBrace',
-                message: 'Opening curly brace should be preceded by one space.'
+                message: 'Opening curly brace should be preceded by one space.',
+                source: '.foo{ color: red; }'
+            }];
+
+            var config = {
+                spaceBeforeBrace: {
+                    enabled: true,
+                    style: 'one_space'
+                }
+            };
+
+            actual = linter.lint(source, path, config);
+
+            assert.deepEqual(actual, expected);
+        });
+
+        it('should expose the offending source in the errors list', function () {
+            var source = '.foo{}';
+            var path = 'path/to/file.less';
+            var actual;
+
+            var expected = [{
+                column: 5,
+                file: 'file.less',
+                line: 1,
+                linter: 'spaceBeforeBrace',
+                message: 'Opening curly brace should be preceded by one space.',
+                source: '.foo{}'
             }];
 
             var config = {
