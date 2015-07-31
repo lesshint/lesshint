@@ -32,7 +32,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 9,
-                file: 'test.less',
                 line: 1,
                 linter: 'importPath',
                 message: 'Imported file, "foo.less" should not include the file extension.'
@@ -85,7 +84,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 9,
-                file: 'test.less',
                 line: 1,
                 linter: 'importPath',
                 message: 'Imported file, "foo" should include the file extension.'
@@ -138,7 +136,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 9,
-                file: 'test.less',
                 line: 1,
                 linter: 'importPath',
                 message: 'Imported file, "_foo" should not include a leading underscore.'
@@ -191,7 +188,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 9,
-                file: 'test.less',
                 line: 1,
                 linter: 'importPath',
                 message: 'Imported file, "foo" should include a leading underscore.'
@@ -223,14 +219,12 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 9,
-                file: 'test.less',
                 line: 1,
                 linter: 'importPath',
                 message: 'Imported file, "_foo.less" should not include the file extension.'
             },
             {
                 column: 9,
-                file: 'test.less',
                 line: 1,
                 linter: 'importPath',
                 message: 'Imported file, "_foo.less" should not include a leading underscore.'

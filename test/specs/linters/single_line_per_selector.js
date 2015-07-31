@@ -31,7 +31,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 6,
-                file: 'test.less',
                 line: 1,
                 linter: 'singleLinePerSelector',
                 message: "Each selector should be on it's own line."

@@ -31,7 +31,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 8,
-                file: 'test.less',
                 line: 1,
                 linter: 'hexValidation',
                 message: 'Hexadecimal color "#AABBC" should be either three or six characters long.'
@@ -61,7 +60,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 37,
-                file: 'test.less',
                 line: 1,
                 linter: 'hexValidation',
                 message: 'Hexadecimal color "#AABBC" should be either three or six characters long.'
@@ -93,7 +91,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 9,
-                file: 'test.less',
                 line: 1,
                 linter: 'hexValidation',
                 message: 'Hexadecimal color "#AABBC" should be either three or six characters long.'

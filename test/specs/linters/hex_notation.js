@@ -12,7 +12,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 8,
-                file: 'test.less',
                 line: 1,
                 linter: 'hexNotation',
                 message: '#AABBCC should be written in lowercase.'
@@ -64,7 +63,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 8,
-                file: 'test.less',
                 line: 1,
                 linter: 'hexNotation',
                 message: '#aabbcc should be written in uppercase.'
@@ -115,7 +113,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 37,
-                file: 'test.less',
                 line: 1,
                 linter: 'hexNotation',
                 message: '#AABBCC should be written in lowercase.'
@@ -147,7 +144,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 9,
-                file: 'test.less',
                 line: 1,
                 linter: 'hexNotation',
                 message: '#AABBCC should be written in lowercase.'
@@ -179,7 +175,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 9,
-                file: 'test.less',
                 line: 1,
                 linter: 'hexNotation',
                 message: '#aabbcc should be written in uppercase.'

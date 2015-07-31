@@ -31,14 +31,12 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 2,
-                file: 'test.less',
                 line: 2,
                 linter: 'singleLinePerProperty',
                 message: "Each property should be on it's own line."
             },
             {
                 column: 14,
-                file: 'test.less',
                 line: 2,
                 linter: 'singleLinePerProperty',
                 message: "Each property should be on it's own line."
@@ -69,7 +67,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 8,
-                file: 'test.less',
                 line: 1,
                 linter: 'singleLinePerProperty',
                 message: "Each property should be on it's own line."
@@ -100,7 +97,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 2,
-                file: 'test.less',
                 line: 3,
                 linter: 'singleLinePerProperty',
                 message: "Each property should be on it's own line."

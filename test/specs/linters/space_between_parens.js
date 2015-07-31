@@ -69,7 +69,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 19,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceBetweenParens',
                 message: 'Opening parenthesis should not be followed by any space.'
@@ -101,7 +100,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 32,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceBetweenParens',
                 message: 'Closing parenthesis should not be preceded by any space.'
@@ -133,14 +131,12 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 19,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceBetweenParens',
                 message: 'Opening parenthesis should not be followed by any space.'
             },
             {
                 column: 33,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceBetweenParens',
                 message: 'Closing parenthesis should not be preceded by any space.'
@@ -172,7 +168,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 19,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceBetweenParens',
                 message: 'Opening parenthesis should not be followed by any space.'
@@ -204,7 +199,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 32,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceBetweenParens',
                 message: 'Closing parenthesis should not be preceded by any space.'
@@ -236,14 +230,12 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 19,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceBetweenParens',
                 message: 'Opening parenthesis should not be followed by any space.'
             },
             {
                 column: 34,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceBetweenParens',
                 message: 'Closing parenthesis should not be preceded by any space.'
@@ -332,7 +324,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 19,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceBetweenParens',
                 message: 'Opening parenthesis should be followed by one space.'
@@ -364,7 +355,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 30,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceBetweenParens',
                 message: 'Closing parenthesis should be preceded by one space.'
@@ -396,14 +386,12 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 19,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceBetweenParens',
                 message: 'Opening parenthesis should be followed by one space.'
             },
             {
                 column: 29,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceBetweenParens',
                 message: 'Closing parenthesis should be preceded by one space.'
@@ -435,7 +423,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 19,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceBetweenParens',
                 message: 'Opening parenthesis should be followed by one space.'
@@ -467,7 +454,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 33,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceBetweenParens',
                 message: 'Closing parenthesis should be preceded by one space.'
@@ -499,14 +485,12 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 19,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceBetweenParens',
                 message: 'Opening parenthesis should be followed by one space.'
             },
             {
                 column: 34,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceBetweenParens',
                 message: 'Closing parenthesis should be preceded by one space.'
@@ -595,7 +579,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 8,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceBetweenParens',
                 message: 'Opening parenthesis should not be followed by any space.'
@@ -627,7 +610,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 25,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceBetweenParens',
                 message: 'Closing parenthesis should not be preceded by any space.'
@@ -659,14 +641,12 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 8,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceBetweenParens',
                 message: 'Opening parenthesis should not be followed by any space.'
             },
             {
                 column: 26,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceBetweenParens',
                 message: 'Closing parenthesis should not be preceded by any space.'
@@ -698,7 +678,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 8,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceBetweenParens',
                 message: 'Opening parenthesis should not be followed by any space.'
@@ -730,7 +709,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 25,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceBetweenParens',
                 message: 'Closing parenthesis should not be preceded by any space.'
@@ -762,14 +740,12 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 8,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceBetweenParens',
                 message: 'Opening parenthesis should not be followed by any space.'
             },
             {
                 column: 27,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceBetweenParens',
                 message: 'Closing parenthesis should not be preceded by any space.'
@@ -858,7 +834,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 8,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceBetweenParens',
                 message: 'Opening parenthesis should be followed by one space.'
@@ -890,7 +865,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 18,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceBetweenParens',
                 message: 'Closing parenthesis should be preceded by one space.'
@@ -922,14 +896,12 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 8,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceBetweenParens',
                 message: 'Opening parenthesis should be followed by one space.'
             },
             {
                 column: 17,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceBetweenParens',
                 message: 'Closing parenthesis should be preceded by one space.'
@@ -961,7 +933,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 8,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceBetweenParens',
                 message: 'Opening parenthesis should be followed by one space.'
@@ -993,7 +964,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 26,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceBetweenParens',
                 message: 'Closing parenthesis should be preceded by one space.'
@@ -1025,14 +995,12 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 8,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceBetweenParens',
                 message: 'Opening parenthesis should be followed by one space.'
             },
             {
                 column: 27,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceBetweenParens',
                 message: 'Closing parenthesis should be preceded by one space.'

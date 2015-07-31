@@ -31,7 +31,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 1,
-                file: 'test.less',
                 line: 1,
                 linter: 'emptyRule',
                 message: 'There shouldn\'t be any empty rules present.'
@@ -62,7 +61,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 1,
-                file: 'test.less',
                 line: 1,
                 linter: 'emptyRule',
                 message: 'There shouldn\'t be any empty rules present.'

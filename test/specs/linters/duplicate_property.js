@@ -32,7 +32,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 20,
-                file: 'test.less',
                 line: 1,
                 linter: 'duplicateProperty',
                 message: 'Duplicate property: "color".'
@@ -84,7 +83,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 20,
-                file: 'test.less',
                 line: 1,
                 linter: 'duplicateProperty',
                 message: 'Duplicate property: "color".'

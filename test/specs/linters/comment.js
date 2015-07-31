@@ -30,7 +30,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 1,
-                file: 'test.less',
                 line: 1,
                 linter: 'comment',
                 message: 'There shouldn\'t be any multi-line comments.'

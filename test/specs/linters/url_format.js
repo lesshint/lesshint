@@ -32,7 +32,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 26,
-                file: 'test.less',
                 line: 1,
                 linter: 'urlFormat',
                 message: 'URL "http://example.com/img/image.jpg" should be relative.'
@@ -84,7 +83,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 26,
-                file: 'test.less',
                 line: 1,
                 linter: 'urlFormat',
                 message: 'URL "img/image.jpg" should be absolute.'
@@ -116,7 +114,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 26,
-                file: 'test.less',
                 line: 1,
                 linter: 'urlFormat',
                 message: 'URL "//example.com/img/image.jpg" should be relative.'

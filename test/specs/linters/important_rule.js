@@ -31,7 +31,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 19,
-                file: 'test.less',
                 line: 1,
                 linter: 'importantRule',
                 message: '!important should not be used.'

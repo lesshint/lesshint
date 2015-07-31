@@ -12,7 +12,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 18,
-                file: 'test.less',
                 line: 1,
                 linter: 'trailingSemicolon',
                 message: 'All property declarations should end with a semicolon.'

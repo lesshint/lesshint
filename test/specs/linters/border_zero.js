@@ -52,7 +52,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 16,
-                file: 'test.less',
                 line: 1,
                 linter: 'borderZero',
                 message: 'Border properties should use "none" instead of 0.'
@@ -84,7 +83,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 16,
-                file: 'test.less',
                 line: 1,
                 linter: 'borderZero',
                 message: 'Border properties should use 0 instead of "none".'

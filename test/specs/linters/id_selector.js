@@ -32,7 +32,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 6,
-                file: 'test.less',
                 line: 1,
                 linter: 'idSelector',
                 message: 'Selectors should not use IDs.'
@@ -104,7 +103,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 6,
-                file: 'test.less',
                 line: 1,
                 linter: 'idSelector',
                 message: 'Selectors should not use IDs.'
