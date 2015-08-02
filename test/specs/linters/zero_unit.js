@@ -12,7 +12,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 22,
-                file: 'test.less',
                 line: 1,
                 linter: 'zeroUnit',
                 message: 'Unit should be omitted on zero values.'
@@ -84,7 +83,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 22,
-                file: 'test.less',
                 line: 1,
                 linter: 'zeroUnit',
                 message: 'Unit should not be omitted on zero values.'

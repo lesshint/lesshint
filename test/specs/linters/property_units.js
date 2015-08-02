@@ -55,7 +55,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 19,
-                file: 'test.less',
                 line: 1,
                 linter: 'propertyUnits',
                 message: 'Unit "rem" is not allowed for "font-size".'
@@ -87,7 +86,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 19,
-                file: 'test.less',
                 line: 1,
                 linter: 'propertyUnits',
                 message: 'Unit "rem" is not allowed for "font-size".'
@@ -121,7 +119,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 21,
-                file: 'test.less',
                 line: 1,
                 linter: 'propertyUnits',
                 message: 'Unit "px" is not allowed for "line-height".'
@@ -153,7 +150,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 21,
-                file: 'test.less',
                 line: 1,
                 linter: 'propertyUnits',
                 message: 'Unit "px" is not allowed for "line-height".'
@@ -231,7 +227,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 19,
-                file: 'test.less',
                 line: 1,
                 linter: 'propertyUnits',
                 message: 'Percentages are not allowed for "font-size".'
@@ -263,7 +258,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 19,
-                file: 'test.less',
                 line: 1,
                 linter: 'propertyUnits',
                 message: 'Percentages are not allowed for "font-size".'

@@ -32,7 +32,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 14,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceAfterPropertyColon',
                 message: 'Colon after property name should be followed by one space.'
@@ -64,7 +63,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 14,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceAfterPropertyColon',
                 message: 'Colon after property name should be followed by one space.'
@@ -116,7 +114,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 14,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceAfterPropertyColon',
                 message: 'Colon after property name should not be followed by any spaces.'
@@ -148,7 +145,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 14,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceAfterPropertyColon',
                 message: 'Colon after property name should not be followed by any spaces.'

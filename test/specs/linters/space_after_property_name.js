@@ -32,7 +32,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 13,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceAfterPropertyName',
                 message: 'Colon after property should not be preceded by any space.'
@@ -84,7 +83,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 13,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceAfterPropertyName',
                 message: 'Colon after property should be preceded by one space.'

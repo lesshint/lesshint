@@ -31,7 +31,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 17,
-                file: 'test.less',
                 line: 1,
                 linter: 'stringQuotes',
                 message: 'Strings should use single quotes.'
@@ -81,7 +80,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 17,
-                file: 'test.less',
                 line: 1,
                 linter: 'stringQuotes',
                 message: 'Strings should use double quotes.'
@@ -169,7 +167,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 7,
-                file: 'test.less',
                 line: 1,
                 linter: 'stringQuotes',
                 message: 'Strings should use single quotes.'
@@ -219,7 +216,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 7,
-                file: 'test.less',
                 line: 1,
                 linter: 'stringQuotes',
                 message: 'Strings should use double quotes.'

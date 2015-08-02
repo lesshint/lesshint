@@ -12,7 +12,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 8,
-                file: 'test.less',
                 line: 1,
                 linter: 'hexLength',
                 message: '#ABC should be written in the long-form format.'
@@ -64,7 +63,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 8,
-                file: 'test.less',
                 line: 1,
                 linter: 'hexLength',
                 message: '#AABBCC should be written in the short-form format.'
@@ -135,7 +133,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 37,
-                file: 'test.less',
                 line: 1,
                 linter: 'hexLength',
                 message: '#AABBCC should be written in the short-form format.'
@@ -167,7 +164,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 9,
-                file: 'test.less',
                 line: 1,
                 linter: 'hexLength',
                 message: '#ABC should be written in the long-form format.'
@@ -199,7 +195,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 9,
-                file: 'test.less',
                 line: 1,
                 linter: 'hexLength',
                 message: '#AABBCC should be written in the short-form format.'

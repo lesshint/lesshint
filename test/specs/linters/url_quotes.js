@@ -50,7 +50,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 26,
-                file: 'test.less',
                 line: 1,
                 linter: 'urlQuotes',
                 message: 'URLs should enclosed in quotes.'
@@ -100,7 +99,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 26,
-                file: 'test.less',
                 line: 1,
                 linter: 'urlQuotes',
                 message: 'URLs should enclosed in quotes.'

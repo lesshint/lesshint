@@ -31,7 +31,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 19,
-                file: 'test.less',
                 line: 1,
                 linter: 'leadingZero',
                 message: '.5 should be written with a leading zero.'
@@ -82,7 +81,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 19,
-                file: 'test.less',
                 line: 1,
                 linter: 'leadingZero',
                 message: '0.5 should be written without a leading zero.'

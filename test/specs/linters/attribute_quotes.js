@@ -32,7 +32,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 12,
-                file: 'test.less',
                 line: 1,
                 linter: 'attributeQuotes',
                 message: 'Attribute selectors should use single quotes.'
@@ -64,7 +63,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 12,
-                file: 'test.less',
                 line: 1,
                 linter: 'attributeQuotes',
                 message: 'Attribute selectors should use single quotes.'
@@ -116,7 +114,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 12,
-                file: 'test.less',
                 line: 1,
                 linter: 'attributeQuotes',
                 message: 'Attribute selectors should use double quotes.'
@@ -148,7 +145,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 12,
-                file: 'test.less',
                 line: 1,
                 linter: 'attributeQuotes',
                 message: 'Attribute selectors should use double quotes.'

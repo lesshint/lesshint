@@ -31,7 +31,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 4,
-                file: 'test.less',
                 line: 1,
                 linter: 'qualifyingElement',
                 message: 'ID selectors should not include a qualifying element.'
@@ -62,7 +61,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 4,
-                file: 'test.less',
                 line: 1,
                 linter: 'qualifyingElement',
                 message: 'Class selectors should not include a qualifying element.'
@@ -93,7 +91,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 4,
-                file: 'test.less',
                 line: 1,
                 linter: 'qualifyingElement',
                 message: 'Attribute selectors should not include a qualifying element.'
@@ -184,7 +181,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 9,
-                file: 'test.less',
                 line: 1,
                 linter: 'qualifyingElement',
                 message: 'Class selectors should not include a qualifying element.'

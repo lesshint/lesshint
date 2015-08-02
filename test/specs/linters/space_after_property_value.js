@@ -32,7 +32,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 18,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceAfterPropertyValue',
                 message: 'Semicolon after property value should not be preceded by any space.'
@@ -84,7 +83,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 8,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceAfterPropertyValue',
                 message: 'Semicolon after property value should be preceded by one space.'
@@ -116,14 +114,12 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 18,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceAfterPropertyValue',
                 message: 'Semicolon after property value should not be preceded by any space.',
             },
             {
                 column: 39,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceAfterPropertyValue',
                 message: 'Semicolon after property value should not be preceded by any space.'
@@ -155,14 +151,12 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: 8,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceAfterPropertyValue',
                 message: 'Semicolon after property value should be preceded by one space.'
             },
             {
                 column: 20,
-                file: 'test.less',
                 line: 1,
                 linter: 'spaceAfterPropertyValue',
                 message: 'Semicolon after property value should be preceded by one space.'

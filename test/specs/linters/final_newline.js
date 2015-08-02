@@ -30,7 +30,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: null,
-                file: 'test.less',
                 line: null,
                 linter: 'finalNewline',
                 message: 'Files should end with a newline.'

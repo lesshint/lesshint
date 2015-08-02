@@ -48,7 +48,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: null,
-                file: 'test.less',
                 line: 1,
                 linter: 'trailingWhitespace',
                 message: "There should't be any trailing whitespace."
@@ -78,7 +77,6 @@ describe('lesshint', function () {
 
             var expected = [{
                 column: null,
-                file: 'test.less',
                 line: 1,
                 linter: 'trailingWhitespace',
                 message: "There should't be any trailing whitespace."

@@ -31,7 +31,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 19,
-                file: 'test.less',
                 line: 1,
                 linter: 'trailingZero',
                 message: '1.5 should be written with trailing zeros.'
@@ -82,7 +81,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 19,
-                file: 'test.less',
                 line: 1,
                 linter: 'trailingZero',
                 message: '1.50 should be written without trailing zeros.'
@@ -133,7 +131,6 @@ describe('lesshint', function () {
 
             var expected = {
                 column: 19,
-                file: 'test.less',
                 line: 1,
                 linter: 'trailingZero',
                 message: '1.500 should be written without trailing zeros.'
