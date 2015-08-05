@@ -6,6 +6,7 @@ node_js:
   - "0.12"
   - "iojs-v1"
   - "iojs-v2"
+  - "iojs-v3"
 
 before_script:
   - node --version
