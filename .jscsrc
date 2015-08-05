@@ -2,13 +2,14 @@
     "preset": "google",
 
     "disallowMultipleVarDecl": "strict",
-    "disallowSpacesInAnonymousFunctionExpression": null,
+
     "maximumLineLength": null,
     "validateIndentation": 4,
 
+    "disallowSpacesInAnonymousFunctionExpression": null,
+    "disallowSpacesInFunctionExpression": null,
     "requireSpacesInFunction": {
-        "beforeOpeningRoundBrace": true,
-        "beforeOpeningCurlyBrace": true
+        "beforeOpeningRoundBrace": true
     },
 
     "requireSpaceAfterKeywords": [
