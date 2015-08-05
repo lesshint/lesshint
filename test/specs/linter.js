@@ -25,6 +25,32 @@ describe('linter', function () {
             assert.ok(actual.length === 2);
         });
 
+        it('should handle all sorts of line endings (#40)', function () {
+            var source = '.foo {\r\n margin-right:10px; }\r\n';
+            var path = 'test.less';
+            var actual;
+
+            var expected = [{
+                column: 15,
+                file: 'test.less',
+                line: 2,
+                linter: 'spaceAfterPropertyColon',
+                message: 'Colon after property name should be followed by one space.',
+                source: ' margin-right:10px; }'
+            }];
+
+            var config = {
+                spaceAfterPropertyColon: {
+                    enabled: true,
+                    style: 'one_space'
+                }
+            };
+
+            actual = linter.lint(source, path, config);
+
+            assert.deepEqual(actual, expected);
+        });
+
         it('should pass the filename to the errors list', function () {
             var source = '.foo{ color: red; }\n';
             var path = 'path/to/file.less';
