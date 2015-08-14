@@ -1,22 +1,13 @@
 var assert = require('assert');
-var mock = require('mock-fs');
+var rimraf = require('rimraf');
 var path = require('path');
+var fs = require('fs');
 
 describe('config-loader', function () {
     var configLoader = require('../../lib/config-loader');
-    var expectedMock = {
-        spaceBeforeBrace: {
-            enabled: true,
-            style: 'no_space'
-        }
-    };
-
-    after(function () {
-        mock.restore();
-    });
 
     it('should load the specified config file', function () {
-        var config = path.resolve(process.cwd() + '/test/data/config/config.json');
+        var config = path.resolve(process.cwd(), './test/data/config/config.json');
         var actual = configLoader(config);
         var expected = {
             spaceAfterPropertyColon: {
@@ -34,14 +25,22 @@ describe('config-loader', function () {
     });
 
     it('should load .lesshintrc if no config file is passed', function () {
+        var filePath = path.resolve(process.cwd(), './.lesshintrc');
         var actual;
 
-        mock({
-            '/.lesshintrc': JSON.stringify(expectedMock)
-        });
+        var expected = {
+            spaceBeforeBrace: {
+                enabled: true,
+                style: 'one_space'
+            }
+        };
+
+        fs.writeFileSync(filePath, JSON.stringify(expected));
 
         actual = configLoader();
 
-        assert.deepEqual(actual, expectedMock);
+        assert.deepEqual(actual, expected);
+
+        rimraf(filePath, function () {});
     });
 });
