@@ -14,15 +14,15 @@ var chalkStub = Object.create(chalk, {
         },
         writable: true
     },
-    magenta: {
-        value: function (str) {
-            return chalk.magenta(str);
-        },
-        writable: true
-    },
     green: {
         value: function (str) {
             return chalk.green(str);
+        },
+        writable: true
+    },
+    magenta: {
+        value: function (str) {
+            return chalk.magenta(str);
         },
         writable: true
     }
@@ -30,8 +30,11 @@ var chalkStub = Object.create(chalk, {
 
 describe('reporter:stylish', function () {
     var reporter = rewire('../../../lib/reporters/stylish.js');
+    var colorsEnabled = chalk.enabled;
 
     beforeEach(function () {
+        chalk.enabled = false;
+
         sinon.stub(process.stdout, 'write');
 
         reporter.__set__('chalk', chalkStub);
@@ -41,6 +44,8 @@ describe('reporter:stylish', function () {
         if (process.stdout.write.restore) {
             process.stdout.write.restore();
         }
+
+        chalk.enabled = colorsEnabled;
     });
 
     it('should not print anything when not passed any errors', function () {
@@ -55,7 +60,6 @@ describe('reporter:stylish', function () {
     });
 
     it('should print errors with colors', function () {
-        var message;
         var errors = [{
             column: 5,
             file: 'file.less',
@@ -66,13 +70,16 @@ describe('reporter:stylish', function () {
         }];
 
         sinon.spy(console, 'log');
+        sinon.spy(chalkStub, 'cyan');
+        sinon.spy(chalkStub, 'green');
+        sinon.spy(chalkStub, 'magenta');
 
         reporter(errors);
 
-        message = console.log.getCall(0).args[0];
-
-        assert.strictEqual(chalk.hasColor(message), true);
-        assert.strictEqual(chalk.stripColor(message), 'file.less: line 1, col 5, spaceBeforeBrace: Opening curly brace should be preceded by one space.');
+        assert.strictEqual(chalkStub.cyan.called, true);
+        assert.strictEqual(chalkStub.green.called, true);
+        assert.strictEqual(chalkStub.magenta.called, true);
+        assert.strictEqual(chalk.stripColor(console.log.getCall(0).args[0]), 'file.less: line 1, col 5, spaceBeforeBrace: Opening curly brace should be preceded by one space.');
 
         console.log.restore();
     });
