@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.8.0 (2015-08-16)
+* **This release contains possible breaking changes. Check this list before updating.**
+* Support for custom reporters has been added. This enables users to do whatever they want with the lint results, not just log it to the console.
+* Added the following linters:
+    * `singleLinePerProperty`
+    * `singleLinePerSelector`
+    * `trailingWhitespace`
+* The Less AST passed to each linter is now frozen to prevent accidental modifying by a linter.
+* All linters now returns the complete source of each offending line.
+* Linters are no longer passed a filename.
+
 ### 0.7.1 (2015-08-05)
 * Fixed an issue where Windows line endings in the Less source would cause the wrong line to be reported ([#28](https://github.com/lesshint/lesshint/issues/28)).
 
