@@ -55,6 +55,7 @@ describe('reporter:stylish', function () {
     });
 
     it('should print errors with colors', function () {
+        var message;
         var errors = [{
             column: 5,
             file: 'file.less',
@@ -68,7 +69,11 @@ describe('reporter:stylish', function () {
 
         reporter(errors);
 
-        assert(console.log.getCall(0).args[0] === '\u001b[36mfile.less\u001b[39m: \u001b[35mline 1\u001b[39m, \u001b[35mcol 5\u001b[39m, \u001b[32mspaceBeforeBrace\u001b[39m: Opening curly brace should be preceded by one space.');
+        message = console.log.getCall(0).args[0];
+
+        assert.strictEqual(chalk.hasColor(message), true);
+        assert.strictEqual(chalk.stripColor(message), 'file.less: line 1, col 5, spaceBeforeBrace: Opening curly brace should be preceded by one space.');
+
         console.log.restore();
     });
 });
