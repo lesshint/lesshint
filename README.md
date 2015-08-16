@@ -12,6 +12,7 @@
 * [Installation](#installation)
 * [Configuration](#configuration)
 * [CLI usage](#cli-usage)
+* [Reporters](#reporters)
 * [Known issues](#known-issues)
 
 ## Requirements
@@ -73,8 +74,46 @@ Available Flags     | Description
 --------------------|----------------------------------------------
 `-c`/`--config`     | Specify the configuration file to use (will be merged with defaults).
 `-e`/`--exclude`    | A [minimatch glob pattern](https://github.com/isaacs/minimatch) or a file to exclude form being linted.
-`-r`/`--reporter`   | The reporter to use. Possible values: `stylish` or a path to a custom reporter.
+`-r`/`--reporter`   | The reporter to use. See "Reporters" below for possible values.
 `-V`/`--version`    | Show version.
+
+## Reporters
+As of `0.8.0` the ability to specify custom reporters has been added. These can do anything from just printing something to the terminal to generate custom reports.
+
+There are three ways to load a reporter.
+
+1. Pass the name of a core reporter. See below for a complete listing.
+2. Pass the name of a Node module. If `lesshint` is installed globally only globally installed reporters are available (the normal Node module loading rules apply).
+3. Pass a absolute or relative path to a custom reporter anywhere on the disk. Relative paths will be resolved against [`process.cwd()`](https://nodejs.org/api/process.html#process_process_cwd).
+
+### Core reporters
+* `stylish` - Colored print of all errors to the console.
+
+### Writing your own reporter
+In it's simplest form, a reporter is just a function accepting some input. The most basic reporter possible:
+
+```js
+module.exports = function (errors) {
+    console.log(errors.length ? 'Errors found' : 'No errors');
+};
+```
+
+The reporter will be passed an array objects representing each error:
+
+```js
+{
+    column: 5,
+    file: 'test.less',
+    line: 1,
+    linter: 'spaceBeforeBrace',
+    message: 'Opening curly brace should be preceded by one space.',
+    source: '.foo{'
+}
+```
+
+It's then up to the reporter to do something with the errors. No `return`s or anything is needed. `lesshint` will handle everything like exit codes etc.
+
+Take a look at the [default reporter](https://github.com/lesshint/lesshint/blob/master/lib/reporters/stylish.js) for more information.
 
 ## Known issues
 We are aware of some instances where some Less features won't be properly parsed. In those cases the whole file will simply be ignored by `lesshint`.
