@@ -33,7 +33,7 @@ describe('lesshint', function () {
                 column: 6,
                 line: 1,
                 linter: 'singleLinePerSelector',
-                message: "Each selector should be on it's own line."
+                message: 'Each selector should be on its own line.'
             }];
 
             var options = {
