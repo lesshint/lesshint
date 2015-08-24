@@ -66,6 +66,11 @@
         "style": "include_zero"
     },
 
+    "propertyOrdering": {
+        "enabled": true,
+        "style": "alpha"
+    },
+
     "propertyUnits": {
         "enabled": true,
         "global": [

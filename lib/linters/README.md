@@ -17,6 +17,7 @@ Each linter also accept a `enabled` option to turn if off/on completely. Another
 * [importPath](#importpath)
 * [importantRule](#importantrule)
 * [leadingZero](#leadingzero)
+* [propertyOrdering](#propertyordering)
 * [propertyUnits](#propertyunits)
 * [qualifyingElement](#qualifyingelement)
 * [singleLinePerProperty](#singlelineperproperty)
@@ -304,6 +305,14 @@ Option     | Description
     font-size: 0.5em;
 }
 ```
+
+## propertyOrdering
+Check for property ordering
+
+Option       | Description
+------------ | ----------
+`type`       | Ordering type (Only alpha supported right now)
+
 
 ## propertyUnits
 Specify which units are allowed for property values.
