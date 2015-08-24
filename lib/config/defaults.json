@@ -3,6 +3,8 @@
 
     "excludedFiles": [],
 
+    "mapResults": false,
+
     "attributeQuotes": {
         "enabled": true,
         "style": "single"
