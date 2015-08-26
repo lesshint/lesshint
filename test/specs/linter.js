@@ -37,7 +37,7 @@ describe('linter', function () {
                 linter: 'spaceAfterPropertyColon',
                 message: 'Colon after property name should be followed by one space.',
                 source: ' margin-right:10px; }',
-                type: 'WARNING'
+                severity: 'warning'
             }];
 
             var config = {
@@ -64,7 +64,7 @@ describe('linter', function () {
                 linter: 'spaceBeforeBrace',
                 message: 'Opening curly brace should be preceded by one space.',
                 source: '.foo{ color: red; }',
-                type: 'WARNING'
+                severity: 'warning'
             }];
 
             var config = {
@@ -91,7 +91,7 @@ describe('linter', function () {
                 linter: 'spaceBeforeBrace',
                 message: 'Opening curly brace should be preceded by one space.',
                 source: '.foo{}',
-                type: 'WARNING'
+                severity: 'warning'
             }];
 
             var config = {

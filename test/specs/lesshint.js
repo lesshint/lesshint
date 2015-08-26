@@ -133,7 +133,7 @@ describe('lesshint', function () {
             results = lesshint.checkString(string);
 
             assert.ok(results.length === 1);
-            assert.ok(results[0].type === 'ERROR');
+            assert.ok(results[0].severity === 'error');
         });
     });
 
