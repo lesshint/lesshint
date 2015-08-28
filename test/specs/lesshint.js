@@ -122,17 +122,18 @@ describe('lesshint', function () {
             assert.ok(errors.length === 1);
         });
 
-        it('should return an empty array on invalid input', function () {
+        it('should return an object containing an error result on invalid input', function () {
             var string = '.foo{';
 
             var lesshint = new Lesshint();
-            var errors;
+            var results;
 
             lesshint.configure();
 
-            errors = lesshint.checkString(string);
+            results = lesshint.checkString(string);
 
-            assert.ok(errors.length === 0);
+            assert.ok(results.length === 1);
+            assert.ok(results[0].severity === 'error');
         });
     });
 
