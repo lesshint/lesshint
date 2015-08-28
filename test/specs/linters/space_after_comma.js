@@ -353,6 +353,44 @@ describe('lesshint', function () {
             assert.deepEqual(actual, expected);
         });
 
+        it('should not report on operators other than commas when "style" is "no_space". See #49', function () {
+            var source = '@var: (4 / 2);';
+            var ast;
+            var options = {
+                spaceAfterComma: {
+                    enabled: true,
+                    style: 'no_space'
+                }
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first('atrules').first('parentheses');
+
+            assert.strictEqual(null, spaceAfterComma({
+                config: options,
+                node: ast
+            }));
+        });
+
+        it('should not report on operators other than commas when "style" is "one_space". See #49', function () {
+            var source = '@var: (4 /2);';
+            var ast;
+            var options = {
+                spaceAfterComma: {
+                    enabled: true,
+                    style: 'one_space'
+                }
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first('atrules').first('parentheses');
+
+            assert.strictEqual(null, spaceAfterComma({
+                config: options,
+                node: ast
+            }));
+        });
+
         it('should return null when disabled', function () {
             var source = '.foo { color: rgb(255,255,255); }';
             var ast;
