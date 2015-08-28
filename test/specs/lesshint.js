@@ -135,6 +135,18 @@ describe('lesshint', function () {
             assert.ok(results.length === 1);
             assert.ok(results[0].severity === 'error');
         });
+
+        it('should return the name of the file containing a parse error', function () {
+            var string = '.foo { border none }';
+            var lesshint = new Lesshint();
+            var results;
+
+            lesshint.configure();
+
+            results = lesshint.checkString(string, '/var/test/file.less');
+
+            assert.ok(results[0].file === 'file.less');
+        });
     });
 
     describe('configure', function () {
