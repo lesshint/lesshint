@@ -203,6 +203,24 @@ describe('lesshint', function () {
             }));
         });
 
+        it('should return null for value-less selectors', function () {
+            var source = 'input[disabled] {}';
+            var ast;
+            var options = {
+                attributeQuotes: {
+                    enabled: true
+                }
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first().first('selector').first('simpleSelector');
+
+            assert.equal(null, attributeQuotes({
+                config: options,
+                node: ast
+            }));
+        });
+
         it('should throw on invalid "style" value', function () {
             var source = 'input[type=text] {}';
             var ast;
