@@ -8,6 +8,10 @@
 
     "disallowSpacesInAnonymousFunctionExpression": null,
     "disallowSpacesInFunctionExpression": null,
+    "disallowDanglingUnderscores": {
+        "allExcept": ["__set__"]
+    },
+
     "requireSpacesInFunction": {
         "beforeOpeningRoundBrace": true
     },
