@@ -107,6 +107,7 @@ The reporter will be passed an array objects representing each error:
     line: 1,
     linter: 'spaceBeforeBrace',
     message: 'Opening curly brace should be preceded by one space.',
+    severity: 'warning',
     source: '.foo{'
 }
 ```
