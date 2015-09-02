@@ -52,7 +52,7 @@ describe('lesshint', function () {
                 column: 26,
                 line: 1,
                 linter: 'urlQuotes',
-                message: 'URLs should enclosed in quotes.'
+                message: 'URLs should be enclosed in quotes.'
             };
 
             var options = {
@@ -101,7 +101,7 @@ describe('lesshint', function () {
                 column: 26,
                 line: 1,
                 linter: 'urlQuotes',
-                message: 'URLs should enclosed in quotes.'
+                message: 'URLs should be enclosed in quotes.'
             };
 
             var options = {
