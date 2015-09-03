@@ -75,6 +75,26 @@ describe('lesshint', function () {
             assert.deepEqual(actual, expected);
         });
 
+        it('should not report identical property names. See #59', function () {
+            var source = '.foo { color: red; color: blue; }';
+            var ast;
+
+            var options = {
+                propertyOrdering: {
+                    enabled: true,
+                    style: 'alpha'
+                }
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first().first('block');
+
+            assert.strictEqual(null, propertyOrdering({
+                config: options,
+                node: ast
+            }));
+        });
+
         it('should return null when disabled', function () {
             var source = '.foo { font-size: 16px; border: 0; }';
             var ast;
