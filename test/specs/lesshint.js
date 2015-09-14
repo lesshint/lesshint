@@ -147,6 +147,15 @@ describe('lesshint', function () {
 
             assert.ok(results[0].file === 'file.less');
         });
+
+        it('should throw on non-parse related errors', function () {
+            var config = configLoader(path.dirname(__dirname) + '/data/config/bad.json');
+            var lesshint = new Lesshint();
+
+            lesshint.configure(config);
+
+            assert.throws(lesshint.checkString.bind(null), Error);
+        });
     });
 
     describe('configure', function () {

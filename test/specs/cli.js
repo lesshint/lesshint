@@ -161,4 +161,17 @@ describe('cli', function () {
             assert.ok(status === 1);
         });
     });
+
+    it('should exit with error when a error is thrown', function () {
+        var result;
+
+        result = cli({
+            args: [path.dirname(__dirname) + '/data/files/foo.less'],
+            config: path.dirname(__dirname) + '/data/config/bad.json'
+        });
+
+        return result.fail(function (status) {
+            assert.ok(status === 70);
+        });
+    });
 });
