@@ -15,7 +15,7 @@
 
     "comment": {
         "allowed": "^!",
-        "enabled": true
+        "enabled": false
     },
 
     "duplicateProperty": {
