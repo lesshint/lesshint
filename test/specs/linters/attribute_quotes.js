@@ -49,7 +49,7 @@ describe('lesshint', function () {
             var ast;
 
             var expected = {
-                column: 6,
+                column: 12,
                 line: 1,
                 linter: 'attributeQuotes',
                 message: 'Attribute selectors should use quotes.'
