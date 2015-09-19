@@ -5,14 +5,13 @@ describe('lesshint', function () {
     var attributeQuotes = require('../../../lib/linters/attribute_quotes');
 
     describe('#attributeQuotes()', function () {
-        it('should allow single quotes when "style" is "single"', function () {
+        it('should allow single quotes', function () {
             var source = "input[type='text'] {}";
             var ast;
 
             var options = {
                 attributeQuotes: {
-                    enabled: true,
-                    style: 'single'
+                    enabled: true
                 }
             };
 
@@ -25,76 +24,13 @@ describe('lesshint', function () {
             }));
         });
 
-        it('should not allow double quotes when "style" is "single"', function () {
-            var source = 'input[type="text"] {}';
-            var actual;
-            var ast;
-
-            var expected = {
-                column: 12,
-                line: 1,
-                linter: 'attributeQuotes',
-                message: 'Attribute selectors should use single quotes.'
-            };
-
-            var options = {
-                attributeQuotes: {
-                    enabled: true,
-                    style: 'single'
-                }
-            };
-
-            ast = linter.parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector');
-
-            actual = attributeQuotes({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
-
-            assert.deepEqual(actual, expected);
-        });
-
-        it('should not allow missing quotes when "style" is "single"', function () {
-            var source = 'input[type=text] {}';
-            var actual;
-            var ast;
-
-            var expected = {
-                column: 12,
-                line: 1,
-                linter: 'attributeQuotes',
-                message: 'Attribute selectors should use single quotes.'
-            };
-
-            var options = {
-                attributeQuotes: {
-                    enabled: true,
-                    style: 'single'
-                }
-            };
-
-            ast = linter.parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector');
-
-            actual = attributeQuotes({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
-
-            assert.deepEqual(actual, expected);
-        });
-
-        it('should allow double quotes when "style" is "double"', function () {
+        it('should allow double quotes', function () {
             var source = 'input[type="text"] {}';
             var ast;
 
             var options = {
                 attributeQuotes: {
-                    enabled: true,
-                    style: 'double'
+                    enabled: true
                 }
             };
 
@@ -107,22 +43,21 @@ describe('lesshint', function () {
             }));
         });
 
-        it('should not allow single quotes when "style" is "double"', function () {
-            var source = "input[type='text'] {}";
+        it('should not allow missing quotes', function () {
+            var source = 'input[type=text] {}';
             var actual;
             var ast;
 
             var expected = {
-                column: 12,
+                column: 6,
                 line: 1,
                 linter: 'attributeQuotes',
-                message: 'Attribute selectors should use double quotes.'
+                message: 'Attribute selectors should use quotes.'
             };
 
             var options = {
                 attributeQuotes: {
-                    enabled: true,
-                    style: 'double'
+                    enabled: true
                 }
             };
 
@@ -138,35 +73,22 @@ describe('lesshint', function () {
             assert.deepEqual(actual, expected);
         });
 
-        it('should not allow missing quotes when "style" is "double"', function () {
-            var source = 'input[type=text] {}';
-            var actual;
+        it('should return null for value-less selectors', function () {
+            var source = 'input[disabled] {}';
             var ast;
-
-            var expected = {
-                column: 12,
-                line: 1,
-                linter: 'attributeQuotes',
-                message: 'Attribute selectors should use double quotes.'
-            };
-
             var options = {
                 attributeQuotes: {
-                    enabled: true,
-                    style: 'double'
+                    enabled: true
                 }
             };
 
             ast = linter.parseAST(source);
             ast = ast.first().first('selector').first('simpleSelector');
 
-            actual = attributeQuotes({
+            assert.equal(null, attributeQuotes({
                 config: options,
-                node: ast,
-                path: 'test.less'
-            });
-
-            assert.deepEqual(actual, expected);
+                node: ast
+            }));
         });
 
         it('should return null when disabled', function () {
@@ -201,44 +123,6 @@ describe('lesshint', function () {
                 config: options,
                 node: ast
             }));
-        });
-
-        it('should return null for value-less selectors', function () {
-            var source = 'input[disabled] {}';
-            var ast;
-            var options = {
-                attributeQuotes: {
-                    enabled: true
-                }
-            };
-
-            ast = linter.parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector');
-
-            assert.equal(null, attributeQuotes({
-                config: options,
-                node: ast
-            }));
-        });
-
-        it('should throw on invalid "style" value', function () {
-            var source = 'input[type=text] {}';
-            var ast;
-
-            var options = {
-                attributeQuotes: {
-                    enabled: true,
-                    style: 'invalid'
-                }
-            };
-
-            ast = linter.parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector');
-
-            assert.throws(attributeQuotes.bind(null, {
-                config: options,
-                node: ast
-            }), Error);
         });
     });
 });
