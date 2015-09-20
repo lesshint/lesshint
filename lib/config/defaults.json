@@ -18,6 +18,11 @@
         "enabled": false
     },
 
+    "decimalZero": {
+        "enabled": true,
+        "style": "leading"
+    },
+
     "duplicateProperty": {
         "enabled": true,
         "exclude": []
@@ -59,11 +64,6 @@
         "exclude": [],
         "filenameExtension": false,
         "leadingUnderscore": false
-    },
-
-    "leadingZero": {
-        "enabled": true,
-        "style": "include_zero"
     },
 
     "propertyOrdering": {
@@ -147,11 +147,6 @@
 
     "trailingWhitespace": {
         "enabled": true
-    },
-
-    "trailingZero": {
-        "enabled": true,
-        "style": "exclude_zero"
     },
 
     "urlFormat": {
