@@ -42,16 +42,8 @@ Each linter also accept a `enabled` option to turn if off/on completely. Another
 All values in attribute selectors should be enclosed in quotes.
 Since some values require quotes it's better for consistency to always quote the values.
 
-Option     | Description
----------- | ----------
-`style`    | `double`, `single` (**default**)
-
 ### invalid
 ```css
-input[type="text"] {
-    color: red;
-}
-
 input[type=text] {
     color: red;
 }
@@ -60,6 +52,10 @@ input[type=text] {
 ### valid
 ```css
 input[type='text'] {
+    color: red;
+}
+
+input[type="text"] {
     color: red;
 }
 ```
