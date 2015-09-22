@@ -1,0 +1,6 @@
+{
+    "spaceBeforeBrace": {
+        "enabled": true,
+        "style_foobar": "new_line"
+    }
+}
