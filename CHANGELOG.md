@@ -1,4 +1,8 @@
 # Changelog
+## 0.9.2 (2015-09-23)
+* Fixed an issue where `spaceBeforeBrace` wouldn't check `@media` queries. Props [@kokarn](https://github.com/kokarn). ([#61](https://github.com/lesshint/lesshint/issues/61)).
+* Fixed an issue where `finalNewline` would fail on empty files.
+* Fixed an issue where `trailingWhitespace` would fail on empty files.
 
 ## 0.9.1 (2015-09-09)
 * Fixed an issue in `propertyOrdering` where identical properties weren't handled correctly ([#59](https://github.com/lesshint/lesshint/issues/59)).

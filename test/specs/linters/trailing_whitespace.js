@@ -99,6 +99,23 @@ describe('lesshint', function () {
             assert.deepEqual(actual, expected);
         });
 
+        it('should ignore empty files', function () {
+            var source = '';
+            var ast;
+            var options = {
+                trailingWhitespace: {
+                    enabled: true
+                }
+            };
+
+            ast = linter.parseAST(source);
+
+            assert.equal(null, trailingWhitespace({
+                config: options,
+                node: ast
+            }));
+        });
+
         it('should return null when disabled', function () {
             var source = '.foo {}  ';
             var ast;
