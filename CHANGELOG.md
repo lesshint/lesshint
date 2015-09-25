@@ -1,4 +1,7 @@
 # Changelog
+## 0.9.3 (2015-09-25)
+* Fixed an issue where `propertyOrdering` would try to check variables and crash.
+
 ## 0.9.2 (2015-09-23)
 * Fixed an issue where `spaceBeforeBrace` wouldn't check `@media` queries. Props [@kokarn](https://github.com/kokarn). ([#61](https://github.com/lesshint/lesshint/issues/61)).
 * Fixed an issue where `finalNewline` would fail on empty files.
