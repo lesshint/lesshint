@@ -1,4 +1,7 @@
 # Changelog
+## 0.9.4 (2015-09-25)
+* Fix for bad `0.9.3`.
+
 ## 0.9.3 (2015-09-25)
 * Fixed an issue where `propertyOrdering` would try to check variables and crash.
 
