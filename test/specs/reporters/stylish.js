@@ -83,4 +83,40 @@ describe('reporter:stylish', function () {
 
         console.log.restore();
     });
+
+    it('should not print line when not passed one', function () {
+        var errors = [{
+            column: 5,
+            file: 'file.less',
+            linter: 'spaceBeforeBrace',
+            message: 'Opening curly brace should be preceded by one space.',
+            source: '.foo{ color: red; }'
+        }];
+
+        sinon.spy(console, 'log');
+
+        reporter(errors);
+
+        assert.strictEqual(chalk.stripColor(console.log.getCall(0).args[0]), 'file.less: col 5, spaceBeforeBrace: Opening curly brace should be preceded by one space.');
+
+        console.log.restore();
+    });
+
+    it('should not print column when not passed one', function () {
+        var errors = [{
+            line: 1,
+            file: 'file.less',
+            linter: 'spaceBeforeBrace',
+            message: 'Opening curly brace should be preceded by one space.',
+            source: '.foo{ color: red; }'
+        }];
+
+        sinon.spy(console, 'log');
+
+        reporter(errors);
+
+        assert.strictEqual(chalk.stripColor(console.log.getCall(0).args[0]), 'file.less: line 1, spaceBeforeBrace: Opening curly brace should be preceded by one space.');
+
+        console.log.restore();
+    });
 });
