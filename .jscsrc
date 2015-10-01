@@ -6,6 +6,7 @@
     "disallowMultipleVarDecl": "strict",
     "disallowSpacesInAnonymousFunctionExpression": false,
     "disallowSpacesInFunctionExpression": false,
+    "disallowSpacesInFunctionDeclaration": false,
     "disallowDanglingUnderscores": {
         "allExcept": ["__set__"]
     },
