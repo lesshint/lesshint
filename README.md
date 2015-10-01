@@ -1,709 +1,124 @@
-# Available linters
+# lesshint
 
-*Warning: Before we hit 1.0 don't trust the default values, they are subject to change after votes by the community. Always specify exactly what you want to report.*
+[![Build Status](https://travis-ci.org/lesshint/lesshint.svg?branch=master)](https://travis-ci.org/lesshint/lesshint)
+[![Build status](https://ci.appveyor.com/api/projects/status/6ig85uac52imq1i6/branch/master?svg=true)](https://ci.appveyor.com/project/jwilsson/lesshint/branch/master)
+[![Coverage Status](https://coveralls.io/repos/lesshint/lesshint/badge.svg?branch=master)](https://coveralls.io/r/lesshint/lesshint?branch=master)
+[![Dependency Status](https://david-dm.org/lesshint/lesshint.svg?theme=shields.io&style=flat)](https://david-dm.org/lesshint/lesshint)
+[![devDependency Status](https://david-dm.org/lesshint/lesshint/dev-status.svg?theme=shields.io&style=flat)](https://david-dm.org/lesshint/lesshint#info=devDependencies)
 
-Each linter also accept a `enabled` option to turn if off/on completely. Another way of disabling a linter is by setting the whole property to `false`.
+`lesshint` is a tool to aid you in writing clean and consistent [Less](http://lesscss.org/).
 
-* [attributeQuotes](#attributequotes)
-* [borderZero](#borderzero)
-* [comment](#comment)
-* [decimalZero](#decimalzero)
-* [duplicateProperty](#duplicateproperty)
-* [emptyRule](#emptyrule)
-* [finalNewline](#finalnewline)
-* [hexLength](#hexlength)
-* [hexNotation](#hexnotation)
-* [hexValidation](#hexvalidation)
-* [idSelector](#idselector)
-* [importPath](#importpath)
-* [importantRule](#importantrule)
-* [leadingZero](#leadingzero)
-* [propertyOrdering](#propertyordering)
-* [propertyUnits](#propertyunits)
-* [qualifyingElement](#qualifyingelement)
-* [singleLinePerProperty](#singlelineperproperty)
-* [singleLinePerSelector](#singlelineperselector)
-* [spaceAfterComma](#spaceaftercomma)
-* [spaceAfterPropertyColon](#spaceafterpropertycolon)
-* [spaceAfterPropertyName](#spaceafterpropertyname)
-* [spaceAfterPropertyValue](#spaceafterpropertyvalue)
-* [spaceBeforeBrace](#spacebeforebrace)
-* [spaceBeforeComma](#spacebeforecomma)
-* [spaceBetweenParens](#spacebetweenparens)
-* [stringQuotes](#stringquotes)
-* [trailingSemicolon](#trailingsemicolon)
-* [trailingWhitespace](#trailingwhitespace)
-* [trailingZero](#trailingzero)
-* [urlFormat](#urlformat)
-* [urlQuotes](#urlquotes)
-* [zeroUnit](#zerounit)
+* [Requirements](#requirements)
+* [Installation](#installation)
+* [Configuration](#configuration)
+* [CLI usage](#cli-usage)
+* [Reporters](#reporters)
+* [Known issues](#known-issues)
 
-## attributeQuotes
-All values in attribute selectors should be enclosed in quotes.
-Since some values require quotes it's better for consistency to always quote the values.
+## Requirements
+[Node.js](https://nodejs.org/) 0.10 (or later) or [io.js](https://iojs.org/) 1.0 (or later).
 
-Option     | Description
----------- | ----------
-`style`    | `double`, `single` (**default**)
+## Installation
+Run the following command from the command line (add -g to install globally):
 
-### invalid
-```css
-input[type="text"] {
-    color: red;
-}
-
-input[type=text] {
-    color: red;
-}
+```
+npm install lesshint
 ```
 
-### valid
-```css
-input[type='text'] {
-    color: red;
-}
-```
+## Configuration
+`lesshint` is customizable and we highly recommend you to look at the [available options](lib/linters/README.md) to tailor it to your needs.
 
-## borderZero
-Prefer `0` over `none` in border declarations.
+Start by creating a `.lesshintrc` file in your project root and add your settings to it. It will be automatically loaded and merged with the default values.
 
-Option     | Description
----------- | ----------
-`style`    | `none`, `zero` (**default**)
-
-### none
-```css
-.foo {
-    border: none;
-}
-```
-
-### zero
-```css
-.foo {
-    border: 0;
-}
-```
-
-## Comment
-Prefer single-line comments (`//`) over multi-line (`/* ... */`) since they're not rendered in the final CSS.
-
-Option     | Description
----------- | ----------
-`allowed`  | A regexp to match allowed comments. The default is `^!` allowing comments starting with a bang, i.e. `/*! Copyright... */`.
-
-### invalid
-```css
-/* Will get rendered */
-```
-
-### valid
-```css
-// Won't get rendered
-
-/*! Will get rendered, but it's OK */
-```
-
-## decimalZero
-Floating point numbers should be written with a leading/trailing zero.
-
-Option     | Description
----------- | -------------
-`leading`  | Floating point numbers must be written with leading zero (when `1.0 > N > -1.0`) (**default**)
-`trailing` | Floating point numbers must be written with trailing zero
-`both`     | Floating point numbers must be written with leading zero (when `1.0 > N > -1.0`) and trailing zero
-`none`     | Floating point numbers must not be written with either leading nor trailing zero
-
-### Valid
-```less
-.foo {
-  font-size: 0.5em;  // leading
-  font-size: 1.5em;  // leading, none
-  font-size:  .50em; // trailing
-  font-size: 1.0em;  // trailing, both
-  font-size: 0.50em; // both
-  font-size:  .5em;  // none
-}
-```
-
-### Invalid
-```less
-.foo {
-  font-size: 1.0em;  // leading
-  font-size:  .5em;  // leading, trailing, both
-  font-size: 0.5em;  // trailing, both, none
-  font-size: 1.5em;  // trailing, both
-  font-size: 0.50em; // leading, trailing, none
-}
-```
-
-## duplicateProperty
-There shouldn't be any duplicate properties since this is usually an error, causing unexpected bugs.
-
-However, sometimes, there might be valid reasons such as a fallback for older browsers.
-In those cases, it's best to set the `exclude` option to stop `lesshint` from reporting those properties.
-
-Option     | Description
----------- | ----------
-`exclude`  | Array of properties to exclude, for example `background-color` when used with a fallback.
-
-### invalid
-```css
-.foo {
-    color: red;
-    color: blue;
-}
-```
-
-### valid
-```css
-.foo {
-    color: red;
-}
-```
-
-## emptyRule
-There shouldn't be any empty rules present.
-
-### invalid
-```css
-.foo {
-
-}
-```
-
-### valid
-```css
-.foo {
-    color: red;
-}
-```
-
-## finalNewline
-All files should end with a empty line to help create better diffs since the last line will always be untouched and therefore not marked as changed.
-
-### invalid
-```css
-.foo {
-    color: red;
-}
-```
-
-### valid
-```css
-.foo {
-    color: red;
-}
-
-...
-```
-
-## hexLength
-Prefer longhand hex color declarations over short hand ones to be consistent with colors that can't be written using shorthand notation.
-
-Option     | Description
----------- | ----------
-`style`    | `long` (**default**), `short`
-
-### long
-```css
-.foo {
-    color: #000000;
-}
-```
-
-### short
-```css
-.foo {
-    color: #000;
-}
-```
-
-## hexNotation
-Hex color declarations should be written in lowercase to aid readability.
-
-Option     | Description
----------- | ----------
-`style`    | `lowercase` (**default**), `uppercase`
-
-### lowercase
-```css
-.foo {
-    color: #abcdef;
-}
-```
-
-### uppercase
-```css
-.foo {
-    color: #ABCDEF;
-}
-```
-
-## hexValidation
-Check if hex color declarations are valid.
-
-### invalid
-```css
-.foo {
-    color: #ab;
-}
-```
-
-### valid
-```css
-.foo {
-    color: #abc;
-}
-```
-
-## idSelector
-Disallow the usage of ID selectors.
-ID selectors should be avoided since they introduce unnecessarily specific selectors which can't be easily overridden.
-
-Option     | Description
----------- | ----------
-`exclude`  | Array of IDs to exclude (with or without "#").
-
-### invalid
-```css
-#foo {
-    color: red;
-}
-```
-
-### valid
-```css
-.foo {
-    color: red;
-}
-```
-
-## importantRule
-Disallow the usage of `!important`.
-The use of `!important` is often due to a lack of understanding of CSS specificity.
-
-### invalid
-```css
-#foo {
-    color: red !important;
-}
-```
-
-### valid
-```css
-.foo {
-    color: red;
-}
-```
-
-## importPath
-Imported files should not include a leading underscore or the filename extension.
-The filename extension isn't required and underscores should be reserved for usage with config-files, such as `_vars.less`.
-
-Option               | Description
--------------------- | ----------
-`filenameExtension`  | `false` (**default**), `true`
-`leadingUnderscore`  | `false` (**default**), `true`
-`exclude`            | Array of files to exclude
-
-### invalid
-```css
-@import 'foo.less';
-@import '_bar';
-```
-
-### valid
-```css
-@import 'foo';
-@import 'bar';
-```
-
-## leadingZero
-**Removed** Use [decimalZero](#decimalZero)
-
-## propertyOrdering
-Check for property ordering
-
-Option       | Description
------------- | ----------
-`type`       | Ordering type (Only alpha supported right now)
-
-
-## propertyUnits
-Specify which units are allowed for property values.
-
-By default all properties can have any value.
-The `global` option can be used to specify global units that are allowed
-and the `properties` option can be used to fine tune units for each property.
-
-*Note: Shorthands are not supported by the `properties` option. For example, to specify units for `margin`, all margin-* properties must be specified.*
-
-Option       | Description
------------- | ----------
-`global`     | Allowed units (by default all units are allowed)
-`properties` | Object with property names and allowed units (empty by default)
+Each option is then specifed by it's own JSON object, for example:
 
 ```js
-"propertyUnits": {
-    "global": ["rem", "vw"], // These units are allowed for all properties
-    "properties": {
-        "line-height": [] // No units are allowed for line-height
-    }
+"fileExtensions": [".less", ".css"],
+
+"excludedFiles": ["vendor.less"],
+
+"spaceAfterPropertyColon": {
+    "enabled": true,
+    "style": "one_space" // Comments are allowed
 }
 ```
 
-```css
-.foo {
-    font-size: 1.5rem; // Allowed
-    line-height: 30px; // Not allowed
-}
+### Options
+
+#### fileExtensions
+Array of file extensions to check. Either an array of extensions or `"*"` to allow all files. For example:
+
+```js
+"fileExtensions": [".less", ".css"] // Allow ".less" and ".css" files. Can be passed with or without a dot.
+
+"fileExtensions": "*" // Allow all files
 ```
 
-## qualifyingElement
-Selectors should not include a qualifying element since this will just add unnecessary specificity.
+#### excludedFiles
+Array of [minimatch glob patterns](https://github.com/isaacs/minimatch) or a file to exclude. For example:
 
-Option               | Description
--------------------- | ----------
-`allowWithAttribute` | `false` (**default**), `true`
-`allowWithClass`     | `false` (**default**), `true`
-`allowWithId`        | `false` (**default**), `true`
+```js
+"excludedFiles": ["vendor/*.less"] // Ignore all files in "vendor/"
 
-### invalid
-```css
-div[foo=bar] {
-    color: red;
-}
-
-div.foo {
-    color: red;
-}
-
-div#foo {
-    color: red;
-}
+"excludedFiles": ["vendor.less"] // Ignore a file named "vendor.less"
 ```
 
-### valid
-```css
-[foo=bar] {
-    color: red;
-}
+## CLI usage
+Run `lesshint` from the command-line by passing one or more files/directories to recursively scan.
 
-.foo {
-    color: red;
-}
-
-#foo {
-    color: red;
-}
+```
+lesshint src/less/ lib/style.less
 ```
 
-## singleLinePerProperty
-Each property should be on it's own line.
+Available Flags     | Description
+--------------------|----------------------------------------------
+`-c`/`--config`     | Specify the configuration file to use (will be merged with defaults).
+`-e`/`--exclude`    | A [minimatch glob pattern](https://github.com/isaacs/minimatch) or a file to exclude form being linted.
+`-r`/`--reporter`   | The reporter to use. See "Reporters" below for possible values.
+`-V`/`--version`    | Show version.
 
-### invalid
-```css
-.foo {
-    color: red; margin-right: 10px;
-}
+## Reporters
+As of `0.8.0` the ability to specify custom reporters has been added. These can do anything from just printing something to the terminal to generate custom reports.
 
-.bar { color: red; }
+There are three ways to load a reporter.
+
+1. Pass the name of a core reporter. See below for a complete listing.
+2. Pass the name of a Node module. If `lesshint` is installed globally only globally installed reporters are available (the normal Node module loading rules apply).
+3. Pass a absolute or relative path to a custom reporter anywhere on the disk. Relative paths will be resolved against [`process.cwd()`](https://nodejs.org/api/process.html#process_process_cwd).
+
+### Core reporters
+* `stylish` - Colored print of all errors to the console.
+
+### Writing your own reporter
+In it's simplest form, a reporter is just a function accepting some input. The most basic reporter possible:
+
+```js
+module.exports = function (errors) {
+    console.log(errors.length ? 'Errors found' : 'No errors');
+};
 ```
 
-### valid
-```css
-.foo {
-    color: red;
-    margin-right: 10px;
-}
+The reporter will be passed an array objects representing each error:
 
-.bar {
-    color: red;
-}
-```
-
-## singleLinePerSelector
-Each selector should be on it's own line.
-
-### invalid
-```css
-.foo, .bar {
-    color: red;
-}
-```
-
-### valid
-```css
-.foo,
-.bar {
-    color: red;
-}
-```
-
-## spaceAfterComma
-Each comma in functions, mixins, etc. should be followed by a space to aid readability.
-
-Option     | Description
----------- | ----------
-`style`    | `no_space`, `one_space` (**default**)
-
-### no_space
-```css
-.foo {
-    color: rgb(255,255,255);
-}
-```
-
-### one_space
-```css
-.foo {
-    color: rgb(255, 255, 255);
-}
-```
-
-## spaceAfterPropertyColon
-Each colon in property declarations should be followed by a space to aid readability.
-
-Option     | Description
----------- | ----------
-`style`    | `no_space`, `one_space` (**default**)
-
-### no_space
-```css
-.foo {
-    margin:0;
-}
-```
-
-### one_space
-```css
-.foo {
-    margin: 0;
-}
-```
-
-## spaceAfterPropertyName
-The colon in property declarations shouldn't be preceded by any space.
-
-Option     | Description
----------- | ----------
-`style`    | `no_space` (**default**), `one_space`
-
-### no_space
-```css
-.foo {
-    margin: 0;
-}
-```
-
-### one_space
-```css
-.foo {
-    margin : 0;
-}
-```
-
-## spaceAfterPropertyValue
-The semicolon in property declarations shouldn't be preceded by any space.
-
-Option     | Description
----------- | ----------
-`style`    | `no_space` (**default**), `one_space`
-
-### no_space
-```css
-.foo {
-    margin: 0;
-}
-```
-
-### one_space
-```css
-.foo {
-    margin: 0 ;
-}
-```
-
-## spaceBeforeBrace
-A space should be present before opening braces to aid readability.
-
-Option     | Description
----------- | ----------
-`style`    | `no_space`, `one_space` (**default**), `new_line`
-
-### no_space
-```css
-.foo{
-    color: red;
-}
-```
-
-### one_space
-```css
-.foo {
-    color: red;
-}
-```
-
-### new_line
-```css
-.foo
+```js
 {
-    color: red;
+    column: 5,
+    file: 'test.less',
+    line: 1,
+    linter: 'spaceBeforeBrace',
+    message: 'Opening curly brace should be preceded by one space.',
+    severity: 'warning',
+    source: '.foo{'
 }
 ```
 
-## spaceBeforeComma
-Each comma in functions, mixins, etc. shouldn't be preceded by any space.
+It's then up to the reporter to do something with the errors. No `return`s or anything is needed. `lesshint` will handle everything like exit codes etc.
 
-Option     | Description
----------- | ----------
-`style`    | `no_space` (**default**), `one_space`
+Take a look at the [default reporter](https://github.com/lesshint/lesshint/blob/master/lib/reporters/stylish.js) for more information.
 
-### no_space
-```css
-.foo {
-    color: rgb(255, 255, 255);
-}
-```
+## Known issues
+We are aware of some instances where some Less features won't be properly parsed. In those cases the whole file will simply be ignored by `lesshint`.
 
-### one_space
-```css
-.foo {
-    color: rgb(255 , 255 , 255);
-}
-```
-
-## spaceBetweenParens
-There shouldn't be any space before or after parentheses.
-
-Option     | Description
----------- | ----------
-`style`    | `no_space` (**default**), `one_space`
-
-### no_space
-```css
-.foo {
-    color: rgb(255, 255, 255);
-}
-```
-
-### one_space
-```css
-.foo {
-    color: rgb( 255, 255, 255 );
-}
-```
-
-## stringQuotes
-All strings should use single quotes since they are often easier to type since the `Shift` key doesn't need to be pressed.
-
-Option     | Description
----------- | ----------
-`style`    | `double`, `single` (**default**)
-
-### invalid
-```css
-.foo {
-    content: "Hello world";
-}
-```
-
-### valid
-```css
-.foo {
-    content: 'Hello world';
-}
-```
-
-## trailingSemicolon
-All property declarations should end with a semicolon.
-Semicolons are optional after the last property in a ruleset but it's a good habit to always add them since one doesn't need to think about it when adding new properties afterwards.
-
-### invalid
-```css
-.foo {
-    color: red
-}
-```
-
-### valid
-```css
-.foo {
-    color: red;
-}
-```
-
-## trailingWhitespace
-There should't be any trailing whitespace since this will mess up diffs etc.
-
-## trailingZero
-**Removed** Use [decimalZero](#decimalzero)
-
-## urlFormat
-All URLs should be relative.
-Using relative URLs increases portability and is actually recommended by the [CSS spec](http://dev.w3.org/csswg/css-values/#relative-urls).
-
-Option     | Description
----------- | ----------
-`style`    | `absolute`, `relative` (**default**)
-
-### invalid
-```css
-.foo {
-    background-image: url('http://example.com/img/image.jpg');
-}
-```
-
-### valid
-```css
-.foo {
-    background-image: url('img/image.jpg');
-}
-```
-
-## urlQuotes
-All URLs should be enclosed in quotes.
-Using quotes around URLs allows them to be treated as strings, making escaping of characters easier.
-The [CSS spec](http://dev.w3.org/csswg/css-values/#url-value) also recommends the use of quotes.
-
-### invalid
-```css
-.foo {
-    background-image: url(img/image.jpg);
-}
-```
-
-### valid
-```css
-.foo {
-    background-image: url('img/image.jpg');
-}
-```
-
-## zeroUnit
-Length units should be omitted on zero values.
-
-Option     | Description
----------- | ----------
-`style`    | `no_unit` (**default**), `keep_unit`
-
-### no_unit
-```css
-.foo {
-    margin-right: 0;
-}
-```
-
-### keep_unit
-```css
-.foo {
-    margin-right: 0px;
-}
-```
-
-*Note: This rule doesn't apply to [angles](https://developer.mozilla.org/en-US/docs/Web/CSS/angle) or [time units](https://developer.mozilla.org/en-US/docs/Web/CSS/time) since they always require a unit.*
-
-
-Most of these rules are based on [@mdo](twitter.com/mdo)s [code guide](http://codeguide.co/#css).
+* Using variables in `@media` directives are not supported. Related [issue](https://github.com/tonyganch/gonzales-pe/issues/17).
+* Using variables in selectors are not supported. Related [issue](https://github.com/tonyganch/gonzales-pe/issues/75).
+* Using double parentheses around calculations etc. are not supported. Related [issue](https://github.com/tonyganch/gonzales-pe/issues/76).

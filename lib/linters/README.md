@@ -7,6 +7,7 @@ Each linter also accept a `enabled` option to turn if off/on completely. Another
 * [attributeQuotes](#attributequotes)
 * [borderZero](#borderzero)
 * [comment](#comment)
+* [decimalZero](#decimalzero)
 * [duplicateProperty](#duplicateproperty)
 * [emptyRule](#emptyrule)
 * [finalNewline](#finalnewline)
@@ -41,16 +42,8 @@ Each linter also accept a `enabled` option to turn if off/on completely. Another
 All values in attribute selectors should be enclosed in quotes.
 Since some values require quotes it's better for consistency to always quote the values.
 
-Option     | Description
----------- | ----------
-`style`    | `double`, `single` (**default**)
-
 ### invalid
 ```css
-input[type="text"] {
-    color: red;
-}
-
 input[type=text] {
     color: red;
 }
@@ -59,6 +52,10 @@ input[type=text] {
 ### valid
 ```css
 input[type='text'] {
+    color: red;
+}
+
+input[type="text"] {
     color: red;
 }
 ```
@@ -101,6 +98,39 @@ Option     | Description
 // Won't get rendered
 
 /*! Will get rendered, but it's OK */
+```
+
+## decimalZero
+Floating point numbers should be written with a leading/trailing zero.
+
+Option     | Description
+---------- | -------------
+`leading`  | Floating point numbers must be written with leading zero (when `1.0 > N > -1.0`) (**default**)
+`trailing` | Floating point numbers must be written with trailing zero
+`both`     | Floating point numbers must be written with leading zero (when `1.0 > N > -1.0`) and trailing zero
+`none`     | Floating point numbers must not be written with either leading nor trailing zero
+
+### Valid
+```less
+.foo {
+  font-size: 0.5em;  // leading
+  font-size: 1.5em;  // leading, none
+  font-size:  .50em; // trailing
+  font-size: 1.0em;  // trailing, both
+  font-size: 0.50em; // both
+  font-size:  .5em;  // none
+}
+```
+
+### Invalid
+```less
+.foo {
+  font-size: 1.0em;  // leading
+  font-size:  .5em;  // leading, trailing, both
+  font-size: 0.5em;  // trailing, both, none
+  font-size: 1.5em;  // trailing, both
+  font-size: 0.50em; // leading, trailing, none
+}
 ```
 
 ## duplicateProperty
@@ -286,25 +316,7 @@ Option               | Description
 ```
 
 ## leadingZero
-Numbers should be written with a leading zero.
-
-Option     | Description
----------- | ----------
-`style`    | `exclude_zero`, `include_zero` (**default**)
-
-### invalid
-```css
-#foo {
-    font-size: .5em;
-}
-```
-
-### valid
-```css
-.foo {
-    font-size: 0.5em;
-}
-```
+**Removed** Use [decimalZero](#decimalZero)
 
 ## propertyOrdering
 Check for property ordering
@@ -623,25 +635,7 @@ Semicolons are optional after the last property in a ruleset but it's a good hab
 There should't be any trailing whitespace since this will mess up diffs etc.
 
 ## trailingZero
-Numbers should be written without leading zeros since the number has the same meaning anyway and just adds unnecessary bytes to the CSS.
-
-Option     | Description
----------- | ----------
-`style`    | `exclude_zero`  (**default**), `include_zero`
-
-### invalid
-```css
-#foo {
-    font-size: 1.50em;
-}
-```
-
-### valid
-```css
-.foo {
-    font-size: 1.5em;
-}
-```
+**Removed** Use [decimalZero](#decimalzero)
 
 ## urlFormat
 All URLs should be relative.
