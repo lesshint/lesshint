@@ -26,7 +26,7 @@
     "lodash.flatten": "^3.0.2",
     "lodash.merge": "^3.3.1",
     "lodash.sortby": "^3.1.5",
-    "minimatch": "^2.0.8",
+    "minimatch": "^3.0.0",
     "rcfinder": "^0.1.8",
     "sprintf-js": "^1.0.3",
     "strip-json-comments": "^1.0.2",
