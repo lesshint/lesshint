@@ -1,9 +1,11 @@
 var assert = require('assert');
+var path = require('path');
+var linter = require('../../../lib/linters/' + path.basename(__filename));
+var lint = require('../../lib/spec_linter')(linter);
+var parseAST = require('../../../lib/linter').parseAST;
+var undefined;
 
 describe('lesshint', function () {
-    var linter = require('../../../lib/linter');
-    var idSelector = require('../../../lib/linters/id_selector');
-
     describe('#idSelector()', function () {
         it('should allow selectors without IDs', function () {
             var source = '.foo {}';
@@ -16,13 +18,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector');
 
-            assert.strictEqual(null, idSelector({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should not allow IDs in selectors', function () {
@@ -30,12 +29,12 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 6,
                 line: 1,
                 linter: 'idSelector',
                 message: 'Selectors should not use IDs.'
-            };
+            }];
 
             var options = {
                 idSelector: {
@@ -44,14 +43,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector');
 
-            actual = idSelector({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -67,13 +62,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector');
 
-            assert.strictEqual(null, idSelector({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should allow excluded IDs defined with #', function () {
@@ -87,13 +79,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector');
 
-            assert.strictEqual(null, idSelector({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should not allow IDs that are not excluded', function () {
@@ -101,12 +90,12 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 6,
                 line: 1,
                 linter: 'idSelector',
                 message: 'Selectors should not use IDs.'
-            };
+            }];
 
             var options = {
                 idSelector: {
@@ -115,14 +104,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector');
 
-            actual = idSelector({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -137,13 +122,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector');
 
-            assert.equal(null, idSelector({
-                config: options,
-                node: ast
-            }));
+            assert.equal(null, lint(options, ast));
         });
 
         it('should return null when disabled via shorthand', function () {
@@ -153,13 +135,10 @@ describe('lesshint', function () {
                 idSelector: false
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector');
 
-            assert.equal(null, idSelector({
-                config: options,
-                node: ast
-            }));
+            assert.equal(null, lint(options, ast));
         });
     });
 });

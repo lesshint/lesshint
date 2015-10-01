@@ -1,9 +1,11 @@
 var assert = require('assert');
+var path = require('path');
+var linter = require('../../../lib/linters/' + path.basename(__filename));
+var lint = require('../../lib/spec_linter')(linter);
+var parseAST = require('../../../lib/linter').parseAST;
+var undefined;
 
 describe('lesshint', function () {
-    var linter = require('../../../lib/linter');
-    var attributeQuotes = require('../../../lib/linters/attribute_quotes');
-
     describe('#attributeQuotes()', function () {
         it('should allow single quotes', function () {
             var source = "input[type='text'] {}";
@@ -15,13 +17,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector').first('simpleSelector');
 
-            assert.strictEqual(null, attributeQuotes({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should allow double quotes', function () {
@@ -34,13 +33,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector').first('simpleSelector');
 
-            assert.strictEqual(null, attributeQuotes({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should not allow missing quotes', function () {
@@ -48,12 +44,12 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 12,
                 line: 1,
                 linter: 'attributeQuotes',
                 message: 'Attribute selectors should use quotes.'
-            };
+            }];
 
             var options = {
                 attributeQuotes: {
@@ -61,34 +57,29 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector').first('simpleSelector');
 
-            actual = attributeQuotes({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
 
         it('should return null for value-less selectors', function () {
             var source = 'input[disabled] {}';
+            var actual;
             var ast;
+
             var options = {
                 attributeQuotes: {
                     enabled: true
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector').first('simpleSelector');
 
-            assert.equal(null, attributeQuotes({
-                config: options,
-                node: ast
-            }));
+            assert.equal(undefined, lint(options, ast));
         });
 
         it('should return null when disabled', function () {
@@ -100,13 +91,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector').first('simpleSelector');
 
-            assert.equal(null, attributeQuotes({
-                config: options,
-                node: ast
-            }));
+            assert.equal(undefined, lint(options, ast));
         });
 
         it('should return null when disabled via shorthand', function () {
@@ -116,13 +104,10 @@ describe('lesshint', function () {
                 attributeQuotes: false
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector').first('simpleSelector');
 
-            assert.equal(null, attributeQuotes({
-                config: options,
-                node: ast
-            }));
+            assert.equal(undefined, lint(options, ast));
         });
     });
 });

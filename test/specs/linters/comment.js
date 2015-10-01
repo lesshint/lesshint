@@ -1,9 +1,11 @@
 var assert = require('assert');
+var path = require('path');
+var linter = require('../../../lib/linters/' + path.basename(__filename));
+var lint = require('../../lib/spec_linter')(linter);
+var parseAST = require('../../../lib/linter').parseAST;
+var undefined;
 
 describe('lesshint', function () {
-    var linter = require('../../../lib/linter');
-    var comment = require('../../../lib/linters/comment');
-
     describe('#comment()', function () {
         it('should allow single line comments', function () {
             var source = '// Hello world';
@@ -15,12 +17,9 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source).first('singlelineComment');
+            ast = parseAST(source).first('singlelineComment');
 
-            assert.strictEqual(null, comment({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should not allow multi-line comments', function () {
@@ -28,12 +27,12 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 1,
                 line: 1,
                 linter: 'comment',
                 message: 'There shouldn\'t be any multi-line comments.'
-            };
+            }];
 
             var options = {
                 comment: {
@@ -41,13 +40,9 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source).first('multilineComment');
+            ast = parseAST(source).first('multilineComment');
 
-            actual = comment({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -63,12 +58,9 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source).first('multilineComment');
+            ast = parseAST(source).first('multilineComment');
 
-            assert.strictEqual(null, comment({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should return null when disabled', function () {
@@ -80,12 +72,9 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source).first('multilineComment');
+            ast = parseAST(source).first('multilineComment');
 
-            assert.equal(null, comment({
-                config: options,
-                node: ast
-            }));
+            assert.equal(undefined, lint(options, ast));
         });
 
         it('should return null when disabled via shorthand', function () {
@@ -95,12 +84,9 @@ describe('lesshint', function () {
                 comment: false
             };
 
-            ast = linter.parseAST(source).first('multilineComment');
+            ast = parseAST(source).first('multilineComment');
 
-            assert.equal(null, comment({
-                config: options,
-                node: ast
-            }));
+            assert.equal(undefined, lint(options, ast));
         });
     });
 });

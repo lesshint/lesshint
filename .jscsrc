@@ -4,8 +4,9 @@
     "maximumLineLength": null,
 
     "disallowMultipleVarDecl": "strict",
-    "disallowSpacesInAnonymousFunctionExpression": null,
-    "disallowSpacesInFunctionExpression": null,
+    "disallowSpacesInAnonymousFunctionExpression": false,
+    "disallowSpacesInFunctionExpression": false,
+    "disallowSpacesInFunctionDeclaration": false,
     "disallowDanglingUnderscores": {
         "allExcept": ["__set__"]
     },

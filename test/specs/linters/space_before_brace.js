@@ -1,9 +1,11 @@
 var assert = require('assert');
+var path = require('path');
+var linter = require('../../../lib/linters/' + path.basename(__filename));
+var lint = require('../../lib/spec_linter')(linter);
+var parseAST = require('../../../lib/linter').parseAST;
+var undefined;
 
 describe('lesshint', function () {
-    var linter = require('../../../lib/linter');
-    var spaceBeforeBrace = require('../../../lib/linters/space_before_brace');
-
     describe('#spaceBeforeBrace()', function () {
         it('should allow no space when "style" is "no_space"', function () {
             var source = '.foo{ color: red; }';
@@ -16,13 +18,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector');
 
-            assert.strictEqual(null, spaceBeforeBrace({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should not allow one space when "style" is "no_space"', function () {
@@ -30,12 +29,12 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 5,
                 line: 1,
                 linter: 'spaceBeforeBrace',
                 message: 'Opening curly brace should not be preceded by a space or new line.'
-            };
+            }];
 
             var options = {
                 spaceBeforeBrace: {
@@ -44,13 +43,9 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector');
-            actual = spaceBeforeBrace({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -60,12 +55,12 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 5,
                 line: 1,
                 linter: 'spaceBeforeBrace',
                 message: 'Opening curly brace should not be preceded by a space or new line.'
-            };
+            }];
 
             var options = {
                 spaceBeforeBrace: {
@@ -74,13 +69,9 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector');
-            actual = spaceBeforeBrace({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -90,12 +81,12 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 5,
                 line: 1,
                 linter: 'spaceBeforeBrace',
                 message: 'Opening curly brace should not be preceded by a space or new line.'
-            };
+            }];
 
             var options = {
                 spaceBeforeBrace: {
@@ -104,13 +95,9 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector');
-            actual = spaceBeforeBrace({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -120,12 +107,12 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 5,
                 line: 1,
                 linter: 'spaceBeforeBrace',
                 message: 'Opening curly brace should not be preceded by a space or new line.'
-            };
+            }];
 
             var options = {
                 spaceBeforeBrace: {
@@ -134,13 +121,9 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector');
-            actual = spaceBeforeBrace({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -156,13 +139,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector');
 
-            assert.strictEqual(null, spaceBeforeBrace({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should not allow missing space when "style" option is "one_space"', function () {
@@ -170,12 +150,12 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 5,
                 line: 1,
                 linter: 'spaceBeforeBrace',
                 message: 'Opening curly brace should be preceded by one space.'
-            };
+            }];
 
             var options = {
                 spaceBeforeBrace: {
@@ -184,13 +164,9 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector');
-            actual = spaceBeforeBrace({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -206,13 +182,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector');
 
-            assert.strictEqual(null, spaceBeforeBrace({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should not allow missing space when multiple simple selectors are used and "style" is "one_space"', function () {
@@ -220,12 +193,12 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 11,
                 line: 1,
                 linter: 'spaceBeforeBrace',
                 message: 'Opening curly brace should be preceded by one space.'
-            };
+            }];
 
             var options = {
                 spaceBeforeBrace: {
@@ -234,13 +207,9 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector');
-            actual = spaceBeforeBrace({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -250,12 +219,12 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 7,
                 line: 1,
                 linter: 'spaceBeforeBrace',
                 message: 'Opening curly brace should be preceded by one space.'
-            };
+            }];
 
             var options = {
                 spaceBeforeBrace: {
@@ -264,13 +233,9 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector');
-            actual = spaceBeforeBrace({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -280,12 +245,12 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 13,
                 line: 1,
                 linter: 'spaceBeforeBrace',
                 message: 'Opening curly brace should be preceded by one space.'
-            };
+            }];
 
             var options = {
                 spaceBeforeBrace: {
@@ -294,13 +259,9 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector');
-            actual = spaceBeforeBrace({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -316,13 +277,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector');
 
-            assert.strictEqual(null, spaceBeforeBrace({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should allow one new line when a selector group is used and "style" is "new_line"', function () {
@@ -336,13 +294,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector');
 
-            assert.strictEqual(null, spaceBeforeBrace({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should not allow multiple new lines when "style" is "new_line"', function () {
@@ -350,12 +305,12 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 5,
                 line: 1,
                 linter: 'spaceBeforeBrace',
-                message: 'Opening curly brace should be on it\'s own line.'
-            };
+                message: linter.message.newLine
+            }];
 
             var options = {
                 spaceBeforeBrace: {
@@ -364,13 +319,9 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector');
-            actual = spaceBeforeBrace({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -380,12 +331,12 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 11,
                 line: 1,
                 linter: 'spaceBeforeBrace',
-                message: 'Opening curly brace should be on it\'s own line.'
-            };
+                message: linter.message.newLine
+            }];
 
             var options = {
                 spaceBeforeBrace: {
@@ -394,13 +345,9 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector');
-            actual = spaceBeforeBrace({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -416,13 +363,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector');
 
-            assert.strictEqual(null, spaceBeforeBrace({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should handle media queries', function () {
@@ -436,13 +380,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first('atruleb');
 
-            assert.strictEqual(null, spaceBeforeBrace({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should handle media queries without space', function () {
@@ -456,13 +397,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first('atruleb');
 
-            assert.strictEqual(null, spaceBeforeBrace({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should handle nested media queries', function () {
@@ -476,13 +414,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector');
 
-            assert.strictEqual(null, spaceBeforeBrace({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should handle empty media queries', function () {
@@ -496,13 +431,78 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first();
 
-            assert.strictEqual(null, spaceBeforeBrace({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
+        });
+
+        it('should handle media queries', function () {
+            var source = '@media screen and (max-width: 480px) { color: blue; }';
+            var ast;
+
+            var options = {
+                spaceBeforeBrace: {
+                    enabled: true,
+                    style: 'one_space'
+                }
+            };
+
+            ast = parseAST(source);
+            ast = ast.first('atruleb');
+
+            assert.strictEqual(undefined, lint(options, ast));
+        });
+
+        it('should handle media queries without space', function () {
+            var source = '@media screen and (max-width: 480px){ color: blue; }';
+            var ast;
+
+            var options = {
+                spaceBeforeBrace: {
+                    enabled: true,
+                    style: 'no_space'
+                }
+            };
+
+            ast = parseAST(source);
+            ast = ast.first('atruleb');
+
+            assert.strictEqual(undefined, lint(options, ast));
+        });
+
+        it('should handle nested media queries', function () {
+            var source = '.class{ color: red; @media screen and (max-width: 480px){ color: blue; } }';
+            var ast;
+
+            var options = {
+                spaceBeforeBrace: {
+                    enabled: true,
+                    style: 'no_space'
+                }
+            };
+
+            ast = parseAST(source);
+            ast = ast.first().first('selector');
+
+            assert.strictEqual(undefined, lint(options, ast));
+        });
+
+        it('should handle empty media queries', function () {
+            var source = '@media(all) {}';
+            var ast;
+
+            var options = {
+                spaceBeforeBrace: {
+                    enabled: true,
+                    style: 'one_space'
+                }
+            };
+
+            ast = parseAST(source);
+            ast = ast.first();
+
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should return null when disabled', function () {
@@ -514,13 +514,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector');
 
-            assert.equal(null, spaceBeforeBrace({
-                config: options,
-                node: ast
-            }));
+            assert.equal(undefined, lint(options, ast));
         });
 
         it('should return null when disabled via shorthand', function () {
@@ -530,13 +527,10 @@ describe('lesshint', function () {
                 spaceBeforeBrace: false
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector');
 
-            assert.equal(null, spaceBeforeBrace({
-                config: options,
-                node: ast
-            }));
+            assert.equal(undefined, lint(options, ast));
         });
 
         it('should throw on invalid "style" value', function () {
@@ -549,13 +543,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector');
 
-            assert.throws(spaceBeforeBrace.bind(null, {
-                config: options,
-                node: ast
-            }), Error);
+            assert.throws(lint.bind(null, options, ast), Error);
         });
     });
 });

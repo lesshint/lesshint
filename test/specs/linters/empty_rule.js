@@ -1,9 +1,11 @@
 var assert = require('assert');
+var path = require('path');
+var linter = require('../../../lib/linters/' + path.basename(__filename));
+var lint = require('../../lib/spec_linter')(linter);
+var parseAST = require('../../../lib/linter').parseAST;
+var undefined;
 
 describe('lesshint', function () {
-    var linter = require('../../../lib/linter');
-    var emptyRule = require('../../../lib/linters/empty_rule');
-
     describe('#emptyRule()', function () {
         it('should allow rules with declarations', function () {
             var source = '.foo { color: red; }';
@@ -15,13 +17,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first();
 
-            assert.strictEqual(null, emptyRule({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should not allow empty rules', function () {
@@ -29,12 +28,12 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 1,
                 line: 1,
                 linter: 'emptyRule',
                 message: 'There shouldn\'t be any empty rules present.'
-            };
+            }];
 
             var options = {
                 emptyRule: {
@@ -42,14 +41,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first();
 
-            actual = emptyRule({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -59,12 +54,12 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 1,
                 line: 1,
                 linter: 'emptyRule',
                 message: 'There shouldn\'t be any empty rules present.'
-            };
+            }];
 
             var options = {
                 emptyRule: {
@@ -72,14 +67,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first();
 
-            actual = emptyRule({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -94,13 +85,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first();
 
-            assert.strictEqual(null, emptyRule({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should return null when disabled', function () {
@@ -112,13 +100,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first();
 
-            assert.equal(null, emptyRule({
-                config: options,
-                node: ast
-            }));
+            assert.equal(null, lint(options, ast));
         });
 
         it('should return null when disabled via shorthand', function () {
@@ -128,13 +113,10 @@ describe('lesshint', function () {
                 emptyRule: false
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first();
 
-            assert.equal(null, emptyRule({
-                config: options,
-                node: ast
-            }));
+            assert.equal(null, lint(options, ast));
         });
     });
 });

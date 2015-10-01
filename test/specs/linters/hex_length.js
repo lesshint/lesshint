@@ -1,4 +1,9 @@
 var assert = require('assert');
+var path = require('path');
+var linter = require('../../../lib/linters/' + path.basename(__filename));
+var lint = require('../../lib/spec_linter')(linter);
+var parseAST = require('../../../lib/linter').parseAST;
+var undefined;
 
 describe('lesshint', function () {
     var linter = require('../../../lib/linter');
@@ -10,12 +15,12 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 8,
                 line: 1,
                 linter: 'hexLength',
                 message: '#ABC should be written in the long-form format.'
-            };
+            }];
 
             var options = {
                 hexLength: {
@@ -24,14 +29,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first('declaration').first('value').first('color');
 
-            actual = hexLength({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -47,13 +48,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first('declaration').first('value').first('color');
 
-            assert.strictEqual(null, hexLength({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should not allow longhand hex values when "style" is "short"', function () {
@@ -61,12 +59,12 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 8,
                 line: 1,
                 linter: 'hexLength',
                 message: '#AABBCC should be written in the short-form format.'
-            };
+            }];
 
             var options = {
                 hexLength: {
@@ -75,14 +73,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first('declaration').first('value').first('color');
 
-            actual = hexLength({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -98,13 +92,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first('declaration').first('value').first('color');
 
-            assert.strictEqual(null, hexLength({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should allow longhand hex values can can be written with a shorthand when "style" is "short"', function () {
@@ -118,25 +109,22 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first('declaration').first('value').first('color');
 
-            assert.strictEqual(null, hexLength({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should find hex values in background declarations', function () {
             var source = 'background: url(test.png) no-repeat #AABBCC;';
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 37,
                 line: 1,
                 linter: 'hexLength',
                 message: '#AABBCC should be written in the short-form format.'
-            };
+            }];
 
             var options = {
                 hexLength: {
@@ -145,14 +133,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first('declaration').first('value').first('color');
 
-            actual = hexLength({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -162,12 +146,12 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 9,
                 line: 1,
                 linter: 'hexLength',
                 message: '#ABC should be written in the long-form format.'
-            };
+            }];
 
             var options = {
                 hexLength: {
@@ -176,14 +160,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('color');
 
-            actual = hexLength({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -193,12 +173,12 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 9,
                 line: 1,
                 linter: 'hexLength',
                 message: '#AABBCC should be written in the short-form format.'
-            };
+            }];
 
             var options = {
                 hexLength: {
@@ -207,14 +187,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('color');
 
-            actual = hexLength({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -230,13 +206,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first('declaration').first('value').first('ident');
 
-            assert.strictEqual(null, hexLength({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should ignore invalid colors', function () {
@@ -250,13 +223,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first('declaration').first('value').first('color');
 
-            assert.strictEqual(null, hexLength({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should return null when disabled', function () {
@@ -268,13 +238,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first('declaration').first('value').first('color');
 
-            assert.equal(null, hexLength({
-                config: options,
-                node: ast
-            }));
+            assert.equal(null, lint(options, ast));
         });
 
         it('should return null when disabled via shorthand', function () {
@@ -284,13 +251,10 @@ describe('lesshint', function () {
                 hexLength: false
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first('declaration').first('value').first('color');
 
-            assert.equal(null, hexLength({
-                config: options,
-                node: ast
-            }));
+            assert.equal(null, lint(options, ast));
         });
 
         it('should throw on invalid "style" value', function () {
@@ -304,13 +268,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first('declaration').first('value').first('color');
 
-            assert.throws(hexLength.bind(null, {
-                config: options,
-                node: ast
-            }), Error);
+            assert.throws(lint.bind(null, options, ast), Error);
         });
     });
 });
