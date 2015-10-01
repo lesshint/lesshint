@@ -369,73 +369,73 @@ describe('lesshint', function () {
             assert.strictEqual(undefined, lint(options, ast));
         });
 
-         it('should handle media queries', function () {
-             var source = '@media screen and (max-width: 480px) { color: blue; }';
-             var ast;
+        it('should handle media queries', function () {
+            var source = '@media screen and (max-width: 480px) { color: blue; }';
+            var ast;
 
-             var options = {
-                 spaceBeforeBrace: {
-                     enabled: true,
-                     style: 'one_space'
-                 }
-             };
+            var options = {
+                spaceBeforeBrace: {
+                    enabled: true,
+                    style: 'one_space'
+                }
+            };
 
-             ast = linter.parseAST(source);
-             ast = ast.first('atruleb');
+            ast = parseAST(source);
+            ast = ast.first('atruleb');
 
-             assert.strictEqual(undefined, lint(options, ast));
-         });
+            assert.strictEqual(undefined, lint(options, ast));
+        });
 
-         it('should handle media queries without space', function () {
-             var source = '@media screen and (max-width: 480px){ color: blue; }';
-             var ast;
+        it('should handle media queries without space', function () {
+            var source = '@media screen and (max-width: 480px){ color: blue; }';
+            var ast;
 
-             var options = {
-                 spaceBeforeBrace: {
-                     enabled: true,
-                     style: 'no_space'
-                 }
-             };
+            var options = {
+                spaceBeforeBrace: {
+                    enabled: true,
+                    style: 'no_space'
+                }
+            };
 
-             ast = linter.parseAST(source);
-             ast = ast.first('atruleb');
+            ast = parseAST(source);
+            ast = ast.first('atruleb');
 
-             assert.strictEqual(null, lint(options, ast));
-         });
+            assert.strictEqual(undefined, lint(options, ast));
+        });
 
-         it('should handle nested media queries', function () {
-             var source = '.class{ color: red; @media screen and (max-width: 480px){ color: blue; } }';
-             var ast;
+        it('should handle nested media queries', function () {
+            var source = '.class{ color: red; @media screen and (max-width: 480px){ color: blue; } }';
+            var ast;
 
-             var options = {
-                 spaceBeforeBrace: {
-                     enabled: true,
-                     style: 'no_space'
-                 }
-             };
+            var options = {
+                spaceBeforeBrace: {
+                    enabled: true,
+                    style: 'no_space'
+                }
+            };
 
-             ast = linter.parseAST(source);
-             ast = ast.first().first('selector');
+            ast = parseAST(source);
+            ast = ast.first().first('selector');
 
-             assert.strictEqual(null, lint(options, ast));
-         });
+            assert.strictEqual(undefined, lint(options, ast));
+        });
 
-         it('should handle empty media queries', function () {
-             var source = '@media(all) {}';
-             var ast;
+        it('should handle empty media queries', function () {
+            var source = '@media(all) {}';
+            var ast;
 
-             var options = {
-                 spaceBeforeBrace: {
-                     enabled: true,
-                     style: 'one_space'
-                 }
-             };
+            var options = {
+                spaceBeforeBrace: {
+                    enabled: true,
+                    style: 'one_space'
+                }
+            };
 
-             ast = linter.parseAST(source);
-             ast = ast.first();
+            ast = parseAST(source);
+            ast = ast.first();
 
-             assert.strictEqual(null, lint(options, ast));
-         });
+            assert.strictEqual(undefined, lint(options, ast));
+        });
 
         it('should return null when disabled', function () {
             var source = '.foo{ color: red; }';
@@ -449,7 +449,7 @@ describe('lesshint', function () {
             ast = parseAST(source);
             ast = ast.first().first('selector');
 
-            assert.equal(null, lint(options, ast));
+            assert.equal(undefined, lint(options, ast));
         });
 
         it('should return null when disabled via shorthand', function () {
@@ -462,7 +462,7 @@ describe('lesshint', function () {
             ast = parseAST(source);
             ast = ast.first().first('selector');
 
-            assert.equal(null, lint(options, ast));
+            assert.equal(undefined, lint(options, ast));
         });
 
         it('should throw on invalid "style" value', function () {
