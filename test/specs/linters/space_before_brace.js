@@ -448,13 +448,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first('atruleb');
 
-            assert.strictEqual(null, spaceBeforeBrace({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should handle media queries without space', function () {
@@ -468,13 +465,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first('atruleb');
 
-            assert.strictEqual(null, spaceBeforeBrace({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should handle nested media queries', function () {
@@ -488,13 +482,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector');
 
-            assert.strictEqual(null, spaceBeforeBrace({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should handle empty media queries', function () {
@@ -508,13 +499,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first();
 
-            assert.strictEqual(null, spaceBeforeBrace({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should return null when disabled', function () {
