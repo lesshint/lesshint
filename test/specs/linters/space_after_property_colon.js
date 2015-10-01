@@ -1,9 +1,11 @@
 var assert = require('assert');
+var path = require('path');
+var linter = require('../../../lib/linters/' + path.basename(__filename));
+var lint = require('../../lib/spec_linter')(linter);
+var parseAST = require('../../../lib/linter').parseAST;
+var undefined;
 
 describe('lesshint', function () {
-    var linter = require('../../../lib/linter');
-    var spaceAfterPropertyColon = require('../../../lib/linters/space_after_property_colon');
-
     describe('#spaceAfterPropertyColon()', function () {
         it('should allow one space when "style" is "one_space"', function () {
             var source = '.foo { color: red; }';
@@ -16,13 +18,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.strictEqual(null, spaceAfterPropertyColon({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should not tolerate missing space when "style" is "one_space"', function () {
@@ -30,12 +29,12 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 14,
                 line: 1,
                 linter: 'spaceAfterPropertyColon',
                 message: 'Colon after property name should be followed by one space.'
-            };
+            }];
 
             var options = {
                 spaceAfterPropertyColon: {
@@ -44,14 +43,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            actual = spaceAfterPropertyColon({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -61,12 +56,12 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 14,
                 line: 1,
                 linter: 'spaceAfterPropertyColon',
                 message: 'Colon after property name should be followed by one space.'
-            };
+            }];
 
             var options = {
                 spaceAfterPropertyColon: {
@@ -75,14 +70,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            actual = spaceAfterPropertyColon({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -98,13 +89,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.strictEqual(null, spaceAfterPropertyColon({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should not tolerate one space when "style" is "no_space"', function () {
@@ -112,12 +100,12 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 14,
                 line: 1,
                 linter: 'spaceAfterPropertyColon',
                 message: 'Colon after property name should not be followed by any spaces.'
-            };
+            }];
 
             var options = {
                 spaceAfterPropertyColon: {
@@ -126,14 +114,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            actual = spaceAfterPropertyColon({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -143,12 +127,12 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 14,
                 line: 1,
                 linter: 'spaceAfterPropertyColon',
                 message: 'Colon after property name should not be followed by any spaces.'
-            };
+            }];
 
             var options = {
                 spaceAfterPropertyColon: {
@@ -157,14 +141,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            actual = spaceAfterPropertyColon({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -178,13 +158,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.equal(null, spaceAfterPropertyColon({
-                config: options,
-                node: ast
-            }));
+            assert.equal(null, lint(options, ast));
         });
 
         it('should return null when disabled via shorthand', function () {
@@ -194,13 +171,10 @@ describe('lesshint', function () {
                 spaceAfterPropertyColon: false
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.equal(null, spaceAfterPropertyColon({
-                config: options,
-                node: ast
-            }));
+            assert.equal(null, lint(options, ast));
         });
 
         it('should throw on invalid "style" value', function () {
@@ -213,13 +187,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.throws(spaceAfterPropertyColon.bind(null, {
-                config: options,
-                node: ast
-            }), Error);
+            assert.throws(lint.bind(null, options, ast), Error);
         });
     });
 });

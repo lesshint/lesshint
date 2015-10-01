@@ -1,9 +1,11 @@
 var assert = require('assert');
+var path = require('path');
+var linter = require('../../../lib/linters/' + path.basename(__filename));
+var lint = require('../../lib/spec_linter')(linter);
+var parseAST = require('../../../lib/linter').parseAST;
+var undefined;
 
 describe('lesshint', function () {
-    var linter = require('../../../lib/linter');
-    var qualifyingElement = require('../../../lib/linters/qualifying_element');
-
     describe('#qualifyingElement()', function () {
         it('should allow selectors without any qualifying element', function () {
             var source = '.foo {}';
@@ -15,13 +17,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector').first('simpleSelector');
 
-            assert.strictEqual(null, qualifyingElement({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should not allow ID selector with a qualifying element', function () {
@@ -29,12 +28,12 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 4,
                 line: 1,
                 linter: 'qualifyingElement',
-                message: 'ID selectors should not include a qualifying element.'
-            };
+                message: 'Id selectors should not include a qualifying element.'
+            }];
 
             var options = {
                 qualifyingElement: {
@@ -42,14 +41,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector').first('simpleSelector');
 
-            actual = qualifyingElement({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -59,12 +54,12 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 4,
                 line: 1,
                 linter: 'qualifyingElement',
                 message: 'Class selectors should not include a qualifying element.'
-            };
+            }];
 
             var options = {
                 qualifyingElement: {
@@ -72,14 +67,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector').first('simpleSelector');
 
-            actual = qualifyingElement({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -89,12 +80,12 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 4,
                 line: 1,
                 linter: 'qualifyingElement',
                 message: 'Attribute selectors should not include a qualifying element.'
-            };
+            }];
 
             var options = {
                 qualifyingElement: {
@@ -102,14 +93,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector').first('simpleSelector');
 
-            actual = qualifyingElement({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -125,13 +112,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector').first('simpleSelector');
 
-            assert.strictEqual(null, qualifyingElement({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should allow class selector with a qualifying element when "allowWithClass" is "true"', function () {
@@ -145,13 +129,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector').first('simpleSelector');
 
-            assert.strictEqual(null, qualifyingElement({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should allow attribute selector with a qualifying element when "allowWithAttribute" is "true"', function () {
@@ -165,13 +146,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector').first('simpleSelector');
 
-            assert.strictEqual(null, qualifyingElement({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should not allow a class with a qualifying element in a descendant selector', function () {
@@ -179,12 +157,12 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 9,
                 line: 1,
                 linter: 'qualifyingElement',
                 message: 'Class selectors should not include a qualifying element.'
-            };
+            }];
 
             var options = {
                 qualifyingElement: {
@@ -192,14 +170,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector').first('simpleSelector');
 
-            actual = qualifyingElement({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -213,13 +187,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector').first('simpleSelector');
 
-            assert.equal(null, qualifyingElement({
-                config: options,
-                node: ast
-            }));
+            assert.equal(null, lint(options, ast));
         });
 
         it('should return null when disabled via shorthand', function () {
@@ -229,13 +200,10 @@ describe('lesshint', function () {
                 qualifyingElement: false
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('selector').first('simpleSelector');
 
-            assert.equal(null, qualifyingElement({
-                config: options,
-                node: ast
-            }));
+            assert.equal(null, lint(options, ast));
         });
     });
 });

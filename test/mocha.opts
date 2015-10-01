@@ -1,1 +1,1 @@
-test/specs/**/*.js
+test/specs/linters/**/*.js

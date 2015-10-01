@@ -1,9 +1,11 @@
 var assert = require('assert');
+var path = require('path');
+var linter = require('../../../lib/linters/' + path.basename(__filename));
+var lint = require('../../lib/spec_linter')(linter);
+var parseAST = require('../../../lib/linter').parseAST;
+var undefined;
 
 describe('lesshint', function () {
-    var linter = require('../../../lib/linter');
-    var propertyOrdering = require('../../../lib/linters/property_ordering');
-
     describe('#propertyOrdering()', function () {
         it('should allow blocks with only one property', function () {
             var source = '.foo { color: red; }';
@@ -16,13 +18,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block');
 
-            assert.strictEqual(null, propertyOrdering({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should allow blocks with alphabetized properties', function () {
@@ -36,13 +35,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block');
 
-            assert.strictEqual(null, propertyOrdering({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should not allow blocks with non-alphabetized properties', function () {
@@ -50,12 +46,12 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 26,
                 line: 1,
                 linter: 'propertyOrdering',
                 message: 'Property ordering is not alphabetized'
-            };
+            }];
 
             var options = {
                 propertyOrdering: {
@@ -64,13 +60,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block');
 
-            actual = propertyOrdering({
-                config: options,
-                node: ast
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -86,13 +79,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block');
 
-            assert.strictEqual(null, propertyOrdering({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should return null when disabled', function () {
@@ -105,13 +95,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
-            ast = ast.first().first('block').first('declaration');
+            ast = parseAST(source);
+            ast = ast.first().first('block');
 
-            assert.equal(null, propertyOrdering({
-                config: options,
-                node: ast
-            }));
+            assert.equal(null, lint(options, ast));
         });
 
         it('should return null when disabled via shorthand', function () {
@@ -122,17 +109,14 @@ describe('lesshint', function () {
                 propertyOrdering: false
             };
 
-            ast = linter.parseAST(source);
-            ast = ast.first().first('block').first('declaration');
+            ast = parseAST(source);
+            ast = ast.first().first('block');
 
-            assert.equal(null, propertyOrdering({
-                config: options,
-                node: ast
-            }));
+            assert.equal(null, lint(options, ast));
         });
 
         it('should throw on invalid "style" value', function () {
-            var source = '.foo { border: 0; }';
+            var source = '.foo { color: red; color: blue; }';
             var ast;
 
             var options = {
@@ -142,13 +126,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
-            ast = ast.first().first('block').first('declaration');
+            ast = parseAST(source);
+            ast = ast.first().first('block');
 
-            assert.throws(propertyOrdering.bind(null, {
-                config: options,
-                node: ast
-            }), Error);
+            assert.throws(lint.bind(null, options, ast), Error);
         });
     });
 });

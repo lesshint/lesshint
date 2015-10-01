@@ -1,9 +1,11 @@
 var assert = require('assert');
+var path = require('path');
+var linter = require('../../../lib/linters/' + path.basename(__filename));
+var lint = require('../../lib/spec_linter')(linter);
+var parseAST = require('../../../lib/linter').parseAST;
+var undefined;
 
 describe('lesshint', function () {
-    var linter = require('../../../lib/linter');
-    var urlFormat = require('../../../lib/linters/url_format');
-
     describe('#urlFormat()', function () {
         it('should allow relative URLs when "style" is "relative"', function () {
             var source = '.foo { background-image: url(img/image.jpg); }';
@@ -16,13 +18,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.strictEqual(null, urlFormat({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should not allow absolute URLs when "style" is "relative"', function () {
@@ -30,12 +29,12 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 26,
                 line: 1,
                 linter: 'urlFormat',
                 message: 'URL "http://example.com/img/image.jpg" should be relative.'
-            };
+            }];
 
             var options = {
                 urlFormat: {
@@ -44,14 +43,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            actual = urlFormat({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -67,13 +62,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.strictEqual(null, urlFormat({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should not allow relative URLs when "style" is "absolute"', function () {
@@ -81,12 +73,12 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 26,
                 line: 1,
                 linter: 'urlFormat',
                 message: 'URL "img/image.jpg" should be absolute.'
-            };
+            }];
 
             var options = {
                 urlFormat: {
@@ -95,14 +87,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            actual = urlFormat({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -112,12 +100,12 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 26,
                 line: 1,
                 linter: 'urlFormat',
                 message: 'URL "//example.com/img/image.jpg" should be relative.'
-            };
+            }];
 
             var options = {
                 urlFormat: {
@@ -126,14 +114,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            actual = urlFormat({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -149,13 +133,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.strictEqual(null, urlFormat({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should handle relative URLs with single quotes', function () {
@@ -169,13 +150,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.strictEqual(null, urlFormat({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should handle relative URLs with double quotes', function () {
@@ -189,13 +167,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.strictEqual(null, urlFormat({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should handle absolute URLs with single quotes', function () {
@@ -209,13 +184,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.strictEqual(null, urlFormat({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should handle absolute URLs with double quotes', function () {
@@ -229,13 +201,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.strictEqual(null, urlFormat({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should handle quoted relative URLs surrounded by spaces (#22)', function () {
@@ -249,13 +218,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.strictEqual(null, urlFormat({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should handle unquoted URLs surrounded by spaces (#22)', function () {
@@ -269,13 +235,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.strictEqual(null, urlFormat({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should return null when disabled', function () {
@@ -287,13 +250,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.equal(null, urlFormat({
-                config: options,
-                node: ast
-            }));
+            assert.equal(undefined, lint(options, ast));
         });
 
         it('should return null when disabled via shorthand', function () {
@@ -303,13 +263,10 @@ describe('lesshint', function () {
                 urlFormat: false
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.equal(null, urlFormat({
-                config: options,
-                node: ast
-            }));
+            assert.equal(undefined, lint(options, ast));
         });
 
         it('should throw on invalid "style" value', function () {
@@ -323,13 +280,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.throws(urlFormat.bind(null, {
-                config: options,
-                node: ast
-            }), Error);
+            assert.throws(lint.bind(undefined, options, ast), Error);
         });
     });
 });

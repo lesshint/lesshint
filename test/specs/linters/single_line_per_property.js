@@ -1,8 +1,11 @@
 var assert = require('assert');
+var path = require('path');
+var linter = require('../../../lib/linters/' + path.basename(__filename));
+var lint = require('../../lib/spec_linter')(linter);
+var parseAST = require('../../../lib/linter').parseAST;
+var undefined;
 
 describe('lesshint', function () {
-    var linter = require('../../../lib/linter');
-    var singleLinePerProperty = require('../../../lib/linters/single_line_per_property');
     var errorMessage = 'Each property should be on its own line.';
 
     describe('#singleLinePerProperty()', function () {
@@ -16,13 +19,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first('ruleset').first('block');
 
-            assert.strictEqual(null, singleLinePerProperty({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should not allow multiple properties on the same line', function () {
@@ -49,14 +49,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first('ruleset').first('block');
 
-            actual = singleLinePerProperty({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -79,14 +75,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first('ruleset').first('block');
 
-            actual = singleLinePerProperty({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -109,14 +101,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first('ruleset').first('block');
 
-            actual = singleLinePerProperty({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -139,14 +127,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first('ruleset').first('block');
 
-            actual = singleLinePerProperty({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -169,14 +153,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first('ruleset').first('block');
 
-            actual = singleLinePerProperty({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -190,13 +170,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first('ruleset').first('block');
 
-            assert.equal(null, singleLinePerProperty({
-                config: options,
-                node: ast
-            }));
+            assert.equal(null, lint(options, ast));
         });
 
         it('should return null when disabled via shorthand', function () {
@@ -206,13 +183,10 @@ describe('lesshint', function () {
                 singleLinePerProperty: false
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first('ruleset').first('block');
 
-            assert.equal(null, singleLinePerProperty({
-                config: options,
-                node: ast
-            }));
+            assert.equal(null, lint(options, ast));
         });
 
         it('should return null with single-line comment after property definition', function () {
@@ -224,14 +198,10 @@ describe('lesshint', function () {
             };
             var ast;
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first('ruleset').first('block');
 
-            assert.equal(null, singleLinePerProperty({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            }));
+            assert.equal(null, lint(options, ast));
         });
 
         it('should return null with single-line comment immediately after property definition', function () {
@@ -243,14 +213,10 @@ describe('lesshint', function () {
             };
             var ast;
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first('ruleset').first('block');
 
-            assert.equal(null, singleLinePerProperty({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            }));
+            assert.equal(null, lint(options, ast));
         });
 
         it('should return null with one-line, multi-line comment after property definition', function () {
@@ -262,14 +228,10 @@ describe('lesshint', function () {
             };
             var ast;
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first('ruleset').first('block');
 
-            assert.equal(null, singleLinePerProperty({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            }));
+            assert.equal(null, lint(options, ast));
         });
 
         it('should return null with one-line, multi-line comment immediately after property definition', function () {
@@ -281,14 +243,10 @@ describe('lesshint', function () {
             };
             var ast;
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first('ruleset').first('block');
 
-            assert.equal(null, singleLinePerProperty({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            }));
+            assert.equal(null, lint(options, ast));
         });
 
         it('should not allow single-line, inline comment after multiple definitions in same line', function () {
@@ -314,14 +272,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first('ruleset').first('block');
 
-            actual = singleLinePerProperty({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -349,14 +303,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first('ruleset').first('block');
 
-            actual = singleLinePerProperty({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });

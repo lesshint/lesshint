@@ -1,9 +1,11 @@
 var assert = require('assert');
+var path = require('path');
+var linter = require('../../../lib/linters/' + path.basename(__filename));
+var lint = require('../../lib/spec_linter')(linter);
+var parseAST = require('../../../lib/linter').parseAST;
+var undefined;
 
 describe('lesshint', function () {
-    var linter = require('../../../lib/linter');
-    var stringQuotes = require('../../../lib/linters/string_quotes');
-
     describe('#stringQuotes()', function () {
         it('should allow single quotes when "style" is "single"', function () {
             var source = ".foo { content: 'Hello world'; }";
@@ -16,12 +18,9 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
 
-            assert.strictEqual(null, stringQuotes({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should not allow double quotes when "style" is "single"', function () {
@@ -43,13 +42,9 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
 
-            actual = stringQuotes({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -65,12 +60,9 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
 
-            assert.strictEqual(null, stringQuotes({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should not allow single quotes when "style" is "double"', function () {
@@ -92,13 +84,9 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
 
-            actual = stringQuotes({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -114,12 +102,9 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
 
-            assert.strictEqual(null, stringQuotes({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should handle concatenated strings', function () {
@@ -133,12 +118,9 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
 
-            assert.strictEqual(null, stringQuotes({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should allow single quotes in variable declarations when "style" is "single"', function () {
@@ -152,12 +134,9 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
 
-            assert.strictEqual(null, stringQuotes({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should not allow double quotes in variable declarations when "style" is "single"', function () {
@@ -179,13 +158,9 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
 
-            actual = stringQuotes({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -201,12 +176,9 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
 
-            assert.strictEqual(null, stringQuotes({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should not allow single quotes in variable declarations when "style" is "double"', function () {
@@ -228,13 +200,9 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
 
-            actual = stringQuotes({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -248,12 +216,9 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
 
-            assert.equal(null, stringQuotes({
-                config: options,
-                node: ast
-            }));
+            assert.equal(null, lint(options, ast));
         });
 
         it('should return null when disabled via shorthand', function () {
@@ -263,12 +228,9 @@ describe('lesshint', function () {
                 stringQuotes: false
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
 
-            assert.equal(null, stringQuotes({
-                config: options,
-                node: ast
-            }));
+            assert.equal(null, lint(options, ast));
         });
 
         it('should throw on invalid "style" value', function () {
@@ -282,12 +244,9 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
 
-            assert.throws(stringQuotes.bind(null, {
-                config: options,
-                node: ast
-            }), Error);
+            assert.throws(lint.bind(null, options, ast), Error);
         });
     });
 });

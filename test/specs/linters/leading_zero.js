@@ -1,9 +1,11 @@
 var assert = require('assert');
+var path = require('path');
+var linter = require('../../../lib/linters/' + path.basename(__filename));
+var lint = require('../../lib/spec_linter')(linter);
+var parseAST = require('../../../lib/linter').parseAST;
+var undefined;
 
 describe('lesshint', function () {
-    var linter = require('../../../lib/linter');
-    var leadingZero = require('../../../lib/linters/leading_zero');
-
     describe('#leadingZero()', function () {
         it('should allow leading zero when "style" is "include_zero"', function () {
             var source = '.foo { font-size: 0.5em; }';
@@ -15,13 +17,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.equal(null, leadingZero({
-                config: options,
-                node: ast
-            }));
+            assert.equal(null, lint(options, ast));
         });
 
         it('should not allow a missing leading zero when "style" is "include_zero"', function () {
@@ -29,12 +28,12 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 19,
                 line: 1,
                 linter: 'leadingZero',
                 message: '.5 should be written with a leading zero.'
-            };
+            }];
 
             var options = {
                 leadingZero: {
@@ -43,14 +42,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            actual = leadingZero({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -65,13 +60,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.equal(null, leadingZero({
-                config: options,
-                node: ast
-            }));
+            assert.equal(null, lint(options, ast));
         });
 
         it('should not allow a leading zero when "style" is "exclude_zero"', function () {
@@ -79,12 +71,12 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 19,
                 line: 1,
                 linter: 'leadingZero',
                 message: '0.5 should be written without a leading zero.'
-            };
+            }];
 
             var options = {
                 leadingZero: {
@@ -93,14 +85,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            actual = leadingZero({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -115,13 +103,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.equal(null, leadingZero({
-                config: options,
-                node: ast
-            }));
+            assert.equal(null, lint(options, ast));
         });
 
         it('should return null when disabled', function () {
@@ -133,13 +118,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.equal(null, leadingZero({
-                config: options,
-                node: ast
-            }));
+            assert.equal(null, lint(options, ast));
         });
 
         it('should return null when disabled via shorthand', function () {
@@ -149,13 +131,10 @@ describe('lesshint', function () {
                 leadingZero: false
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.equal(null, leadingZero({
-                config: options,
-                node: ast
-            }));
+            assert.equal(null, lint(options, ast));
         });
 
         it('should throw on invalid "style" value', function () {
@@ -169,13 +148,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.throws(leadingZero.bind(null, {
-                config: options,
-                node: ast
-            }), Error);
+            assert.throws(lint.bind(null, options, ast), Error);
         });
     });
 });

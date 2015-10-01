@@ -1,9 +1,11 @@
 var assert = require('assert');
+var path = require('path');
+var linter = require('../../../lib/linters/' + path.basename(__filename));
+var lint = require('../../lib/spec_linter')(linter);
+var parseAST = require('../../../lib/linter').parseAST;
+var undefined;
 
 describe('lesshint', function () {
-    var linter = require('../../../lib/linter');
-    var trailingZero = require('../../../lib/linters/trailing_zero');
-
     describe('#trailingZero()', function () {
         it('should allow trailing zero when "style" is "include_zero"', function () {
             var source = '.foo { font-size: 1.50em; }';
@@ -11,17 +13,14 @@ describe('lesshint', function () {
             var options = {
                 trailingZero: {
                     enabled: true,
-                    style: 'include_zero'
+                    style: 'with'
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.equal(null, trailingZero({
-                config: options,
-                node: ast
-            }));
+            assert.equal(undefined, lint(options, ast));
         });
 
         it('should not allow a missing trailing zero when "style" is "include_zero"', function () {
@@ -29,28 +28,24 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 19,
                 line: 1,
                 linter: 'trailingZero',
                 message: '1.5 should be written with trailing zeros.'
-            };
+            }];
 
             var options = {
                 trailingZero: {
                     enabled: true,
-                    style: 'include_zero'
+                    style: 'with'
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            actual = trailingZero({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -61,17 +56,14 @@ describe('lesshint', function () {
             var options = {
                 trailingZero: {
                     enabled: true,
-                    style: 'exclude_zero'
+                    style: 'without'
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.equal(null, trailingZero({
-                config: options,
-                node: ast
-            }));
+            assert.equal(undefined, lint(options, ast));
         });
 
         it('should not allow a trailing zero when "style" is "exclude_zero"', function () {
@@ -79,28 +71,24 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 19,
                 line: 1,
                 linter: 'trailingZero',
                 message: '1.50 should be written without trailing zeros.'
-            };
+            }];
 
             var options = {
                 trailingZero: {
                     enabled: true,
-                    style: 'exclude_zero'
+                    style: 'without'
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            actual = trailingZero({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -111,17 +99,14 @@ describe('lesshint', function () {
             var options = {
                 trailingZero: {
                     enabled: true,
-                    style: 'include_zero'
+                    style: 'with'
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.equal(null, trailingZero({
-                config: options,
-                node: ast
-            }));
+            assert.equal(undefined, lint(options, ast));
         });
 
         it('should not allow multiple trailing zeros when "style" is "exclude_zero"', function () {
@@ -129,28 +114,24 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 19,
                 line: 1,
                 linter: 'trailingZero',
                 message: '1.500 should be written without trailing zeros.'
-            };
+            }];
 
             var options = {
                 trailingZero: {
                     enabled: true,
-                    style: 'exclude_zero'
+                    style: 'without'
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            actual = trailingZero({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -164,13 +145,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.equal(null, trailingZero({
-                config: options,
-                node: ast
-            }));
+            assert.equal(undefined, lint(options, ast));
         });
 
         it('should return null when disabled via shorthand', function () {
@@ -180,13 +158,10 @@ describe('lesshint', function () {
                 trailingZero: false
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.equal(null, trailingZero({
-                config: options,
-                node: ast
-            }));
+            assert.equal(undefined, lint(options, ast));
         });
 
         it('should throw on invalid "style" value', function () {
@@ -200,13 +175,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.throws(trailingZero.bind(null, {
-                config: options,
-                node: ast
-            }), Error);
+            assert.throws(lint.bind(undefined, options, ast), Error);
         });
     });
 });
