@@ -13,7 +13,7 @@ describe('lesshint', function () {
 
             var options = {
                 attributeQuotes: {
-                    enabled: true,
+                    enabled: true
                 }
             };
 

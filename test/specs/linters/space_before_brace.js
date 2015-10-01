@@ -437,6 +437,86 @@ describe('lesshint', function () {
             assert.strictEqual(undefined, lint(options, ast));
         });
 
+        it('should handle media queries', function () {
+            var source = '@media screen and (max-width: 480px) { color: blue; }';
+            var ast;
+
+            var options = {
+                spaceBeforeBrace: {
+                    enabled: true,
+                    style: 'one_space'
+                }
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first('atruleb');
+
+            assert.strictEqual(null, spaceBeforeBrace({
+                config: options,
+                node: ast
+            }));
+        });
+
+        it('should handle media queries without space', function () {
+            var source = '@media screen and (max-width: 480px){ color: blue; }';
+            var ast;
+
+            var options = {
+                spaceBeforeBrace: {
+                    enabled: true,
+                    style: 'no_space'
+                }
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first('atruleb');
+
+            assert.strictEqual(null, spaceBeforeBrace({
+                config: options,
+                node: ast
+            }));
+        });
+
+        it('should handle nested media queries', function () {
+            var source = '.class{ color: red; @media screen and (max-width: 480px){ color: blue; } }';
+            var ast;
+
+            var options = {
+                spaceBeforeBrace: {
+                    enabled: true,
+                    style: 'no_space'
+                }
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first().first('selector');
+
+            assert.strictEqual(null, spaceBeforeBrace({
+                config: options,
+                node: ast
+            }));
+        });
+
+        it('should handle empty media queries', function () {
+            var source = '@media(all) {}';
+            var ast;
+
+            var options = {
+                spaceBeforeBrace: {
+                    enabled: true,
+                    style: 'one_space'
+                }
+            };
+
+            ast = linter.parseAST(source);
+            ast = ast.first();
+
+            assert.strictEqual(null, spaceBeforeBrace({
+                config: options,
+                node: ast
+            }));
+        });
+
         it('should return null when disabled', function () {
             var source = '.foo{ color: red; }';
             var ast;

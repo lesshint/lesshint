@@ -105,6 +105,72 @@ describe('linter', function () {
 
             assert.deepEqual(actual, expected);
         });
+
+        it('should sort results by column and line number', function () {
+            var source = '[type="text"], [type=email] {\nmargin-right: 10px;\ncolor: red;\ncolor: blue;\n}';
+            var path = 'path/to/file.less';
+            var actual;
+
+            var expected = [{
+                column: 7,
+                line: 1,
+                linter: 'stringQuotes',
+                message: 'Strings should use single quotes.',
+                file: 'file.less',
+                source: '[type="text"], [type=email] {',
+                severity: 'warning'
+            },
+            {
+                column: 22,
+                line: 1,
+                linter: 'attributeQuotes',
+                message: 'Attribute selectors should use quotes.',
+                file: 'file.less',
+                source: '[type="text"], [type=email] {',
+                severity: 'warning'
+            },
+            {
+                column: 1,
+                line: 3,
+                linter: 'propertyOrdering',
+                message: 'Property ordering is not alphabetized',
+                file: 'file.less',
+                source: 'color: red;',
+                severity: 'warning'
+            },
+            {
+                column: 1,
+                line: 4,
+                linter: 'duplicateProperty',
+                message: 'Duplicate property: "color".',
+                file: 'file.less',
+                source: 'color: blue;',
+                severity: 'warning'
+            }];
+
+            var config = {
+                attributeQuotes: {
+                    enabled: true
+                },
+                duplicateProperty: {
+                    enabled: true,
+                    exclude: []
+                },
+                propertyOrdering: {
+                    enabled: true,
+                    style: 'alpha'
+                },
+                singleLinePerProperty: false,
+                stringQuotes: {
+                    enabled: true,
+                    style: 'single'
+                }
+            };
+
+            actual = linter.lint(source, path, config);
+
+            assert.deepEqual(actual, expected);
+        });
     });
 
     it('should sort results by line number', function () {
