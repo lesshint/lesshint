@@ -46,5 +46,5 @@ module.exports = function (linter) {
 
             return results;
         }
-    }
+    };
 };
