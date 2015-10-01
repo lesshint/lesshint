@@ -87,6 +87,20 @@ describe('lesshint', function () {
             assert.deepEqual(actual, expected);
         });
 
+        it('should ignore empty files', function () {
+            var source = '';
+            var ast;
+            var options = {
+                trailingWhitespace: {
+                    enabled: true
+                }
+            };
+
+            ast = parseAST(source);
+
+            assert.equal(undefined, lint(options, ast));
+        });
+
         it('should return null when disabled', function () {
             var source = '.foo {}  ';
             var ast;
