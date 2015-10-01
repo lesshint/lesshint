@@ -1,4 +1,7 @@
 # Changelog
+## 0.9.4 (2015-09-25)
+* Fix for bad `0.9.3`.
+
 ## 0.9.3 (2015-09-25)
 * Fixed an issue where `propertyOrdering` would try to check variables and crash.
 
@@ -32,7 +35,7 @@
 * All linters now returns the complete source of each offending line.
 * Linters are no longer passed a filename.
 
-### 0.7.1 (2015-08-05)
+## 0.7.1 (2015-08-05)
 * Fixed an issue where Windows line endings in the Less source would cause the wrong line to be reported ([#28](https://github.com/lesshint/lesshint/issues/28)).
 
 ## 0.7.0 (2015-06-24)
