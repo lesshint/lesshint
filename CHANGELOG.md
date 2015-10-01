@@ -1,4 +1,8 @@
 # Changelog
+## 0.9.2 (2015-09-23)
+* Fixed an issue where `spaceBeforeBrace` wouldn't check `@media` queries. Props [@kokarn](https://github.com/kokarn). ([#61](https://github.com/lesshint/lesshint/issues/61)).
+* Fixed an issue where `finalNewline` would fail on empty files.
+* Fixed an issue where `trailingWhitespace` would fail on empty files.
 
 ## 0.9.1 (2015-09-09)
 * Fixed an issue in `propertyOrdering` where identical properties weren't handled correctly ([#59](https://github.com/lesshint/lesshint/issues/59)).
@@ -25,7 +29,7 @@
 * All linters now returns the complete source of each offending line.
 * Linters are no longer passed a filename.
 
-## 0.7.1 (2015-08-05)
+### 0.7.1 (2015-08-05)
 * Fixed an issue where Windows line endings in the Less source would cause the wrong line to be reported ([#28](https://github.com/lesshint/lesshint/issues/28)).
 
 ## 0.7.0 (2015-06-24)
