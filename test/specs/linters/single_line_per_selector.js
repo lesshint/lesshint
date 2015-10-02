@@ -1,9 +1,11 @@
 var assert = require('assert');
+var path = require('path');
+var linter = require('../../../lib/linters/' + path.basename(__filename));
+var lint = require('../../lib/spec_linter')(linter);
+var parseAST = require('../../../lib/linter').parseAST;
+var undefined;
 
 describe('lesshint', function () {
-    var linter = require('../../../lib/linter');
-    var singleLinePerSelector = require('../../../lib/linters/single_line_per_selector');
-
     describe('#singleLinePerSelector()', function () {
         it('should allow selectors on separate lines', function () {
             var source = '.foo, \n .bar {}';
@@ -15,13 +17,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first('ruleset').first('selector');
 
-            assert.strictEqual(null, singleLinePerSelector({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should not allow multiple selectors on the same line', function () {
@@ -42,14 +41,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first('ruleset').first('selector');
 
-            actual = singleLinePerSelector({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -63,13 +58,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first('ruleset').first('selector');
 
-            assert.equal(null, singleLinePerSelector({
-                config: options,
-                node: ast
-            }));
+            assert.equal(null, lint(options, ast));
         });
 
         it('should return null when disabled via shorthand', function () {
@@ -79,13 +71,10 @@ describe('lesshint', function () {
                 singleLinePerSelector: false
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first('ruleset').first('selector');
 
-            assert.equal(null, singleLinePerSelector({
-                config: options,
-                node: ast
-            }));
+            assert.equal(null, lint(options, ast));
         });
     });
 });

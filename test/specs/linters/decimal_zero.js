@@ -1,9 +1,11 @@
 var assert = require('assert');
+var path = require('path');
+var linter = require('../../../lib/linters/' + path.basename(__filename));
+var lint = require('../../lib/spec_linter')(linter);
+var parseAST = require('../../../lib/linter').parseAST;
+var undefined;
 
 describe('lesshint', function () {
-    var linter = require('../../../lib/linter');
-    var decimalZero = require('../../../lib/linters/decimal_zero');
-
     describe('#decimalZero()', function () {
         var options;
         var source;
@@ -16,13 +18,10 @@ describe('lesshint', function () {
                 it('should allow "' + example + '"', function () {
                     source = '.foo { font-size: ' + example + '; }';
 
-                    ast = linter.parseAST(source);
+                    ast = parseAST(source);
                     ast = ast.first().first('block').first('declaration');
 
-                    assert.equal(null, decimalZero({
-                        config: options,
-                        node: ast
-                    }));
+                    assert.equal(undefined, lint(options, ast));
                 });
             });
         };
@@ -31,13 +30,10 @@ describe('lesshint', function () {
                 it('should not allow "' + example + '"', function () {
                     source = '.foo { font-size: ' + example + '; }';
 
-                    ast = linter.parseAST(source);
+                    ast = parseAST(source);
                     ast = ast.first().first('block').first('declaration');
 
-                    assert.notEqual(null, decimalZero({
-                        config: options,
-                        node: ast
-                    }));
+                    assert.notEqual(undefined, lint(options, ast));
                 });
             });
         };
@@ -52,15 +48,12 @@ describe('lesshint', function () {
                     }
                 };
 
-                ast = linter.parseAST(source);
+                ast = parseAST(source);
                 ast = ast.first().first('block').first('declaration');
             });
 
             it('should return null', function () {
-                assert.equal(null, decimalZero({
-                    config: options,
-                    node: ast
-                }));
+                assert.equal(undefined, lint(options, ast));
             });
         });//disabled
 
@@ -72,15 +65,12 @@ describe('lesshint', function () {
                     decimalZero: false
                 };
 
-                ast = linter.parseAST(source);
+                ast = parseAST(source);
                 ast = ast.first().first('block').first('declaration');
             });
 
             it('should return null', function () {
-                assert.equal(null, decimalZero({
-                    config: options,
-                    node: ast
-                }));
+                assert.equal(null, lint(options, ast));
             });
         });//disabled via shorthand
 
@@ -95,15 +85,12 @@ describe('lesshint', function () {
                     }
                 };
 
-                ast = linter.parseAST(source);
+                ast = parseAST(source);
                 ast = ast.first().first('block').first('declaration');
             });
 
             it('should throw error', function () {
-                assert.throws(decimalZero.bind(null, {
-                    config: options,
-                    node: ast
-                }), Error);
+                assert.throws(lint.bind(null, options, ast), Error);
             });
         });//style: foobar (unrecognized)
 
@@ -135,21 +122,17 @@ describe('lesshint', function () {
             it('should return expected error message on invalid value', function () {
                 source = '.foo { font-size: .5em; }';
 
-                expected = {
+                expected = [{
                     column: 19,
                     line: 1,
                     linter: 'decimalZero',
                     message: '.5 should be written with leading zero.'
-                };
+                }];
 
-                ast = linter.parseAST(source);
+                ast = parseAST(source);
                 ast = ast.first().first('block').first('declaration');
 
-                actual = decimalZero({
-                    config: options,
-                    node: ast,
-                    path: 'test.less'
-                });
+                actual = lint(options, ast);
 
                 assert.deepEqual(actual, expected);
             });
@@ -183,21 +166,17 @@ describe('lesshint', function () {
             it('should return expected error message on invalid value', function () {
                 source = '.foo { font-size: 1.5em; }';
 
-                expected = {
+                expected = [{
                     column: 19,
                     line: 1,
                     linter: 'decimalZero',
                     message: '1.5 should be written with trailing zero.'
-                };
+                }];
 
-                ast = linter.parseAST(source);
+                ast = parseAST(source);
                 ast = ast.first().first('block').first('declaration');
 
-                actual = decimalZero({
-                    config: options,
-                    node: ast,
-                    path: 'test.less'
-                });
+                actual = lint(options, ast);
 
                 assert.deepEqual(actual, expected);
             });
@@ -232,21 +211,17 @@ describe('lesshint', function () {
             it('should return expected error message on invalid value', function () {
                 source = '.foo { font-size: .5em; }';
 
-                expected = {
+                expected = [{
                     column: 19,
                     line: 1,
                     linter: 'decimalZero',
                     message: '.5 should be written with leading and trailing zero.'
-                };
+                }];
 
-                ast = linter.parseAST(source);
+                ast = parseAST(source);
                 ast = ast.first().first('block').first('declaration');
 
-                actual = decimalZero({
-                    config: options,
-                    node: ast,
-                    path: 'test.less'
-                });
+                actual = lint(options, ast);
 
                 assert.deepEqual(actual, expected);
             });
@@ -281,24 +256,20 @@ describe('lesshint', function () {
             it('should return expected error message on invalid value', function () {
                 source = '.foo { font-size: 0.50em; }';
 
-                expected = {
+                expected = [{
                     column: 19,
                     line: 1,
                     linter: 'decimalZero',
                     message: '0.50 should be written without leading and trailing zero.'
-                };
+                }];
 
-                ast = linter.parseAST(source);
+                ast = parseAST(source);
                 ast = ast.first().first('block').first('declaration');
 
-                actual = decimalZero({
-                    config: options,
-                    node: ast,
-                    path: 'test.less'
-                });
+                actual = lint(options, ast);
 
                 assert.deepEqual(actual, expected);
             });
-        });//style: none
+        });
     });
 });

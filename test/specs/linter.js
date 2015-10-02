@@ -173,6 +173,59 @@ describe('linter', function () {
         });
     });
 
+    it('should sort results by line number', function () {
+        var source = '.foo {\ncontent: "bar";\ncolor: red;\ncolor: blue;\n}';
+        var path = 'path/to/file.less';
+        var actual;
+
+        var expected = [{
+            column: 10,
+            line: 2,
+            linter: 'stringQuotes',
+            message: 'Strings should use single quotes.',
+            file: 'file.less',
+            source: 'content: "bar";',
+            severity: 'warning'
+        },
+        {
+            column: 1,
+            line: 3,
+            linter: 'propertyOrdering',
+            message: 'Property ordering is not alphabetized',
+            file: 'file.less',
+            source: 'color: red;',
+            severity: 'warning'
+        },
+        {
+            column: 1,
+            line: 4,
+            linter: 'duplicateProperty',
+            message: 'Duplicate property: "color".',
+            file: 'file.less',
+            source: 'color: blue;',
+            severity: 'warning'
+        }];
+
+        var config = {
+            duplicateProperty: {
+                enabled: true,
+                exclude: []
+            },
+            propertyOrdering: {
+                enabled: true,
+                style: 'alpha'
+            },
+            stringQuotes: {
+                enabled: true,
+                style: 'single'
+            }
+        };
+
+        actual = linter.lint(source, path, config);
+
+        assert.deepEqual(actual, expected);
+    });
+
     describe('parseAST', function () {
         it('should return an AST', function () {
             var source = '.foo { color: red; }';

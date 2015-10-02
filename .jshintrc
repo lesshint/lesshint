@@ -1,4 +1,5 @@
 {
     "latedef": true,
-    "node": true
+    "node": true,
+    "-W024": false
 }

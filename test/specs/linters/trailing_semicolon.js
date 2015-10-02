@@ -1,21 +1,23 @@
 var assert = require('assert');
+var path = require('path');
+var linter = require('../../../lib/linters/' + path.basename(__filename));
+var lint = require('../../lib/spec_linter')(linter);
+var parseAST = require('../../../lib/linter').parseAST;
+var undefined;
 
 describe('lesshint', function () {
-    var linter = require('../../../lib/linter');
-    var trailingSemicolon = require('../../../lib/linters/trailing_semicolon');
-
     describe('#trailingSemicolon()', function () {
         it('should not allow missing semicolons', function () {
             var source = '.foo { color: red }';
             var actual;
             var ast;
 
-            var expected = {
+            var expected = [{
                 column: 18,
                 line: 1,
                 linter: 'trailingSemicolon',
                 message: 'All property declarations should end with a semicolon.'
-            };
+            }];
 
             var options = {
                 trailingSemicolon: {
@@ -23,14 +25,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block');
 
-            actual = trailingSemicolon({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -44,13 +42,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block');
 
-            assert.equal(null, trailingSemicolon({
-                config: options,
-                node: ast
-            }));
+            assert.equal(null, lint(options, ast));
         });
 
         it('should ignore empty rules', function () {
@@ -62,13 +57,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block');
 
-            assert.equal(null, trailingSemicolon({
-                config: options,
-                node: ast
-            }));
+            assert.equal(null, lint(options, ast));
         });
 
         it('should ignore empty rules but with new lines', function () {
@@ -80,13 +72,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block');
 
-            assert.equal(null, trailingSemicolon({
-                config: options,
-                node: ast
-            }));
+            assert.equal(null, lint(options, ast));
         });
 
         it('should allow semicolons in rulesets in @media declarations (#15)', function () {
@@ -98,13 +87,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block');
 
-            assert.equal(null, trailingSemicolon({
-                config: options,
-                node: ast
-            }));
+            assert.equal(null, lint(options, ast));
         });
 
         it('should not report a missing when there\'s a space before the semicolon', function () {
@@ -116,13 +102,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block');
 
-            assert.equal(null, trailingSemicolon({
-                config: options,
-                node: ast
-            }));
+            assert.equal(null, lint(options, ast));
         });
 
         it('should return null when disabled', function () {
@@ -134,13 +117,10 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.equal(null, trailingSemicolon({
-                config: options,
-                node: ast
-            }));
+            assert.equal(null, lint(options, ast));
         });
 
         it('should return null when disabled via shorthand', function () {
@@ -150,13 +130,10 @@ describe('lesshint', function () {
                 trailingSemicolon: false
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.equal(null, trailingSemicolon({
-                config: options,
-                node: ast
-            }));
+            assert.equal(null, lint(options, ast));
         });
     });
 });

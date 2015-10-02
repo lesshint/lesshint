@@ -1,9 +1,11 @@
 var assert = require('assert');
+var path = require('path');
+var linter = require('../../../lib/linters/' + path.basename(__filename));
+var lint = require('../../lib/spec_linter')(linter);
+var parseAST = require('../../../lib/linter').parseAST;
+var undefined;
 
 describe('lesshint', function () {
-    var linter = require('../../../lib/linter');
-    var finalNewline = require('../../../lib/linters/final_newline');
-
     describe('#finalNewline()', function () {
         it('should allow files with final new lines', function () {
             var source = '.foo {}\n';
@@ -15,12 +17,9 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
 
-            assert.strictEqual(null, finalNewline({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should not allow files without final new lines', function () {
@@ -28,12 +27,12 @@ describe('lesshint', function () {
             var actual;
             var ast;
 
-            var expected = {
-                column: null,
-                line: null,
+            var expected = [{
+                column: 0,
+                line: 1,
                 linter: 'finalNewline',
                 message: 'Files should end with a newline.'
-            };
+            }];
 
             var options = {
                 finalNewline: {
@@ -41,13 +40,9 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
 
-            actual = finalNewline({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -61,12 +56,9 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
 
-            assert.equal(null, finalNewline({
-                config: options,
-                node: ast
-            }));
+            assert.equal(null, lint(options, ast));
         });
 
         it('should return null when disabled', function () {
@@ -78,12 +70,9 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
 
-            assert.equal(null, finalNewline({
-                config: options,
-                node: ast
-            }));
+            assert.equal(null, lint(options, ast));
         });
 
         it('should return null when disabled via shorthand', function () {
@@ -93,12 +82,9 @@ describe('lesshint', function () {
                 finalNewline: false
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
 
-            assert.equal(null, finalNewline({
-                config: options,
-                node: ast
-            }));
+            assert.equal(null, lint(options, ast));
         });
     });
 });

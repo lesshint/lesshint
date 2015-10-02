@@ -1,9 +1,11 @@
 var assert = require('assert');
+var path = require('path');
+var linter = require('../../../lib/linters/' + path.basename(__filename));
+var lint = require('../../lib/spec_linter')(linter);
+var parseAST = require('../../../lib/linter').parseAST;
+var undefined;
 
 describe('lesshint', function () {
-    var linter = require('../../../lib/linter');
-    var trailingWhitespace = require('../../../lib/linters/trailing_whitespace');
-
     describe('#trailingWhitespace()', function () {
         it('should allow lines with no trailing whitespace', function () {
             var source = '.foo {}';
@@ -15,12 +17,9 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
 
-            assert.strictEqual(null, trailingWhitespace({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should allow lines with trailing new line characters', function () {
@@ -33,12 +32,9 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
 
-            assert.strictEqual(null, trailingWhitespace({
-                config: options,
-                node: ast
-            }));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should not allow lines with trailing whitespace', function () {
@@ -47,10 +43,10 @@ describe('lesshint', function () {
             var ast;
 
             var expected = [{
-                column: null,
+                column: 9,
                 line: 1,
                 linter: 'trailingWhitespace',
-                message: "There should't be any trailing whitespace."
+                message: 'There should\'t be any trailing whitespace.'
             }];
 
             var options = {
@@ -59,13 +55,9 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
 
-            actual = trailingWhitespace({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -76,7 +68,7 @@ describe('lesshint', function () {
             var ast;
 
             var expected = [{
-                column: null,
+                column: 9,
                 line: 1,
                 linter: 'trailingWhitespace',
                 message: "There should't be any trailing whitespace."
@@ -88,13 +80,9 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
 
-            actual = trailingWhitespace({
-                config: options,
-                node: ast,
-                path: 'test.less'
-            });
+            actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
@@ -108,12 +96,9 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
 
-            assert.equal(null, trailingWhitespace({
-                config: options,
-                node: ast
-            }));
+            assert.equal(undefined, lint(options, ast));
         });
 
         it('should return null when disabled', function () {
@@ -125,12 +110,9 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
 
-            assert.equal(null, trailingWhitespace({
-                config: options,
-                node: ast
-            }));
+            assert.equal(null, lint(options, ast));
         });
 
         it('should return null when disabled via shorthand', function () {
@@ -140,12 +122,9 @@ describe('lesshint', function () {
                 trailingWhitespace: false
             };
 
-            ast = linter.parseAST(source);
+            ast = parseAST(source);
 
-            assert.equal(null, trailingWhitespace({
-                config: options,
-                node: ast
-            }));
+            assert.equal(null, lint(options, ast));
         });
     });
 });
