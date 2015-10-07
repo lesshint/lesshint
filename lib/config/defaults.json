@@ -73,7 +73,7 @@
 
     "propertyUnits": {
         "enabled": true,
-        "global": [
+        "valid": [
             "ch", "em", "ex", "rem",                 // Font-relative lengths
             "cm", "in", "mm", "pc", "pt", "px", "q", // Absolute lengths
             "vh", "vw", "vmin", "vmax",              // Viewport-percentage lengths

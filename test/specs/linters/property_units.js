@@ -7,14 +7,14 @@ var undefined;
 
 describe('lesshint', function () {
     describe('#propertyUnits()', function () {
-        it('should allow allowed global unit', function () {
+        it('should allow allowed valid unit', function () {
             var source = '.foo { font-size: 1rem; }';
             var ast;
 
             var options = {
                 propertyUnits: {
                     enabled: true,
-                    global: ['rem'],
+                    valid: ['rem'],
                     properties: {}
                 }
             };
@@ -25,14 +25,14 @@ describe('lesshint', function () {
             assert.strictEqual(undefined, lint(options, ast));
         });
 
-        it('should allow allowed property unit', function () {
+        it('should allow valid property unit', function () {
             var source = '.foo { font-size: 1rem; }';
             var ast;
 
             var options = {
                 propertyUnits: {
                     enabled: true,
-                    global: [],
+                    valid: [],
                     properties: {
                         'font-size': ['rem']
                     }
@@ -45,7 +45,7 @@ describe('lesshint', function () {
             assert.strictEqual(undefined, lint(options, ast));
         });
 
-        it('should not allow disallowed global unit', function () {
+        it('should not allow an unspecified unit', function () {
             var source = '.foo { font-size: 1rem; }';
             var ast;
 
@@ -59,7 +59,7 @@ describe('lesshint', function () {
             var options = {
                 propertyUnits: {
                     enabled: true,
-                    global: ['px'],
+                    valid: ['px'],
                     properties: {}
                 }
             };
@@ -72,7 +72,7 @@ describe('lesshint', function () {
             assert.deepEqual(actual, expected);
         });
 
-        it('should not allow disallowed property unit', function () {
+        it('should not allow an unspecified property unit', function () {
             var source = '.foo { font-size: 1rem; }';
             var ast;
 
@@ -86,7 +86,7 @@ describe('lesshint', function () {
             var options = {
                 propertyUnits: {
                     enabled: true,
-                    global: [],
+                    valid: [],
                     properties: {
                         'font-size': ['px']
                     }
@@ -101,7 +101,7 @@ describe('lesshint', function () {
             assert.deepEqual(actual, expected);
         });
 
-        it('should not allow any units when no global units are passed', function () {
+        it('should not allow any units when no valid units are passed', function () {
             var source = '.foo { line-height: 24px; }';
             var ast;
 
@@ -115,7 +115,7 @@ describe('lesshint', function () {
             var options = {
                 propertyUnits: {
                     enabled: true,
-                    global: [],
+                    valid: [],
                     properties: {}
                 }
             };
@@ -142,7 +142,7 @@ describe('lesshint', function () {
             var options = {
                 propertyUnits: {
                     enabled: true,
-                    global: ['px'],
+                    valid: ['px'],
                     properties: {
                         'line-height': []
                     }
@@ -157,14 +157,14 @@ describe('lesshint', function () {
             assert.deepEqual(actual, expected);
         });
 
-        it('should allow percentages when set as a allowed global unit', function () {
+        it('should allow percentages when set as a valid unit', function () {
             var source = '.foo { font-size: 100%; }';
             var ast;
 
             var options = {
                 propertyUnits: {
                     enabled: true,
-                    global: ['%'],
+                    valid: ['%'],
                     properties: {}
                 }
             };
@@ -175,14 +175,14 @@ describe('lesshint', function () {
             assert.strictEqual(undefined, lint(options, ast));
         });
 
-        it('should allow percentages when set as a allowed property unit', function () {
+        it('should allow percentages when set as a valid property unit', function () {
             var source = '.foo { font-size: 100%; }';
             var ast;
 
             var options = {
                 propertyUnits: {
                     enabled: true,
-                    global: [],
+                    valid: [],
                     properties: {
                         'font-size': ['%']
                     }
@@ -195,7 +195,7 @@ describe('lesshint', function () {
             assert.strictEqual(undefined, lint(options, ast));
         });
 
-        it('should not allow percentages when set as a disallowed global unit', function () {
+        it('should not allow percentages when set as an invalid unit', function () {
             var source = '.foo { font-size: 100%; }';
             var ast;
 
@@ -209,7 +209,7 @@ describe('lesshint', function () {
             var options = {
                 propertyUnits: {
                     enabled: true,
-                    global: ['px'],
+                    valid: ['px'],
                     properties: {}
                 }
             };
@@ -222,7 +222,7 @@ describe('lesshint', function () {
             assert.deepEqual(actual, expected);
         });
 
-        it('should not allow percentages when set as a disallowed property unit', function () {
+        it('should not allow percentages when set as an invalid property unit', function () {
             var source = '.foo { font-size: 100%; }';
             var ast;
 
@@ -236,7 +236,91 @@ describe('lesshint', function () {
             var options = {
                 propertyUnits: {
                     enabled: true,
-                    global: [],
+                    valid: [],
+                    properties: {
+                        'font-size': ['px']
+                    }
+                }
+            };
+
+            ast = parseAST(source);
+            ast = ast.first().first('block').first('declaration');
+
+            actual = lint(options, ast);
+
+            assert.deepEqual(actual, expected);
+        });
+
+        it('should not allow an invalid unit', function () {
+            var source = '.foo { font-size: 1px; }';
+            var ast;
+
+            var expected = [{
+                column: 19,
+                line: 1,
+                linter: 'propertyUnits',
+                message: 'Unit "px" is not allowed for "font-size".'
+            }];
+
+            var options = {
+                propertyUnits: {
+                    enabled: true,
+                    invalid: ['px'],
+                    properties: {}
+                }
+            };
+
+            ast = parseAST(source);
+            ast = ast.first().first('block').first('declaration');
+
+            actual = lint(options, ast);
+
+            assert.deepEqual(actual, expected);
+        });
+
+        it('should not allow an invalid unit that overrides a valid unit', function () {
+            var source = '.foo { font-size: 1px; }';
+            var ast;
+
+            var expected = [{
+                column: 19,
+                line: 1,
+                linter: 'propertyUnits',
+                message: 'Unit "px" is not allowed for "font-size".'
+            }];
+
+            var options = {
+                propertyUnits: {
+                    enabled: true,
+                    valid: ['px'],
+                    invalid: ['px'],
+                    properties: {}
+                }
+            };
+
+            ast = parseAST(source);
+            ast = ast.first().first('block').first('declaration');
+
+            actual = lint(options, ast);
+
+            assert.deepEqual(actual, expected);
+        });
+
+        it('should not allow an invalid unit that has been specified valid for a property', function () {
+            var source = '.foo { font-size: 1px; }';
+            var ast;
+
+            var expected = [{
+                column: 19,
+                line: 1,
+                linter: 'propertyUnits',
+                message: 'Unit "px" is not allowed for "font-size".'
+            }];
+
+            var options = {
+                propertyUnits: {
+                    enabled: true,
+                    invalid: ['px'],
                     properties: {
                         'font-size': ['px']
                     }

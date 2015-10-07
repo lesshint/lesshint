@@ -334,16 +334,18 @@ and the `properties` option can be used to fine tune units for each property.
 
 *Note: Shorthands are not supported by the `properties` option. For example, to specify units for `margin`, all margin-* properties must be specified.*
 
-Option       | Description
------------- | ----------
-`global`     | Allowed units (by default all units are allowed)
-`properties` | Object with property names and allowed units (empty by default)
+Option        | Description
+------------- | ----------
+`valid`       | Allowed units (by default all units are allowed)
+`invalid`     | Units not allowed under any circumstances. Overrides all other options.
+`properties`  | Object with property names and allowed units (empty by default)
 
 ```js
 "propertyUnits": {
-    "global": ["rem", "vw"], // These units are allowed for all properties
+    "valid": ["rem", "vw"], // These units are allowed for all properties
+    "invalid": ["pt"],      // The 'pt' unit is not allowed under any circumstances
     "properties": {
-        "line-height": [] // No units are allowed for line-height
+        "line-height": []   // No units are allowed for line-height
     }
 }
 ```
