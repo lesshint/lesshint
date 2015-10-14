@@ -18,7 +18,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector');
+            ast = ast.first().first('selector');
 
             assert.strictEqual(undefined, lint(options, ast));
         });
@@ -42,7 +42,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector');
+            ast = ast.first().first('selector');
 
             actual = lint(options, ast);
 
@@ -68,7 +68,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector');
+            ast = ast.first().first('selector');
 
             actual = lint(options, ast);
 
@@ -94,7 +94,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector');
+            ast = ast.first().first('selector');
 
             actual = lint(options, ast);
 
@@ -113,7 +113,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector');
+            ast = ast.first().first('selector');
 
             assert.strictEqual(undefined, lint(options, ast));
         });
@@ -130,7 +130,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector');
+            ast = ast.first().first('selector');
 
             assert.strictEqual(undefined, lint(options, ast));
         });
@@ -147,7 +147,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector');
+            ast = ast.first().first('selector');
 
             assert.strictEqual(undefined, lint(options, ast));
         });
@@ -171,7 +171,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector');
+            ast = ast.first().first('selector');
 
             actual = lint(options, ast);
 
@@ -179,7 +179,7 @@ describe('lesshint', function () {
         });
 
         it('should return null when disabled', function () {
-            var source = 'div#foo';
+            var source = 'div#foo {}';
             var ast;
             var options = {
                 qualifyingElement: {
@@ -188,20 +188,20 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector');
+            ast = ast.first().first('selector');
 
             assert.equal(null, lint(options, ast));
         });
 
         it('should return null when disabled via shorthand', function () {
-            var source = 'div#foo';
+            var source = 'div#foo {}';
             var ast;
             var options = {
                 qualifyingElement: false
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector');
+            ast = ast.first().first('selector');
 
             assert.equal(null, lint(options, ast));
         });

@@ -462,7 +462,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('parentheses');
+            ast = ast.first('mixin').first('arguments');
 
             assert.equal(null, lint(options, ast));
         });
@@ -478,7 +478,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('parentheses');
+            ast = ast.first('mixin').first('arguments');
 
             assert.equal(null, lint(options, ast));
         });
@@ -494,7 +494,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('parentheses');
+            ast = ast.first('mixin').first('arguments');
 
             assert.equal(null, lint(options, ast));
         });
@@ -519,7 +519,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('parentheses');
+            ast = ast.first('mixin').first('arguments');
 
             actual = lint(options, ast);
 
@@ -546,7 +546,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('parentheses');
+            ast = ast.first('mixin').first('arguments');
 
             actual = lint(options, ast);
 
@@ -579,7 +579,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('parentheses');
+            ast = ast.first('mixin').first('arguments');
 
             actual = lint(options, ast);
 
@@ -606,7 +606,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('parentheses');
+            ast = ast.first('mixin').first('arguments');
 
             actual = lint(options, ast);
 
@@ -633,7 +633,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('parentheses');
+            ast = ast.first('mixin').first('arguments');
 
             actual = lint(options, ast);
 
@@ -666,7 +666,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('parentheses');
+            ast = ast.first('mixin').first('arguments');
 
             actual = lint(options, ast);
 
@@ -684,7 +684,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('parentheses');
+            ast = ast.first('mixin').first('arguments');
 
             assert.equal(null, lint(options, ast));
         });
@@ -700,7 +700,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('parentheses');
+            ast = ast.first('mixin').first('arguments');
 
             assert.equal(null, lint(options, ast));
         });
@@ -716,7 +716,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('parentheses');
+            ast = ast.first('mixin').first('arguments');
 
             assert.equal(null, lint(options, ast));
         });
@@ -741,7 +741,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('parentheses');
+            ast = ast.first('mixin').first('arguments');
 
             actual = lint(options, ast);
 
@@ -768,7 +768,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('parentheses');
+            ast = ast.first('mixin').first('arguments');
 
             actual = lint(options, ast);
 
@@ -801,7 +801,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('parentheses');
+            ast = ast.first('mixin').first('arguments');
 
             actual = lint(options, ast);
 
@@ -828,7 +828,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('parentheses');
+            ast = ast.first('mixin').first('arguments');
 
             actual = lint(options, ast);
 
@@ -855,7 +855,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('parentheses');
+            ast = ast.first('mixin').first('arguments');
 
             actual = lint(options, ast);
 
@@ -888,7 +888,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('parentheses');
+            ast = ast.first('mixin').first('arguments');
 
             actual = lint(options, ast);
 
