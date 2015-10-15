@@ -18,7 +18,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector');
+            ast = ast.first().first('selector').first('attributeSelector').first('attributeValue');
 
             assert.strictEqual(undefined, lint(options, ast));
         });
@@ -34,7 +34,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector');
+            ast = ast.first().first('selector').first('attributeSelector').first('attributeValue');
 
             assert.strictEqual(undefined, lint(options, ast));
         });
@@ -58,14 +58,14 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector');
+            ast = ast.first().first('selector').first('attributeSelector').first('attributeValue');
 
             actual = lint(options, ast);
 
             assert.deepEqual(actual, expected);
         });
 
-        it('should return null for value-less selectors', function () {
+        it('should return undefined for value-less selectors', function () {
             var source = 'input[disabled] {}';
             var actual;
             var ast;
@@ -77,7 +77,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector');
+            ast = ast.first().first('selector').first('attributeSelector');
 
             assert.equal(undefined, lint(options, ast));
         });
@@ -92,7 +92,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector');
+            ast = ast.first().first('selector').first('attributeSelector').first('attributeValue');
 
             assert.equal(undefined, lint(options, ast));
         });
@@ -105,7 +105,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector');
+            ast = ast.first().first('selector').first('attributeSelector').first('attributeValue');
 
             assert.equal(undefined, lint(options, ast));
         });
