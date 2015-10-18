@@ -1,8 +1,6 @@
 # Available linters
 
-*Warning: Before we hit 1.0 don't trust the default values, they are subject to change after votes by the community. Always specify exactly what you want to report.*
-
-Each linter also accept a `enabled` option to turn if off/on completely. Another way of disabling a linter is by setting the whole property to `false`.
+Each linter also accept a `enabled` option to turn if off/on completely. It's also possible to disable a linter by setting the whole property to `false`.
 
 * [attributeQuotes](#attributequotes)
 * [borderZero](#borderzero)
@@ -15,8 +13,8 @@ Each linter also accept a `enabled` option to turn if off/on completely. Another
 * [hexNotation](#hexnotation)
 * [hexValidation](#hexvalidation)
 * [idSelector](#idselector)
-* [importPath](#importpath)
 * [importantRule](#importantrule)
+* [importPath](#importpath)
 * [leadingZero](#leadingzero)
 * [propertyOrdering](#propertyordering)
 * [propertyUnits](#propertyunits)
@@ -42,14 +40,14 @@ All values in attribute selectors should be enclosed in quotes.
 Since some values require quotes it's better for consistency to always quote the values.
 
 ### invalid
-```css
+```less
 input[type=text] {
     color: red;
 }
 ```
 
 ### valid
-```css
+```less
 input[type='text'] {
     color: red;
 }
@@ -67,14 +65,14 @@ Option     | Description
 `style`    | `none`, `zero` (**default**)
 
 ### none
-```css
+```less
 .foo {
     border: none;
 }
 ```
 
 ### zero
-```css
+```less
 .foo {
     border: 0;
 }
@@ -82,18 +80,19 @@ Option     | Description
 
 ## Comment
 Prefer single-line comments (`//`) over multi-line (`/* ... */`) since they're not rendered in the final CSS.
+This linter is disabled by default.
 
 Option     | Description
 ---------- | ----------
 `allowed`  | A regexp to match allowed comments. The default is `^!` allowing comments starting with a bang, i.e. `/*! Copyright... */`.
 
 ### invalid
-```css
+```less
 /* Will get rendered */
 ```
 
 ### valid
-```css
+```less
 // Won't get rendered
 
 /*! Will get rendered, but it's OK */
@@ -104,12 +103,23 @@ Floating point numbers should be written with a leading/trailing zero.
 
 Option     | Description
 ---------- | -------------
-`leading`  | Floating point numbers must be written with leading zero (when `1.0 > N > -1.0`) (**default**)
-`trailing` | Floating point numbers must be written with trailing zero
-`both`     | Floating point numbers must be written with leading zero (when `1.0 > N > -1.0`) and trailing zero
-`none`     | Floating point numbers must not be written with either leading nor trailing zero
+`leading`  | Floating point numbers must be written with a leading zero (**default**).
+`trailing` | Floating point numbers must be written with a trailing zero.
+`both`     | Floating point numbers must be written with a leading and trailing zero.
+`none`     | Floating point numbers must not be written with a leading or trailing zero.
 
-### Valid
+### invalid
+```less
+.foo {
+  font-size: 1.0em;  // leading
+  font-size:  .5em;  // leading, trailing, both
+  font-size: 0.5em;  // trailing, both, none
+  font-size: 1.5em;  // trailing, both
+  font-size: 0.50em; // leading, trailing, none
+}
+```
+
+### valid
 ```less
 .foo {
   font-size: 0.5em;  // leading
@@ -118,17 +128,6 @@ Option     | Description
   font-size: 1.0em;  // trailing, both
   font-size: 0.50em; // both
   font-size:  .5em;  // none
-}
-```
-
-### Invalid
-```less
-.foo {
-  font-size: 1.0em;  // leading
-  font-size:  .5em;  // leading, trailing, both
-  font-size: 0.5em;  // trailing, both, none
-  font-size: 1.5em;  // trailing, both
-  font-size: 0.50em; // leading, trailing, none
 }
 ```
 
@@ -143,7 +142,7 @@ Option     | Description
 `exclude`  | Array of properties to exclude, for example `background-color` when used with a fallback.
 
 ### invalid
-```css
+```less
 .foo {
     color: red;
     color: blue;
@@ -151,7 +150,7 @@ Option     | Description
 ```
 
 ### valid
-```css
+```less
 .foo {
     color: red;
 }
@@ -161,14 +160,14 @@ Option     | Description
 There shouldn't be any empty rules present.
 
 ### invalid
-```css
+```less
 .foo {
 
 }
 ```
 
 ### valid
-```css
+```less
 .foo {
     color: red;
 }
@@ -178,14 +177,14 @@ There shouldn't be any empty rules present.
 All files should end with a empty line to help create better diffs since the last line will always be untouched and therefore not marked as changed.
 
 ### invalid
-```css
+```less
 .foo {
     color: red;
 }
 ```
 
 ### valid
-```css
+```less
 .foo {
     color: red;
 }
@@ -201,14 +200,14 @@ Option     | Description
 `style`    | `long` (**default**), `short`
 
 ### long
-```css
+```less
 .foo {
     color: #000000;
 }
 ```
 
 ### short
-```css
+```less
 .foo {
     color: #000;
 }
@@ -222,14 +221,14 @@ Option     | Description
 `style`    | `lowercase` (**default**), `uppercase`
 
 ### lowercase
-```css
+```less
 .foo {
     color: #abcdef;
 }
 ```
 
 ### uppercase
-```css
+```less
 .foo {
     color: #ABCDEF;
 }
@@ -239,14 +238,14 @@ Option     | Description
 Check if hex color declarations are valid.
 
 ### invalid
-```css
+```less
 .foo {
     color: #ab;
 }
 ```
 
 ### valid
-```css
+```less
 .foo {
     color: #abc;
 }
@@ -258,17 +257,17 @@ ID selectors should be avoided since they introduce unnecessarily specific selec
 
 Option     | Description
 ---------- | ----------
-`exclude`  | Array of IDs to exclude (with or without "#").
+`exclude`  | Array of IDs to exclude (with or without `#`).
 
 ### invalid
-```css
+```less
 #foo {
     color: red;
 }
 ```
 
 ### valid
-```css
+```less
 .foo {
     color: red;
 }
@@ -279,14 +278,14 @@ Disallow the usage of `!important`.
 The use of `!important` is often due to a lack of understanding of CSS specificity.
 
 ### invalid
-```css
-#foo {
+```less
+.foo {
     color: red !important;
 }
 ```
 
 ### valid
-```css
+```less
 .foo {
     color: red;
 }
@@ -303,27 +302,23 @@ Option               | Description
 `exclude`            | Array of files to exclude
 
 ### invalid
-```css
+```less
 @import 'foo.less';
 @import '_bar';
 ```
 
 ### valid
-```css
+```less
 @import 'foo';
 @import 'bar';
 ```
 
-## leadingZero
-**Removed** Use [decimalZero](#decimalZero)
-
 ## propertyOrdering
-Check for property ordering
+Make sure properties are sorted in a particular order.
 
 Option       | Description
 ------------ | ----------
-`type`       | Ordering type (Only alpha supported right now)
-
+`style`       | `alpha` (**default**)
 
 ## propertyUnits
 Specify which units are allowed for property values.
@@ -332,7 +327,7 @@ By default all properties can have any value.
 The `global` option can be used to specify global units that are allowed
 and the `properties` option can be used to fine tune units for each property.
 
-*Note: Shorthands are not supported by the `properties` option. For example, to specify units for `margin`, all margin-* properties must be specified.*
+_Note: Shorthands are not supported by the `properties` option. For example, to specify units for `margin`, all margin-* properties must be specified._
 
 Option        | Description
 ------------- | ----------
@@ -350,7 +345,7 @@ Option        | Description
 }
 ```
 
-```css
+```less
 .foo {
     font-size: 1.5rem; // Allowed
     line-height: 30px; // Not allowed
@@ -367,8 +362,8 @@ Option               | Description
 `allowWithId`        | `false` (**default**), `true`
 
 ### invalid
-```css
-div[foo=bar] {
+```less
+div[foo='bar'] {
     color: red;
 }
 
@@ -382,8 +377,8 @@ div#foo {
 ```
 
 ### valid
-```css
-[foo=bar] {
+```less
+[foo='bar'] {
     color: red;
 }
 
@@ -397,10 +392,10 @@ div#foo {
 ```
 
 ## singleLinePerProperty
-Each property should be on it's own line.
+Each property should be on its own line.
 
 ### invalid
-```css
+```less
 .foo {
     color: red; margin-right: 10px;
 }
@@ -409,7 +404,7 @@ Each property should be on it's own line.
 ```
 
 ### valid
-```css
+```less
 .foo {
     color: red;
     margin-right: 10px;
@@ -421,17 +416,17 @@ Each property should be on it's own line.
 ```
 
 ## singleLinePerSelector
-Each selector should be on it's own line.
+Each selector should be on its own line.
 
 ### invalid
-```css
+```less
 .foo, .bar {
     color: red;
 }
 ```
 
 ### valid
-```css
+```less
 .foo,
 .bar {
     color: red;
@@ -446,14 +441,14 @@ Option     | Description
 `style`    | `no_space`, `one_space` (**default**)
 
 ### no_space
-```css
+```less
 .foo {
     margin:0;
 }
 ```
 
 ### one_space
-```css
+```less
 .foo {
     margin: 0;
 }
@@ -467,14 +462,14 @@ Option     | Description
 `style`    | `no_space` (**default**), `one_space`
 
 ### no_space
-```css
+```less
 .foo {
     margin: 0;
 }
 ```
 
 ### one_space
-```css
+```less
 .foo {
     margin : 0;
 }
@@ -488,14 +483,14 @@ Option     | Description
 `style`    | `no_space` (**default**), `one_space`
 
 ### no_space
-```css
+```less
 .foo {
     margin: 0;
 }
 ```
 
 ### one_space
-```css
+```less
 .foo {
     margin: 0 ;
 }
@@ -509,28 +504,28 @@ Option     | Description
 `style`    | `after` (**default**), `before`, `both`, `none`
 
 ### after
-```css
+```less
 .foo {
     color: rgb(255, 255, 255);
 }
 ```
 
 ### before
-```css
+```less
 .foo {
     color: rgb(255 ,255 ,255);
 }
 ```
 
 ### both
-```css
+```less
 .foo {
     color: rgb(255 , 255 , 255);
 }
 ```
 
 ### none
-```css
+```less
 .foo {
     color: rgb(255,255,255);
 }
@@ -544,21 +539,21 @@ Option     | Description
 `style`    | `no_space`, `one_space` (**default**), `new_line`
 
 ### no_space
-```css
+```less
 .foo{
     color: red;
 }
 ```
 
 ### one_space
-```css
+```less
 .foo {
     color: red;
 }
 ```
 
 ### new_line
-```css
+```less
 .foo
 {
     color: red;
@@ -573,14 +568,14 @@ Option     | Description
 `style`    | `no_space` (**default**), `one_space`
 
 ### no_space
-```css
+```less
 .foo {
     color: rgb(255, 255, 255);
 }
 ```
 
 ### one_space
-```css
+```less
 .foo {
     color: rgb( 255, 255, 255 );
 }
@@ -594,14 +589,14 @@ Option     | Description
 `style`    | `double`, `single` (**default**)
 
 ### invalid
-```css
+```less
 .foo {
     content: "Hello world";
 }
 ```
 
 ### valid
-```css
+```less
 .foo {
     content: 'Hello world';
 }
@@ -612,14 +607,14 @@ All property declarations should end with a semicolon.
 Semicolons are optional after the last property in a ruleset but it's a good habit to always add them since one doesn't need to think about it when adding new properties afterwards.
 
 ### invalid
-```css
+```less
 .foo {
     color: red
 }
 ```
 
 ### valid
-```css
+```less
 .foo {
     color: red;
 }
@@ -628,26 +623,23 @@ Semicolons are optional after the last property in a ruleset but it's a good hab
 ## trailingWhitespace
 There should't be any trailing whitespace since this will mess up diffs etc.
 
-## trailingZero
-**Removed** Use [decimalZero](#decimalzero)
-
 ## urlFormat
 All URLs should be relative.
-Using relative URLs increases portability and is actually recommended by the [CSS spec](http://dev.w3.org/csswg/css-values/#relative-urls).
+Using relative URLs increases portability and is recommended by the [CSS spec](http://dev.w3.org/csswg/css-values/#relative-urls).
 
 Option     | Description
 ---------- | ----------
 `style`    | `absolute`, `relative` (**default**)
 
 ### invalid
-```css
+```less
 .foo {
     background-image: url('http://example.com/img/image.jpg');
 }
 ```
 
 ### valid
-```css
+```less
 .foo {
     background-image: url('img/image.jpg');
 }
@@ -659,14 +651,14 @@ Using quotes around URLs allows them to be treated as strings, making escaping o
 The [CSS spec](http://dev.w3.org/csswg/css-values/#url-value) also recommends the use of quotes.
 
 ### invalid
-```css
+```less
 .foo {
     background-image: url(img/image.jpg);
 }
 ```
 
 ### valid
-```css
+```less
 .foo {
     background-image: url('img/image.jpg');
 }
@@ -680,20 +672,19 @@ Option     | Description
 `style`    | `no_unit` (**default**), `keep_unit`
 
 ### no_unit
-```css
+```less
 .foo {
     margin-right: 0;
 }
 ```
 
 ### keep_unit
-```css
+```less
 .foo {
     margin-right: 0px;
 }
 ```
 
 *Note: This rule doesn't apply to [angles](https://developer.mozilla.org/en-US/docs/Web/CSS/angle) or [time units](https://developer.mozilla.org/en-US/docs/Web/CSS/time) since they always require a unit.*
-
 
 Most of these rules are based on [@mdo](twitter.com/mdo)s [code guide](http://codeguide.co/#css).
