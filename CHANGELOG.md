@@ -1,4 +1,19 @@
 # Changelog
+## 1.0.0 (2015-10-19)
+* Complete linter refactor. ([92bb70a](https://github.com/lesshint/lesshint/commit/92bb70a7c53310cfdf00b4ec771d38a1ebee66ff))
+* Merged `spaceAfterComma` and `spaceBeforeComma` into `spaceAroundComma` ([28497b0](https://github.com/lesshint/lesshint/commit/28497b0899fe75757d2a0e77fe859154622c890f)).
+* Merged `leadingZero` and `trailingZero` into `decimalZero` ([12d34a5](https://github.com/lesshint/lesshint/commit/12d34a529144bbbfe4d57d63110c43c7f05a3260)).
+* Removed the quote style option from `attributeQuotes`. ([c0b229e](https://github.com/lesshint/lesshint/commit/c0b229ea7755d9a46af596407395f34eeb62b80f))
+* The `comment` linter is now disabled by default. ([c93121f](https://github.com/lesshint/lesshint/commit/c93121fa49e251912910b914f1e2b47dec533abb))
+* The default value for `zeroUnit` is now `keep_unit`. ([0c9ef81](https://github.com/lesshint/lesshint/commit/0c9ef818afcfd7c3c181a811ff3ab6e4fc2655ab))
+* The following changes has been made to `propertyUnits`: ([8b85210](https://github.com/lesshint/lesshint/commit/8b85210a2e8053b4ec1a5455dda7a906f7dea2df))
+    * Renamed `global` to `valid`.
+    * Added an `invalid` option.
+* Lint results are now sorted by line and column numbers. ([50d223f](https://github.com/lesshint/lesshint/commit/50d223fa21f726838222cc50963c6a660afeab7f))
+* Better handling of parse errors, they are now returned together with the lint results. ([f6efb3c](https://github.com/lesshint/lesshint/commit/f6efb3cd01d523495d366e62ba2fe47c4d9dc828))
+* Updated `gonzales-pe` to `3.x`. ([ac47970](https://github.com/lesshint/lesshint/commit/ac479703d018bec2f8e28bd58535b404319a9305), [9cba245](https://github.com/lesshint/lesshint/commit/9cba245b528bb235f5d0c4d17770e039e5133663))
+* Updated other dependencies. ([acb5e10](https://github.com/lesshint/lesshint/commit/acb5e108d6dd9b73e6fe50a440e9f03e7a72e458), [fcdf05d](https://github.com/lesshint/lesshint/commit/fcdf05d2eee7eac21fc17da48568d8d784022c32))
+
 ## 0.9.4 (2015-09-25)
 * Fix for bad `0.9.3`.
 
