@@ -665,11 +665,11 @@ The [CSS spec](http://dev.w3.org/csswg/css-values/#url-value) also recommends th
 ```
 
 ## zeroUnit
-Length units should be omitted on zero values.
+Zero values should include a unit for consistency with other values.
 
 Option     | Description
 ---------- | ----------
-`style`    | `no_unit` (**default**), `keep_unit`
+`style`    | `no_unit`, `keep_unit` (**default**)
 
 ### no_unit
 ```less
