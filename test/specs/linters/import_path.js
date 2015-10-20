@@ -240,6 +240,21 @@ describe('lesshint', function () {
             assert.strictEqual(undefined, lint(options, ast));
         });
 
+        it('should allow url imports', function () {
+            var source = '@import url("http://google.de");';
+            var ast;
+            var options = {
+                importPath: {
+                    enabled: true
+                }
+            };
+
+            ast = parseAST(source);
+            ast = ast.first();
+
+            assert.strictEqual(undefined, lint(options, ast));
+        });
+
         it('should not report excluded files', function () {
             var source = '@import "foo.less";';
             var ast;
