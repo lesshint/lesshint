@@ -241,6 +241,72 @@ describe('lesshint', function () {
         });
 
         it('should check url imports with quotes', function () {
+            var source = '@import url("foo.less");';
+            var ast;
+            var options = {
+                importPath: {
+                    enabled: true,
+                    filenameExtension: false,
+                    exclude: []
+                }
+            };
+
+            var expected = [{
+                column: 13,
+                line: 1,
+                linter: 'importPath',
+                message: 'Imported file, "foo.less" should not include the file extension.'
+            }];
+
+            ast = parseAST(source);
+            ast = ast.first();
+
+            assert.deepEqual(expected, lint(options, ast));
+        });
+
+        it('should check url imports without quotes', function () {
+            var source = '@import url(foo.less);';
+            var ast;
+            var options = {
+                importPath: {
+                    enabled: true,
+                    filenameExtension: false,
+                    exclude: []
+                }
+            };
+
+            var expected = [{
+                column: 13,
+                line: 1,
+                linter: 'importPath',
+                message: 'Imported file, "foo.less" should not include the file extension.'
+            }];
+
+            ast = parseAST(source);
+            ast = ast.first();
+
+            assert.deepEqual(expected, lint(options, ast));
+        });
+
+        it('should ignore @import strings containing absolute URLs', function () {
+            var source = '@import "http://example.com/foo.css";';
+            var ast;
+            var options = {
+                importPath: {
+                    enabled: true,
+                    filenameExtension: false,
+                    exclude: []
+                }
+            };
+
+            ast = parseAST(source);
+            ast = ast.first('atrule');
+            console.log(lint(options, ast));
+
+            assert.strictEqual(undefined, lint(options, ast));
+        });
+
+        it('should ignore @import urls() containing absolute URLs', function () {
             var source = '@import url("http://example.com/foo.css");';
             var ast;
             var options = {
@@ -251,41 +317,11 @@ describe('lesshint', function () {
                 }
             };
 
-            var expected = [{
-                column: 13,
-                line: 1,
-                linter: 'importPath',
-                message: 'Imported file, "http://example.com/foo.css" should not include the file extension.'
-            }];
-
             ast = parseAST(source);
-            ast = ast.first();
+            ast = ast.first('atrule');
+            console.log(lint(options, ast));
 
-            assert.deepEqual(expected, lint(options, ast));
-        });
-
-        it('should check url imports without quotes', function () {
-            var source = '@import url(http://example.com/foo.css);';
-            var ast;
-            var options = {
-                importPath: {
-                    enabled: true,
-                    filenameExtension: false,
-                    exclude: []
-                }
-            };
-
-            var expected = [{
-                column: 13,
-                line: 1,
-                linter: 'importPath',
-                message: 'Imported file, "http://example.com/foo.css" should not include the file extension.'
-            }];
-
-            ast = parseAST(source);
-            ast = ast.first();
-
-            assert.deepEqual(expected, lint(options, ast));
+            assert.strictEqual(undefined, lint(options, ast));
         });
 
         it('should not report excluded files', function () {
