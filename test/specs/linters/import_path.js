@@ -240,19 +240,52 @@ describe('lesshint', function () {
             assert.strictEqual(undefined, lint(options, ast));
         });
 
-        it('should allow url imports', function () {
-            var source = '@import url("http://google.de");';
+        it('should check url imports with quotes', function () {
+            var source = '@import url("http://example.com/foo.css");';
             var ast;
             var options = {
                 importPath: {
-                    enabled: true
+                    enabled: true,
+                    filenameExtension: false,
+                    exclude: []
                 }
             };
+
+            var expected = [{
+                column: 13,
+                line: 1,
+                linter: 'importPath',
+                message: 'Imported file, "http://example.com/foo.css" should not include the file extension.'
+            }];
 
             ast = parseAST(source);
             ast = ast.first();
 
-            assert.strictEqual(undefined, lint(options, ast));
+            assert.deepEqual(expected, lint(options, ast));
+        });
+
+        it('should check url imports without quotes', function () {
+            var source = '@import url(http://example.com/foo.css);';
+            var ast;
+            var options = {
+                importPath: {
+                    enabled: true,
+                    filenameExtension: false,
+                    exclude: []
+                }
+            };
+
+            var expected = [{
+                column: 13,
+                line: 1,
+                linter: 'importPath',
+                message: 'Imported file, "http://example.com/foo.css" should not include the file extension.'
+            }];
+
+            ast = parseAST(source);
+            ast = ast.first();
+
+            assert.deepEqual(expected, lint(options, ast));
         });
 
         it('should not report excluded files', function () {
