@@ -434,6 +434,22 @@ describe('lesshint', function () {
             assert.deepEqual(expected, lint(options, ast));
         });
 
+        it('should ignore nodes without a following block', function () {
+            var source = '.foo();';
+            var ast;
+            var options = {
+                spaceBeforeBrace: {
+                    enabled: true,
+                    style: 'one_space'
+                }
+            };
+
+            ast = parseAST(source);
+            ast = ast.first('mixin');
+
+            assert.equal(undefined, lint(options, ast));
+        });
+
         it('should return null when disabled', function () {
             var source = '.foo{}';
             var ast;
