@@ -301,7 +301,6 @@ describe('lesshint', function () {
 
             ast = parseAST(source);
             ast = ast.first('atrule');
-            console.log(lint(options, ast));
 
             assert.strictEqual(undefined, lint(options, ast));
         });
@@ -319,7 +318,6 @@ describe('lesshint', function () {
 
             ast = parseAST(source);
             ast = ast.first('atrule');
-            console.log(lint(options, ast));
 
             assert.strictEqual(undefined, lint(options, ast));
         });
