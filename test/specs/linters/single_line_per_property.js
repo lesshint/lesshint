@@ -109,6 +109,132 @@ describe('lesshint', function () {
             assert.deepEqual(actual, expected);
         });
 
+        it('should allow mixins on separate block', function () {
+            var source = '.foo {\n.mixin(); \n.mixin2(); \n}';
+            var ast;
+
+            var options = {
+                singleLinePerProperty: {
+                    enabled: true
+                }
+            };
+
+            ast = parseAST(source);
+            ast = ast.first('ruleset').first('block');
+
+            assert.strictEqual(undefined, lint(options, ast));
+        });
+
+        it('should not allow single mixin in single-line block', function () {
+            var source = '.foo {.mixin();}';
+            var actual;
+            var ast;
+
+            var expected = [{
+                column: 7,
+                line: 1,
+                linter: 'singleLinePerProperty',
+                message: errorMessage
+            }];
+
+            var options = {
+                singleLinePerProperty: {
+                    enabled: true
+                }
+            };
+
+            ast = parseAST(source);
+            ast = ast.first('ruleset').first('block');
+
+            actual = lint(options, ast);
+
+            assert.deepEqual(actual, expected);
+        });
+
+        it('should allow variables on separate block', function () {
+            var source = '.foo {\n@var1: 10px; \n@var2: 20px; \n}';
+            var ast;
+
+            var options = {
+                singleLinePerProperty: {
+                    enabled: true
+                }
+            };
+
+            ast = parseAST(source);
+            ast = ast.first('ruleset').first('block');
+
+            assert.strictEqual(undefined, lint(options, ast));
+        });
+
+        it('should not allow single variable in single-line block', function () {
+            var source = '.foo {@var1: 10px;}';
+            var actual;
+            var ast;
+
+            var expected = [{
+                column: 7,
+                line: 1,
+                linter: 'singleLinePerProperty',
+                message: errorMessage
+            }];
+
+            var options = {
+                singleLinePerProperty: {
+                    enabled: true
+                }
+            };
+
+            ast = parseAST(source);
+            ast = ast.first('ruleset').first('block');
+
+            actual = lint(options, ast);
+
+            assert.deepEqual(actual, expected);
+        });
+
+        it('should allow detached rulessets on separate block', function () {
+            var source = '.foo {\n@ruleset1(); \n@ruleset2(); \n}';
+            var ast;
+
+            var options = {
+                singleLinePerProperty: {
+                    enabled: true
+                }
+            };
+
+            ast = parseAST(source);
+            ast = ast.first('ruleset').first('block');
+
+            assert.strictEqual(undefined, lint(options, ast));
+        });
+
+        it('should not allow single detached ruleset in single-line block', function () {
+            var source = '.foo {@ruleset();}';
+            var actual;
+            var ast;
+
+            var expected = [{
+                column: 7,
+                line: 1,
+                linter: 'singleLinePerProperty',
+                message: errorMessage
+            }];
+
+            var options = {
+                singleLinePerProperty: {
+                    enabled: true
+                }
+            };
+
+            ast = parseAST(source);
+            ast = ast.first('ruleset').first('block');
+
+            actual = lint(options, ast);
+
+            assert.deepEqual(actual, expected);
+        });
+
         it('should not allow opening brace on the same line as a property', function () {
             var source = '.foo { color: red; \n margin-right: 10px; \n}';
             var actual;
