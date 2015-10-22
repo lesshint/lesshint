@@ -1,4 +1,11 @@
 # Changelog
+## 1.0.1 (2015-10-22)
+* Fixed an issue where local variable declarations would crash `propertyUnits`. ([06bee99](https://github.com/lesshint/lesshint/commit/06bee99413d5c5fa2d2fc06ba03157a98aa67f89))
+* Fixed an issue where `importPath` wouldn't check `url()` statements. ([91cf906](https://github.com/lesshint/lesshint/commit/91cf90619b86050691af71d357bc343ea779167c))
+* Fixed an issue where `urlQuotes` wouldn't check `@import url()` statements. ([a038ec5](https://github.com/lesshint/lesshint/commit/a038ec5b99c2310e3e351c0031436c452c802a57))
+* Fixed issues where `singleLinePerProperty` wouldn't check mixins, variables, and detached rulesets. ([ae16888](https://github.com/lesshint/lesshint/commit/ae16888f85c9357e880ec8ed882743a24d9fcade))
+* Fixed incorrect checking of absolute URLs in `importPath`. ([2709dc9](https://github.com/lesshint/lesshint/commit/2709dc9c781263191e1560e4e5429b61f25b577a), [0756cba](https://github.com/lesshint/lesshint/commit/0756cba7f1ee68ce0a05c4d89862bf8ed474416d))
+
 ## 1.0.0 (2015-10-19)
 * Complete linter refactor. ([92bb70a](https://github.com/lesshint/lesshint/commit/92bb70a7c53310cfdf00b4ec771d38a1ebee66ff))
 * Merged `spaceAfterComma` and `spaceBeforeComma` into `spaceAroundComma` ([28497b0](https://github.com/lesshint/lesshint/commit/28497b0899fe75757d2a0e77fe859154622c890f)).
