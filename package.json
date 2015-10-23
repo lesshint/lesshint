@@ -29,6 +29,7 @@
     "minimatch": "^3.0.0",
     "rcfinder": "^0.1.8",
     "sprintf-js": "^1.0.3",
+    "strip-bom": "^2.0.0",
     "strip-json-comments": "^1.0.2",
     "vow": "^0.4.9",
     "vow-fs": "^0.3.4"
