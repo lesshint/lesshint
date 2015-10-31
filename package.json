@@ -38,6 +38,7 @@
     "chai": "^3.4.0",
     "gulp": "^3.9.0",
     "gulp-coveralls": "^0.1.4",
+    "gulp-debug-finder": "^1.0.0",
     "gulp-istanbul": "^0.10.2",
     "gulp-jscs": "^3.0.2",
     "gulp-jshint": "^1.12.0",

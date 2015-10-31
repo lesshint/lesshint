@@ -40,4 +40,9 @@ gulp.task('coveralls', ['test'], function () {
         .pipe(coveralls());
 })
 
-gulp.task('default', ['test']);
+gulp.task('default', ['test'], function () {
+    var debugFinder = require('gulp-debug-finder');
+
+    return gulp.src(['./test/**/*.js'])
+        .pipe(debugFinder());
+});
