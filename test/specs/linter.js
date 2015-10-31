@@ -189,6 +189,23 @@ describe('linter', function () {
 
             assert.ok(actual.length === 0);
         });
+
+        it('should not call linter for unwanted node types', function () {
+            var source = '.foo {}';
+            var path = 'test.less';
+            var actual;
+
+            var config = {
+                stringQuotes: {
+                    enabled: true
+                }
+            };
+
+            actual = linter.lint(source, path, config);
+
+            // String quotes should never be called since there no strings in the input
+            assert.ok(actual.length === 0);
+        });
     });
 
     describe('parseAST', function () {
