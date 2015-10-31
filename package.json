@@ -36,11 +36,12 @@
   },
   "devDependencies": {
     "chai": "^3.4.0",
-    "coveralls": "^2.11.2",
-    "istanbul": "^0.4.0",
-    "jscs": "^2.0.0",
-    "jshint": "^2.8.0",
-    "mocha": "^2.2.5",
+    "gulp": "^3.9.0",
+    "gulp-coveralls": "^0.1.4",
+    "gulp-istanbul": "^0.10.2",
+    "gulp-jscs": "^3.0.2",
+    "gulp-jshint": "^1.12.0",
+    "gulp-mocha": "^2.1.3",
     "rewire": "^2.3.3",
     "rimraf": "^2.4.2",
     "sinon": "^1.14.1"
@@ -49,9 +50,7 @@
     "lesshint": "bin/lesshint"
   },
   "scripts": {
-    "cover": "istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec test/specs && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-    "pretest": "jshint lib test && jscs lib test",
-    "test": "mocha"
+    "test": "gulp"
   },
   "license": "MIT",
   "bugs": {

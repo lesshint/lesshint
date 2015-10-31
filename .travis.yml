@@ -12,12 +12,13 @@ node_js:
 before_script:
   - node --version
   - npm --version
+  - npm install -g gulp
 
 script:
   - npm test
 
 after_script:
-  - npm run cover
+  - gulp coveralls
 
 matrix:
   fast_finish: true
