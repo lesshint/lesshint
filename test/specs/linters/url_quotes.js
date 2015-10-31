@@ -1,181 +1,119 @@
 'use strict';
 
-var assert = require('assert');
 var path = require('path');
+var expect = require('chai').expect;
 var linter = require('../../../lib/linters/' + path.basename(__filename));
-var lint = require('../../lib/spec_linter')(linter);
 var parseAST = require('../../../lib/linter').parseAST;
 
 describe('lesshint', function () {
     describe('#urlQuotes()', function () {
         it('should allow single quotes', function () {
             var source = ".foo { background-image: url('img/image.jpg'); }";
+            var result;
             var ast;
-
-            var options = {
-                urlQuotes: {
-                    enabled: true
-                }
-            };
 
             ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.strictEqual(undefined, lint(options, ast));
+            result = linter.lint({}, ast);
+
+            expect(result).to.equal(undefined);
         });
 
         it('should allow double quotes', function () {
             var source = '.foo { background-image: url("img/image.jpg"); }';
+            var result;
             var ast;
-
-            var options = {
-                urlQuotes: {
-                    enabled: true
-                }
-            };
 
             ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.strictEqual(undefined, lint(options, ast));
+            result = linter.lint({}, ast);
+
+            expect(result).to.equal(undefined);
         });
 
         it('should not allow missing quotes', function () {
             var source = '.foo { background-image: url(img/image.jpg); }';
-            var actual;
+            var result;
             var ast;
 
             var expected = [{
                 column: 26,
                 line: 1,
-                linter: 'urlQuotes',
                 message: 'URLs should be enclosed in quotes.'
             }];
-
-            var options = {
-                urlQuotes: {
-                    enabled: true
-                }
-            };
 
             ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            actual = lint(options, ast);
+            result = linter.lint({}, ast);
 
-            assert.deepEqual(actual, expected);
+            expect(result).to.deep.equal(expected);
         });
 
         it('should not allow missing quotes in imports', function () {
-            var source = '@import url(http://google.de)';
-            var actual;
+            var source = '@import url(http://example.com)';
+            var result;
             var ast;
 
             var expected = [{
                 column: 9,
                 line: 1,
-                linter: 'urlQuotes',
                 message: 'URLs should be enclosed in quotes.'
             }];
 
-            var options = {
-                urlQuotes: {
-                    enabled: true
-                }
-            };
-
             ast = parseAST(source);
-            ast = ast.first();
+            ast = ast.first('atrule');
 
-            actual = lint(options, ast);
+            result = linter.lint({}, ast);
 
-            assert.deepEqual(actual, expected);
+            expect(result).to.deep.equal(expected);
         });
 
         it('should allow quoted urls in imports', function () {
-            var source = '@import url(\'http://google.de\')';
+            var source = "@import url('http://example.com')";
+            var result;
             var ast;
 
-            var options = {
-                urlQuotes: {
-                    enabled: true
-                }
-            };
-
             ast = parseAST(source);
-            ast = ast.first();
+            ast = ast.first('atrule');
 
-            assert.strictEqual(undefined, lint(options, ast));
+            result = linter.lint({}, ast);
+
+            expect(result).to.equal(undefined);
         });
 
         it('should allow quoted URLs strings surrounded by spaces (#22)', function () {
             var source = ".foo { background-image: url( 'img/image.jpg' ); }";
+            var result;
             var ast;
-
-            var options = {
-                urlQuotes: {
-                    enabled: true
-                }
-            };
 
             ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            assert.strictEqual(undefined, lint(options, ast));
+            result = linter.lint({}, ast);
+
+            expect(result).to.equal(undefined);
         });
 
         it('should not allow unquoted URLs strings surrounded by spaces (#22)', function () {
             var source = '.foo { background-image: url( img/image.jpg ); }';
-            var actual;
+            var result;
             var ast;
 
             var expected = [{
                 column: 26,
                 line: 1,
-                linter: 'urlQuotes',
                 message: 'URLs should be enclosed in quotes.'
             }];
 
-            var options = {
-                urlQuotes: {
-                    enabled: true
-                }
-            };
-
             ast = parseAST(source);
             ast = ast.first().first('block').first('declaration');
 
-            actual = lint(options, ast);
+            result = linter.lint({}, ast);
 
-            assert.deepEqual(actual, expected);
-        });
-
-        it('should return null when disabled', function () {
-            var source = '.foo { background-image: url(http://example.com/img/image.jpg); }';
-            var ast;
-            var options = {
-                urlQuotes: {
-                    enabled: false
-                }
-            };
-
-            ast = parseAST(source);
-            ast = ast.first().first('block').first('declaration');
-
-            assert.equal(undefined, lint(options, ast));
-        });
-
-        it('should return null when disabled via shorthand', function () {
-            var source = '.foo { background-image: url(http://example.com/img/image.jpg); }';
-            var ast;
-            var options = {
-                urlQuotes: false
-            };
-
-            ast = parseAST(source);
-            ast = ast.first().first('block').first('declaration');
-
-            assert.equal(undefined, lint(options, ast));
+            expect(result).to.deep.equal(expected);
         });
     });
 });

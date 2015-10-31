@@ -1,6 +1,6 @@
 'use strict';
 
-var assert = require('assert');
+var expect = require('chai').expect;
 var path = require('path');
 
 describe('lesshint', function () {
@@ -14,8 +14,8 @@ describe('lesshint', function () {
 
             lesshint.configure();
 
-            return lesshint.checkDirectory(testDir).then(function (errors) {
-                assert.ok(errors.length === 2);
+            return lesshint.checkDirectory(testDir).then(function (result) {
+                expect(result).to.have.length(2);
             });
         });
 
@@ -25,8 +25,8 @@ describe('lesshint', function () {
 
             lesshint.configure();
 
-            return lesshint.checkDirectory(testPath).then(function (errors) {
-                assert.ok(errors.length === 0);
+            return lesshint.checkDirectory(testPath).then(function (result) {
+                expect(result).to.have.length(0);
             });
         });
 
@@ -39,8 +39,8 @@ describe('lesshint', function () {
 
             lesshint.configure(config);
 
-            return lesshint.checkDirectory(testPath).then(function (errors) {
-                assert.ok(errors.length === 0);
+            return lesshint.checkDirectory(testPath).then(function (result) {
+                expect(result).to.have.length(0);
             });
         });
 
@@ -53,8 +53,8 @@ describe('lesshint', function () {
 
             lesshint.configure(config);
 
-            return lesshint.checkDirectory(testPath).then(function (errors) {
-                assert.ok(errors.length === 1);
+            return lesshint.checkDirectory(testPath).then(function (result) {
+                expect(result).to.have.length(1);
             });
         });
 
@@ -67,8 +67,8 @@ describe('lesshint', function () {
 
             lesshint.configure(config);
 
-            return lesshint.checkDirectory(testPath).then(function (errors) {
-                assert.ok(errors.length === 1);
+            return lesshint.checkDirectory(testPath).then(function (result) {
+                expect(result).to.have.length(1);
             });
         });
 
@@ -81,8 +81,8 @@ describe('lesshint', function () {
 
             lesshint.configure(config);
 
-            return lesshint.checkDirectory(testPath).then(function (errors) {
-                assert.ok(errors.length === 2);
+            return lesshint.checkDirectory(testPath).then(function (result) {
+                expect(result).to.have.length(2);
             });
         });
     });
@@ -93,8 +93,8 @@ describe('lesshint', function () {
 
             lesshint.configure();
 
-            return lesshint.checkFile(testDir + '/file.less').then(function (errors) {
-                assert.ok(errors.length === 1);
+            return lesshint.checkFile(testDir + '/file.less').then(function (result) {
+                expect(result).to.have.length(1);
             });
         });
     });
@@ -105,8 +105,8 @@ describe('lesshint', function () {
 
             lesshint.configure();
 
-            return lesshint.checkPath(testDir).then(function (errors) {
-                assert.ok(errors.length === 2);
+            return lesshint.checkPath(testDir).then(function (result) {
+                expect(result).to.have.length(2);
             });
         });
     });
@@ -115,48 +115,50 @@ describe('lesshint', function () {
         it('should check a string', function () {
             var string = '.foo{\n color: red;\n}\n';
             var lesshint = new Lesshint();
-            var errors;
+            var result;
 
             lesshint.configure();
 
-            errors = lesshint.checkString(string);
+            result = lesshint.checkString(string);
 
-            assert.ok(errors.length === 1);
+            expect(result).to.have.length(1);
         });
 
         it('should return an object containing an error result on invalid input', function () {
-            var string = '.foo{';
-
             var lesshint = new Lesshint();
-            var results;
+            var source = '.foo{';
+            var result;
 
             lesshint.configure();
 
-            results = lesshint.checkString(string);
+            result = lesshint.checkString(source);
 
-            assert.ok(results.length === 1);
-            assert.ok(results[0].severity === 'error');
+            expect(result).to.have.length(1);
+            expect(result[0]).to.have.property('severity', 'error');
         });
 
         it('should return the name of the file containing a parse error', function () {
             var string = '.foo { border none }';
             var lesshint = new Lesshint();
-            var results;
+            var result;
 
             lesshint.configure();
 
-            results = lesshint.checkString(string, '/var/test/file.less');
+            result = lesshint.checkString(string, '/var/test/file.less');
 
-            assert.ok(results[0].file === 'file.less');
+            expect(result[0]).to.have.property('file', 'file.less');
         });
 
         it('should throw on non-parse related errors', function () {
             var config = configLoader(path.dirname(__dirname) + '/data/config/bad.json');
             var lesshint = new Lesshint();
+            var checker;
 
             lesshint.configure(config);
 
-            assert.throws(lesshint.checkString.bind(null), Error);
+            checker = lesshint.checkString.bind(null);
+
+            expect(checker).to.throw(Error);
         });
     });
 
@@ -167,7 +169,7 @@ describe('lesshint', function () {
 
             lesshint.configure(expected);
 
-            assert.deepEqual(lesshint.config, expected);
+            expect(lesshint.config).to.deep.equal(expected);
         });
     });
 });

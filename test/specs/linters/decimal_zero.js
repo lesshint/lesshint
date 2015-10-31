@@ -1,276 +1,250 @@
 'use strict';
 
-var assert = require('assert');
 var path = require('path');
+var expect = require('chai').expect;
 var linter = require('../../../lib/linters/' + path.basename(__filename));
-var lint = require('../../lib/spec_linter')(linter);
 var parseAST = require('../../../lib/linter').parseAST;
 
 describe('lesshint', function () {
     describe('#decimalZero()', function () {
-        var options;
-        var source;
-        var ast;
-        var actual;
-        var expected;
+        it('should allow number without decimal zero when "style" is "leading"', function () {
+            var source = '.foo { font-size: 1em; }';
+            var result;
+            var ast;
 
-        var shouldAllow = function (array) {
-            array.forEach(function (example) {
-                it('should allow "' + example + '"', function () {
-                    source = '.foo { font-size: ' + example + '; }';
+            var options = {
+                style: 'leading'
+            };
 
-                    ast = parseAST(source);
-                    ast = ast.first().first('block').first('declaration');
+            ast = parseAST(source);
+            ast = ast.first().first('block').first('declaration');
 
-                    assert.equal(undefined, lint(options, ast));
-                });
-            });
-        };
-        var shouldNotAllow = function (array) {
-            array.forEach(function (example) {
-                it('should not allow "' + example + '"', function () {
-                    source = '.foo { font-size: ' + example + '; }';
+            result = linter.lint(options, ast);
 
-                    ast = parseAST(source);
-                    ast = ast.first().first('block').first('declaration');
+            expect(result).to.equal(undefined);
+        });
 
-                    assert.notEqual(undefined, lint(options, ast));
-                });
-            });
-        };
+        it('should allow number with leading decimal zero when "style" is "leading"', function () {
+            var source = '.foo { font-size: 0.5em; }';
+            var result;
+            var ast;
 
-        describe('when disabled', function () {
-            beforeEach(function () {
-                source = '.foo { font-size: .5em; }';
+            var options = {
+                style: 'leading'
+            };
 
-                options = {
-                    decimalZero: {
-                        enabled: false
-                    }
-                };
+            ast = parseAST(source);
+            ast = ast.first().first('block').first('declaration');
 
-                ast = parseAST(source);
-                ast = ast.first().first('block').first('declaration');
-            });
+            result = linter.lint(options, ast);
 
-            it('should return null', function () {
-                assert.equal(undefined, lint(options, ast));
-            });
-        });//disabled
+            expect(result).to.equal(undefined);
+        });
 
-        describe('when disabled via shorthand', function () {
-            beforeEach(function () {
-                source = '.foo { font-size: .5em; }';
+        it('should not allow number without leading decimal zero when "style" is "leading"', function () {
+            var source = '.foo { font-size: .5em; }';
+            var result;
+            var ast;
 
-                options = {
-                    decimalZero: false
-                };
+            var expected = [{
+                column: 19,
+                line: 1,
+                message: '.5 should be written with leading zero.'
+            }];
 
-                ast = parseAST(source);
-                ast = ast.first().first('block').first('declaration');
-            });
+            var options = {
+                style: 'leading'
+            };
 
-            it('should return null', function () {
-                assert.equal(null, lint(options, ast));
-            });
-        });//disabled via shorthand
+            ast = parseAST(source);
+            ast = ast.first().first('block').first('declaration');
 
-        describe('when "style" is "foobar" (unrecognized)', function () {
-            beforeEach(function () {
-                source = '.foo { font-size: .5em; }';
+            result = linter.lint(options, ast);
 
-                options = {
-                    decimalZero: {
-                        enabled: true,
-                        style: 'foobar'
-                    }
-                };
+            expect(result).to.deep.equal(expected);
+        });
 
-                ast = parseAST(source);
-                ast = ast.first().first('block').first('declaration');
-            });
+        it('should allow number without decimal when "style" is "trailing"', function () {
+            var source = '.foo { font-size: 1em; }';
+            var result;
+            var ast;
 
-            it('should throw error', function () {
-                assert.throws(lint.bind(null, options, ast), Error);
-            });
-        });//style: foobar (unrecognized)
+            var options = {
+                style: 'trailing'
+            };
 
-        describe('when "style" is "leading"', function () {
-            beforeEach(function () {
-                options = {
-                    decimalZero: {
-                        enabled: true,
-                        style: 'leading'
-                    }
-                };
-            });
+            ast = parseAST(source);
+            ast = ast.first().first('block').first('declaration');
 
-            shouldAllow([
-                '1em',   // integer (skipped)
-                '0em',   // integer (skipped)
-                '0.5em', // leading
-                '1.5em', // leading (optional zero)
-                '10.5em' // leading (optional zero)
-            ]);
+            result = linter.lint(options, ast);
 
-            shouldNotAllow([
-                '.5em',  // none
-                '.50em', // trailing
-                '1.0em', // trailing
-                '0.50em' // both
-            ]);
+            expect(result).to.equal(undefined);
+        });
 
-            it('should return expected error message on invalid value', function () {
-                source = '.foo { font-size: .5em; }';
+        it('should allow number without decimal when "style" is "trailing"', function () {
+            var source = '.foo { font-size: 1em; }';
+            var result;
+            var ast;
 
-                expected = [{
-                    column: 19,
-                    line: 1,
-                    linter: 'decimalZero',
-                    message: '.5 should be written with leading zero.'
-                }];
+            var options = {
+                style: 'trailing'
+            };
 
-                ast = parseAST(source);
-                ast = ast.first().first('block').first('declaration');
+            ast = parseAST(source);
+            ast = ast.first().first('block').first('declaration');
 
-                actual = lint(options, ast);
+            result = linter.lint(options, ast);
 
-                assert.deepEqual(actual, expected);
-            });
-        });//style: leading
+            expect(result).to.equal(undefined);
+        });
 
-        describe('when "style" is "trailing"', function () {
-            beforeEach(function () {
-                options = {
-                    decimalZero: {
-                        enabled: true,
-                        style: 'trailing'
-                    }
-                };
-            });
+        it('should allow number with trailing decimal zero when "style" is "trailing"', function () {
+            var source = '.foo { font-size: 1.0em; }';
+            var result;
+            var ast;
 
-            shouldAllow([
-                '1em',    // integer (skipped)
-                '0em',    // integer (skipped)
-                '.50em',  // trailing
-                '1.0em',  // trailing
-            ]);
+            var options = {
+                style: 'trailing'
+            };
 
-            shouldNotAllow([
-                '.5em',   // none
-                '0.50em', // both
-                '0.5em',  // leading
-                '1.5em',  // leading (optional zero)
-                '10.5em'  // leading (optional zero)
-            ]);
+            ast = parseAST(source);
+            ast = ast.first().first('block').first('declaration');
 
-            it('should return expected error message on invalid value', function () {
-                source = '.foo { font-size: 1.5em; }';
+            result = linter.lint(options, ast);
 
-                expected = [{
-                    column: 19,
-                    line: 1,
-                    linter: 'decimalZero',
-                    message: '1.5 should be written with trailing zero.'
-                }];
+            expect(result).to.equal(undefined);
+        });
 
-                ast = parseAST(source);
-                ast = ast.first().first('block').first('declaration');
+        it('should not allow number without trailing decimal zero when "style" is "trailing"', function () {
+            var source = '.foo { font-size: 1.5em; }';
+            var result;
+            var ast;
 
-                actual = lint(options, ast);
+            var expected = [{
+                column: 19,
+                line: 1,
+                message: '1.5 should be written with trailing zero.'
+            }];
 
-                assert.deepEqual(actual, expected);
-            });
-        });//style: trailing
+            var options = {
+                style: 'trailing'
+            };
 
-        describe('when "style" is "both"', function () {
-            beforeEach(function () {
-                options = {
-                    decimalZero: {
-                        enabled: true,
-                        style: 'both'
-                    }
-                };
-            });
+            ast = parseAST(source);
+            ast = ast.first().first('block').first('declaration');
 
-            shouldAllow([
-                '1em',    // integer (skipped)
-                '0em',    // integer (skipped)
-                '1.0em',  // trailing
-                '0.50em', // both
-                '10.50em' // optional leading zero
-            ]);
+            result = linter.lint(options, ast);
 
-            shouldNotAllow([
-                '.50em',  // trailing
-                '.5em',   // none
-                '0.5em',  // leading
-                '1.5em',  // leading (optional zero)
-                '10.5em'  // leading (optional zero)
-            ]);
+            expect(result).to.deep.equal(expected);
+        });
 
-            it('should return expected error message on invalid value', function () {
-                source = '.foo { font-size: .5em; }';
+        it('should not allow number without trailing decimal zero when "style" is "both"', function () {
+            var source = '.foo { font-size: 1.5em; }';
+            var result;
+            var ast;
 
-                expected = [{
-                    column: 19,
-                    line: 1,
-                    linter: 'decimalZero',
-                    message: '.5 should be written with leading and trailing zero.'
-                }];
+            var expected = [{
+                column: 19,
+                line: 1,
+                message: '1.5 should be written with leading and trailing zero.'
+            }];
 
-                ast = parseAST(source);
-                ast = ast.first().first('block').first('declaration');
+            var options = {
+                style: 'both'
+            };
 
-                actual = lint(options, ast);
+            ast = parseAST(source);
+            ast = ast.first().first('block').first('declaration');
 
-                assert.deepEqual(actual, expected);
-            });
-        });//style: both
+            result = linter.lint(options, ast);
 
-        describe('when "style" is "none"', function () {
-            beforeEach(function () {
-                options = {
-                    decimalZero: {
-                        enabled: true,
-                        style: 'none'
-                    }
-                };
-            });
+            expect(result).to.deep.equal(expected);
+        });
 
-            shouldAllow([
-                '1em',    // integer (skipped)
-                '0em',    // integer (skipped)
-                '.5em',   // none
-                '1.5em',  // leading (optional zero)
-                '10.5em'  // leading (optional zero)
-            ]);
+        it('should not allow number without leading decimal zero when "style" is "both"', function () {
+            var source = '.foo { font-size: .50em; }';
+            var result;
+            var ast;
 
-            shouldNotAllow([
-                '1.0em',  // trailing
-                '.50em',  // trailing
-                '0.50em', // both
-                '10.50em',// optional leading zero
-                '0.5em'   // leading
-            ]);
+            var expected = [{
+                column: 19,
+                line: 1,
+                message: '.50 should be written with leading and trailing zero.'
+            }];
 
-            it('should return expected error message on invalid value', function () {
-                source = '.foo { font-size: 0.50em; }';
+            var options = {
+                style: 'both'
+            };
 
-                expected = [{
-                    column: 19,
-                    line: 1,
-                    linter: 'decimalZero',
-                    message: '0.50 should be written without leading and trailing zero.'
-                }];
+            ast = parseAST(source);
+            ast = ast.first().first('block').first('declaration');
 
-                ast = parseAST(source);
-                ast = ast.first().first('block').first('declaration');
+            result = linter.lint(options, ast);
 
-                actual = lint(options, ast);
+            expect(result).to.deep.equal(expected);
+        });
 
-                assert.deepEqual(actual, expected);
-            });
+        it('should not allow number with trailing decimal zero when "style" is "none"', function () {
+            var source = '.foo { font-size: .50em; }';
+            var result;
+            var ast;
+
+            var expected = [{
+                column: 19,
+                line: 1,
+                message: '.50 should be written without leading and trailing zero.'
+            }];
+
+            var options = {
+                style: 'none'
+            };
+
+            ast = parseAST(source);
+            ast = ast.first().first('block').first('declaration');
+
+            result = linter.lint(options, ast);
+
+            expect(result).to.deep.equal(expected);
+        });
+
+        it('should not allow number with leading decimal zero when "style" is "none"', function () {
+            var source = '.foo { font-size: 0.5em; }';
+            var result;
+            var ast;
+
+            var expected = [{
+                column: 19,
+                line: 1,
+                message: '0.5 should be written without leading and trailing zero.'
+            }];
+
+            var options = {
+                style: 'none'
+            };
+
+            ast = parseAST(source);
+            ast = ast.first().first('block').first('declaration');
+
+            result = linter.lint(options, ast);
+
+            expect(result).to.deep.equal(expected);
+        });
+
+        it('should throw on invalid "style" value', function () {
+            var source = '.foo { font-size: 1.0em; }';
+            var lint;
+            var ast;
+
+            var options = {
+                style: 'invalid'
+            };
+
+            ast = parseAST(source);
+            ast = ast.first().first('block').first('declaration');
+
+            lint = linter.lint.bind(null, options, ast);
+
+            expect(lint).to.throw(Error);
         });
     });
 });
