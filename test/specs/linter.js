@@ -190,6 +190,20 @@ describe('linter', function () {
             assert.ok(actual.length === 0);
         });
 
+        it('should not call linters disabled via shorthand', function () {
+            var source = '.foo{}';
+            var path = 'test.less';
+            var actual;
+
+            var config = {
+                spaceBeforeBrace: false
+            };
+
+            actual = linter.lint(source, path, config);
+
+            assert.ok(actual.length === 0);
+        });
+
         it('should not call linter for unwanted node types', function () {
             var source = '.foo {}';
             var path = 'test.less';
