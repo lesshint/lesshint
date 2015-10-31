@@ -1,3 +1,5 @@
+'use strict';
+
 var assert = require('assert');
 var path = require('path');
 var linter = require('../../../lib/linters/' + path.basename(__filename));
@@ -117,6 +119,7 @@ describe('lesshint', function () {
 
         it('should find hex values in background declarations', function () {
             var source = 'background: url(test.png) no-repeat #AABBCC;';
+            var actual;
             var ast;
 
             var expected = [{

@@ -1,3 +1,5 @@
+'use strict';
+
 var assert = require('assert');
 var path = require('path');
 var linter = require('../../../lib/linters/' + path.basename(__filename));
@@ -47,6 +49,7 @@ describe('lesshint', function () {
 
         it('should not allow an unspecified unit', function () {
             var source = '.foo { font-size: 1rem; }';
+            var actual;
             var ast;
 
             var expected = [{
@@ -74,6 +77,7 @@ describe('lesshint', function () {
 
         it('should not allow an unspecified property unit', function () {
             var source = '.foo { font-size: 1rem; }';
+            var actual;
             var ast;
 
             var expected = [{
@@ -103,6 +107,7 @@ describe('lesshint', function () {
 
         it('should not allow any units when no valid units are passed', function () {
             var source = '.foo { line-height: 24px; }';
+            var actual;
             var ast;
 
             var expected = [{
@@ -130,6 +135,7 @@ describe('lesshint', function () {
 
         it('should not allow any units when no property units are passed', function () {
             var source = '.foo { line-height: 24px; }';
+            var actual;
             var ast;
 
             var expected = [{
@@ -197,6 +203,7 @@ describe('lesshint', function () {
 
         it('should not allow percentages when set as an invalid unit', function () {
             var source = '.foo { font-size: 100%; }';
+            var actual;
             var ast;
 
             var expected = [{
@@ -224,6 +231,7 @@ describe('lesshint', function () {
 
         it('should not allow percentages when set as an invalid property unit', function () {
             var source = '.foo { font-size: 100%; }';
+            var actual;
             var ast;
 
             var expected = [{
@@ -253,6 +261,7 @@ describe('lesshint', function () {
 
         it('should not allow an invalid unit', function () {
             var source = '.foo { font-size: 1px; }';
+            var actual;
             var ast;
 
             var expected = [{
@@ -280,6 +289,7 @@ describe('lesshint', function () {
 
         it('should not allow an invalid unit that overrides a valid unit', function () {
             var source = '.foo { font-size: 1px; }';
+            var actual;
             var ast;
 
             var expected = [{
@@ -308,6 +318,7 @@ describe('lesshint', function () {
 
         it('should not allow an invalid unit that has been specified valid for a property', function () {
             var source = '.foo { font-size: 1px; }';
+            var actual;
             var ast;
 
             var expected = [{

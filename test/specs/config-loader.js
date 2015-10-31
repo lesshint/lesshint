@@ -1,3 +1,5 @@
+'use strict';
+
 var assert = require('assert');
 var rimraf = require('rimraf');
 var path = require('path');

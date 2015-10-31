@@ -1,3 +1,5 @@
+'use strict';
+
 var assert = require('assert');
 var path = require('path');
 var linter = require('../../../lib/linters/' + path.basename(__filename));
@@ -27,6 +29,7 @@ describe('lesshint', function () {
 
         it('should not allow filename with extension when "filenameExtension" is "false"', function () {
             var source = '@import "foo.less";';
+            var actual;
             var ast;
 
             var expected = [{
@@ -72,6 +75,7 @@ describe('lesshint', function () {
 
         it('should not allow filename without extension when "filenameExtension" is "true"', function () {
             var source = '@import "foo";';
+            var actual;
             var ast;
 
             var expected = [{
@@ -117,6 +121,7 @@ describe('lesshint', function () {
 
         it('should not allow filename with leading underscore when "leadingUnderscore" is "false"', function () {
             var source = '@import "_foo";';
+            var actual;
             var ast;
 
             var expected = [{
@@ -162,6 +167,7 @@ describe('lesshint', function () {
 
         it('should not allow filename without leading underscore when "leadingUnderscore" is "true"', function () {
             var source = '@import "foo";';
+            var actual;
             var ast;
 
             var expected = [{
@@ -189,6 +195,7 @@ describe('lesshint', function () {
 
         it('should not allow files with file extension and leading underscore when both options are "false"', function () {
             var source = '@import "_foo.less";';
+            var actual;
             var ast;
 
             var expected = [{
