@@ -5,7 +5,6 @@ var path = require('path');
 var linter = require('../../../lib/linters/' + path.basename(__filename));
 var lint = require('../../lib/spec_linter')(linter);
 var parseAST = require('../../../lib/linter').parseAST;
-var undefined;
 
 describe('lesshint', function () {
     describe('#singleLinePerSelector()', function () {
