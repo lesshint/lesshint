@@ -171,6 +171,22 @@ describe('linter', function () {
 
             assert.deepEqual(actual, expected);
         });
+
+        it('should not call disabled linters', function () {
+            var source = '.foo{}';
+            var path = 'test.less';
+            var actual;
+
+            var config = {
+                spaceBeforeBrace: {
+                    enabled: false
+                }
+            };
+
+            actual = linter.lint(source, path, config);
+
+            assert.ok(actual.length === 0);
+        });
     });
 
     describe('parseAST', function () {
