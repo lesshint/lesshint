@@ -43,4 +43,16 @@ describe('config-loader', function () {
 
         rimraf(filePath, function () {});
     });
+
+    it('should strip BOM from config files', function () {
+        var config = path.resolve(process.cwd(), './test/data/config/bom.json');
+
+        try {
+            configLoader(config);
+
+            assert(true);
+        } catch (e) {
+            assert(false);
+        }
+    });
 });

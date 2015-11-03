@@ -65,6 +65,48 @@ describe('lesshint', function () {
             assert.deepEqual(actual, expected);
         });
 
+        it('should not allow missing quotes in imports', function () {
+            var source = '@import url(http://google.de)';
+            var actual;
+            var ast;
+
+            var expected = [{
+                column: 9,
+                line: 1,
+                linter: 'urlQuotes',
+                message: 'URLs should be enclosed in quotes.'
+            }];
+
+            var options = {
+                urlQuotes: {
+                    enabled: true
+                }
+            };
+
+            ast = parseAST(source);
+            ast = ast.first();
+
+            actual = lint(options, ast);
+
+            assert.deepEqual(actual, expected);
+        });
+
+        it('should allow quoted urls in imports', function () {
+            var source = '@import url(\'http://google.de\')';
+            var ast;
+
+            var options = {
+                urlQuotes: {
+                    enabled: true
+                }
+            };
+
+            ast = parseAST(source);
+            ast = ast.first();
+
+            assert.strictEqual(undefined, lint(options, ast));
+        });
+
         it('should allow quoted URLs strings surrounded by spaces (#22)', function () {
             var source = ".foo { background-image: url( 'img/image.jpg' ); }";
             var ast;

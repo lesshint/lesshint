@@ -364,5 +364,21 @@ describe('lesshint', function () {
 
             assert.equal(null, lint(options, ast));
         });
+
+        it('should return null when variable declaration', function () {
+            var source = '.foo { @var-name: 12px; }';
+            var ast;
+
+            var options = {
+                propertyUnits: {
+                    enabled: true,
+                }
+            };
+
+            ast = parseAST(source);
+            ast = ast.first().first('block').first('declaration');
+
+            assert.equal(null, lint(options, ast));
+        });
     });
 });

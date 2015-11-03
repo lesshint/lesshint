@@ -1,7 +1,7 @@
 {
   "name": "lesshint",
   "description": "A tool to aid you in writing clean and consistent Less.",
-  "version": "0.9.4",
+  "version": "1.0.1",
   "main": "./lib/lesshint.js",
   "author": {
     "name": "Jonathan Wilsson",
@@ -20,7 +20,7 @@
     "chalk": "^1.0.0",
     "commander": "^2.8.0",
     "exit": "^0.1.2",
-    "gonzales-pe": "3.0.0-31",
+    "gonzales-pe": "^3.0.2",
     "lodash.assign": "^3.2.0 ",
     "lodash.findindex": "^3.2.1",
     "lodash.flatten": "^3.0.2",
@@ -29,13 +29,14 @@
     "minimatch": "^3.0.0",
     "rcfinder": "^0.1.8",
     "sprintf-js": "^1.0.3",
+    "strip-bom": "^2.0.0",
     "strip-json-comments": "^1.0.2",
     "vow": "^0.4.9",
     "vow-fs": "^0.3.4"
   },
   "devDependencies": {
     "coveralls": "^2.11.2",
-    "istanbul": "^0.3.14",
+    "istanbul": "^0.4.0",
     "jscs": "^2.0.0",
     "jshint": "^2.8.0",
     "mocha": "^2.2.5",

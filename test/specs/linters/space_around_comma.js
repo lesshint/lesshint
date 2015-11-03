@@ -124,7 +124,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('parentheses');
+            ast = ast.first('mixin').first('arguments');
 
             assert.equal(null, lint(options, ast));
         });
@@ -149,7 +149,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('parentheses');
+            ast = ast.first('mixin').first('arguments');
 
             actual = lint(options, ast);
 
@@ -167,7 +167,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first('atrules').first('parentheses');
+            ast = ast.first('atrule').first('parentheses');
 
             assert.strictEqual(undefined, lint(options, ast));
         });
@@ -239,7 +239,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('parentheses');
+            ast = ast.first('mixin').first('arguments');
 
             assert.equal(null, lint(options, ast));
         });
@@ -264,7 +264,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('parentheses');
+            ast = ast.first('mixin').first('arguments');
 
             actual = lint(options, ast);
 
@@ -282,7 +282,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first('atrules').first('parentheses');
+            ast = ast.first('atrule').first('parentheses');
 
             assert.strictEqual(undefined, lint(options, ast));
         });
@@ -387,7 +387,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('parentheses');
+            ast = ast.first('mixin').first('arguments');
 
             assert.equal(null, lint(options, ast));
         });
@@ -412,7 +412,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('parentheses');
+            ast = ast.first('mixin').first('arguments');
 
             actual = lint(options, ast);
 
@@ -439,7 +439,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('parentheses');
+            ast = ast.first('mixin').first('arguments');
 
             actual = lint(options, ast);
 
@@ -457,7 +457,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first('atrules').first('parentheses');
+            ast = ast.first('atrule').first('parentheses');
 
             assert.strictEqual(undefined, lint(options, ast));
         });
@@ -549,7 +549,7 @@ describe('lesshint', function () {
             }];
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('parentheses');
+            ast = ast.first('mixin').first('arguments');
 
             assert.deepEqual(expected, lint(options, ast));
         });
@@ -574,7 +574,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('parentheses');
+            ast = ast.first('mixin').first('arguments');
 
             actual = lint(options, ast);
 
@@ -592,7 +592,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first('atrules').first('parentheses');
+            ast = ast.first('atrule').first('parentheses');
 
             assert.strictEqual(undefined, lint(options, ast));
         });
@@ -608,7 +608,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first('atrules').first('parentheses');
+            ast = ast.first('atrule').first('parentheses');
 
             assert.strictEqual(undefined, lint(options, ast));
         });
@@ -673,7 +673,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('parentheses');
+            ast = ast.first('mixin').first('arguments');
 
             assert.equal(undefined, lint(options, ast));
         });
@@ -698,7 +698,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first().first('selector').first('simpleSelector').first('parentheses');
+            ast = ast.first('mixin').first('arguments');
 
             actual = lint(options, ast);
 
@@ -716,7 +716,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first('atrules').first('parentheses');
+            ast = ast.first('atrule').first('parentheses');
 
             assert.strictEqual(undefined, lint(options, ast));
         });
