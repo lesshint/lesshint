@@ -160,6 +160,6 @@
 
     "zeroUnit": {
         "enabled": true,
-        "style": "no_unit"
+        "style": "keep_unit"
     }
 }

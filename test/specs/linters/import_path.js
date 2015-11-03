@@ -240,6 +240,88 @@ describe('lesshint', function () {
             assert.strictEqual(undefined, lint(options, ast));
         });
 
+        it('should check url imports with quotes', function () {
+            var source = '@import url("foo.less");';
+            var ast;
+            var options = {
+                importPath: {
+                    enabled: true,
+                    filenameExtension: false,
+                    exclude: []
+                }
+            };
+
+            var expected = [{
+                column: 13,
+                line: 1,
+                linter: 'importPath',
+                message: 'Imported file, "foo.less" should not include the file extension.'
+            }];
+
+            ast = parseAST(source);
+            ast = ast.first();
+
+            assert.deepEqual(expected, lint(options, ast));
+        });
+
+        it('should check url imports without quotes', function () {
+            var source = '@import url(foo.less);';
+            var ast;
+            var options = {
+                importPath: {
+                    enabled: true,
+                    filenameExtension: false,
+                    exclude: []
+                }
+            };
+
+            var expected = [{
+                column: 13,
+                line: 1,
+                linter: 'importPath',
+                message: 'Imported file, "foo.less" should not include the file extension.'
+            }];
+
+            ast = parseAST(source);
+            ast = ast.first();
+
+            assert.deepEqual(expected, lint(options, ast));
+        });
+
+        it('should ignore @import strings containing absolute URLs', function () {
+            var source = '@import "http://example.com/foo.css";';
+            var ast;
+            var options = {
+                importPath: {
+                    enabled: true,
+                    filenameExtension: false,
+                    exclude: []
+                }
+            };
+
+            ast = parseAST(source);
+            ast = ast.first('atrule');
+
+            assert.strictEqual(undefined, lint(options, ast));
+        });
+
+        it('should ignore @import urls() containing absolute URLs', function () {
+            var source = '@import url("http://example.com/foo.css");';
+            var ast;
+            var options = {
+                importPath: {
+                    enabled: true,
+                    filenameExtension: false,
+                    exclude: []
+                }
+            };
+
+            ast = parseAST(source);
+            ast = ast.first('atrule');
+
+            assert.strictEqual(undefined, lint(options, ast));
+        });
+
         it('should not report excluded files', function () {
             var source = '@import "foo.less";';
             var ast;

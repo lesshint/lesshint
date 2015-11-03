@@ -18,7 +18,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first('ruleset').first('selector');
+            ast = ast.first('ruleset');
 
             assert.strictEqual(undefined, lint(options, ast));
         });
@@ -42,7 +42,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first('ruleset').first('selector');
+            ast = ast.first('ruleset');
 
             actual = lint(options, ast);
 
@@ -59,7 +59,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first('ruleset').first('selector');
+            ast = ast.first('ruleset');
 
             assert.equal(null, lint(options, ast));
         });
@@ -72,7 +72,7 @@ describe('lesshint', function () {
             };
 
             ast = parseAST(source);
-            ast = ast.first('ruleset').first('selector');
+            ast = ast.first('ruleset');
 
             assert.equal(null, lint(options, ast));
         });
