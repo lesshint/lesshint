@@ -17,7 +17,7 @@ describe('lesshint', function () {
 
             result = linter.lint({}, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should not allow multiple selectors on the same line', function () {

@@ -17,7 +17,7 @@ describe('lesshint', function () {
 
             result = linter.lint({}, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should not allow multiple properties on the same line', function () {
@@ -92,7 +92,7 @@ describe('lesshint', function () {
 
             result = linter.lint({}, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should not allow single mixin in single-line block', function () {
@@ -124,7 +124,7 @@ describe('lesshint', function () {
 
             result = linter.lint({}, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should not allow single variable in single-line block', function () {
@@ -156,7 +156,7 @@ describe('lesshint', function () {
 
             result = linter.lint({}, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should not allow single detached ruleset in single-line block', function () {
@@ -226,7 +226,7 @@ describe('lesshint', function () {
 
             result = linter.lint({}, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should return undefined with single-line comment immediately after property definition', function () {
@@ -239,7 +239,7 @@ describe('lesshint', function () {
 
             result = linter.lint({}, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should return undefined with one-line, multi-line comment after property definition', function () {
@@ -252,7 +252,7 @@ describe('lesshint', function () {
 
             result = linter.lint({}, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should return undefined with one-line, multi-line comment immediately after property definition', function () {
@@ -265,7 +265,7 @@ describe('lesshint', function () {
 
             result = linter.lint({}, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should not allow single-line, inline comment after multiple definitions in same line', function () {
