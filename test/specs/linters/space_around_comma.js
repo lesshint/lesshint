@@ -21,7 +21,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should not allow missing space after comma when "style" is "after"', function () {
@@ -66,7 +66,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should not allow missing space after comma in mixins when "style" is "after"', function () {
@@ -106,7 +106,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should allow one space before comma when "style" is "before"', function () {
@@ -123,7 +123,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should not allow missing space before comma when "style" is "before"', function () {
@@ -168,7 +168,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should not allow missing space before comma in mixins when "style" is "before"', function () {
@@ -208,7 +208,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should allow one space before and after comma when "style" is "both"', function () {
@@ -225,7 +225,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should not allow missing space before comma when "style" is "both"', function () {
@@ -298,7 +298,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should not allow missing space before comma in mixins when "style" is "both"', function () {
@@ -361,7 +361,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should not allow a missing space before comma when "style" is "none"', function () {
@@ -480,7 +480,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should not report on operators other than commas when "style" is "one_space". See #49', function () {
@@ -497,7 +497,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should allow a missing space after comma when "style" is "none"', function () {
@@ -514,7 +514,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should not allow one space after comma when "style" is "none"', function () {
@@ -559,7 +559,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should not allow one space after comma in mixins when "style" is "none"', function () {
@@ -599,7 +599,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should throw on invalid "style" value', function () {

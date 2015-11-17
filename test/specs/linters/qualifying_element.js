@@ -17,7 +17,7 @@ describe('lesshint', function () {
 
             result = linter.lint({}, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should not allow ID selector with a qualifying element', function () {
@@ -91,7 +91,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should allow class selector with a qualifying element when "allowWithClass" is "true"', function () {
@@ -108,7 +108,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should allow attribute selector with a qualifying element when "allowWithAttribute" is "true"', function () {
@@ -125,7 +125,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should not allow a class with a qualifying element in a descendant selector', function () {

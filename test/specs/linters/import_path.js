@@ -22,7 +22,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should not allow filename with extension when "filenameExtension" is "false"', function () {
@@ -64,7 +64,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should not allow filename without extension when "filenameExtension" is "true"', function () {
@@ -106,7 +106,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should not allow filename with leading underscore when "leadingUnderscore" is "false"', function () {
@@ -148,7 +148,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should not allow filename without leading underscore when "leadingUnderscore" is "true"', function () {
@@ -221,7 +221,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should check url imports with quotes', function () {

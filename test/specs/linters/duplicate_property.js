@@ -21,7 +21,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should not allow duplicate properties', function () {
@@ -61,7 +61,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should not allow duplicates of properties that are not excluded', function () {

@@ -21,7 +21,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should allow missing space before closing parenthesis when "style" is "no_space"', function () {
@@ -38,7 +38,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should allow missing space after opening parenthesis and before closing parenthesis when "style" is "no_space"', function () {
@@ -55,7 +55,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should not allow one space after opening parenthesis when "style" is "no_space"', function () {
@@ -220,7 +220,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should allow one space before closing parenthesis when "style" is "one_space"', function () {
@@ -237,7 +237,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should allow one space after opening parenthesis and before closing parenthesis when "style" is "one_space"', function () {
@@ -254,7 +254,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should not allow missing space after opening parenthesis when "style" is "one_space"', function () {
@@ -419,7 +419,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should allow missing space before closing parenthesis in mixins when "style" is "no_space"', function () {
@@ -436,7 +436,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should allow missing space after opening parenthesis and before closing parenthesis in mixins when "style" is "no_space"', function () {
@@ -453,7 +453,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should not allow one space after opening parenthesis in mixins when "style" is "no_space"', function () {
@@ -618,7 +618,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should allow one space before closing parenthesis in mixins when "style" is "one_space"', function () {
@@ -635,7 +635,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should allow one space after opening parenthesis and before closing parenthesis in mixins when "style" is "one_space"', function () {
@@ -652,7 +652,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should not allow missing space after opening parenthesis in mixins when "style" is "one_space"', function () {

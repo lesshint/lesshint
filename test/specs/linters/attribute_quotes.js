@@ -17,7 +17,7 @@ describe('lesshint', function () {
 
             result = linter.lint({}, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should allow double quotes', function () {
@@ -30,7 +30,7 @@ describe('lesshint', function () {
 
             result = linter.lint({}, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should not allow missing quotes', function () {

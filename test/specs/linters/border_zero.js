@@ -21,7 +21,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should allow 0 as a value when "style" is "zero" and the property is "border"', function () {
@@ -38,7 +38,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should not allow 0 as a value when "style" is "none" and the property is "border"', function () {
@@ -101,7 +101,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should allow "none" as a value when "style" is "none" and the property is "border-left"', function () {
@@ -118,7 +118,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should allow "none" as a value when "style" is "none" and the property is "border-right"', function () {
@@ -135,7 +135,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should allow "none" as a value when "style" is "none" and the property is "border-top"', function () {
@@ -152,7 +152,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should not do anything when there is a actual border specified', function () {

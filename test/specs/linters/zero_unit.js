@@ -44,7 +44,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should not report units on zero values when "style" is "keep_unit"', function () {
@@ -61,7 +61,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should report missing units on zero values when "style" is "keep_unit"', function () {

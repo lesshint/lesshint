@@ -36,7 +36,7 @@ describe('lesshint', function () {
 
             result = linter.lint({}, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should ignore empty rules', function () {
@@ -49,7 +49,7 @@ describe('lesshint', function () {
 
             result = linter.lint({}, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should ignore empty rules with new lines', function () {
@@ -62,7 +62,7 @@ describe('lesshint', function () {
 
             result = linter.lint({}, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should allow semicolons in rulesets in @media declarations (#15)', function () {
@@ -75,7 +75,7 @@ describe('lesshint', function () {
 
             result = linter.lint({}, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
 
         it('should not report a missing when there\'s a space before the semicolon', function () {
@@ -88,7 +88,7 @@ describe('lesshint', function () {
 
             result = linter.lint({}, ast);
 
-            expect(result).to.equal(undefined);
+            expect(result).to.be.undefined;
         });
     });
 });
