@@ -1,440 +1,319 @@
-var assert = require('assert');
+'use strict';
+
 var path = require('path');
+var expect = require('chai').expect;
 var linter = require('../../../lib/linters/' + path.basename(__filename));
-var lint = require('../../lib/spec_linter')(linter);
 var parseAST = require('../../../lib/linter').parseAST;
-var undefined;
 
 describe('lesshint', function () {
-    var errorMessage = 'Each property should be on its own line.';
-
     describe('#singleLinePerProperty()', function () {
         it('should allow properties on separate lines', function () {
             var source = '.foo {\n color: red; \n margin-right: 10px; \n}';
+            var result;
             var ast;
-
-            var options = {
-                singleLinePerProperty: {
-                    enabled: true
-                }
-            };
 
             ast = parseAST(source);
             ast = ast.first('ruleset').first('block');
 
-            assert.strictEqual(undefined, lint(options, ast));
+            result = linter.lint({}, ast);
+
+            expect(result).to.equal(undefined);
         });
 
         it('should not allow multiple properties on the same line', function () {
             var source = '.foo {\n color: red; margin-right: 10px; \n}';
-            var actual;
+            var result;
             var ast;
 
             var expected = [{
                 column: 2,
                 line: 2,
-                linter: 'singleLinePerProperty',
-                message: errorMessage
+                message: 'Each property should be on its own line.'
             },
             {
                 column: 14,
                 line: 2,
-                linter: 'singleLinePerProperty',
-                message: errorMessage
+                message: 'Each property should be on its own line.'
             }];
-
-            var options = {
-                singleLinePerProperty: {
-                    enabled: true
-                }
-            };
 
             ast = parseAST(source);
             ast = ast.first('ruleset').first('block');
 
-            actual = lint(options, ast);
+            result = linter.lint({}, ast);
 
-            assert.deepEqual(actual, expected);
+            expect(result).to.deep.equal(expected);
         });
 
         it('should not allow sole property in single-line block (spaces between braces)', function () {
             var source = '.foo { color: red; }';
-            var actual;
+            var result;
             var ast;
 
             var expected = [{
                 column: 8,
                 line: 1,
-                linter: 'singleLinePerProperty',
-                message: errorMessage
+                message: 'Each property should be on its own line.'
             }];
-
-            var options = {
-                singleLinePerProperty: {
-                    enabled: true
-                }
-            };
 
             ast = parseAST(source);
             ast = ast.first('ruleset').first('block');
 
-            actual = lint(options, ast);
+            result = linter.lint({}, ast);
 
-            assert.deepEqual(actual, expected);
+            expect(result).to.deep.equal(expected);
         });
 
         it('should not allow sole property in single-line block (no spaced between braces)', function () {
             var source = '.foo {color: red;}';
-            var actual;
+            var result;
             var ast;
 
             var expected = [{
                 column: 7,
                 line: 1,
-                linter: 'singleLinePerProperty',
-                message: errorMessage
+                message: 'Each property should be on its own line.'
             }];
 
-            var options = {
-                singleLinePerProperty: {
-                    enabled: true
-                }
-            };
-
             ast = parseAST(source);
             ast = ast.first('ruleset').first('block');
 
-            actual = lint(options, ast);
+            result = linter.lint({}, ast);
 
-            assert.deepEqual(actual, expected);
+            expect(result).to.deep.equal(expected);
         });
 
-        it('should allow mixins on separate block', function () {
+        it('should allow mixins on separate lines', function () {
             var source = '.foo {\n.mixin(); \n.mixin2(); \n}';
+            var result;
             var ast;
-
-            var options = {
-                singleLinePerProperty: {
-                    enabled: true
-                }
-            };
 
             ast = parseAST(source);
             ast = ast.first('ruleset').first('block');
 
-            assert.strictEqual(undefined, lint(options, ast));
+            result = linter.lint({}, ast);
+
+            expect(result).to.equal(undefined);
         });
 
         it('should not allow single mixin in single-line block', function () {
             var source = '.foo {.mixin();}';
-            var actual;
+            var result;
             var ast;
 
             var expected = [{
                 column: 7,
                 line: 1,
-                linter: 'singleLinePerProperty',
-                message: errorMessage
+                message: 'Each property should be on its own line.'
             }];
 
-            var options = {
-                singleLinePerProperty: {
-                    enabled: true
-                }
-            };
-
             ast = parseAST(source);
             ast = ast.first('ruleset').first('block');
 
-            actual = lint(options, ast);
+            result = linter.lint({}, ast);
 
-            assert.deepEqual(actual, expected);
+            expect(result).to.deep.equal(expected);
         });
 
-        it('should allow variables on separate block', function () {
+        it('should allow variables on separate lines', function () {
             var source = '.foo {\n@var1: 10px; \n@var2: 20px; \n}';
+            var result;
             var ast;
-
-            var options = {
-                singleLinePerProperty: {
-                    enabled: true
-                }
-            };
 
             ast = parseAST(source);
             ast = ast.first('ruleset').first('block');
 
-            assert.strictEqual(undefined, lint(options, ast));
+            result = linter.lint({}, ast);
+
+            expect(result).to.equal(undefined);
         });
 
         it('should not allow single variable in single-line block', function () {
             var source = '.foo {@var1: 10px;}';
-            var actual;
+            var result;
             var ast;
 
             var expected = [{
                 column: 7,
                 line: 1,
-                linter: 'singleLinePerProperty',
-                message: errorMessage
+                message: 'Each property should be on its own line.'
             }];
 
-            var options = {
-                singleLinePerProperty: {
-                    enabled: true
-                }
-            };
-
             ast = parseAST(source);
             ast = ast.first('ruleset').first('block');
 
-            actual = lint(options, ast);
+            result = linter.lint({}, ast);
 
-            assert.deepEqual(actual, expected);
+            expect(result).to.deep.equal(expected);
         });
 
-        it('should allow detached rulessets on separate block', function () {
+        it('should allow detached rulessets on separate lines', function () {
             var source = '.foo {\n@ruleset1(); \n@ruleset2(); \n}';
+            var result;
             var ast;
-
-            var options = {
-                singleLinePerProperty: {
-                    enabled: true
-                }
-            };
 
             ast = parseAST(source);
             ast = ast.first('ruleset').first('block');
 
-            assert.strictEqual(undefined, lint(options, ast));
+            result = linter.lint({}, ast);
+
+            expect(result).to.equal(undefined);
         });
 
         it('should not allow single detached ruleset in single-line block', function () {
             var source = '.foo {@ruleset();}';
-            var actual;
+            var result;
             var ast;
 
             var expected = [{
                 column: 7,
                 line: 1,
-                linter: 'singleLinePerProperty',
-                message: errorMessage
+                message: 'Each property should be on its own line.'
             }];
-
-            var options = {
-                singleLinePerProperty: {
-                    enabled: true
-                }
-            };
 
             ast = parseAST(source);
             ast = ast.first('ruleset').first('block');
 
-            actual = lint(options, ast);
+            result = linter.lint({}, ast);
 
-            assert.deepEqual(actual, expected);
+            expect(result).to.deep.equal(expected);
         });
 
         it('should not allow opening brace on the same line as a property', function () {
             var source = '.foo { color: red; \n margin-right: 10px; \n}';
-            var actual;
+            var result;
             var ast;
 
             var expected = [{
                 column: 8,
                 line: 1,
-                linter: 'singleLinePerProperty',
-                message: errorMessage
+                message: 'Each property should be on its own line.'
             }];
-
-            var options = {
-                singleLinePerProperty: {
-                    enabled: true
-                }
-            };
 
             ast = parseAST(source);
             ast = ast.first('ruleset').first('block');
 
-            actual = lint(options, ast);
+            result = linter.lint({}, ast);
 
-            assert.deepEqual(actual, expected);
+            expect(result).to.deep.equal(expected);
         });
 
         it('should not allow closing brace on the same line as a property', function () {
             var source = '.foo {\n color: red; \n margin-right: 10px; }';
-            var actual;
+            var result;
             var ast;
 
             var expected = [{
                 column: 2,
                 line: 3,
-                linter: 'singleLinePerProperty',
-                message: errorMessage
+                message: 'Each property should be on its own line.'
             }];
 
-            var options = {
-                singleLinePerProperty: {
-                    enabled: true
-                }
-            };
-
             ast = parseAST(source);
             ast = ast.first('ruleset').first('block');
 
-            actual = lint(options, ast);
+            result = linter.lint({}, ast);
 
-            assert.deepEqual(actual, expected);
+            expect(result).to.deep.equal(expected);
         });
 
-        it('should return null when disabled', function () {
-            var source = '.foo { color: red; margin-right: 10px; }';
-            var ast;
-            var options = {
-                singleLinePerProperty: {
-                    enabled: false
-                }
-            };
-
-            ast = parseAST(source);
-            ast = ast.first('ruleset').first('block');
-
-            assert.equal(null, lint(options, ast));
-        });
-
-        it('should return null when disabled via shorthand', function () {
-            var source = '.foo { color: red; margin-right: 10px; }';
-            var ast;
-            var options = {
-                singleLinePerProperty: false
-            };
-
-            ast = parseAST(source);
-            ast = ast.first('ruleset').first('block');
-
-            assert.equal(null, lint(options, ast));
-        });
-
-        it('should return null with single-line comment after property definition', function () {
+        it('should return undefined with single-line comment after property definition', function () {
             var source = '.foo {\n color: red;\n margin-right: 10px; // inline comment\n}';
-            var options = {
-                singleLinePerProperty: {
-                    enabled: true
-                }
-            };
+            var result;
             var ast;
 
             ast = parseAST(source);
             ast = ast.first('ruleset').first('block');
 
-            assert.equal(null, lint(options, ast));
+            result = linter.lint({}, ast);
+
+            expect(result).to.equal(undefined);
         });
 
-        it('should return null with single-line comment immediately after property definition', function () {
+        it('should return undefined with single-line comment immediately after property definition', function () {
             var source = '.foo {\n color: red;\n margin-right: 10px;// inline comment\n}';
-            var options = {
-                singleLinePerProperty: {
-                    enabled: true
-                }
-            };
+            var result;
             var ast;
 
             ast = parseAST(source);
             ast = ast.first('ruleset').first('block');
 
-            assert.equal(null, lint(options, ast));
+            result = linter.lint({}, ast);
+
+            expect(result).to.equal(undefined);
         });
 
-        it('should return null with one-line, multi-line comment after property definition', function () {
+        it('should return undefined with one-line, multi-line comment after property definition', function () {
             var source = '.foo {\n color: red;\n margin-right: 10px; /* inline comment */\n}';
-            var options = {
-                singleLinePerProperty: {
-                    enabled: true
-                }
-            };
+            var result;
             var ast;
 
             ast = parseAST(source);
             ast = ast.first('ruleset').first('block');
 
-            assert.equal(null, lint(options, ast));
+            result = linter.lint({}, ast);
+
+            expect(result).to.equal(undefined);
         });
 
-        it('should return null with one-line, multi-line comment immediately after property definition', function () {
+        it('should return undefined with one-line, multi-line comment immediately after property definition', function () {
             var source = '.foo {\n color: red;\n margin-right: 10px;/* inline comment */\n}';
-            var options = {
-                singleLinePerProperty: {
-                    enabled: true
-                }
-            };
+            var result;
             var ast;
 
             ast = parseAST(source);
             ast = ast.first('ruleset').first('block');
 
-            assert.equal(null, lint(options, ast));
+            result = linter.lint({}, ast);
+
+            expect(result).to.equal(undefined);
         });
 
         it('should not allow single-line, inline comment after multiple definitions in same line', function () {
             var source = '.foo {\n color: red; margin-right: 10px; // inline comment\n}';
-            var actual;
+            var result;
             var ast;
 
             var expected = [{
                 column: 2,
                 line: 2,
-                linter: 'singleLinePerProperty',
-                message: errorMessage
-            }, {
+                message: 'Each property should be on its own line.'
+            },
+            {
                 column: 14,
                 line: 2,
-                linter: 'singleLinePerProperty',
-                message: errorMessage
+                message: 'Each property should be on its own line.'
             }];
-
-            var options = {
-                singleLinePerProperty: {
-                    enabled: true
-                }
-            };
 
             ast = parseAST(source);
             ast = ast.first('ruleset').first('block');
 
-            actual = lint(options, ast);
+            result = linter.lint({}, ast);
 
-            assert.deepEqual(actual, expected);
+            expect(result).to.deep.equal(expected);
         });
 
         it('should not allow one-line, multi-line comment after multiple definitions in same line', function () {
             var source = '.foo {\n color: red; margin-right: 10px; /* inline comment */\n}';
-            var actual;
+            var result;
             var ast;
 
             var expected = [{
                 column: 2,
                 line: 2,
-                linter: 'singleLinePerProperty',
-                message: errorMessage
-            }, {
+                message: 'Each property should be on its own line.'
+            },
+            {
                 column: 14,
                 line: 2,
-                linter: 'singleLinePerProperty',
-                message: errorMessage
+                message: 'Each property should be on its own line.'
             }];
-
-            var options = {
-                singleLinePerProperty: {
-                    enabled: true
-                }
-            };
 
             ast = parseAST(source);
             ast = ast.first('ruleset').first('block');
 
-            actual = lint(options, ast);
+            result = linter.lint({}, ast);
 
-            assert.deepEqual(actual, expected);
+            expect(result).to.deep.equal(expected);
         });
     });
 });

@@ -1,5 +1,6 @@
 {
+    "-W024": false,
     "latedef": true,
-    "node": true,
-    "-W024": false
+    "mocha": true,
+    "node": true
 }

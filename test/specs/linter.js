@@ -1,4 +1,6 @@
-var assert = require('assert');
+'use strict';
+
+var expect = require('chai').expect;
 
 describe('linter', function () {
     var linter = require('../../lib/linter');
@@ -7,7 +9,7 @@ describe('linter', function () {
         it('should return array of errors', function () {
             var source = '.foo{ color:red; }\n';
             var path = 'test.less';
-            var actual;
+            var results;
 
             var config = {
                 spaceAfterPropertyColon: {
@@ -20,15 +22,15 @@ describe('linter', function () {
                 }
             };
 
-            actual = linter.lint(source, path, config);
+            results = linter.lint(source, path, config);
 
-            assert.ok(actual.length === 2);
+            expect(results).to.have.length(2);
         });
 
         it('should handle all sorts of line endings (#40)', function () {
             var source = '.foo {\r\n margin-right:10px; }\r\n';
             var path = 'test.less';
-            var actual;
+            var result;
 
             var expected = [{
                 column: 15,
@@ -36,26 +38,26 @@ describe('linter', function () {
                 line: 2,
                 linter: 'spaceAfterPropertyColon',
                 message: 'Colon after property name should be followed by one space.',
-                source: ' margin-right:10px; }',
-                severity: 'warning'
+                severity: 'warning',
+                source: ' margin-right:10px; }'
             }];
 
-            var config = {
+            var options = {
                 spaceAfterPropertyColon: {
                     enabled: true,
                     style: 'one_space'
                 }
             };
 
-            actual = linter.lint(source, path, config);
+            result = linter.lint(source, path, options);
 
-            assert.deepEqual(actual, expected);
+            expect(result).to.deep.equal(expected);
         });
 
         it('should pass the filename to the errors list', function () {
             var source = '.foo{ color: red; }\n';
             var path = 'path/to/file.less';
-            var actual;
+            var result;
 
             var expected = [{
                 column: 5,
@@ -63,8 +65,8 @@ describe('linter', function () {
                 line: 1,
                 linter: 'spaceBeforeBrace',
                 message: 'Opening curly brace should be preceded by one space.',
-                source: '.foo{ color: red; }',
-                severity: 'warning'
+                severity: 'warning',
+                source: '.foo{ color: red; }'
             }];
 
             var config = {
@@ -74,78 +76,51 @@ describe('linter', function () {
                 }
             };
 
-            actual = linter.lint(source, path, config);
+            result = linter.lint(source, path, config);
 
-            assert.deepEqual(actual, expected);
-        });
-
-        it('should expose the offending source in the errors list', function () {
-            var source = '.foo{}';
-            var path = 'path/to/file.less';
-            var actual;
-
-            var expected = [{
-                column: 5,
-                file: 'file.less',
-                line: 1,
-                linter: 'spaceBeforeBrace',
-                message: 'Opening curly brace should be preceded by one space.',
-                source: '.foo{}',
-                severity: 'warning'
-            }];
-
-            var config = {
-                spaceBeforeBrace: {
-                    enabled: true,
-                    style: 'one_space'
-                }
-            };
-
-            actual = linter.lint(source, path, config);
-
-            assert.deepEqual(actual, expected);
+            expect(result).to.deep.equal(expected);
         });
 
         it('should sort results by column and line number', function () {
             var source = '[type="text"], [type=email] {\nmargin-right: 10px;\ncolor: red;\ncolor: blue;\n}';
             var path = 'path/to/file.less';
-            var actual;
+            var result;
 
             var expected = [{
                 column: 7,
+                file: 'file.less',
                 line: 1,
                 linter: 'stringQuotes',
                 message: 'Strings should use single quotes.',
-                file: 'file.less',
-                source: '[type="text"], [type=email] {',
-                severity: 'warning'
+                severity: 'warning',
+                source: '[type="text"], [type=email] {'
             },
             {
                 column: 22,
+                file: 'file.less',
                 line: 1,
                 linter: 'attributeQuotes',
                 message: 'Attribute selectors should use quotes.',
-                file: 'file.less',
-                source: '[type="text"], [type=email] {',
-                severity: 'warning'
+                severity: 'warning',
+                source: '[type="text"], [type=email] {'
             },
             {
                 column: 1,
+                file: 'file.less',
                 line: 3,
                 linter: 'propertyOrdering',
                 message: 'Property ordering is not alphabetized',
-                file: 'file.less',
-                source: 'color: red;',
-                severity: 'warning'
+                severity: 'warning',
+                source: 'color: red;'
             },
             {
                 column: 1,
+                file: 'file.less',
                 line: 4,
                 linter: 'duplicateProperty',
                 message: 'Duplicate property: "color".',
-                file: 'file.less',
-                source: 'color: blue;',
-                severity: 'warning'
+                severity: 'warning',
+                source: 'color: blue;'
             }];
 
             var config = {
@@ -167,63 +142,57 @@ describe('linter', function () {
                 }
             };
 
-            actual = linter.lint(source, path, config);
+            result = linter.lint(source, path, config);
 
-            assert.deepEqual(actual, expected);
+            expect(result).to.deep.equal(expected);
         });
-    });
 
-    it('should sort results by line number', function () {
-        var source = '.foo {\ncontent: "bar";\ncolor: red;\ncolor: blue;\n}';
-        var path = 'path/to/file.less';
-        var actual;
+        it('should not call disabled linters', function () {
+            var source = '.foo{}';
+            var path = 'test.less';
+            var result;
 
-        var expected = [{
-            column: 10,
-            line: 2,
-            linter: 'stringQuotes',
-            message: 'Strings should use single quotes.',
-            file: 'file.less',
-            source: 'content: "bar";',
-            severity: 'warning'
-        },
-        {
-            column: 1,
-            line: 3,
-            linter: 'propertyOrdering',
-            message: 'Property ordering is not alphabetized',
-            file: 'file.less',
-            source: 'color: red;',
-            severity: 'warning'
-        },
-        {
-            column: 1,
-            line: 4,
-            linter: 'duplicateProperty',
-            message: 'Duplicate property: "color".',
-            file: 'file.less',
-            source: 'color: blue;',
-            severity: 'warning'
-        }];
+            var config = {
+                spaceBeforeBrace: {
+                    enabled: false
+                }
+            };
 
-        var config = {
-            duplicateProperty: {
-                enabled: true,
-                exclude: []
-            },
-            propertyOrdering: {
-                enabled: true,
-                style: 'alpha'
-            },
-            stringQuotes: {
-                enabled: true,
-                style: 'single'
-            }
-        };
+            result = linter.lint(source, path, config);
 
-        actual = linter.lint(source, path, config);
+            expect(result).to.have.length(0);
+        });
 
-        assert.deepEqual(actual, expected);
+        it('should not call linters disabled via shorthand', function () {
+            var source = '.foo{}';
+            var path = 'test.less';
+            var result;
+
+            var config = {
+                spaceBeforeBrace: false
+            };
+
+            result = linter.lint(source, path, config);
+
+            expect(result).to.have.length(0);
+        });
+
+        it('should not call linter for unwanted node types', function () {
+            var source = '.foo {}';
+            var path = 'test.less';
+            var result;
+
+            var config = {
+                stringQuotes: {
+                    enabled: true
+                }
+            };
+
+            result = linter.lint(source, path, config);
+
+            // String quotes should never be called since there no strings in the input
+            expect(result).to.have.length(0);
+        });
     });
 
     describe('parseAST', function () {
@@ -231,7 +200,7 @@ describe('linter', function () {
             var source = '.foo { color: red; }';
             var ast = linter.parseAST(source);
 
-            assert.ok(ast.toString); // If the returned object has the 'toString' method, we'll consider it a success
+            expect(ast).to.have.property('toString'); // If the returned object has the 'toString' method, we'll consider it a success
         });
     });
 });
