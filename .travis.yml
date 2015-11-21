@@ -8,6 +8,7 @@ node_js:
   - "iojs-v2"
   - "iojs-v3"
   - "4"
+  - "5"
 
 before_script:
   - node --version
