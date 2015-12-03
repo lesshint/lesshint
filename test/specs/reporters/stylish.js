@@ -1,4 +1,6 @@
-var assert = require('assert');
+'use strict';
+
+var expect = require('chai').expect;
 var rewire = require('rewire');
 var chalk = require('chalk');
 var sinon = require('sinon');
@@ -55,11 +57,13 @@ describe('reporter:stylish', function () {
 
         reporter(errors);
 
-        assert(console.log.called === false);
+        expect(console.log.called).to.equal(false);
+
         console.log.restore();
     });
 
     it('should print errors with colors', function () {
+        var message;
         var errors = [{
             column: 5,
             file: 'file.less',
@@ -76,15 +80,19 @@ describe('reporter:stylish', function () {
 
         reporter(errors);
 
-        assert.strictEqual(chalkStub.cyan.called, true);
-        assert.strictEqual(chalkStub.green.called, true);
-        assert.strictEqual(chalkStub.magenta.called, true);
-        assert.strictEqual(chalk.stripColor(console.log.getCall(0).args[0]), 'file.less: line 1, col 5, spaceBeforeBrace: Opening curly brace should be preceded by one space.');
+        expect(chalkStub.cyan.called).to.equal(true);
+        expect(chalkStub.green.called).to.equal(true);
+        expect(chalkStub.magenta.called).to.equal(true);
+
+        message = chalk.stripColor(console.log.getCall(0).args[0]);
+
+        expect(message).to.equal('file.less: line 1, col 5, spaceBeforeBrace: Opening curly brace should be preceded by one space.');
 
         console.log.restore();
     });
 
     it('should not print line when not passed one', function () {
+        var message;
         var errors = [{
             column: 5,
             file: 'file.less',
@@ -97,12 +105,15 @@ describe('reporter:stylish', function () {
 
         reporter(errors);
 
-        assert.strictEqual(chalk.stripColor(console.log.getCall(0).args[0]), 'file.less: col 5, spaceBeforeBrace: Opening curly brace should be preceded by one space.');
+        message = chalk.stripColor(console.log.getCall(0).args[0]);
+
+        expect(message).to.equal('file.less: col 5, spaceBeforeBrace: Opening curly brace should be preceded by one space.');
 
         console.log.restore();
     });
 
     it('should not print column when not passed one', function () {
+        var message;
         var errors = [{
             line: 1,
             file: 'file.less',
@@ -115,7 +126,9 @@ describe('reporter:stylish', function () {
 
         reporter(errors);
 
-        assert.strictEqual(chalk.stripColor(console.log.getCall(0).args[0]), 'file.less: line 1, spaceBeforeBrace: Opening curly brace should be preceded by one space.');
+        message = chalk.stripColor(console.log.getCall(0).args[0]);
+
+        expect(message).to.equal('file.less: line 1, spaceBeforeBrace: Opening curly brace should be preceded by one space.');
 
         console.log.restore();
     });

@@ -1,4 +1,6 @@
-var assert = require('assert');
+'use strict';
+
+var expect = require('chai').expect;
 var rewire = require('rewire');
 var sinon = require('sinon');
 var path = require('path');
@@ -34,8 +36,8 @@ describe('cli', function () {
         });
 
         return result.fail(function () {
-            // We can't really be sure of the JSON.parse() error message, so we'll just check that the beginning is correct
-            assert(console.error.getCall(0).args[0].indexOf('Something\'s wrong with the config file. Error: ') === 0);
+            expect(console.error.calledOnce).to.equal(true);
+
             console.error.restore();
         });
     });
@@ -50,7 +52,8 @@ describe('cli', function () {
         });
 
         return result.fail(function () {
-            assert(console.error.getCall(0).args[0] === 'No files to lint were passed. See lesshint -h');
+            expect(console.error.calledOnce).to.equal(true);
+
             console.error.restore();
         });
     });
@@ -66,7 +69,7 @@ describe('cli', function () {
         });
 
         return result.fail(function (status) {
-            assert.ok(status === 1);
+            expect(status).to.equal(1);
 
             console.log.restore();
         });
@@ -80,7 +83,7 @@ describe('cli', function () {
         });
 
         return result.fail(function (status) {
-            assert.ok(status === 66);
+            expect(status).to.equal(66);
         });
     });
 
@@ -93,7 +96,7 @@ describe('cli', function () {
         });
 
         return result.fail(function (status) {
-            assert.ok(status === 78);
+            expect(status).to.equal(78);
         });
     });
 
@@ -106,7 +109,7 @@ describe('cli', function () {
         });
 
         return result.fail(function (status) {
-            assert.ok(status === 78);
+            expect(status).to.equal(78);
         });
     });
 
@@ -119,7 +122,7 @@ describe('cli', function () {
         });
 
         return result.then(function (status) {
-            assert.ok(status === 0);
+            expect(status).to.equal(0);
         });
     });
 
@@ -132,7 +135,7 @@ describe('cli', function () {
         });
 
         return result.then(function (status) {
-            assert.ok(status === 0);
+            expect(status).to.equal(0);
         });
     });
 
@@ -145,7 +148,7 @@ describe('cli', function () {
         });
 
         return result.then(function (status) {
-            assert.ok(status === 0);
+            expect(status).to.equal(0);
         });
     });
 
@@ -158,7 +161,7 @@ describe('cli', function () {
         });
 
         return result.fail(function (status) {
-            assert.ok(status === 1);
+            expect(status).to.equal(1);
         });
     });
 
@@ -171,7 +174,7 @@ describe('cli', function () {
         });
 
         return result.fail(function (status) {
-            assert.ok(status === 70);
+            expect(status).to.equal(70);
         });
     });
 });

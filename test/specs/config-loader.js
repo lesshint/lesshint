@@ -1,4 +1,6 @@
-var assert = require('assert');
+'use strict';
+
+var expect = require('chai').expect;
 var rimraf = require('rimraf');
 var path = require('path');
 var fs = require('fs');
@@ -8,7 +10,8 @@ describe('config-loader', function () {
 
     it('should load the specified config file', function () {
         var config = path.resolve(process.cwd(), './test/data/config/config.json');
-        var actual = configLoader(config);
+        var result;
+
         var expected = {
             spaceAfterPropertyColon: {
                 enabled: false,
@@ -21,12 +24,14 @@ describe('config-loader', function () {
             }
         };
 
-        assert.deepEqual(actual, expected);
+        result = configLoader(config);
+
+        expect(result).to.deep.equal(expected);
     });
 
     it('should load .lesshintrc if no config file is passed', function () {
         var filePath = path.resolve(process.cwd(), './.lesshintrc');
-        var actual;
+        var result;
 
         var expected = {
             spaceBeforeBrace: {
@@ -37,22 +42,17 @@ describe('config-loader', function () {
 
         fs.writeFileSync(filePath, JSON.stringify(expected));
 
-        actual = configLoader();
+        result = configLoader();
 
-        assert.deepEqual(actual, expected);
+        expect(result).to.deep.equal(expected);
 
         rimraf(filePath, function () {});
     });
 
     it('should strip BOM from config files', function () {
         var config = path.resolve(process.cwd(), './test/data/config/bom.json');
+        var loader = configLoader.bind(null, config);
 
-        try {
-            configLoader(config);
-
-            assert(true);
-        } catch (e) {
-            assert(false);
-        }
+        expect(loader).to.not.throw(Error);
     });
 });
