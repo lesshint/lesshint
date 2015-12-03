@@ -315,5 +315,31 @@ describe('lesshint', function () {
 
             expect(result).to.deep.equal(expected);
         });
+
+        it('should not report nested media queries', function () {
+            var source = 'section {\n@media (min-width: 300px) {\nfont-size: inherit;\n}\n}';
+            var result;
+            var ast;
+
+            ast = parseAST(source);
+            ast = ast.first('ruleset').first('block');
+
+            result = linter.lint({}, ast);
+
+            expect(result).to.be.undefined;
+        });
+
+        it('shoud not report declarations without a trailing semicolon', function () {
+            var source = '.foo {\ncolor: red\n}';
+            var result;
+            var ast;
+
+            ast = parseAST(source);
+            ast = ast.first('ruleset').first('block');
+
+            result = linter.lint({}, ast);
+
+            expect(result).to.be.undefined;
+        });
     });
 });
