@@ -158,6 +158,12 @@
         "enabled": true
     },
 
+    "validateIndentation": {
+        "enabled": true,
+        "size": 2,
+        "style": "spaces"
+    },
+
     "zeroUnit": {
         "enabled": true,
         "style": "keep_unit"
