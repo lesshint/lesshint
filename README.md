@@ -93,12 +93,19 @@ There are three ways to load a reporter.
 In it's simplest form, a reporter is just a function accepting some input. The most basic reporter possible:
 
 ```js
+module.exports = {
+    report: function (errors) {
+        console.log(errors.length ? 'Errors found' : 'No errors');
+    }
+};
+
+// Old usage, deprecated as of 1.2.0:
 module.exports = function (errors) {
     console.log(errors.length ? 'Errors found' : 'No errors');
 };
 ```
 
-The reporter will be passed an array objects representing each error:
+The reporter will be passed an array of objects representing each error:
 
 ```js
 {

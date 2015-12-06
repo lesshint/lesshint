@@ -55,7 +55,7 @@ describe('reporter:stylish', function () {
 
         sinon.spy(console, 'log');
 
-        reporter(errors);
+        reporter.report(errors);
 
         expect(console.log.called).to.equal(false);
 
@@ -78,7 +78,7 @@ describe('reporter:stylish', function () {
         sinon.spy(chalkStub, 'green');
         sinon.spy(chalkStub, 'magenta');
 
-        reporter(errors);
+        reporter.report(errors);
 
         expect(chalkStub.cyan.called).to.equal(true);
         expect(chalkStub.green.called).to.equal(true);
@@ -103,7 +103,7 @@ describe('reporter:stylish', function () {
 
         sinon.spy(console, 'log');
 
-        reporter(errors);
+        reporter.report(errors);
 
         message = chalk.stripColor(console.log.getCall(0).args[0]);
 
@@ -124,7 +124,7 @@ describe('reporter:stylish', function () {
 
         sinon.spy(console, 'log');
 
-        reporter(errors);
+        reporter.report(errors);
 
         message = chalk.stripColor(console.log.getCall(0).args[0]);
 
