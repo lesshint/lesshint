@@ -78,7 +78,7 @@ describe('lesshint', function () {
             expect(result).to.be.undefined;
         });
 
-        it('should not report a missing when there\'s a space before the semicolon', function () {
+        it("should not report a missing when there's a space before the semicolon", function () {
             var source = '.foo { color: red ; }';
             var result;
             var ast;
