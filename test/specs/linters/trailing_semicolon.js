@@ -65,7 +65,7 @@ describe('lesshint', function () {
             expect(result).to.be.undefined;
         });
 
-        it('should allow semicolons in rulesets in @media declarations (#15)', function () {
+        it('should allow semicolons in rulesets inside @media declarations (#15)', function () {
             var source = '@media screen and (max-width: 768px) { @color: red; .div { color: @color; } }';
             var result;
             var ast;
@@ -78,7 +78,7 @@ describe('lesshint', function () {
             expect(result).to.be.undefined;
         });
 
-        it("should not report a missing when there's a space before the semicolon", function () {
+        it("should not report a missing semicolon when there's a space before the it", function () {
             var source = '.foo { color: red ; }';
             var result;
             var ast;
