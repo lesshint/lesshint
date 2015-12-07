@@ -1,4 +1,4 @@
-# lesshint
+g# lesshint
 
 [![Build Status](https://travis-ci.org/lesshint/lesshint.svg?branch=master)](https://travis-ci.org/lesshint/lesshint)
 [![Build status](https://ci.appveyor.com/api/projects/status/6ig85uac52imq1i6/branch/master?svg=true)](https://ci.appveyor.com/project/jwilsson/lesshint/branch/master)
@@ -13,7 +13,6 @@
 * [Configuration](#configuration)
 * [CLI usage](#cli-usage)
 * [Reporters](#reporters)
-* [Known issues](#known-issues)
 
 ## Requirements
 [Node.js](https://nodejs.org/) 0.10 (or later) or [io.js](https://iojs.org/) 1.0 (or later).
@@ -122,10 +121,3 @@ The reporter will be passed an array of objects representing each error:
 It's then up to the reporter to do something with the errors. No `return`s or anything is needed. `lesshint` will handle everything like exit codes etc.
 
 Take a look at the [default reporter](https://github.com/lesshint/lesshint/blob/master/lib/reporters/stylish.js) for more information.
-
-## Known issues
-We are aware of some instances where some Less features won't be properly parsed. In those cases the whole file will simply be ignored by `lesshint`.
-
-* Using variables in `@media` directives are not supported. Related [issue](https://github.com/tonyganch/gonzales-pe/issues/17).
-* Using variables in selectors are not supported. Related [issue](https://github.com/tonyganch/gonzales-pe/issues/75).
-* Using double parentheses around calculations etc. are not supported. Related [issue](https://github.com/tonyganch/gonzales-pe/issues/76).
