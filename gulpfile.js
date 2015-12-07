@@ -2,16 +2,12 @@ var gulp = require('gulp');
 var istanbul = require('gulp-istanbul');
 
 gulp.task('lint', function () {
-    var jshint = require('gulp-jshint');
-    var jscs = require('gulp-jscs');
+    var eslint = require('gulp-eslint');
 
     return gulp.src(['./lib/**/*.js', './test/**/*.js'])
-        .pipe(jshint())
-        .pipe(jshint.reporter('default'))
-        .pipe(jshint.reporter('fail'))
-        .pipe(jscs())
-        .pipe(jscs.reporter())
-        .pipe(jscs.reporter('fail'));
+        .pipe(eslint())
+        .pipe(eslint.format())
+        .pipe(eslint.failAfterError());
 });
 
 gulp.task('coverage', function () {
