@@ -11,6 +11,13 @@ describe('lesshint', function () {
         var ast;
         var options;
 
+        it('should skip selector without name', function () {
+            ast = parseAST('[type="text"] {}');
+            ast = ast.first().first('selector');
+            result = linter.lint(options, ast);
+            expect(result).to.be.undefined;
+        });
+
         it('should check for lowercase', function () {
             options = {
                 disallowUppercase: true
