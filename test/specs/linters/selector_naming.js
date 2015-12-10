@@ -4,12 +4,24 @@ var path = require('path');
 var expect = require('chai').expect;
 var linter = require('../../../lib/linters/' + path.basename(__filename));
 var parseAST = require('../../../lib/linter').parseAST;
+var sinon = require('sinon');
 
 describe('lesshint', function () {
     describe('#selectorNaming()', function () {
         var result;
         var ast;
         var options;
+
+        it('should skip selector without name', function () {
+            ast = parseAST('[type="text"] {}');
+            ast = ast.first().first('selector');
+            sinon.stub(ast, 'first', function () {
+                return null;
+            });
+            result = linter.lint(options, ast);
+            expect(result).to.be.undefined;
+            ast.first.restore();
+        });
 
         it('should check for lowercase', function () {
             options = {
