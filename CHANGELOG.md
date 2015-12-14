@@ -1,4 +1,9 @@
 # Changelog
+## 1.2.1 (2015-12-14)
+* Fixed an issue in `selectorNaming` where it would sometimes fail if there is no selector name. ([8b48fee](https://github.com/lesshint/lesshint/commit/8b48fee9589c8cf1f6778c771eab45eb9731269a))
+* Fixed an issue in `singleLinePerProperty` where it would erroneously report "chained" mixins. ([71f2afe](https://github.com/lesshint/lesshint/commit/71f2afee9a79dbf74bdd25831bae84b3c96d5138))
+* Fixed an issue in `qualifyingElement` where it wouldn't check parent selectors. ([8b090c9](https://github.com/lesshint/lesshint/commit/8b090c99d474c797a0c5c2b27c66e5a9deda8578))
+
 ## 1.2.0 (2015-12-10)
 * Added `selectorNaming` linter. ([94639fa](https://github.com/lesshint/lesshint/commit/94639fa5b210a13e47060033f75c9d59aa9701ac))
 * Reporters now require a `report` method, and the old use is now deprecated. ([72263bc](https://github.com/lesshint/lesshint/commit/72263bc303bb7f3f2abed569efe7d07b69705db2))
