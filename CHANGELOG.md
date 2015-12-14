@@ -1,6 +1,18 @@
 # Changelog
+## 1.2.1 (2015-12-14)
+* Fixed an issue in `selectorNaming` where it would sometimes fail if there is no selector name. ([8b48fee](https://github.com/lesshint/lesshint/commit/8b48fee9589c8cf1f6778c771eab45eb9731269a))
+* Fixed an issue in `singleLinePerProperty` where it would erroneously report "chained" mixins. ([71f2afe](https://github.com/lesshint/lesshint/commit/71f2afee9a79dbf74bdd25831bae84b3c96d5138))
+* Fixed an issue in `qualifyingElement` where it wouldn't check parent selectors. ([8b090c9](https://github.com/lesshint/lesshint/commit/8b090c99d474c797a0c5c2b27c66e5a9deda8578))
+
+## 1.2.0 (2015-12-10)
+* Added `selectorNaming` linter. ([94639fa](https://github.com/lesshint/lesshint/commit/94639fa5b210a13e47060033f75c9d59aa9701ac))
+* Reporters now require a `report` method, and the old use is now deprecated. ([72263bc](https://github.com/lesshint/lesshint/commit/72263bc303bb7f3f2abed569efe7d07b69705db2))
+* Fixed an issue where nested media queries would be erroneously reported by `singleLinePerProperty`. ([3f251e1](https://github.com/lesshint/lesshint/commit/3f251e157e15d6fca6a15c2d1256b11568ad4521))
+* Fixed an issue where declarations without a semicolon would erroneously trigger `singleLinePerProperty`. ([3f251e1](https://github.com/lesshint/lesshint/commit/3f251e157e15d6fca6a15c2d1256b11568ad4521))
+
 ## 1.1.0 (2015-11-21)
 * Replaced our Less parser, `gonzales-pe`, with our own fork to solve various parsing issues. ([a31a790](https://github.com/lesshint/lesshint/commit/a31a790a0aeaa201764087125167c6991ef8f91d))
+* Byte order marks are now stripped from config files.
 * New test suite, using Chai and Gulp. ([7915ac5](https://github.com/lesshint/lesshint/commit/7915ac566117bf08dcc547a878efece414cf0573), [7915ac5](https://github.com/lesshint/lesshint/commit/44a367ca5c4cece00eef8811cb97f3c338e72932))
 * Updated dependencies. ([fc714bd](https://github.com/lesshint/lesshint/commit/fc714bd9a43b486cdf43d22f26a465b3653018c3), [62f3d72](https://github.com/lesshint/lesshint/commit/62f3d720acb1f26ce2a1c7185d3e8ab04614bcfd))
 
