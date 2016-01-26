@@ -1,5 +1,5 @@
 # lesshint
-
+[![npm](https://img.shields.io/npm/v/lesshint.svg)]()
 [![Build Status](https://travis-ci.org/lesshint/lesshint.svg?branch=master)](https://travis-ci.org/lesshint/lesshint)
 [![Build status](https://ci.appveyor.com/api/projects/status/6ig85uac52imq1i6/branch/master?svg=true)](https://ci.appveyor.com/project/jwilsson/lesshint/branch/master)
 [![Coverage Status](https://coveralls.io/repos/lesshint/lesshint/badge.svg?branch=master)](https://coveralls.io/r/lesshint/lesshint?branch=master)
