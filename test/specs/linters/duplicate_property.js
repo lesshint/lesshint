@@ -86,5 +86,22 @@ describe('lesshint', function () {
 
             expect(result).to.deep.equal(expected);
         });
+
+        it('should ignore local variables', function () {
+            var source = '.foo { @a: red; @b: 3px; }';
+            var result;
+            var ast;
+
+            var options = {
+                exclude: []
+            };
+
+            ast = parseAST(source);
+            ast = ast.first().first('block');
+
+            result = linter.lint(options, ast);
+
+            expect(result).to.be.undefined;
+        });
     });
 });
