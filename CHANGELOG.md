@@ -1,4 +1,7 @@
 # Changelog
+## 1.2.2 (2016-01-26)
+* Fixed an issue where local variable declarations would crash `duplicateProperty`. ([2955198](https://github.com/lesshint/lesshint/commit/295519811590f98bb77ad493e1072bf242eea9bc))
+
 ## 1.2.1 (2015-12-14)
 * Fixed an issue in `selectorNaming` where it would sometimes fail if there is no selector name. ([8b48fee](https://github.com/lesshint/lesshint/commit/8b48fee9589c8cf1f6778c771eab45eb9731269a))
 * Fixed an issue in `singleLinePerProperty` where it would erroneously report "chained" mixins. ([71f2afe](https://github.com/lesshint/lesshint/commit/71f2afee9a79dbf74bdd25831bae84b3c96d5138))
