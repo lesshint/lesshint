@@ -113,12 +113,39 @@ describe('cli', function () {
         });
     });
 
-    it('should ignore excluded files', function () {
+    it('should ignore excluded files (command-line parameter only)', function () {
         var result;
 
         result = cli({
-            args: [path.dirname(__dirname) + '/data/files'],
+            args: [path.dirname(__dirname) + '/data/excluded-files'],
             exclude: '*.less'
+        });
+
+        return result.then(function (status) {
+            expect(status).to.equal(0);
+        });
+    });
+
+    it('should ignore excluded files (config file only)', function () {
+        var result;
+
+        result = cli({
+            args: [path.dirname(__dirname) + '/data/excluded-files'],
+            config: path.dirname(__dirname) + '/data/config/config.json'
+        });
+
+        return result.then(function (status) {
+            expect(status).to.equal(0);
+        });
+    });
+
+    it('should ignore excluded files (both command-line parameter and config file)', function () {
+        var result;
+
+        result = cli({
+            args: [path.dirname(__dirname) + '/data/excluded-files'],
+            config: path.dirname(__dirname) + '/data/config/exclude-only-one.json',
+            exclude: 'exclude-me-too.less'
         });
 
         return result.then(function (status) {
