@@ -13,6 +13,8 @@ describe('config-loader', function () {
         var result;
 
         var expected = {
+            excludedFiles: ['vendor.less', 'exclude-me-too.less'],
+
             spaceAfterPropertyColon: {
                 enabled: false,
                 style: 'one_space'
