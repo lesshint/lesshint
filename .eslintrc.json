@@ -21,7 +21,6 @@
     "guard-for-in": 2,
     "indent": [2, 4, { "SwitchCase": 1, "VariableDeclarator": 0 }],
     "key-spacing": 2,
-    "linebreak-style": 2,
     "newline-after-var": 2,
     "no-caller": 2,
     "no-console": 0,
