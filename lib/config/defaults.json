@@ -93,6 +93,12 @@
         "allowWithAttribute": false
     },
 
+    "selectorNaming": {
+        "enabled": false,
+        "disallowUppercase": true,
+        "disallowUnderscore": true
+    },
+
     "singleLinePerProperty": {
         "enabled": true
     },

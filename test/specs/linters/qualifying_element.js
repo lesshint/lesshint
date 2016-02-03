@@ -146,5 +146,24 @@ describe('lesshint', function () {
 
             expect(result).to.deep.equal(expected);
         });
+
+        it('should check parent selectors. #106', function () {
+            var source = 'a { &.active { color: red; } }';
+            var result;
+            var ast;
+
+            var expected = [{
+                column: 6,
+                line: 1,
+                message: 'Class selectors should not include a qualifying element.'
+            }];
+
+            ast = parseAST(source);
+            ast = ast.first().first('block').first('ruleset').first('selector');
+
+            result = linter.lint({}, ast);
+
+            expect(result).to.deep.equal(expected);
+        });
     });
 });

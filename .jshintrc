@@ -1,7 +1,0 @@
-{
-    "-W024": false,
-    "expr": true,
-    "latedef": true,
-    "mocha": true,
-    "node": true
-}

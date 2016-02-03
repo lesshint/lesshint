@@ -341,5 +341,37 @@ describe('lesshint', function () {
 
             expect(result).to.be.undefined;
         });
+
+        it('should not report "chained" mixins. #110', function () {
+            var source = '.foo {\n.bar.baz();\n}';
+            var result;
+            var ast;
+
+            ast = parseAST(source);
+            ast = ast.first('ruleset').first('block');
+
+            result = linter.lint({}, ast);
+
+            expect(result).to.be.undefined;
+        });
+
+        it('should not allow closing brace on the same line as a property', function () {
+            var source = '.foo {\n color: red;}';
+            var result;
+            var ast;
+
+            var expected = [{
+                column: 2,
+                line: 2,
+                message: 'Each property should be on its own line.'
+            }];
+
+            ast = parseAST(source);
+            ast = ast.first('ruleset').first('block');
+
+            result = linter.lint({}, ast);
+
+            expect(result).to.deep.equal(expected);
+        });
     });
 });

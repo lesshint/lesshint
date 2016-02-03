@@ -40,7 +40,7 @@ describe('lesshint', function () {
             lesshint.configure(config);
 
             return lesshint.checkDirectory(testPath).then(function (result) {
-                expect(result).to.have.length(0);
+                expect(result).to.have.length(1);
             });
         });
 
@@ -54,7 +54,7 @@ describe('lesshint', function () {
             lesshint.configure(config);
 
             return lesshint.checkDirectory(testPath).then(function (result) {
-                expect(result).to.have.length(1);
+                expect(result).to.have.length(2);
             });
         });
 
@@ -68,7 +68,7 @@ describe('lesshint', function () {
             lesshint.configure(config);
 
             return lesshint.checkDirectory(testPath).then(function (result) {
-                expect(result).to.have.length(1);
+                expect(result).to.have.length(2);
             });
         });
 
@@ -82,7 +82,7 @@ describe('lesshint', function () {
             lesshint.configure(config);
 
             return lesshint.checkDirectory(testPath).then(function (result) {
-                expect(result).to.have.length(2);
+                expect(result).to.have.length(3);
             });
         });
     });

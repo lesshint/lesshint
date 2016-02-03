@@ -193,6 +193,34 @@ describe('linter', function () {
             // String quotes should never be called since there no strings in the input
             expect(result).to.have.length(0);
         });
+
+        it('should allow override of result severity', function () {
+            var source = '.foo { color:red; }\n';
+            var path = 'test.less';
+            var result;
+
+            var expected = [{
+                column: 14,
+                file: 'test.less',
+                line: 1,
+                linter: 'spaceAfterPropertyColon',
+                message: 'Colon after property name should be followed by one space.',
+                severity: 'error',
+                source: '.foo { color:red; }'
+            }];
+
+            var config = {
+                spaceAfterPropertyColon: {
+                    enabled: true,
+                    severity: 'error',
+                    style: 'one_space'
+                }
+            };
+
+            result = linter.lint(source, path, config);
+
+            expect(result).to.deep.equal(expected);
+        });
     });
 
     describe('parseAST', function () {

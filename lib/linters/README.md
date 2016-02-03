@@ -19,6 +19,7 @@ Each linter also accept a `enabled` option to turn if off/on completely. It's al
 * [propertyOrdering](#propertyordering)
 * [propertyUnits](#propertyunits)
 * [qualifyingElement](#qualifyingelement)
+* [selectorNaming](#selectornaming)
 * [singleLinePerProperty](#singlelineperproperty)
 * [singleLinePerSelector](#singlelineperselector)
 * [spaceAfterPropertyColon](#spaceafterpropertycolon)
@@ -391,6 +392,59 @@ div#foo {
     color: red;
 }
 ```
+
+## selectorNaming
+
+Option               | Description
+-------------------- | ----------
+`disallowUppercase`  | `true` (**default**), `boolean`
+`disallowUnderscore` | `true` (**default**), `boolean`
+`disallowDash`       | `false` (**default**), `boolean`
+`exclude`            | `string array`
+
+
+```js
+var options = {
+    disallowUppercase: true,
+    disallowUnderscore: true,
+    exclude: ['fooExcluded']
+}
+```
+
+### valid
+
+```less
+.foo-bar {
+
+}
+
+.fooExcluded {
+
+}
+
+```
+
+### invalid
+
+```less
+.fooBar {
+
+}
+
+.foo_bar {
+
+}
+```
+
+Currently this option lets you approximate some naming conventions.
+Keep in mind that it's not foolproof.
+
+Style              | example            | options to enable
+------------------ | ------------------ | -----------------
+train case         | .btn-primary       | `disallowUppercase`, `disallowUnderscore`
+snake case         | .btn_primary       | `disallowUppercase`, `disallowDash`
+camel case         | .btnPrimary        | `disallowUnderscore`, `disallowDash`
+
 
 ## singleLinePerProperty
 Each property should be on its own line.
