@@ -1,0 +1,7 @@
+{
+    "spaceBeforeBrace": {
+        "enabled": true,
+        "style": "one_space",
+        "severity": "error"
+    }
+}

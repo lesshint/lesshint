@@ -204,4 +204,21 @@ describe('cli', function () {
             expect(status).to.equal(70);
         });
     });
+
+    it('should exit with a error status code when there is at least one result with a severity of "error"', function () {
+        var result;
+
+        sinon.spy(console, 'log');
+
+        result = cli({
+            args: [path.dirname(__dirname) + '/data/files/file.less'],
+            config: path.dirname(__dirname) + '/data/config/severity-error.json'
+        });
+
+        return result.fail(function (status) {
+            expect(status).to.equal(2);
+
+            console.log.restore();
+        });
+    });
 });
