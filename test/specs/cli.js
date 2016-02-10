@@ -100,19 +100,6 @@ describe('cli', function () {
         });
     });
 
-    it('should exit with a zero status code when everything is alright', function () {
-        var result;
-
-        result = cli({
-            args: [path.dirname(__dirname) + '/data/files/ok.less'],
-            config: path.resolve(process.cwd() + '/test/data/config/invalid.json')
-        });
-
-        return result.fail(function (status) {
-            expect(status).to.equal(78);
-        });
-    });
-
     it('should ignore excluded files (command-line parameter only)', function () {
         var result;
 
