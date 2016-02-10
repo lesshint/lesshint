@@ -107,11 +107,6 @@
         "enabled": true
     },
 
-    "spaceAfterComma": {
-        "enabled": true,
-        "style": "one_space"
-    },
-
     "spaceAfterPropertyColon": {
         "enabled": true,
         "style": "one_space"
@@ -125,6 +120,11 @@
     "spaceAfterPropertyValue": {
         "enabled": true,
         "style": "no_space"
+    },
+
+    "spaceAroundComma": {
+        "enabled": true,
+        "style": "after"
     },
 
     "spaceAroundOperator": {
