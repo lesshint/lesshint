@@ -24,6 +24,7 @@
 * [spaceAfterPropertyName](#spaceafterpropertyname)
 * [spaceAfterPropertyValue](#spaceafterpropertyvalue)
 * [spaceAroundComma](#spacearoundcomma)
+* [spaceAroundOperator](#spacearoundoperator)
 * [spaceBeforeBrace](#spacebeforebrace)
 * [spaceBetweenParens](#spacebetweenparens)
 * [stringQuotes](#stringquotes)
@@ -589,6 +590,27 @@ Option     | Description
 ```less
 .foo {
     color: rgb(255,255,255);
+}
+```
+
+## spaceAroundOperator
+Defines how operators (`+`, `-`, `*`, `/`, and `=`) should be formatted by a space to aid readability.
+
+Option     | Description
+---------- | ----------
+`style`    | `both` (**default**), `none`
+
+### both
+```less
+.foo {
+    height: calc(10px + 10px);
+}
+```
+
+### none
+```less
+.foo {
+    height: calc(10px+10px);
 }
 ```
 

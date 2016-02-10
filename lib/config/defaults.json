@@ -127,6 +127,11 @@
         "style": "no_space"
     },
 
+    "spaceAroundOperator": {
+      "enabled": true,
+      "style": "both"
+    },
+
     "spaceBeforeBrace": {
         "enabled": true,
         "style": "one_space"
