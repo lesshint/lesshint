@@ -29,7 +29,7 @@ npm install lesshint
 
 Start by creating a `.lesshintrc` file in your project root and add your settings to it. It will be automatically loaded and merged with the default values.
 
-Each option is then specifed by it's own JSON object, for example:
+Each option is then specified by it's own JSON object, for example:
 
 ```js
 "fileExtensions": [".less", ".css"],
@@ -75,6 +75,20 @@ Available Flags     | Description
 `-e`/`--exclude`    | A [minimatch glob pattern](https://github.com/isaacs/minimatch) or a file to exclude form being linted.
 `-r`/`--reporter`   | The reporter to use. See "Reporters" below for possible values.
 `-V`/`--version`    | Show version.
+
+### Exit status codes
+Depending on the linter results and options supplied, the exit status code returned by the CLI will differ.
+
+Exit status code   | Description
+-------------------|----------------------------------------------
+`0`                | Everything is alright, no linting errors found.
+`1`                | One or more linting errors with a severity of `warning` was found.
+`2`                | One or more linting errors with a severity of `error` was found (since `1.3.0`).
+`66`               | No files to lint were supplied.
+`70`               | An unknown error occurred within `lesshint`, possibly a bug. [Please file an issue!](https://github.com/lesshint/lesshint/issues/new)
+`78`               | Something is wrong with the config file, most likely invalid JSON.
+
+These codes were chosen with regards to the [preferable exit codes](http://www.gsp.com/cgi-bin/man.cgi?section=3&topic=sysexits).
 
 ## Reporters
 As of `0.8.0` the ability to specify custom reporters has been added. These can do anything from just printing something to the terminal to generate custom reports.
