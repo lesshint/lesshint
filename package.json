@@ -1,7 +1,7 @@
 {
   "name": "lesshint",
   "description": "A tool to aid you in writing clean and consistent Less.",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "main": "./lib/lesshint.js",
   "author": {
     "name": "Jonathan Wilsson",
