@@ -1,5 +1,5 @@
 # Changelog
-## 1.3.0 (2016-02-11)
+## 1.3.0 (2016-02-12)
 * Added the following linters:
     * `spaceAroundOperator` ([2490d93](https://github.com/lesshint/lesshint/commit/2490d937d008dc0fd56ce77245fbf49fda892eef))
 * Added the possibility to override linter `severity` and added a new exit status code for it. See linter docs for more info. ([0bc95e1](https://github.com/lesshint/lesshint/commit/0bc95e1750a5d4c2312db9f0de47e707b2eebcf2), [062950f](https://github.com/lesshint/lesshint/commit/062950f5df9c29df22af91e6fc9c023ac293b584), [e1d6831](https://github.com/lesshint/lesshint/commit/e1d68311705ea2691671b728b2178bb5c6b59a9c))
