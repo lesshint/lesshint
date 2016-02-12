@@ -1,4 +1,12 @@
 # Changelog
+## 1.3.0 (2016-02-11)
+* Added the following linters:
+    * `spaceAroundOperator` ([2490d93](https://github.com/lesshint/lesshint/commit/2490d937d008dc0fd56ce77245fbf49fda892eef))
+* Added the possibility to override linter `severity` and added a new exit status code for it. See linter docs for more info. ([0bc95e1](https://github.com/lesshint/lesshint/commit/0bc95e1750a5d4c2312db9f0de47e707b2eebcf2), [062950f](https://github.com/lesshint/lesshint/commit/062950f5df9c29df22af91e6fc9c023ac293b584), [e1d6831](https://github.com/lesshint/lesshint/commit/e1d68311705ea2691671b728b2178bb5c6b59a9c))
+* Fixed an issue where excludedFiles in the config file weren't honored in the CLI. ([974d0fa](https://github.com/lesshint/lesshint/commit/974d0fa6debfa5033c01c6b50a66a94c34e31a41))
+* Updated lodash to `4.x`. ([ac52619](https://github.com/lesshint/lesshint/commit/ac5261998e2b8a7369312c0c034aefdac4351b39))
+* Some other minor improvements to `singleLinePerProperty`. ([072664d](https://github.com/lesshint/lesshint/commit/072664df836e4a8c30f0b062da0ab49b7152e97e), [bc439e7](https://github.com/lesshint/lesshint/commit/bc439e73e0662c74c42590c8976dcc96cd198148))
+
 ## 1.2.2 (2016-01-26)
 * Fixed an issue where local variable declarations would crash `duplicateProperty`. ([2955198](https://github.com/lesshint/lesshint/commit/295519811590f98bb77ad493e1072bf242eea9bc))
 
