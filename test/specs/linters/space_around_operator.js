@@ -167,6 +167,23 @@ describe('lesshint', function () {
             expect(result).to.be.undefined;
         });
 
+        it('should not report on minus values', function () {
+            var source = '.foo { margin-left: -10px; }';
+            var result;
+            var ast;
+
+            var options = {
+                style: 'both'
+            };
+
+            ast = parseAST(source);
+            ast = ast.first();
+
+            result = linter.lint(options, ast);
+
+            expect(result).to.be.undefined;
+        });
+
         it('should throw on invalid "style" value', function () {
             var source = '.foo { height: calc(10px+10px); }';
             var lint;
