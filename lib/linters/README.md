@@ -40,7 +40,7 @@ In addition to the linter specific options outlined below, each linter also acce
 Option     | Default value | Description
 -----------|---------------|----------------
 `enabled`  | `true`        | Turn the linter on/off completely. It's also possible to disable a linter by setting the whole property to `false`.
-`severity` | `"warning"`   | Set the severity level for a linter. This will affect CLI exit codes and will be reported together with other lint results (since `1.3.0`).
+`severity` | `"warning"`   | Set the severity level for a linter, possible values are `"warning"` and `"error"`. This will affect CLI exit codes and will be reported together with other lint results (since `1.3.0`).
 
 ***
 
