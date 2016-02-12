@@ -13,12 +13,12 @@ describe('lesshint', function () {
             var ast;
 
             var options = {
-                size: 2,
+                size: 4,
                 style: 'spaces'
             };
 
             source += '.foo {\n';
-            source += '  color: red;\n';
+            source += '    color: red;\n';
             source += '}';
 
             ast = parseAST(source);
@@ -35,14 +35,14 @@ describe('lesshint', function () {
             var ast;
 
             var options = {
-                size: 2,
+                size: 4,
                 style: 'spaces'
             };
 
             var expected = [{
                 column: 0,
                 line: 2,
-                message: 'Expected an indentation of 2 but found 0.'
+                message: 'Expected an indentation of 4 but found 0.'
             }];
 
             source += '.foo {\n';
@@ -63,18 +63,18 @@ describe('lesshint', function () {
             var ast;
 
             var options = {
-                size: 2,
+                size: 4,
                 style: 'spaces'
             };
 
             var expected = [{
                 column: 0,
                 line: 2,
-                message: 'Expected an indentation of 2 but found 0.'
+                message: 'Expected an indentation of 4 but found 0.'
             }];
 
             source += '.foo {\n';
-            source += '&:extend(.bar);';
+            source += '&:extend(.bar);\n';
             source += '}';
 
             ast = parseAST(source);
@@ -91,18 +91,18 @@ describe('lesshint', function () {
             var ast;
 
             var options = {
-                size: 2,
+                size: 4,
                 style: 'spaces'
             };
 
             var expected = [{
                 column: 0,
                 line: 2,
-                message: 'Expected an indentation of 2 but found 0.'
+                message: 'Expected an indentation of 4 but found 0.'
             }];
 
             source += '.foo {\n';
-            source += '@media (all) {}';
+            source += '@media (all) {}\n';
             source += '}';
 
             ast = parseAST(source);
@@ -119,18 +119,18 @@ describe('lesshint', function () {
             var ast;
 
             var options = {
-                size: 2,
+                size: 4,
                 style: 'spaces'
             };
 
             var expected = [{
                 column: 0,
                 line: 2,
-                message: 'Expected an indentation of 2 but found 0.'
+                message: 'Expected an indentation of 4 but found 0.'
             }];
 
             source += '.foo {\n';
-            source += '.bar()';
+            source += '.bar()\n';
             source += '}';
 
             ast = parseAST(source);
@@ -147,14 +147,14 @@ describe('lesshint', function () {
             var ast;
 
             var options = {
-                size: 2,
+                size: 4,
                 style: 'spaces'
             };
 
             source += '.foo {\n';
-            source += '  @media (all) {\n';
-            source += '    color: red;\n';
-            source += '  }\n';
+            source += '    @media (all) {\n';
+            source += '        .bar();\n';
+            source += '    }\n';
             source += '}';
 
             ast = parseAST(source);
@@ -171,20 +171,20 @@ describe('lesshint', function () {
             var ast;
 
             var options = {
-                size: 2,
+                size: 4,
                 style: 'spaces'
             };
 
             var expected = [{
                 column: 0,
                 line: 3,
-                message: 'Expected an indentation of 4 but found 2.'
+                message: 'Expected an indentation of 8 but found 4.'
             }];
 
             source += '.foo {\n';
-            source += '  @media (all) {\n';
-            source += '  color: red;\n';
-            source += '  }\n';
+            source += '    @media (all) {\n';
+            source += '    .bar();\n';
+            source += '    }\n';
             source += '}';
 
             ast = parseAST(source);
@@ -201,19 +201,19 @@ describe('lesshint', function () {
             var ast;
 
             var options = {
-                size: 2,
+                size: 4,
                 style: 'spaces'
             };
 
             var expected = [{
                 column: 0,
                 line: 3,
-                message: 'Expected an indentation of 0 but found 2.'
+                message: 'Expected an indentation of 0 but found 4.'
             }];
 
             source += '.foo {\n';
-            source += '  color: red;\n';
-            source += '  }';
+            source += '    color: red;\n';
+            source += '    }';
 
             ast = parseAST(source);
             ast = ast.first('ruleset').first('block');
@@ -229,7 +229,7 @@ describe('lesshint', function () {
             var ast;
 
             var options = {
-                size: 2,
+                size: 4,
                 style: 'spaces'
             };
 
@@ -257,7 +257,7 @@ describe('lesshint', function () {
             var ast;
 
             var options = {
-                size: 2,
+                size: 4,
                 style: 'spaces'
             };
 

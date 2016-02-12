@@ -725,7 +725,7 @@ This rule checks for mixed tabs and spaces, indentation style, and indentation l
 
 Option     | Description
 ---------- | ----------
-`size`     | Number of spaces to indent by when `style` is `spaces`.
+`size`     | Number of spaces to indent by when `style` is `spaces`. Default is `4`.
 `style`    | `spaces`, (**default**) `tabs`
 
 ## zeroUnit
