@@ -1,4 +1,8 @@
 # Changelog
+## 1.3.1 (2016-02-12)
+* Fixed an issue where `spaceAroundOperator` would erroneously try to check negative values. ([fe37b21](https://github.com/lesshint/lesshint/commit/fe37b21b29c2d5ae9e1a18b5060a16ba4eec9168))
+* Fixed an issue where `spaceAroundOperator` would erroneously report `font-size/line-height` shorthand declarations. ([4819346](https://github.com/lesshint/lesshint/commit/4819346b2f07ee3138d2c7a2612c6db9e6510643))
+
 ## 1.3.0 (2016-02-12)
 * Added the following linters:
     * `spaceAroundOperator` ([ac689c7](https://github.com/lesshint/lesshint/commit/ac689c7d9658bd5609df8286361864e73f42339a))
