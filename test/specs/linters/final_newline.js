@@ -25,7 +25,7 @@ describe('lesshint', function () {
             var ast;
 
             var expected = [{
-                column: 0,
+                column: 8,
                 line: 1,
                 message: 'Files should end with a newline.'
             }];
@@ -47,6 +47,42 @@ describe('lesshint', function () {
             result = linter.lint({}, ast);
 
             expect(result).to.be.undefined;
+        });
+
+        it('should report the correct line number even for large files. #123', function () {
+            var source = '';
+            var result;
+            var ast;
+
+            var expected = [{
+                column: 26,
+                line: 17,
+                message: 'Files should end with a newline.'
+            }];
+
+            source += '@import "something";\n';
+            source += '@import "something-else";\n';
+            source += '@import "something-else";\n';
+            source += '@import "something-else";\n';
+            source += '@import "something-else";\n';
+            source += '@import "something-else";\n';
+            source += '@import "something-else";\n';
+            source += '@import "something-else";\n';
+            source += '@import "something-else";\n';
+            source += '@import "something-else";\n';
+            source += '@import "something-else";\n';
+            source += '@import "something-else";\n';
+            source += '@import "something-else";\n';
+            source += '@import "something-else";\n';
+            source += '@import "something-else";\n';
+            source += '@import "something-else";\n';
+            source += '@import "something-else";';
+
+            ast = parseAST(source);
+
+            result = linter.lint({}, ast);
+
+            expect(result).to.deep.equal(expected);
         });
     });
 });
