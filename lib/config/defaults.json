@@ -173,5 +173,9 @@
     "zeroUnit": {
         "enabled": true,
         "style": "keep_unit"
+    },
+    "depthLevel": {
+        "enabled": true,
+        "depth": 3
     }
 }
