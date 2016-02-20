@@ -1,6 +1,8 @@
 'use strict';
 
 var expect = require('chai').expect;
+var path = require('path');
+var fs = require('fs');
 
 describe('linter', function () {
     var linter = require('../../lib/linter');
@@ -218,6 +220,70 @@ describe('linter', function () {
             };
 
             result = linter.lint(source, path, config);
+
+            expect(result).to.deep.equal(expected);
+        });
+
+        it('should not report rules that are disabled inline', function () {
+            var source = fs.readFileSync(path.resolve(process.cwd(), './test/data/inline-options/rule-options.less'), 'utf8');
+            var result;
+
+            var expected = [{
+                column: 5,
+                file: 'rule-options.less',
+                line: 7,
+                linter: 'spaceBeforeBrace',
+                message: 'Opening curly brace should be preceded by one space.',
+                severity: 'warning',
+                source: '.bar{'
+            },
+            {
+                column: 1,
+                file: 'rule-options.less',
+                line: 12,
+                linter: 'emptyRule',
+                message: "There shouldn't be any empty rules present.",
+                severity: 'warning',
+                source: '.baz {'
+            }];
+
+            var config = {
+                emptyRule: {
+                    enabled: true
+                },
+                spaceBeforeBrace: {
+                    enabled: true,
+                    style: 'one_space'
+                }
+            };
+
+            result = linter.lint(source, 'rule-options.less', config);
+
+            expect(result).to.deep.equal(expected);
+        });
+
+        it('should not report rules that are disabled on a single line', function () {
+            var source = fs.readFileSync(path.resolve(process.cwd(), './test/data/inline-options/line-options.less'), 'utf8');
+            var result;
+
+            var expected = [{
+                column: 11,
+                file: 'line-options.less',
+                line: 6,
+                linter: 'spaceAfterPropertyColon',
+                message: 'Colon after property name should be followed by one space.',
+                severity: 'warning',
+                source: '    color:blue;'
+            }];
+
+            var config = {
+                spaceAfterPropertyColon: {
+                    enabled: true,
+                    style: 'one_space'
+                }
+            };
+
+            result = linter.lint(source, 'line-options.less', config);
 
             expect(result).to.deep.equal(expected);
         });
