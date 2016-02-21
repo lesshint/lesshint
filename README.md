@@ -101,6 +101,7 @@ There are three ways to load a reporter.
 
 ### Core reporters
 * `stylish` - Colored print of all errors to the console.
+* `teamcity` - Compatible with JetBrains TeamCity.
 
 ### Writing your own reporter
 In it's simplest form, a reporter is just a function accepting some input. The most basic reporter possible:
@@ -123,7 +124,8 @@ The reporter will be passed an array of objects representing each error:
 ```js
 {
     column: 5,
-    file: 'test.less',
+    file: 'file.less',
+    fullPath: 'path/to/file.less',
     line: 1,
     linter: 'spaceBeforeBrace',
     message: 'Opening curly brace should be preceded by one space.',
