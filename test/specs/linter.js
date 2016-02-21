@@ -35,6 +35,7 @@ describe('linter', function () {
             var expected = [{
                 column: 15,
                 file: 'test.less',
+                fullPath: 'test.less',
                 line: 2,
                 linter: 'spaceAfterPropertyColon',
                 message: 'Colon after property name should be followed by one space.',
@@ -62,6 +63,7 @@ describe('linter', function () {
             var expected = [{
                 column: 5,
                 file: 'file.less',
+                fullPath: 'path/to/file.less',
                 line: 1,
                 linter: 'spaceBeforeBrace',
                 message: 'Opening curly brace should be preceded by one space.',
@@ -89,6 +91,7 @@ describe('linter', function () {
             var expected = [{
                 column: 7,
                 file: 'file.less',
+                fullPath: 'path/to/file.less',
                 line: 1,
                 linter: 'stringQuotes',
                 message: 'Strings should use single quotes.',
@@ -98,6 +101,7 @@ describe('linter', function () {
             {
                 column: 22,
                 file: 'file.less',
+                fullPath: 'path/to/file.less',
                 line: 1,
                 linter: 'attributeQuotes',
                 message: 'Attribute selectors should use quotes.',
@@ -107,6 +111,7 @@ describe('linter', function () {
             {
                 column: 1,
                 file: 'file.less',
+                fullPath: 'path/to/file.less',
                 line: 3,
                 linter: 'propertyOrdering',
                 message: 'Property ordering is not alphabetized',
@@ -116,6 +121,7 @@ describe('linter', function () {
             {
                 column: 1,
                 file: 'file.less',
+                fullPath: 'path/to/file.less',
                 line: 4,
                 linter: 'duplicateProperty',
                 message: 'Duplicate property: "color".',
@@ -202,6 +208,7 @@ describe('linter', function () {
             var expected = [{
                 column: 14,
                 file: 'test.less',
+                fullPath: 'test.less',
                 line: 1,
                 linter: 'spaceAfterPropertyColon',
                 message: 'Colon after property name should be followed by one space.',
