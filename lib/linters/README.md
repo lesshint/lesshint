@@ -478,9 +478,20 @@ Each property should be on its own line.
 ## singleLinePerSelector
 Each selector should be on its own line.
 
+Option     | Description
+---------- | ----------
+`style`    | `18f`, `none` (**default**)
+
+The `18f` option refers to the [18F Style Guide](https://pages.18f.gov/frontend/css-coding-styleguide/format/).
+
 ### invalid
 ```less
 .foo, .bar {
+    color: red;
+}
+
+// Style "18f"
+.foobar, .baz {
     color: red;
 }
 ```
@@ -489,6 +500,11 @@ Each selector should be on its own line.
 ```less
 .foo,
 .bar {
+    color: red;
+}
+
+// Style "18f"
+.foo, .bar {
     color: red;
 }
 ```
