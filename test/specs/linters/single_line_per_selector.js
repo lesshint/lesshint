@@ -38,5 +38,18 @@ describe('lesshint', function () {
 
             expect(result).to.deep.equal(expected);
         });
+
+        it('should allow the comma on a new line', function () {
+            var source = '.foo\n,.bar {}';
+            var result;
+            var ast;
+
+            ast = parseAST(source);
+            ast = ast.first('ruleset');
+
+            result = linter.lint({}, ast);
+
+            expect(result).to.be.undefined;
+        });
     });
 });
