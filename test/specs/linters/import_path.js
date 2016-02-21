@@ -25,6 +25,24 @@ describe('lesshint', function () {
             expect(result).to.be.undefined;
         });
 
+        it('should allow filename with .css extension when "filenameExtension" is "false"', function () {
+            var source = '@import "foo.css";';
+            var result;
+            var ast;
+
+            var options = {
+                filenameExtension: false,
+                exclude: []
+            };
+
+            ast = parseAST(source);
+            ast = ast.first();
+
+            result = linter.lint(options, ast);
+
+            expect(result).to.be.undefined;
+        });
+
         it('should not allow filename with extension when "filenameExtension" is "false"', function () {
             var source = '@import "foo.less";';
             var result;
