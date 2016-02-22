@@ -167,6 +167,42 @@ describe('lesshint', function () {
             expect(result).to.be.undefined;
         });
 
+        describe('negative numbers when calculating', function () {
+            it('should not report on negative number in the end of whole value', function () {
+                var source = '@foo: (@bar / 3) * -1;';
+                var result;
+                var ast;
+
+                var options = {
+                    style: 'both'
+                };
+
+                ast = parseAST(source);
+                ast = ast.first();
+
+                result = linter.lint(options, ast);
+
+                expect(result).to.be.undefined;
+            });
+
+            it('should not report on negative number in the end of brackets', function () {
+                var source = '@b: spin(@a, -2%);';
+                var result;
+                var ast;
+
+                var options = {
+                    style: 'both'
+                };
+
+                ast = parseAST(source);
+                ast = ast.first();
+
+                result = linter.lint(options, ast);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
         it('should not report on minus values', function () {
             var source = '.foo { margin-left: -10px; }';
             var result;
@@ -184,21 +220,63 @@ describe('lesshint', function () {
             expect(result).to.be.undefined;
         });
 
-        it('should not report on font-size/line-height shorthand declaration', function () {
-            var source = '.foo { font: 12px/1.5 Arial; }';
-            var result;
-            var ast;
+        describe('shorthands', function () {
+            it('should not allow when there is space after operator', function () {
+                var source = '.foo { margin: 10px - 1px 0px 20px; }';
+                var result;
+                var ast;
 
-            var options = {
-                style: 'both'
-            };
+                var expected = [{
+                    column: 20,
+                    line: 1,
+                    message: 'Operators should not be preceded nor followed by any space.'
+                }];
 
-            ast = parseAST(source);
-            ast = ast.first();
+                var options = {
+                    style: 'none'
+                };
 
-            result = linter.lint(options, ast);
+                ast = parseAST(source);
+                ast = ast.first();
 
-            expect(result).to.be.undefined;
+                result = linter.lint(options, ast);
+
+                expect(result).to.deep.equal(expected);
+            });
+
+            it('should not report on minus shorthand values', function () {
+                var source = '.foo { margin:-10px -1px 0px 20px; }';
+                var result;
+                var ast;
+
+                var options = {
+                    style: 'both'
+                };
+
+                ast = parseAST(source);
+                ast = ast.first();
+
+                result = linter.lint(options, ast);
+
+                expect(result).to.be.undefined;
+            });
+
+            it('should not report on font-size/line-height shorthand declaration', function () {
+                var source = '.foo { font: 12px/1.5 Arial; }';
+                var result;
+                var ast;
+
+                var options = {
+                    style: 'both'
+                };
+
+                ast = parseAST(source);
+                ast = ast.first();
+
+                result = linter.lint(options, ast);
+
+                expect(result).to.be.undefined;
+            });
         });
 
         it('should throw on invalid "style" value', function () {
