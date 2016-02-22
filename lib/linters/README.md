@@ -4,6 +4,7 @@
 * [borderZero](#borderzero)
 * [comment](#comment)
 * [decimalZero](#decimalzero)
+* [depthLevel](#depthLevel)
 * [duplicateProperty](#duplicateproperty)
 * [emptyRule](#emptyrule)
 * [finalNewline](#finalnewline)
@@ -135,6 +136,41 @@ Option     | Description
   font-size: 1.0em;  // trailing, both
   font-size: 0.50em; // both
   font-size:  .5em;  // none
+}
+```
+## depthLevel
+Sets the depth of nested styles in every parent style.
+
+Option     | Description
+---------- | -------------
+`depth`    | From 1-'n' levels of Depth, 3 (**default**).
+
+### invalid (depth 3)
+```less
+.foo {
+    margin-right: 0;
+    .foo-2 {
+      color: red;
+      .foo-3 {
+        width: 100%;
+        .foo-4 {
+          height: 100%;
+        }
+      }
+    }
+}
+```
+
+### valid
+```less
+.foo {
+    margin-right: 0;
+    .foo-2 {
+      color: red;
+      .foo-3 {
+        width: 100%;
+      }
+    }
 }
 ```
 
