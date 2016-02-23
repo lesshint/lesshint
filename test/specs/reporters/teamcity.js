@@ -56,7 +56,7 @@ describe('reporter:teamcity', function () {
         expect(console.log.getCall(1).args[0]).to.equal('##teamcity[testStarted name=\'path/to/file.less\']');
         expect(console.log.getCall(2).args[0]).to.equal(
             '##teamcity[testFailed name=\'path/to/file.less\' message=\'line 1, col 5,'
-            + ' Error [spaceBeforeBrace] Opening curly brace should be preceded by one space.\']'
+            + ' Error (spaceBeforeBrace) Opening curly brace should be preceded by one space.\']'
         );
 
         console.log.restore();
@@ -101,11 +101,11 @@ describe('reporter:teamcity', function () {
         expect(console.log.getCall(1).args[0]).to.equal('##teamcity[testStarted name=\'path/to/file.less\']');
         expect(console.log.getCall(2).args[0]).to.equal(
             '##teamcity[testFailed name=\'path/to/file.less\' message=\'line 1, col 5,'
-            + ' Error [spaceBeforeBrace] Opening curly brace should be preceded by one space.\']'
+            + ' Error (spaceBeforeBrace) Opening curly brace should be preceded by one space.\']'
         );
         expect(console.log.getCall(6).args[0]).to.equal(
             '##teamcity[testFailed name=\'path/to/another/file.less\' message=\'line 1, col 5,'
-            + ' Warning [spaceBeforeBrace] Opening curly brace should be preceded by one space.\']'
+            + ' Warning (spaceBeforeBrace) Opening curly brace should be preceded by one space.\']'
         );
 
         console.log.restore();
