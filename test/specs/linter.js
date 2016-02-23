@@ -224,35 +224,100 @@ describe('linter', function () {
             expect(result).to.deep.equal(expected);
         });
 
-        it('should not report rules that are disabled inline', function () {
-            var source = fs.readFileSync(path.resolve(process.cwd(), './test/data/inline-options/rule-options.less'), 'utf8');
+        it('should only care about the first inline comment', function () {
+            var source = fs.readFileSync(path.resolve(process.cwd(), './test/data/inline-options/file-options-enabled.less'), 'utf8');
             var result;
 
             var expected = [{
                 column: 5,
                 file: 'rule-options.less',
-                line: 7,
+                line: 6,
                 linter: 'spaceBeforeBrace',
                 message: 'Opening curly brace should be preceded by one space.',
                 severity: 'warning',
                 source: '.bar{'
-            },
-            {
-                column: 1,
-                file: 'rule-options.less',
-                line: 12,
-                linter: 'emptyRule',
-                message: "There shouldn't be any empty rules present.",
-                severity: 'warning',
-                source: '.baz {'
             }];
 
             var config = {
                 emptyRule: {
                     enabled: true
                 },
+                spaceAfterPropertyColon: {
+                    enabled: true,
+                    style: 'one_space'
+                },
                 spaceBeforeBrace: {
                     enabled: true,
+                    style: 'one_space'
+                }
+            };
+
+            result = linter.lint(source, 'rule-options.less', config);
+
+            expect(result).to.deep.equal(expected);
+        });
+
+        it('should not report rules that are disabled inline', function () {
+            var source = fs.readFileSync(path.resolve(process.cwd(), './test/data/inline-options/file-options-enabled.less'), 'utf8');
+            var result;
+
+            var expected = [{
+                column: 5,
+                file: 'rule-options.less',
+                line: 6,
+                linter: 'spaceBeforeBrace',
+                message: 'Opening curly brace should be preceded by one space.',
+                severity: 'warning',
+                source: '.bar{'
+            }];
+
+            var config = {
+                emptyRule: {
+                    enabled: true
+                },
+                spaceAfterPropertyColon: {
+                    enabled: true,
+                    style: 'one_space'
+                },
+                spaceBeforeBrace: {
+                    enabled: true,
+                    style: 'one_space'
+                }
+            };
+
+            result = linter.lint(source, 'rule-options.less', config);
+
+            expect(result).to.deep.equal(expected);
+        });
+
+        it('should allow disabled rules to be enabled inline', function () {
+            var source = fs.readFileSync(path.resolve(process.cwd(), './test/data/inline-options/file-options-disabled.less'), 'utf8');
+            var result;
+
+            var expected = [{
+                column: 11,
+                file: 'rule-options.less',
+                line: 3,
+                linter: 'spaceAfterPropertyColon',
+                message: 'Colon after property name should be followed by one space.',
+                severity: 'warning',
+                source: '    color:red;'
+            }, {
+                column: 1,
+                file: 'rule-options.less',
+                line: 7,
+                linter: 'emptyRule',
+                message: "There shouldn't be any empty rules present.",
+                severity: 'warning',
+                source: '.bar {'
+            }];
+
+            var config = {
+                emptyRule: {
+                    enabled: false
+                },
+                spaceAfterPropertyColon: {
+                    enabled: false,
                     style: 'one_space'
                 }
             };
