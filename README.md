@@ -101,7 +101,6 @@ There are three ways to load a reporter.
 
 ### Core reporters
 * `stylish` - Colored print of all errors to the console.
-* `teamcity` - Compatible with JetBrains TeamCity.
 
 ### Writing your own reporter
 In it's simplest form, a reporter is just a function accepting some input. The most basic reporter possible:
