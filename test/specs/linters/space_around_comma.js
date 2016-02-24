@@ -25,7 +25,7 @@ describe('lesshint', function () {
         });
 
         it('should not allow missing space after comma when "style" is "after"', function () {
-            var source = '.foo { color: rgb(255,255,255); }';
+            var source = '.foo { color: rgb(255,255 ,255); }';
             var result;
             var ast;
 
@@ -35,9 +35,14 @@ describe('lesshint', function () {
                 message: 'Commas should be followed by one space.'
             },
             {
-                column: 27,
+                column: 28,
                 line: 1,
                 message: 'Commas should be followed by one space.'
+            },
+            {
+                column: 26,
+                line: 1,
+                message: 'Commas should not be preceded by any space.'
             }];
 
             var options = {
@@ -132,14 +137,24 @@ describe('lesshint', function () {
             var ast;
 
             var expected = [{
-                column: 19,
+                column: 21,
                 line: 1,
                 message: 'Commas should be preceded by one space.'
             },
             {
-                column: 24,
+                column: 23,
+                line: 1,
+                message: 'Commas should not be followed by any space.'
+            },
+            {
+                column: 26,
                 line: 1,
                 message: 'Commas should be preceded by one space.'
+            },
+            {
+                column: 28,
+                line: 1,
+                message: 'Commas should not be followed by any space.'
             }];
 
             var options = {
@@ -177,9 +192,14 @@ describe('lesshint', function () {
             var ast;
 
             var expected = [{
-                column: 8,
+                column: 14,
                 line: 1,
                 message: 'Commas should be preceded by one space.'
+            },
+            {
+                column: 16,
+                line: 1,
+                message: 'Commas should not be followed by any space.'
             }];
 
             var options = {
@@ -234,12 +254,12 @@ describe('lesshint', function () {
             var ast;
 
             var expected = [{
-                column: 19,
+                column: 21,
                 line: 1,
                 message: 'Commas should be preceded and followed by one space.'
             },
             {
-                column: 24,
+                column: 26,
                 line: 1,
                 message: 'Commas should be preceded and followed by one space.'
             }];
@@ -307,7 +327,7 @@ describe('lesshint', function () {
             var ast;
 
             var expected = [{
-                column: 8,
+                column: 14,
                 line: 1,
                 message: 'Commas should be preceded and followed by one space.'
             }];
