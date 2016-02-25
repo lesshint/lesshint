@@ -230,7 +230,7 @@ describe('linter', function () {
 
             var expected = [{
                 column: 5,
-                file: 'rule-options.less',
+                file: 'file-options-enabled.less',
                 line: 6,
                 linter: 'spaceBeforeBrace',
                 message: 'Opening curly brace should be preceded by one space.',
@@ -252,7 +252,7 @@ describe('linter', function () {
                 }
             };
 
-            result = linter.lint(source, 'rule-options.less', config);
+            result = linter.lint(source, 'file-options-enabled.less', config);
 
             expect(result).to.deep.equal(expected);
         });
@@ -305,7 +305,7 @@ describe('linter', function () {
             }, {
                 column: 1,
                 file: 'rule-options.less',
-                line: 7,
+                line: 6,
                 linter: 'emptyRule',
                 message: "There shouldn't be any empty rules present.",
                 severity: 'warning',
@@ -317,8 +317,7 @@ describe('linter', function () {
                     enabled: false
                 },
                 spaceAfterPropertyColon: {
-                    enabled: false,
-                    style: 'one_space'
+                    enabled: false
                 }
             };
 
@@ -332,17 +331,17 @@ describe('linter', function () {
             var result;
 
             var expected = [{
-                column: 11,
+                column: 5,
                 file: 'line-options.less',
-                line: 6,
-                linter: 'spaceAfterPropertyColon',
-                message: 'Colon after property name should be followed by one space.',
+                line: 5,
+                linter: 'spaceBeforeBrace',
+                message: 'Opening curly brace should be preceded by one space.',
                 severity: 'warning',
-                source: '    color:blue;'
+                source: '.bar{'
             }];
 
             var config = {
-                spaceAfterPropertyColon: {
+                spaceBeforeBrace: {
                     enabled: true,
                     style: 'one_space'
                 }
