@@ -150,13 +150,13 @@ Option     | Description
 .foo {
     margin-right: 0;
     .foo-2 {
-      color: red;
-      .foo-3 {
-        width: 100%;
-        .foo-4 {
-          height: 100%;
+        color: red;
+        .foo-3 {
+            width: 100%;
+            .foo-4 {
+                height: 100%;
+            }
         }
-      }
     }
 }
 ```
@@ -166,10 +166,10 @@ Option     | Description
 .foo {
     margin-right: 0;
     .foo-2 {
-      color: red;
-      .foo-3 {
-        width: 100%;
-      }
+        color: red;
+        .foo-3 {
+            width: 100%;
+        }
     }
 }
 ```
