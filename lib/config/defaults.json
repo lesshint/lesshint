@@ -23,6 +23,11 @@
         "style": "leading"
     },
 
+    "depthLevel": {
+        "enabled": false,
+        "depth": 3
+    },
+
     "duplicateProperty": {
         "enabled": true,
         "exclude": []
