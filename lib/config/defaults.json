@@ -109,7 +109,8 @@
     },
 
     "singleLinePerSelector": {
-        "enabled": true
+        "enabled": true,
+        "style": "none"
     },
 
     "spaceAfterPropertyColon": {

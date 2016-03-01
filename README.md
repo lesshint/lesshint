@@ -123,7 +123,8 @@ The reporter will be passed an array of objects representing each error:
 ```js
 {
     column: 5,
-    file: 'test.less',
+    file: 'file.less',
+    fullPath: 'path/to/file.less',
     line: 1,
     linter: 'spaceBeforeBrace',
     message: 'Opening curly brace should be preceded by one space.',

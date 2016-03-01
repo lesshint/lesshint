@@ -373,5 +373,18 @@ describe('lesshint', function () {
 
             expect(result).to.deep.equal(expected);
         });
+
+        it('should not report mixins without a trailing semicolon. #132', function () {
+            var source = '.foo {\n .bar\n}';
+            var result;
+            var ast;
+
+            ast = parseAST(source);
+            ast = ast.first('ruleset').first('block');
+
+            result = linter.lint({}, ast);
+
+            expect(result).to.be.undefined;
+        });
     });
 });
