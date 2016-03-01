@@ -42,6 +42,48 @@ Each option is then specified by it's own JSON object, for example:
 }
 ```
 
+### Inline configuration
+Since `1.4.0` it's possible to configure rules using inline comments in your `.less` files. For example:
+
+```less
+// lesshint spaceBeforeBrace: false
+.foo{ // This line won't be reported
+    color: red;
+}
+```
+
+It's also possible to disable rules on a single line using a trailing comment:
+
+```less
+.bar {
+    color:red; // lesshint spaceAfterPropertyColon: false
+}
+```
+
+If you wish to enable a rule that's disabled in your `.lesshintrc` you need to specify any other options too. But rules without options can be enabled by just setting it to `true`. For example:
+
+`.lesshintrc`:
+```json
+{
+    "emptyRule": false,
+    "spaceAfterPropertyName": false
+}
+```
+
+`file.less`
+```less
+// lesshint spaceAfterPropertyName: { enabled: true, style: "one_space" }, emptyRule: true
+.foo {
+    color : red; // Won't report the extra space before ":"
+}
+
+.bar {
+
+}
+```
+
+The options format is a less strict form of JSON. Keys doesn't need any quotes but string values need double quotes.
+
 ### Options
 
 #### fileExtensions
