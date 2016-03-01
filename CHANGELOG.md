@@ -1,4 +1,17 @@
 # Changelog
+## 1.4.0 (2016-03-01)
+* Added the following linters:
+    * `depthLevel` ([18bb203](https://github.com/lesshint/lesshint/commit/18bb2038be240f9805b0a8a8756fe700cbe47526))
+* Added support for configuration using inline comments. ([cf757cd](https://github.com/lesshint/lesshint/commit/cf757cd9741cffeef966885de76168d50dc58716))
+* Added a `18f` option to `singleLinePerSelector`. ([2f65c31](https://github.com/lesshint/lesshint/commit/2f65c3175ff3bd1b2b56daa4250ac8c505602bfb))
+* Fixed an issue where `singleLinePerProperty` would erroneously report mixins without semicolons. ([ef97361](https://github.com/lesshint/lesshint/commit/ef9736100f3b5b481140e2fc25aaca9c5374d3c1))
+* Fixed an issue where `spaceAroundOperator` would erroneously report negative numbers. ([2569d73](https://github.com/lesshint/lesshint/commit/2569d7347f2aae6bb068b5edcddabca03a0df734))
+* Fixed an issue where `trailingWhitespace` would output errors when checking empty files. ([26ba39b](https://github.com/lesshint/lesshint/commit/26ba39b9bebc815edc4bf3393a168a6dd8e84ca0))
+* Fixed an issue where `importPath` would erroneously report files with different file extensions than `.less`. ([b7610dd](https://github.com/lesshint/lesshint/commit/b7610dd0355d296bcfe25c558d51990878a649eb))
+* Fixed an issue where `singleLinePerSelector` would erroneously report selectors with the comma on a new line. ([637ff49](https://github.com/lesshint/lesshint/commit/637ff4917d5721d987b1baaeb273e80026058602))
+* Fixed an issue where `finalNewline` would sometimes report the wrong line. ([12981cd](https://github.com/lesshint/lesshint/commit/12981cde36c02a5b81586debbab0c4f9533a701e))
+* Updated ESLint to `2.x` ([4c14d3a](https://github.com/lesshint/lesshint/commit/4c14d3af674267bc22ccbfc6068e774c6c4eef69))
+
 ## 1.3.1 (2016-02-12)
 * Fixed an issue where `spaceAroundOperator` would erroneously try to check negative values. ([fe37b21](https://github.com/lesshint/lesshint/commit/fe37b21b29c2d5ae9e1a18b5060a16ba4eec9168))
 * Fixed an issue where `spaceAroundOperator` would erroneously report `font-size/line-height` shorthand declarations. ([4819346](https://github.com/lesshint/lesshint/commit/4819346b2f07ee3138d2c7a2612c6db9e6510643))
