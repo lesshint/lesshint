@@ -365,12 +365,12 @@ describe('linter', function () {
         });
     });
 
-    describe('parseAST', function () {
-        it('should return an AST', function () {
+    describe('getParser', function () {
+        it('should return a parser promise', function () {
             var source = '.foo { color: red; }';
-            var ast = linter.parseAST(source);
+            var parser = linter.getParser(source);
 
-            expect(ast).to.have.property('toString'); // If the returned object has the 'toString' method, we'll consider it a success
+            expect(parser).to.have.property('then'); // If the returned object has a 'then' method, we'll consider it a success
         });
     });
 });
