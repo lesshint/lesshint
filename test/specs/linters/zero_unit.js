@@ -121,6 +121,23 @@ describe('lesshint', function () {
             expect(result).to.equal(null);
         });
 
+        it('should not report units on zero values when the the property does not have units and "style" is "no_unit"', function () {
+            var source = '.foo { opacity: 0; }';
+            var result;
+            var ast;
+
+            var options = {
+                style: 'no_unit'
+            };
+
+            ast = parseAST(source);
+            ast = ast.first().first('block').first('declaration');
+
+            result = linter.lint(options, ast);
+
+            expect(result).to.equal(null);
+        });
+
         it('should throw on invalid "style" value', function () {
             var source = '.foo { margin-right: 0; }';
             var lint;
