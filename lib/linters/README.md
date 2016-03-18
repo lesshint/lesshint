@@ -800,9 +800,11 @@ The [CSS spec](http://dev.w3.org/csswg/css-values/#url-value) also recommends th
 ## zeroUnit
 Zero values should include a unit for consistency with other values.
 
-Option     | Description
----------- | ----------
-`style`    | `no_unit`, `keep_unit` (**default**)
+Option      | Description
+------------| ----------
+`style`     | `no_unit`, `keep_unit` (**default**)
+`units`     | `string array` additional units to enforce.
+`exclude`   | `string array` additional properties to exclude.
 
 ### no_unit
 ```less
