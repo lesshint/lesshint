@@ -101,7 +101,7 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(null);
+            expect(result).to.be.undefined;
         });
 
         it('should not report units on zero values when the unit is a time and "style" is "no_unit"', function () {
@@ -118,7 +118,60 @@ describe('lesshint', function () {
 
             result = linter.lint(options, ast);
 
-            expect(result).to.equal(null);
+            expect(result).to.be.undefined;
+        });
+
+        it('should not report units on zero values when the unit is configured and "style" is "no_unit"', function () {
+            var source = '.foo { margin-left: 0zz; }';
+            var result;
+            var ast;
+
+            var options = {
+                style: 'no_unit',
+                units: ['zz']
+            };
+
+            ast = parseAST(source);
+            ast = ast.first().first('block').first('declaration');
+
+            result = linter.lint(options, ast);
+
+            expect(result).to.be.undefined;
+        });
+
+        it('should not report units on zero values when the the property does not have units and "style" is "no_unit"', function () {
+            var source = '.bar { z-index: 0; }';
+            var result;
+            var ast;
+
+            var options = {
+                style: 'no_unit'
+            };
+
+            ast = parseAST(source);
+            ast = ast.first().first('block').first('declaration');
+
+            result = linter.lint(options, ast);
+
+            expect(result).to.be.undefined;
+        });
+
+        it('should not report units on zero values when the the property does not have units and "style" is "no_unit"', function () {
+            var source = '.bar { margin-left: 0; }';
+            var result;
+            var ast;
+
+            var options = {
+                style: 'no_unit',
+                ignore: ['margin-left']
+            };
+
+            ast = parseAST(source);
+            ast = ast.first().first('block').first('declaration');
+
+            result = linter.lint(options, ast);
+
+            expect(result).to.be.undefined;
         });
 
         it('should throw on invalid "style" value', function () {
