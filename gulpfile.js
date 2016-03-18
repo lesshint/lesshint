@@ -10,13 +10,13 @@ gulp.task('lint', function () {
         .pipe(eslint.failAfterError());
 });
 
-gulp.task('coverage', function () {
+gulp.task('coverage', ['lint'], function () {
     return gulp.src(['./lib/**/*.js'])
         .pipe(istanbul())
         .pipe(istanbul.hookRequire());
 });
 
-gulp.task('test', ['lint', 'coverage'], function () {
+gulp.task('test', ['coverage'], function () {
     var mocha = require('gulp-mocha');
 
     return gulp.src(['./test/specs/**/*.js'])

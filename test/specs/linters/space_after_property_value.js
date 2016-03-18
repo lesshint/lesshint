@@ -92,16 +92,18 @@ describe('lesshint', function () {
             var result;
             var ast;
 
-            var expected = [{
-                column: 18,
-                line: 1,
-                message: 'Semicolon after property value should not be preceded by any space.',
-            },
-            {
-                column: 39,
-                line: 1,
-                message: 'Semicolon after property value should not be preceded by any space.'
-            }];
+            var expected = [
+                {
+                    column: 18,
+                    line: 1,
+                    message: 'Semicolon after property value should not be preceded by any space.',
+                },
+                {
+                    column: 39,
+                    line: 1,
+                    message: 'Semicolon after property value should not be preceded by any space.'
+                }
+            ];
 
             var options = {
                 style: 'no_space'
@@ -120,16 +122,18 @@ describe('lesshint', function () {
             var result;
             var ast;
 
-            var expected = [{
-                column: 8,
-                line: 1,
-                message: 'Semicolon after property value should be preceded by one space.'
-            },
-            {
-                column: 20,
-                line: 1,
-                message: 'Semicolon after property value should be preceded by one space.'
-            }];
+            var expected = [
+                {
+                    column: 8,
+                    line: 1,
+                    message: 'Semicolon after property value should be preceded by one space.'
+                },
+                {
+                    column: 20,
+                    line: 1,
+                    message: 'Semicolon after property value should be preceded by one space.'
+                }
+            ];
 
             var options = {
                 style: 'one_space'
