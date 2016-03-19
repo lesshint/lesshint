@@ -7,6 +7,63 @@ var parseAST = require('../../../lib/linter').parseAST;
 
 describe('lesshint', function () {
     describe('#spaceAfterPropertyColon()', function () {
+        it('should allow one space when "style" is "at_least_one_space"', function () {
+            var source = '.foo { color: red; }';
+            var result;
+            var ast;
+
+            var options = {
+                style: 'at_least_one_space'
+            };
+
+            ast = parseAST(source);
+            ast = ast.first().first('block').first('declaration');
+
+            result = linter.lint(options, ast);
+
+            expect(result).to.be.undefined;
+        });
+
+        it('should not tolerate missing space when "style" is "at_least_one_space"', function () {
+            var source = '.foo { color:red; }';
+            var result;
+            var ast;
+
+            var expected = [{
+                column: 14,
+                line: 1,
+                message: 'Colon after property name should be followed by at least one space.'
+            }];
+
+            var options = {
+                style: 'at_least_one_space'
+            };
+
+            ast = parseAST(source);
+            ast = ast.first().first('block').first('declaration');
+
+            result = linter.lint(options, ast);
+
+            expect(result).to.deep.equal(expected);
+        });
+
+        it('should allow more than one space when "style" is "at_least_one_space"', function () {
+            var source = '.foo { color:  red; }';
+            var result;
+            var ast;
+
+            var options = {
+                style: 'at_least_one_space'
+            };
+
+            ast = parseAST(source);
+            ast = ast.first().first('block').first('declaration');
+
+            result = linter.lint(options, ast);
+
+            expect(result).to.be.undefined;
+        });
+
         it('should allow one space when "style" is "one_space"', function () {
             var source = '.foo { color: red; }';
             var result;
