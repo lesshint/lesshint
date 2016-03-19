@@ -109,16 +109,18 @@ describe('lesshint', function () {
             var result;
             var ast;
 
-            var expected = [{
-                column: 19,
-                line: 1,
-                message: 'Opening parenthesis should not be followed by any space.'
-            },
-            {
-                column: 33,
-                line: 1,
-                message: 'Closing parenthesis should not be preceded by any space.'
-            }];
+            var expected = [
+                {
+                    column: 19,
+                    line: 1,
+                    message: 'Opening parenthesis should not be followed by any space.'
+                },
+                {
+                    column: 33,
+                    line: 1,
+                    message: 'Closing parenthesis should not be preceded by any space.'
+                }
+            ];
 
             var options = {
                 style: 'no_space'
@@ -183,16 +185,18 @@ describe('lesshint', function () {
             var result;
             var ast;
 
-            var expected = [{
-                column: 19,
-                line: 1,
-                message: 'Opening parenthesis should not be followed by any space.'
-            },
-            {
-                column: 34,
-                line: 1,
-                message: 'Closing parenthesis should not be preceded by any space.'
-            }];
+            var expected = [
+                {
+                    column: 19,
+                    line: 1,
+                    message: 'Opening parenthesis should not be followed by any space.'
+                },
+                {
+                    column: 34,
+                    line: 1,
+                    message: 'Closing parenthesis should not be preceded by any space.'
+                }
+            ];
 
             var options = {
                 style: 'no_space'
@@ -308,16 +312,18 @@ describe('lesshint', function () {
             var result;
             var ast;
 
-            var expected = [{
-                column: 19,
-                line: 1,
-                message: 'Opening parenthesis should be followed by one space.'
-            },
-            {
-                column: 29,
-                line: 1,
-                message: 'Closing parenthesis should be preceded by one space.'
-            }];
+            var expected = [
+                {
+                    column: 19,
+                    line: 1,
+                    message: 'Opening parenthesis should be followed by one space.'
+                },
+                {
+                    column: 29,
+                    line: 1,
+                    message: 'Closing parenthesis should be preceded by one space.'
+                }
+            ];
 
             var options = {
                 style: 'one_space'
@@ -382,16 +388,18 @@ describe('lesshint', function () {
             var result;
             var ast;
 
-            var expected = [{
-                column: 19,
-                line: 1,
-                message: 'Opening parenthesis should be followed by one space.'
-            },
-            {
-                column: 34,
-                line: 1,
-                message: 'Closing parenthesis should be preceded by one space.'
-            }];
+            var expected = [
+                {
+                    column: 19,
+                    line: 1,
+                    message: 'Opening parenthesis should be followed by one space.'
+                },
+                {
+                    column: 34,
+                    line: 1,
+                    message: 'Closing parenthesis should be preceded by one space.'
+                }
+            ];
 
             var options = {
                 style: 'one_space'
@@ -507,16 +515,18 @@ describe('lesshint', function () {
             var result;
             var ast;
 
-            var expected = [{
-                column: 8,
-                line: 1,
-                message: 'Opening parenthesis should not be followed by any space.'
-            },
-            {
-                column: 26,
-                line: 1,
-                message: 'Closing parenthesis should not be preceded by any space.'
-            }];
+            var expected = [
+                {
+                    column: 8,
+                    line: 1,
+                    message: 'Opening parenthesis should not be followed by any space.'
+                },
+                {
+                    column: 26,
+                    line: 1,
+                    message: 'Closing parenthesis should not be preceded by any space.'
+                }
+            ];
 
             var options = {
                 style: 'no_space'
@@ -581,16 +591,18 @@ describe('lesshint', function () {
             var result;
             var ast;
 
-            var expected = [{
-                column: 8,
-                line: 1,
-                message: 'Opening parenthesis should not be followed by any space.'
-            },
-            {
-                column: 27,
-                line: 1,
-                message: 'Closing parenthesis should not be preceded by any space.'
-            }];
+            var expected = [
+                {
+                    column: 8,
+                    line: 1,
+                    message: 'Opening parenthesis should not be followed by any space.'
+                },
+                {
+                    column: 27,
+                    line: 1,
+                    message: 'Closing parenthesis should not be preceded by any space.'
+                }
+            ];
 
             var options = {
                 style: 'no_space'
@@ -706,16 +718,18 @@ describe('lesshint', function () {
             var result;
             var ast;
 
-            var expected = [{
-                column: 8,
-                line: 1,
-                message: 'Opening parenthesis should be followed by one space.'
-            },
-            {
-                column: 17,
-                line: 1,
-                message: 'Closing parenthesis should be preceded by one space.'
-            }];
+            var expected = [
+                {
+                    column: 8,
+                    line: 1,
+                    message: 'Opening parenthesis should be followed by one space.'
+                },
+                {
+                    column: 17,
+                    line: 1,
+                    message: 'Closing parenthesis should be preceded by one space.'
+                }
+            ];
 
             var options = {
                 style: 'one_space'
@@ -780,16 +794,18 @@ describe('lesshint', function () {
             var result;
             var ast;
 
-            var expected = [{
-                column: 8,
-                line: 1,
-                message: 'Opening parenthesis should be followed by one space.'
-            },
-            {
-                column: 27,
-                line: 1,
-                message: 'Closing parenthesis should be preceded by one space.'
-            }];
+            var expected = [
+                {
+                    column: 8,
+                    line: 1,
+                    message: 'Opening parenthesis should be followed by one space.'
+                },
+                {
+                    column: 27,
+                    line: 1,
+                    message: 'Closing parenthesis should be preceded by one space.'
+                }
+            ];
 
             var options = {
                 style: 'one_space'

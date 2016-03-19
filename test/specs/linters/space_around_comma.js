@@ -29,16 +29,18 @@ describe('lesshint', function () {
             var result;
             var ast;
 
-            var expected = [{
-                column: 23,
-                line: 1,
-                message: 'Commas should be followed by one space.'
-            },
-            {
-                column: 27,
-                line: 1,
-                message: 'Commas should be followed by one space.'
-            }];
+            var expected = [
+                {
+                    column: 23,
+                    line: 1,
+                    message: 'Commas should be followed by one space.'
+                },
+                {
+                    column: 27,
+                    line: 1,
+                    message: 'Commas should be followed by one space.'
+                }
+            ];
 
             var options = {
                 style: 'after'
@@ -131,16 +133,18 @@ describe('lesshint', function () {
             var result;
             var ast;
 
-            var expected = [{
-                column: 19,
-                line: 1,
-                message: 'Commas should be preceded by one space.'
-            },
-            {
-                column: 24,
-                line: 1,
-                message: 'Commas should be preceded by one space.'
-            }];
+            var expected = [
+                {
+                    column: 19,
+                    line: 1,
+                    message: 'Commas should be preceded by one space.'
+                },
+                {
+                    column: 24,
+                    line: 1,
+                    message: 'Commas should be preceded by one space.'
+                }
+            ];
 
             var options = {
                 style: 'before'
@@ -233,16 +237,18 @@ describe('lesshint', function () {
             var result;
             var ast;
 
-            var expected = [{
-                column: 19,
-                line: 1,
-                message: 'Commas should be preceded and followed by one space.'
-            },
-            {
-                column: 24,
-                line: 1,
-                message: 'Commas should be preceded and followed by one space.'
-            }];
+            var expected = [
+                {
+                    column: 19,
+                    line: 1,
+                    message: 'Commas should be preceded and followed by one space.'
+                },
+                {
+                    column: 24,
+                    line: 1,
+                    message: 'Commas should be preceded and followed by one space.'
+                }
+            ];
 
             var options = {
                 style: 'both'
@@ -261,16 +267,18 @@ describe('lesshint', function () {
             var result;
             var ast;
 
-            var expected = [{
-                column: 24,
-                line: 1,
-                message: 'Commas should be preceded and followed by one space.'
-            },
-            {
-                column: 29,
-                line: 1,
-                message: 'Commas should be preceded and followed by one space.'
-            }];
+            var expected = [
+                {
+                    column: 24,
+                    line: 1,
+                    message: 'Commas should be preceded and followed by one space.'
+                },
+                {
+                    column: 29,
+                    line: 1,
+                    message: 'Commas should be preceded and followed by one space.'
+                }
+            ];
 
             var options = {
                 style: 'both'
@@ -373,16 +381,18 @@ describe('lesshint', function () {
                 style: 'none'
             };
 
-            var expected = [{
-                column: 23,
-                line: 1,
-                message: 'Commas should not be preceded nor followed by any space.'
-            },
-            {
-                column: 28,
-                line: 1,
-                message: 'Commas should not be preceded nor followed by any space.'
-            }];
+            var expected = [
+                {
+                    column: 23,
+                    line: 1,
+                    message: 'Commas should not be preceded nor followed by any space.'
+                },
+                {
+                    column: 28,
+                    line: 1,
+                    message: 'Commas should not be preceded nor followed by any space.'
+                }
+            ];
 
             ast = parseAST(source);
             ast = ast.first().first('block').first('declaration').first('value').first('function').first('arguments');
@@ -397,16 +407,18 @@ describe('lesshint', function () {
             var result;
             var ast;
 
-            var expected = [{
-                column: 22,
-                line: 1,
-                message: 'Commas should not be preceded nor followed by any space.'
-            },
-            {
-                column: 27,
-                line: 1,
-                message: 'Commas should not be preceded nor followed by any space.'
-            }];
+            var expected = [
+                {
+                    column: 22,
+                    line: 1,
+                    message: 'Commas should not be preceded nor followed by any space.'
+                },
+                {
+                    column: 27,
+                    line: 1,
+                    message: 'Commas should not be preceded nor followed by any space.'
+                }
+            ];
 
             var options = {
                 style: 'none'
@@ -522,16 +534,18 @@ describe('lesshint', function () {
             var result;
             var ast;
 
-            var expected = [{
-                column: 23,
-                line: 1,
-                message: 'Commas should not be preceded nor followed by any space.'
-            },
-            {
-                column: 28,
-                line: 1,
-                message: 'Commas should not be preceded nor followed by any space.'
-            }];
+            var expected = [
+                {
+                    column: 23,
+                    line: 1,
+                    message: 'Commas should not be preceded nor followed by any space.'
+                },
+                {
+                    column: 28,
+                    line: 1,
+                    message: 'Commas should not be preceded nor followed by any space.'
+                }
+            ];
 
             var options = {
                 style: 'none'

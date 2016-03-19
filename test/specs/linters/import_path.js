@@ -198,16 +198,18 @@ describe('lesshint', function () {
             var result;
             var ast;
 
-            var expected = [{
-                column: 9,
-                line: 1,
-                message: 'Imported file, "_foo.less" should not include the file extension.'
-            },
-            {
-                column: 9,
-                line: 1,
-                message: 'Imported file, "_foo.less" should not include a leading underscore.'
-            }];
+            var expected = [
+                {
+                    column: 9,
+                    line: 1,
+                    message: 'Imported file, "_foo.less" should not include the file extension.'
+                },
+                {
+                    column: 9,
+                    line: 1,
+                    message: 'Imported file, "_foo.less" should not include a leading underscore.'
+                }
+            ];
 
             var options = {
                 filenameExtension: false,

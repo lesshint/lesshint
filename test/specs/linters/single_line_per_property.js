@@ -25,16 +25,18 @@ describe('lesshint', function () {
             var result;
             var ast;
 
-            var expected = [{
-                column: 2,
-                line: 2,
-                message: 'Each property should be on its own line.'
-            },
-            {
-                column: 14,
-                line: 2,
-                message: 'Each property should be on its own line.'
-            }];
+            var expected = [
+                {
+                    column: 2,
+                    line: 2,
+                    message: 'Each property should be on its own line.'
+                },
+                {
+                    column: 14,
+                    line: 2,
+                    message: 'Each property should be on its own line.'
+                }
+            ];
 
             ast = parseAST(source);
             ast = ast.first('ruleset').first('block');
@@ -273,16 +275,18 @@ describe('lesshint', function () {
             var result;
             var ast;
 
-            var expected = [{
-                column: 2,
-                line: 2,
-                message: 'Each property should be on its own line.'
-            },
-            {
-                column: 14,
-                line: 2,
-                message: 'Each property should be on its own line.'
-            }];
+            var expected = [
+                {
+                    column: 2,
+                    line: 2,
+                    message: 'Each property should be on its own line.'
+                },
+                {
+                    column: 14,
+                    line: 2,
+                    message: 'Each property should be on its own line.'
+                }
+            ];
 
             ast = parseAST(source);
             ast = ast.first('ruleset').first('block');
@@ -297,16 +301,18 @@ describe('lesshint', function () {
             var result;
             var ast;
 
-            var expected = [{
-                column: 2,
-                line: 2,
-                message: 'Each property should be on its own line.'
-            },
-            {
-                column: 14,
-                line: 2,
-                message: 'Each property should be on its own line.'
-            }];
+            var expected = [
+                {
+                    column: 2,
+                    line: 2,
+                    message: 'Each property should be on its own line.'
+                },
+                {
+                    column: 14,
+                    line: 2,
+                    message: 'Each property should be on its own line.'
+                }
+            ];
 
             ast = parseAST(source);
             ast = ast.first('ruleset').first('block');

@@ -90,46 +90,48 @@ describe('linter', function () {
             var path = 'path/to/file.less';
             var result;
 
-            var expected = [{
-                column: 7,
-                file: 'file.less',
-                fullPath: 'path/to/file.less',
-                line: 1,
-                linter: 'stringQuotes',
-                message: 'Strings should use single quotes.',
-                severity: 'warning',
-                source: '[type="text"], [type=email] {'
-            },
-            {
-                column: 22,
-                file: 'file.less',
-                fullPath: 'path/to/file.less',
-                line: 1,
-                linter: 'attributeQuotes',
-                message: 'Attribute selectors should use quotes.',
-                severity: 'warning',
-                source: '[type="text"], [type=email] {'
-            },
-            {
-                column: 1,
-                file: 'file.less',
-                fullPath: 'path/to/file.less',
-                line: 3,
-                linter: 'propertyOrdering',
-                message: 'Property ordering is not alphabetized',
-                severity: 'warning',
-                source: 'color: red;'
-            },
-            {
-                column: 1,
-                file: 'file.less',
-                fullPath: 'path/to/file.less',
-                line: 4,
-                linter: 'duplicateProperty',
-                message: 'Duplicate property: "color".',
-                severity: 'warning',
-                source: 'color: blue;'
-            }];
+            var expected = [
+                {
+                    column: 7,
+                    file: 'file.less',
+                    fullPath: 'path/to/file.less',
+                    line: 1,
+                    linter: 'stringQuotes',
+                    message: 'Strings should use single quotes.',
+                    severity: 'warning',
+                    source: '[type="text"], [type=email] {'
+                },
+                {
+                    column: 22,
+                    file: 'file.less',
+                    fullPath: 'path/to/file.less',
+                    line: 1,
+                    linter: 'attributeQuotes',
+                    message: 'Attribute selectors should use quotes.',
+                    severity: 'warning',
+                    source: '[type="text"], [type=email] {'
+                },
+                {
+                    column: 1,
+                    file: 'file.less',
+                    fullPath: 'path/to/file.less',
+                    line: 3,
+                    linter: 'propertyOrdering',
+                    message: 'Property ordering is not alphabetized',
+                    severity: 'warning',
+                    source: 'color: red;'
+                },
+                {
+                    column: 1,
+                    file: 'file.less',
+                    fullPath: 'path/to/file.less',
+                    line: 4,
+                    linter: 'duplicateProperty',
+                    message: 'Duplicate property: "color".',
+                    severity: 'warning',
+                    source: 'color: blue;'
+                }
+            ];
 
             var config = {
                 attributeQuotes: {
