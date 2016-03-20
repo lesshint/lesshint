@@ -1,22 +1,23 @@
 'use strict';
 
-var path = require('path');
 var expect = require('chai').expect;
-var linter = require('../../../lib/linters/' + path.basename(__filename));
-var getParser = require('../../../lib/linter').getParser;
+var spec = require('../util.js').setup();
 
 describe('lesshint', function () {
     describe('#attributeQuotes()', function () {
+        it('should have the proper node types', function () {
+            var source = 'input[type="text"] {}';
+
+            return spec.parse(source, function (ast) {
+                expect(spec.linter.nodeTypes).to.include(ast.root.first.type);
+            });
+        });
+
         it('should allow single quotes', function () {
             var source = "input[type='text'] {}";
-            var result;
-            var parser;
 
-            parser = getParser(source);
-            parser.then(function (ast) {
-                var node = ast.root.nodes[0].nodes[0];
-
-                result = linter.lint({}, ast.root.first);
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint({}, ast.root.first);
 
                 expect(result).to.be.undefined;
             });
@@ -24,14 +25,9 @@ describe('lesshint', function () {
 
         it('should allow double quotes', function () {
             var source = 'input[type="text"] {}';
-            var result;
-            var parser;
 
-            parser = getParser(source);
-            parser.then(function (ast) {
-                var node = ast.root.nodes[0].nodes[0];
-
-                result = linter.lint({}, ast.root.first);
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint({}, ast.root.first);
 
                 expect(result).to.be.undefined;
             });
@@ -39,20 +35,14 @@ describe('lesshint', function () {
 
         it('should not allow missing quotes', function () {
             var source = 'input[type=text] {}';
-            var result;
-            var parser;
-
             var expected = [{
                 column: 12,
                 line: 1,
                 message: 'Attribute selectors should use quotes.'
             }];
 
-            parser = getParser(source);
-            parser.then(function (ast) {
-                var node = ast.root.nodes[0].nodes[0];
-
-                result = linter.lint({}, ast.root.first);
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint({}, ast.root.first);
 
                 expect(result).to.deep.equal(expected);
             });
