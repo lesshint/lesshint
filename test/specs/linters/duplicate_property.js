@@ -1,34 +1,34 @@
 'use strict';
 
-var path = require('path');
 var expect = require('chai').expect;
-var linter = require('../../../lib/linters/' + path.basename(__filename));
-var parseAST = require('../../../lib/linter').parseAST;
+var spec = require('../util.js').setup();
+
 
 describe('lesshint', function () {
     describe('#duplicateProperty()', function () {
+        it('should have the proper node types', function () {
+            var source = '.foo { color: red; }';
+
+            return spec.parse(source, function (ast) {
+                expect(spec.linter.nodeTypes).to.include(ast.root.first.type);
+            });
+        });
+
         it('should allow single instances of each property', function () {
             var source = '.foo { color: red; }';
-            var result;
-            var ast;
-
             var options = {
                 exclude: []
             };
 
-            ast = parseAST(source);
-            ast = ast.first().first('block');
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
 
-            result = linter.lint(options, ast);
-
-            expect(result).to.be.undefined;
+                expect(result).to.be.undefined;
+            });
         });
 
         it('should not allow duplicate properties', function () {
             var source = '.foo { color: red; color: blue; }';
-            var result;
-            var ast;
-
             var expected = [{
                 column: 20,
                 line: 1,
@@ -39,36 +39,28 @@ describe('lesshint', function () {
                 exclude: []
             };
 
-            ast = parseAST(source);
-            ast = ast.first().first('block');
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
 
-            result = linter.lint(options, ast);
-
-            expect(result).to.deep.equal(expected);
+                expect(result).to.deep.equal(expected);
+            });
         });
 
         it('should allow excluded properties', function () {
             var source = '.foo { color: red; color: green; }';
-            var result;
-            var ast;
-
             var options = {
                 exclude: ['color']
             };
 
-            ast = parseAST(source);
-            ast = ast.first().first('block');
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
 
-            result = linter.lint(options, ast);
-
-            expect(result).to.be.undefined;
+                expect(result).to.be.undefined;
+            });
         });
 
         it('should not allow duplicates of properties that are not excluded', function () {
             var source = '.foo { color: red; color: green; }';
-            var result;
-            var ast;
-
             var expected = [{
                 column: 20,
                 line: 1,
@@ -79,29 +71,37 @@ describe('lesshint', function () {
                 exclude: ['background']
             };
 
-            ast = parseAST(source);
-            ast = ast.first().first('block');
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
 
-            result = linter.lint(options, ast);
-
-            expect(result).to.deep.equal(expected);
+                expect(result).to.deep.equal(expected);
+            });
         });
 
         it('should ignore local variables', function () {
             var source = '.foo { @a: red; @b: 3px; }';
-            var result;
-            var ast;
-
             var options = {
                 exclude: []
             };
 
-            ast = parseAST(source);
-            ast = ast.first().first('block');
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
 
-            result = linter.lint(options, ast);
+                expect(result).to.be.undefined;
+            });
+        });
 
-            expect(result).to.be.undefined;
+        it('should ignore nested properties', function () {
+            var source = '.foo { color: red; .bar { color: blue; } }';
+            var options = {
+                exclude: []
+            };
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
         });
     });
 });
