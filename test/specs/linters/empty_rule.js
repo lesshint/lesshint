@@ -41,6 +41,7 @@ describe('lesshint', function () {
             var expected = [{
                 message: "There shouldn't be any empty rules present."
             }];
+
             return spec.parse(source, function (ast) {
                 var result = spec.linter.lint({}, ast.root.first);
 

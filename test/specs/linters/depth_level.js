@@ -24,7 +24,7 @@ describe('lesshint', function () {
             };
 
             return spec.parse(source, function (ast) {
-                var result = spec.linter.lint({}, ast.root.first);
+                var result = spec.linter.lint(options, ast.root.first);
 
                 expect(result).to.deep.equal(expected);
             });
@@ -37,7 +37,7 @@ describe('lesshint', function () {
             };
 
             return spec.parse(source, function (ast) {
-                var result = spec.linter.lint({}, ast.root.first);
+                var result = spec.linter.lint(options, ast.root.first);
 
                 expect(result).to.be.undefined;
             });
