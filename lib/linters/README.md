@@ -4,7 +4,7 @@
 * [borderZero](#borderzero)
 * [comment](#comment)
 * [decimalZero](#decimalzero)
-* [depthLevel](#depthLevel)
+* [depthLevel](#depthlevel)
 * [duplicateProperty](#duplicateproperty)
 * [emptyRule](#emptyrule)
 * [finalNewline](#finalnewline)
