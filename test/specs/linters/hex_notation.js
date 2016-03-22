@@ -1,17 +1,20 @@
 'use strict';
 
-var path = require('path');
 var expect = require('chai').expect;
-var linter = require('../../../lib/linters/' + path.basename(__filename));
-var parseAST = require('../../../lib/linter').parseAST;
+var spec = require('../util.js').setup();
 
 describe('lesshint', function () {
     describe('#hexNotation()', function () {
+        it('should have the proper node types', function () {
+            var source = 'color: #AABBCC;';
+
+            return spec.parse(source, function (ast) {
+                expect(spec.linter.nodeTypes).to.include(ast.root.first.type);
+            });
+        });
+
         it('should not allow uppercase hex values when "style" is "lowercase"', function () {
             var source = 'color: #AABBCC;';
-            var result;
-            var ast;
-
             var expected = [{
                 message: '#AABBCC should be written in lowercase.'
             }];
@@ -20,36 +23,28 @@ describe('lesshint', function () {
                 style: 'lowercase'
             };
 
-            ast = parseAST(source);
-            ast = ast.first('declaration').first('value').first('color');
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
 
-            result = linter.lint(options, ast);
-
-            expect(result).to.deep.equal(expected);
+                expect(result).to.deep.equal(expected);
+            });
         });
 
         it('should allow lowercase hex values when "style" is "lowercase"', function () {
             var source = 'color: #aabbcc;';
-            var result;
-            var ast;
-
             var options = {
                 style: 'lowercase'
             };
 
-            ast = parseAST(source);
-            ast = ast.first('declaration').first('value').first('color');
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
 
-            result = linter.lint(options, ast);
-
-            expect(result).to.be.undefined;
+                expect(result).to.be.undefined;
+            });
         });
 
         it('should not allow lowercase hex values when "style" is "uppercase"', function () {
             var source = 'color: #aabbcc;';
-            var result;
-            var ast;
-
             var expected = [{
                 message: '#aabbcc should be written in uppercase.'
             }];
@@ -58,36 +53,28 @@ describe('lesshint', function () {
                 style: 'uppercase'
             };
 
-            ast = parseAST(source);
-            ast = ast.first('declaration').first('value').first('color');
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
 
-            result = linter.lint(options, ast);
-
-            expect(result).to.deep.equal(expected);
+                expect(result).to.deep.equal(expected);
+            });
         });
 
         it('should allow uppercase hex values when "style" is "uppercase"', function () {
             var source = 'color: #AABBCC;';
-            var result;
-            var ast;
-
             var options = {
                 style: 'uppercase'
             };
 
-            ast = parseAST(source);
-            ast = ast.first('declaration').first('value').first('color');
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
 
-            result = linter.lint(options, ast);
-
-            expect(result).to.be.undefined;
+                expect(result).to.be.undefined;
+            });
         });
 
         it('should find hex values in background declarations', function () {
             var source = 'background: url(test.png) no-repeat #AABBCC;';
-            var result;
-            var ast;
-
             var expected = [{
                 message: '#AABBCC should be written in lowercase.'
             }];
@@ -96,19 +83,15 @@ describe('lesshint', function () {
                 style: 'lowercase'
             };
 
-            ast = parseAST(source);
-            ast = ast.first('declaration').first('value').first('color');
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
 
-            result = linter.lint(options, ast);
-
-            expect(result).to.deep.equal(expected);
+                expect(result).to.deep.equal(expected);
+            });
         });
 
         it('should not allow uppercase hex values in variables when "style" is "lowercase" (#28)', function () {
             var source = '@color: #AABBCC;';
-            var result;
-            var ast;
-
             var expected = [{
                 message: '#AABBCC should be written in lowercase.'
             }];
@@ -117,19 +100,15 @@ describe('lesshint', function () {
                 style: 'lowercase'
             };
 
-            ast = parseAST(source);
-            ast = ast.first().first('color');
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
 
-            result = linter.lint(options, ast);
-
-            expect(result).to.deep.equal(expected);
+                expect(result).to.deep.equal(expected);
+            });
         });
 
         it('should not allow lowercase hex values in variables when "style" is "uppercase" (#28)', function () {
             var source = '@color: #aabbcc;';
-            var result;
-            var ast;
-
             var expected = [{
                 message: '#aabbcc should be written in uppercase.'
             }];
@@ -138,80 +117,63 @@ describe('lesshint', function () {
                 style: 'uppercase'
             };
 
-            ast = parseAST(source);
-            ast = ast.first().first('color');
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
 
-            result = linter.lint(options, ast);
-
-            expect(result).to.deep.equal(expected);
+                expect(result).to.deep.equal(expected);
+            });
         });
 
         it('should ignore colors with only numbers', function () {
             var source = 'color: #123456;';
-            var result;
-            var ast;
-
             var options = {
                 style: 'lowercase'
             };
 
-            ast = parseAST(source);
-            ast = ast.first('declaration').first('value').first('color');
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
 
-            result = linter.lint(options, ast);
-
-            expect(result).to.equal(null);
+                expect(result).to.be.undefined;
+            });
         });
 
         it('should ignore colors with invalid length', function () {
             var source = 'color: #abc1;';
-            var result;
-            var ast;
-
             var options = {
                 style: 'lowercase'
             };
 
-            ast = parseAST(source);
-            ast = ast.first('declaration').first('value').first('color');
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
 
-            result = linter.lint(options, ast);
-
-            expect(result).to.be.undefined;
+                expect(result).to.be.undefined;
+            });
         });
 
         it('should ignore colors with invalid characters', function () {
             var source = 'color: #abck;';
-            var result;
-            var ast;
-
             var options = {
                 style: 'lowercase'
             };
 
-            ast = parseAST(source);
-            ast = ast.first('declaration').first('value').first('color');
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
 
-            result = linter.lint(options, ast);
-
-            expect(result).to.be.undefined;
+                expect(result).to.be.undefined;
+            });
         });
 
         it('should throw on invalid "style" value', function () {
             var source = 'color: #aabbcc;';
-            var lint;
-            var ast;
-
             var options = {
                 style: 'invalid'
             };
 
-            ast = parseAST(source);
-            ast = ast.first('declaration').first('value').first('color');
+            return spec.parse(source, function (ast) {
+                var lint = spec.linter.lint.bind(null, options, ast);
 
-            lint = linter.lint.bind(null, options, ast);
-
-            expect(lint).to.throw(Error);
+                expect(lint).to.throw(Error);
+            });
         });
     });
 });
