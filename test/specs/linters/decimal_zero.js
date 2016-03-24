@@ -52,6 +52,17 @@ describe('lesshint', function () {
                 expect(result).to.be.undefined;
             });
 
+            it('should allow decimal number greater than 1 without leading zero', function () {
+                ast = parseAST('.foo { font-size: 1.25em; }')
+                        .first()
+                        .first('block')
+                        .first('declaration');
+
+                result = linter.lint(options, ast);
+
+                expect(result).to.be.undefined;
+            });
+
             it('should not allow number without leading decimal zero', function () {
                 expected = [{
                     column: 19,
@@ -171,6 +182,17 @@ describe('lesshint', function () {
 
             it('should allow "0.0"', function () {
                 ast = parseAST('.foo { font-size: 0.0em; }')
+                        .first()
+                        .first('block')
+                        .first('declaration');
+
+                result = linter.lint(options, ast);
+
+                expect(result).to.be.undefined;
+            });
+
+            it('should allow decimal number greater than 1 without leading zero', function () {
+                ast = parseAST('.foo { font-size: 1.250em; }')
                         .first()
                         .first('block')
                         .first('declaration');
