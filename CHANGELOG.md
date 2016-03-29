@@ -1,4 +1,7 @@
 # Changelog
+## 1.5.1 (2016-03-29)
+* Fixed an issue where `zeroUnit` would crash in certain cases. ([34606cc](https://github.com/lesshint/lesshint/commit/34606cc78963be33e988c1061d404f53e1b26d19))
+
 ## 1.5.0 (2016-03-24)
 * Added a `at_least_one_space` value for the `style` option in `spaceAfterPropertyColon`. ([5e9fd1e](https://github.com/lesshint/lesshint/commit/5e9fd1e1d6be23a822394e06f9a8d31bddbac018))
 * Added `units` and `exclude` options to `zeroUnit`. ([728f37a](https://github.com/lesshint/lesshint/commit/728f37a73d117d6352d2bf146fa09240be4453a2))
