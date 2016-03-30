@@ -29,7 +29,7 @@ describe('lesshint', function () {
         it('should not allow double quotes when "style" is "single"', function () {
             var source = '.foo { content: "Hello world"; }';
             var expected = [{
-                column: 8,
+                column: 17,
                 line: 1,
                 message: 'Strings should use single quotes.'
             }];
@@ -61,7 +61,7 @@ describe('lesshint', function () {
         it('should not allow single quotes when "style" is "double"', function () {
             var source = ".foo { content: 'Hello world'; }";
             var expected = [{
-                column: 8,
+                column: 17,
                 line: 1,
                 message: 'Strings should use double quotes.'
             }];
@@ -96,7 +96,7 @@ describe('lesshint', function () {
                 style: 'double'
             };
             var expected = [{
-                column: 8,
+                column: 30,
                 line: 1,
                 message: 'Strings should use double quotes.'
             }];
@@ -137,7 +137,7 @@ describe('lesshint', function () {
         it('should not allow double quotes in variable declarations when "style" is "single"', function () {
             var source = '@foo: "Hello world";';
             var expected = [{
-                column: 1,
+                column: 7,
                 line: 1,
                 message: 'Strings should use single quotes.'
             }];
@@ -169,7 +169,7 @@ describe('lesshint', function () {
         it('should not allow single quotes in variable declarations when "style" is "double"', function () {
             var source = "@foo: 'Hello world';";
             var expected = [{
-                column: 1,
+                column: 7,
                 line: 1,
                 message: 'Strings should use double quotes.'
             }];

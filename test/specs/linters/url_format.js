@@ -29,7 +29,7 @@ describe('lesshint', function () {
         it('should not allow absolute URLs when "style" is "relative"', function () {
             var source = '.foo { background-image: url(http://example.com/img/image.jpg); }';
             var expected = [{
-                column: 8,
+                column: 30,
                 line: 1,
                 message: 'URL "http://example.com/img/image.jpg" should be relative.'
             }];
@@ -61,7 +61,7 @@ describe('lesshint', function () {
         it('should not allow relative URLs when "style" is "absolute"', function () {
             var source = '.foo { background-image: url(img/image.jpg); }';
             var expected = [{
-                column: 8,
+                column: 30,
                 line: 1,
                 message: 'URL "img/image.jpg" should be absolute.'
             }];
@@ -80,7 +80,7 @@ describe('lesshint', function () {
         it('should treat absolute URLs without a protocol as such when "style" is "relative"', function () {
             var source = '.foo { background-image: url(//example.com/img/image.jpg); }';
             var expected = [{
-                column: 8,
+                column: 30,
                 line: 1,
                 message: 'URL "//example.com/img/image.jpg" should be relative.'
             }];

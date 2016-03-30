@@ -44,7 +44,7 @@ describe('lesshint', function () {
         it('should not allow missing quotes', function () {
             var source = '.foo { background-image: url(img/image.jpg); }';
             var expected = [{
-                column: 8,
+                column: 30,
                 line: 1,
                 message: 'URLs should be enclosed in quotes.'
             }];
@@ -59,7 +59,7 @@ describe('lesshint', function () {
         it('should not allow missing quotes in imports', function () {
             var source = '@import url(http://example.com)';
             var expected = [{
-                column: 1,
+                column: 11,
                 line: 1,
                 message: 'URLs should be enclosed in quotes.'
             }];
@@ -94,7 +94,7 @@ describe('lesshint', function () {
         it('should not allow unquoted URLs strings surrounded by spaces (#22)', function () {
             var source = '.foo { background-image: url( img/image.jpg ); }';
             var expected = [{
-                column: 8,
+                column: 30,
                 line: 1,
                 message: 'URLs should be enclosed in quotes.'
             }];
