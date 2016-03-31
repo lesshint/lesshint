@@ -1,4 +1,7 @@
 # Changelog
+## 1.5.2 (2016-03-31)
+* Changed `gonzales-pe` full URL to GitHub pattern. ([e83e665](https://github.com/lesshint/lesshint/commit/e83e665f36e8beba0976b9ee32ad478067a117e5))
+
 ## 1.5.1 (2016-03-29)
 * Fixed an issue where `zeroUnit` would crash in certain cases. ([34606cc](https://github.com/lesshint/lesshint/commit/34606cc78963be33e988c1061d404f53e1b26d19))
 
