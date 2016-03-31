@@ -175,6 +175,12 @@
         "enabled": true
     },
 
+    "validateIndentation": {
+        "enabled": true,
+        "size": 4,
+        "style": "spaces"
+    },
+
     "zeroUnit": {
         "enabled": true,
         "style": "keep_unit"

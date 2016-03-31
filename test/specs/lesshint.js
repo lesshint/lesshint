@@ -113,9 +113,13 @@ describe('lesshint', function () {
 
     describe('checkString', function () {
         it('should check a string', function () {
-            var string = '.foo{\n color: red;\n}\n';
             var lesshint = new Lesshint();
+            var string = '';
             var result;
+
+            string += '.foo{\n';
+            string += '    color: red;\n';
+            string += '}\n';
 
             lesshint.configure();
 

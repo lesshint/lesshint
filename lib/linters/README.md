@@ -32,6 +32,7 @@
 * [trailingWhitespace](#trailingwhitespace)
 * [urlFormat](#urlformat)
 * [urlQuotes](#urlquotes)
+* [validateIndentation](#validateindentation)
 * [zeroUnit](#zerounit)
 
 In addition to the linter specific options outlined below, each linter also accepts these options:
@@ -796,6 +797,15 @@ The [CSS spec](http://dev.w3.org/csswg/css-values/#url-value) also recommends th
     background-image: url('img/image.jpg');
 }
 ```
+
+# validateIndentation
+The indentation in a project should be consistent.
+This rule checks for mixed tabs and spaces, indentation style, and indentation length.
+
+Option     | Description
+---------- | ----------
+`size`     | Number of spaces to indent by when `style` is `spaces`. Default is `4`.
+`style`    | `spaces`, (**default**) `tabs`
 
 ## zeroUnit
 Zero values should include a unit for consistency with other values.
