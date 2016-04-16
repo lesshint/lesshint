@@ -86,5 +86,15 @@ describe('lesshint', function () {
                 expect(result).to.deep.equal(expected);
             });
         });
+
+        it('should not report single selectors', function () {
+            var source = '.foo {}';
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint({}, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
     });
 });
