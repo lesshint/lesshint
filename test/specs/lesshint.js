@@ -183,4 +183,27 @@ describe('lesshint', function () {
             expect(lesshint.config).to.deep.equal(expected);
         });
     });
+
+    describe('getReporter', function () {
+        it('should load the specified reporter', function () {
+            var lesshint = new Lesshint();
+            var reporter = lesshint.getReporter(path.resolve(process.cwd() + '/lib/reporters/default.js'));
+
+            expect(reporter.name).to.equal('default');
+        });
+
+        it('should load the default when nothing is passed', function () {
+            var lesshint = new Lesshint();
+            var reporter = lesshint.getReporter();
+
+            expect(reporter.name).to.equal('default');
+        });
+
+        it('should return false when no reporter was found', function () {
+            var lesshint = new Lesshint();
+            var reporter = lesshint.getReporter('invalid');
+
+            expect(reporter).to.be.false;
+        });
+    });
 });
