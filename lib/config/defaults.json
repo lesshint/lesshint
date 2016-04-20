@@ -88,6 +88,7 @@
             "dpi", "dpcm", "dppx",                   // Resolution
             "%"                                      // Other
         ],
+        "invalid": [],
         "properties": {}
     },
 

@@ -1,35 +1,34 @@
 'use strict';
 
-var path = require('path');
 var expect = require('chai').expect;
-var linter = require('../../../lib/linters/' + path.basename(__filename));
-var parseAST = require('../../../lib/linter').parseAST;
+var spec = require('../util.js').setup();
 
 describe('lesshint', function () {
     describe('#propertyUnits()', function () {
-        it('should allow allowed valid unit', function () {
-            var source = '.foo { font-size: 1rem; }';
-            var result;
-            var ast;
+        it('should have the proper node types', function () {
+            var source = 'font-size: 1rem;';
 
+            return spec.parse(source, function (ast) {
+                expect(spec.linter.nodeTypes).to.include(ast.root.first.type);
+            });
+        });
+
+        it('should allow allowed valid unit', function () {
+            var source = 'font-size: 1rem;';
             var options = {
                 properties: {},
                 valid: ['rem']
             };
 
-            ast = parseAST(source);
-            ast = ast.first().first('block').first('declaration');
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
 
-            result = linter.lint(options, ast);
-
-            expect(result).to.be.undefined;
+                expect(result).to.be.undefined;
+            });
         });
 
         it('should allow valid property unit', function () {
-            var source = '.foo { font-size: 1rem; }';
-            var result;
-            var ast;
-
+            var source = 'font-size: 1rem;';
             var options = {
                 properties: {
                     'font-size': ['rem']
@@ -37,21 +36,17 @@ describe('lesshint', function () {
                 valid: []
             };
 
-            ast = parseAST(source);
-            ast = ast.first().first('block').first('declaration');
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
 
-            result = linter.lint(options, ast);
-
-            expect(result).to.be.undefined;
+                expect(result).to.be.undefined;
+            });
         });
 
         it('should not allow an unspecified unit', function () {
-            var source = '.foo { font-size: 1rem; }';
-            var result;
-            var ast;
-
+            var source = 'font-size: 1rem;';
             var expected = [{
-                column: 19,
+                column: 12,
                 line: 1,
                 message: 'Unit "rem" is not allowed for "font-size".'
             }];
@@ -61,21 +56,17 @@ describe('lesshint', function () {
                 valid: ['px']
             };
 
-            ast = parseAST(source);
-            ast = ast.first().first('block').first('declaration');
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
 
-            result = linter.lint(options, ast);
-
-            expect(result).to.deep.equal(expected);
+                expect(result).to.deep.equal(expected);
+            });
         });
 
         it('should not allow an unspecified property unit', function () {
-            var source = '.foo { font-size: 1rem; }';
-            var result;
-            var ast;
-
+            var source = 'font-size: 1rem;';
             var expected = [{
-                column: 19,
+                column: 12,
                 line: 1,
                 message: 'Unit "rem" is not allowed for "font-size".'
             }];
@@ -87,21 +78,17 @@ describe('lesshint', function () {
                 valid: []
             };
 
-            ast = parseAST(source);
-            ast = ast.first().first('block').first('declaration');
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
 
-            result = linter.lint(options, ast);
-
-            expect(result).to.deep.equal(expected);
+                expect(result).to.deep.equal(expected);
+            });
         });
 
         it('should not allow any units when no valid units are passed', function () {
-            var source = '.foo { line-height: 24px; }';
-            var result;
-            var ast;
-
+            var source = 'line-height: 24px;';
             var expected = [{
-                column: 21,
+                column: 14,
                 line: 1,
                 message: 'Unit "px" is not allowed for "line-height".'
             }];
@@ -111,21 +98,17 @@ describe('lesshint', function () {
                 valid: []
             };
 
-            ast = parseAST(source);
-            ast = ast.first().first('block').first('declaration');
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
 
-            result = linter.lint(options, ast);
-
-            expect(result).to.deep.equal(expected);
+                expect(result).to.deep.equal(expected);
+            });
         });
 
         it('should not allow any units when no property units are passed', function () {
-            var source = '.foo { line-height: 24px; }';
-            var result;
-            var ast;
-
+            var source = 'line-height: 24px;';
             var expected = [{
-                column: 21,
+                column: 14,
                 line: 1,
                 message: 'Unit "px" is not allowed for "line-height".'
             }];
@@ -137,37 +120,29 @@ describe('lesshint', function () {
                 valid: ['px']
             };
 
-            ast = parseAST(source);
-            ast = ast.first().first('block').first('declaration');
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
 
-            result = linter.lint(options, ast);
-
-            expect(result).to.deep.equal(expected);
+                expect(result).to.deep.equal(expected);
+            });
         });
 
         it('should allow percentages when set as a valid unit', function () {
-            var source = '.foo { font-size: 100%; }';
-            var result;
-            var ast;
-
+            var source = 'font-size: 100%;';
             var options = {
                 properties: {},
                 valid: ['%']
             };
 
-            ast = parseAST(source);
-            ast = ast.first().first('block').first('declaration');
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
 
-            result = linter.lint(options, ast);
-
-            expect(result).to.be.undefined;
+                expect(result).to.be.undefined;
+            });
         });
 
         it('should allow percentages when set as a valid property unit', function () {
-            var source = '.foo { font-size: 100%; }';
-            var result;
-            var ast;
-
+            var source = 'font-size: 100%;';
             var options = {
                 properties: {
                     'font-size': ['%']
@@ -175,23 +150,19 @@ describe('lesshint', function () {
                 valid: []
             };
 
-            ast = parseAST(source);
-            ast = ast.first().first('block').first('declaration');
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
 
-            result = linter.lint(options, ast);
-
-            expect(result).to.be.undefined;
+                expect(result).to.be.undefined;
+            });
         });
 
         it('should not allow percentages when set as an invalid unit', function () {
-            var source = '.foo { font-size: 100%; }';
-            var result;
-            var ast;
-
+            var source = 'font-size: 100%;';
             var expected = [{
-                column: 19,
+                column: 12,
                 line: 1,
-                message: 'Percentages are not allowed for "font-size".'
+                message: 'Unit "%" is not allowed for "font-size".'
             }];
 
             var options = {
@@ -199,23 +170,19 @@ describe('lesshint', function () {
                 valid: ['px']
             };
 
-            ast = parseAST(source);
-            ast = ast.first().first('block').first('declaration');
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
 
-            result = linter.lint(options, ast);
-
-            expect(result).to.deep.equal(expected);
+                expect(result).to.deep.equal(expected);
+            });
         });
 
         it('should not allow percentages when set as an invalid property unit', function () {
-            var source = '.foo { font-size: 100%; }';
-            var result;
-            var ast;
-
+            var source = 'font-size: 100%;';
             var expected = [{
-                column: 19,
+                column: 12,
                 line: 1,
-                message: 'Percentages are not allowed for "font-size".'
+                message: 'Unit "%" is not allowed for "font-size".'
             }];
 
             var options = {
@@ -225,21 +192,17 @@ describe('lesshint', function () {
                 valid: []
             };
 
-            ast = parseAST(source);
-            ast = ast.first().first('block').first('declaration');
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
 
-            result = linter.lint(options, ast);
-
-            expect(result).to.deep.equal(expected);
+                expect(result).to.deep.equal(expected);
+            });
         });
 
         it('should not allow an invalid unit', function () {
-            var source = '.foo { font-size: 1px; }';
-            var result;
-            var ast;
-
+            var source = 'font-size: 1px;';
             var expected = [{
-                column: 19,
+                column: 12,
                 line: 1,
                 message: 'Unit "px" is not allowed for "font-size".'
             }];
@@ -249,21 +212,17 @@ describe('lesshint', function () {
                 properties: {}
             };
 
-            ast = parseAST(source);
-            ast = ast.first().first('block').first('declaration');
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
 
-            result = linter.lint(options, ast);
-
-            expect(result).to.deep.equal(expected);
+                expect(result).to.deep.equal(expected);
+            });
         });
 
         it('should not allow an invalid unit that overrides a valid unit', function () {
-            var source = '.foo { font-size: 1px; }';
-            var result;
-            var ast;
-
+            var source = 'font-size: 1px;';
             var expected = [{
-                column: 19,
+                column: 12,
                 line: 1,
                 message: 'Unit "px" is not allowed for "font-size".'
             }];
@@ -274,21 +233,17 @@ describe('lesshint', function () {
                 valid: ['px']
             };
 
-            ast = parseAST(source);
-            ast = ast.first().first('block').first('declaration');
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
 
-            result = linter.lint(options, ast);
-
-            expect(result).to.deep.equal(expected);
+                expect(result).to.deep.equal(expected);
+            });
         });
 
         it('should not allow an invalid unit that has been specified valid for a property', function () {
-            var source = '.foo { font-size: 1px; }';
-            var result;
-            var ast;
-
+            var source = 'font-size: 1px;';
             var expected = [{
-                column: 19,
+                column: 12,
                 line: 1,
                 message: 'Unit "px" is not allowed for "font-size".'
             }];
@@ -300,25 +255,21 @@ describe('lesshint', function () {
                 }
             };
 
-            ast = parseAST(source);
-            ast = ast.first().first('block').first('declaration');
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
 
-            result = linter.lint(options, ast);
-
-            expect(result).to.deep.equal(expected);
+                expect(result).to.deep.equal(expected);
+            });
         });
 
-        it('should return null on variable declaration', function () {
-            var source = '.foo { @var-name: 12px; }';
-            var result;
-            var ast;
+        it('should return undefined on variable declaration', function () {
+            var source = '@var-name: 12px;';
 
-            ast = parseAST(source);
-            ast = ast.first().first('block').first('declaration');
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint({}, ast.root.first);
 
-            result = linter.lint({}, ast);
-
-            expect(result).to.equal(null);
+                expect(result).to.be.undefined;
+            });
         });
     });
 });
