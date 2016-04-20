@@ -101,7 +101,9 @@
     "selectorNaming": {
         "enabled": false,
         "disallowUppercase": true,
-        "disallowUnderscore": true
+        "disallowUnderscore": true,
+        "disallowDash": false,
+        "exclude": []
     },
 
     "singleLinePerProperty": {
