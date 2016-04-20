@@ -133,30 +133,46 @@ Exit status code   | Description
 These codes were chosen with regards to the [preferable exit codes](http://www.gsp.com/cgi-bin/man.cgi?section=3&topic=sysexits).
 
 ## Reporters
-As of `0.8.0` the ability to specify custom reporters has been added. These can do anything from just printing something to the terminal to generate custom reports.
+Reporters can be used to perform actions with the lint results, for example printing something to the terminal or generate custom reports.
 
-There are three ways to load a reporter.
+### The reporter loading steps
 
-1. Pass the name of a core reporter. See below for a complete listing.
+1. If nothing is passed, a simple, default reporter will be used. This will just print all the warnings/errors found.
 2. Pass the name of a Node module. If `lesshint` is installed globally only globally installed reporters are available (the normal Node module loading rules apply).
 3. Pass a absolute or relative path to a custom reporter anywhere on the disk. Relative paths will be resolved against [`process.cwd()`](https://nodejs.org/api/process.html#process_process_cwd).
 
-### Core reporters
-* `stylish` - Colored print of all errors to the console.
+These steps always apply, no matter whether you're using the CLI or calling `lesshint` from code.
+
+### Using reporters from the CLI
+```bash
+lesshint --reporter my-super-awesome-reporter file.less
+lesshint --reporter /path/to/my/super/awesome/reporter.js file.less
+```
+
+### Using reporters from code
+If you're writing code which utilizes `lesshint`, for example a Gulp plugin you can use the `getReporter` method on the `lesshint` object to load a reporter using the same logic as `lesshint` does.
+
+Pass the name of a module or a path to the `getReporter` method like this:
+
+```js
+var Lesshint = require('lesshint');
+
+var lesshint = new Lesshint();
+var reporter = lesshint.getReporter('my-super-awesome-reporter');
+
+var errors = lesshint.checkFile('file.less');
+reporter.report(errors);
+```
 
 ### Writing your own reporter
-In it's simplest form, a reporter is just a function accepting some input. The most basic reporter possible:
+In its simplest form, a reporter is just a function accepting some input. The most basic reporter possible:
 
 ```js
 module.exports = {
+    name: 'my-super-awesome-reporter', // Not required, but recommended
     report: function (errors) {
         console.log(errors.length ? 'Errors found' : 'No errors');
     }
-};
-
-// Old usage, deprecated as of 1.2.0:
-module.exports = function (errors) {
-    console.log(errors.length ? 'Errors found' : 'No errors');
 };
 ```
 
@@ -175,6 +191,6 @@ The reporter will be passed an array of objects representing each error:
 }
 ```
 
-It's then up to the reporter to do something with the errors. No `return`s or anything is needed. `lesshint` will handle everything like exit codes etc.
+It's then up to the reporter to do something with the errors. No `return`s or anything is needed. If running from the CLI, `lesshint` will handle the setting of correct exit codes.
 
-Take a look at the [default reporter](https://github.com/lesshint/lesshint/blob/master/lib/reporters/stylish.js) for more information.
+Take a look at the [default reporter](https://github.com/lesshint/lesshint/blob/master/lib/reporters/default.js) for more information.
