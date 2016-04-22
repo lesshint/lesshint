@@ -68,8 +68,18 @@ describe('lesshint', function () {
             });
         });
 
-        it("should not report a missing semicolon when there's a space before the it", function () {
+        it('should not report a missing semicolon when there is a space before the it', function () {
             var source = '.foo { color: red ; }';
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint({}, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
+        it('should not try to check mixins without a body', function () {
+            var source = '.foo { .mixin(); }';
 
             return spec.parse(source, function (ast) {
                 var result = spec.linter.lint({}, ast.root.first);
