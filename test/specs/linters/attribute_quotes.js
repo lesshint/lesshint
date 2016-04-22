@@ -57,5 +57,27 @@ describe('lesshint', function () {
                 expect(result).to.be.undefined;
             });
         });
+
+        it('should check all selectors in a selector group', function () {
+            var source = 'input[type=text], input[type=text] {}';
+            var expected = [
+                {
+                    column: 12,
+                    line: 1,
+                    message: 'Attribute selectors should use quotes.'
+                },
+                {
+                    column: 30,
+                    line: 1,
+                    message: 'Attribute selectors should use quotes.'
+                }
+            ];
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint({}, ast.root.first);
+
+                expect(result).to.deep.equal(expected);
+            });
+        });
     });
 });
