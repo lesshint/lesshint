@@ -11,7 +11,7 @@ describe('linter', function () {
         it('should return array of errors', function () {
             var source = '.foo{ color:red; }\n';
             var path = 'test.less';
-            var results;
+            var spec;
 
             var config = {
                 spaceAfterPropertyColon: {
@@ -24,15 +24,17 @@ describe('linter', function () {
                 }
             };
 
-            results = linter.lint(source, path, config);
+            spec = linter.lint(source, path, config);
 
-            expect(results).to.have.length(2);
+            return spec.then(function (result) {
+                expect(result).to.have.length(2);
+            });
         });
 
         it('should handle all sorts of line endings (#40)', function () {
             var source = '.foo {\r\n margin-right:10px; }\r\n';
             var path = 'test.less';
-            var result;
+            var spec;
 
             var expected = [{
                 column: 15,
@@ -52,15 +54,17 @@ describe('linter', function () {
                 }
             };
 
-            result = linter.lint(source, path, options);
+            spec = linter.lint(source, path, options);
 
-            expect(result).to.deep.equal(expected);
+            return spec.then(function (result) {
+                expect(result).to.deep.equal(expected);
+            });
         });
 
         it('should pass the filename to the errors list', function () {
             var source = '.foo{ color: red; }\n';
             var path = 'path/to/file.less';
-            var result;
+            var spec;
 
             var expected = [{
                 column: 5,
@@ -80,15 +84,17 @@ describe('linter', function () {
                 }
             };
 
-            result = linter.lint(source, path, config);
+            spec = linter.lint(source, path, config);
 
-            expect(result).to.deep.equal(expected);
+            return spec.then(function (result) {
+                expect(result).to.deep.equal(expected);
+            });
         });
 
         it('should sort results by column and line number', function () {
             var source = '[type="text"], [type=email] {\nmargin-right: 10px;\ncolor: red;\ncolor: blue;\n}';
             var path = 'path/to/file.less';
-            var result;
+            var spec;
 
             var expected = [
                 {
@@ -152,15 +158,17 @@ describe('linter', function () {
                 }
             };
 
-            result = linter.lint(source, path, config);
+            spec = linter.lint(source, path, config);
 
-            expect(result).to.deep.equal(expected);
+            return spec.then(function (result) {
+                expect(result).to.deep.equal(expected);
+            });
         });
 
         it('should not call disabled linters', function () {
             var source = '.foo{}';
             var path = 'test.less';
-            var result;
+            var spec;
 
             var config = {
                 spaceBeforeBrace: {
@@ -168,29 +176,33 @@ describe('linter', function () {
                 }
             };
 
-            result = linter.lint(source, path, config);
+            spec = linter.lint(source, path, config);
 
-            expect(result).to.have.length(0);
+            return spec.then(function (result) {
+                expect(result).to.have.length(0);
+            });
         });
 
         it('should not call linters disabled via shorthand', function () {
             var source = '.foo{}';
             var path = 'test.less';
-            var result;
+            var spec;
 
             var config = {
                 spaceBeforeBrace: false
             };
 
-            result = linter.lint(source, path, config);
+            spec = linter.lint(source, path, config);
 
-            expect(result).to.have.length(0);
+            return spec.then(function (result) {
+                expect(result).to.have.length(0);
+            });
         });
 
         it('should not call linter for unwanted node types', function () {
             var source = '.foo {}';
             var path = 'test.less';
-            var result;
+            var spec;
 
             var config = {
                 stringQuotes: {
@@ -198,16 +210,18 @@ describe('linter', function () {
                 }
             };
 
-            result = linter.lint(source, path, config);
+            spec = linter.lint(source, path, config);
 
-            // String quotes should never be called since there no strings in the input
-            expect(result).to.have.length(0);
+            return spec.then(function (result) {
+                // stringQuotes should never be called since there no strings in the input
+                expect(result).to.have.length(0);
+            });
         });
 
         it('should allow override of result severity', function () {
             var source = '.foo { color:red; }\n';
             var path = 'test.less';
-            var result;
+            var spec;
 
             var expected = [{
                 column: 14,
@@ -228,14 +242,16 @@ describe('linter', function () {
                 }
             };
 
-            result = linter.lint(source, path, config);
+            spec = linter.lint(source, path, config);
 
-            expect(result).to.deep.equal(expected);
+            return spec.then(function (result) {
+                expect(result).to.deep.equal(expected);
+            });
         });
 
         it('should only care about the first inline comment', function () {
             var source = fs.readFileSync(path.resolve(process.cwd(), './test/data/inline-options/file-options-enabled.less'), 'utf8');
-            var result;
+            var spec;
 
             var expected = [{
                 column: 5,
@@ -262,14 +278,16 @@ describe('linter', function () {
                 }
             };
 
-            result = linter.lint(source, 'file-options-enabled.less', config);
+            spec = linter.lint(source, 'file-options-enabled.less', config);
 
-            expect(result).to.deep.equal(expected);
+            return spec.then(function (result) {
+                expect(result).to.deep.equal(expected);
+            });
         });
 
         it('should not report rules that are disabled inline', function () {
             var source = fs.readFileSync(path.resolve(process.cwd(), './test/data/inline-options/file-options-enabled.less'), 'utf8');
-            var result;
+            var spec;
 
             var expected = [{
                 column: 5,
@@ -296,14 +314,16 @@ describe('linter', function () {
                 }
             };
 
-            result = linter.lint(source, 'rule-options.less', config);
+            spec = linter.lint(source, 'rule-options.less', config);
 
-            expect(result).to.deep.equal(expected);
+            return spec.then(function (result) {
+                expect(result).to.deep.equal(expected);
+            });
         });
 
         it('should allow disabled rules to be enabled inline', function () {
             var source = fs.readFileSync(path.resolve(process.cwd(), './test/data/inline-options/file-options-disabled.less'), 'utf8');
-            var result;
+            var spec;
 
             var expected = [{
                 column: 11,
@@ -334,14 +354,16 @@ describe('linter', function () {
                 }
             };
 
-            result = linter.lint(source, 'rule-options.less', config);
+            spec = linter.lint(source, 'rule-options.less', config);
 
-            expect(result).to.deep.equal(expected);
+            return spec.then(function (result) {
+                expect(result).to.deep.equal(expected);
+            });
         });
 
         it('should not report rules that are disabled on a single line', function () {
             var source = fs.readFileSync(path.resolve(process.cwd(), './test/data/inline-options/line-options.less'), 'utf8');
-            var result;
+            var spec;
 
             var expected = [{
                 column: 5,
@@ -361,9 +383,11 @@ describe('linter', function () {
                 }
             };
 
-            result = linter.lint(source, 'line-options.less', config);
+            spec = linter.lint(source, 'line-options.less', config);
 
-            expect(result).to.deep.equal(expected);
+            return spec.then(function (result) {
+                expect(result).to.deep.equal(expected);
+            });
         });
     });
 
