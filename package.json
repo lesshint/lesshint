@@ -20,7 +20,6 @@
     "chalk": "^1.0.0",
     "commander": "^2.8.0",
     "exit": "^0.1.2",
-    "lodash.findindex": "^4.0.1",
     "lodash.merge": "^4.0.1",
     "lodash.sortby": "^4.0.1",
     "minimatch": "^3.0.0",
