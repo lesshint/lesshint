@@ -262,6 +262,16 @@ describe('lesshint', function () {
             });
         });
 
+        it('should not check properties without a unit', function () {
+            var source = 'line-height: 1.5;';
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint({}, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
         it('should return undefined on variable declaration', function () {
             var source = '@var-name: 12px;';
 
