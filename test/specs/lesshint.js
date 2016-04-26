@@ -113,52 +113,48 @@ describe('lesshint', function () {
 
     describe('checkString', function () {
         it('should check a string', function () {
-            var string = '.foo{\n color: red;\n}\n';
+            var source = '.foo{\n color: red;\n}\n';
             var lesshint = new Lesshint();
-            var result;
 
             lesshint.configure();
 
-            result = lesshint.checkString(string);
-
-            expect(result).to.have.length(1);
+            return lesshint.checkString(source).then(function (result) {
+                expect(result).to.have.length(1);
+            });
         });
 
         it('should return an object containing an error result on invalid input', function () {
-            var lesshint = new Lesshint();
             var source = '.foo{';
-            var result;
+            var lesshint = new Lesshint();
 
             lesshint.configure();
 
-            result = lesshint.checkString(source);
-
-            expect(result).to.have.length(1);
-            expect(result[0]).to.have.property('severity', 'error');
+            return lesshint.checkString(source).then(function (result) {
+                expect(result).to.have.length(1);
+                expect(result[0]).to.have.property('severity', 'error');
+            });
         });
 
         it('should return the name of the file containing a parse error', function () {
-            var string = '.foo { border none }';
+            var source = '.foo { border none }';
             var lesshint = new Lesshint();
-            var result;
 
             lesshint.configure();
 
-            result = lesshint.checkString(string, '/var/test/file.less');
-
-            expect(result[0]).to.have.property('file', 'file.less');
+            return lesshint.checkString(source, '/var/test/file.less').then(function (result) {
+                expect(result[0]).to.have.property('file', 'file.less');
+            });
         });
 
-        it('should throw on non-parse related errors', function () {
+        it('should reject on non-parse related errors', function () {
             var config = configLoader(path.dirname(__dirname) + '/data/config/bad.json');
             var lesshint = new Lesshint();
-            var checker;
 
             lesshint.configure(config);
 
-            checker = lesshint.checkString.bind(null);
-
-            expect(checker).to.throw(Error);
+            return lesshint.checkString().catch(function (error) {
+                expect(error).to.be.an.instanceof(Error);
+            });
         });
     });
 
