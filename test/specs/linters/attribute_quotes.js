@@ -49,7 +49,7 @@ describe('lesshint', function () {
         });
 
         it('should not check attribute selectors without an operator', function () {
-            var source = 'input[required]';
+            var source = 'input[required] {}';
 
             return spec.parse(source, function (ast) {
                 var result = spec.linter.lint({}, ast.root.first);
