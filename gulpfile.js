@@ -19,7 +19,7 @@ gulp.task('coverage', ['lint'], function () {
 gulp.task('test', ['coverage'], function () {
     var mocha = require('gulp-mocha');
 
-    return gulp.src(['./test/specs/**/*.js'])
+    return gulp.src(['./test/specs/**/*.js', '!./test/specs/util.js'])
         .pipe(mocha())
         .pipe(istanbul.writeReports())
         .pipe(istanbul.enforceThresholds({
