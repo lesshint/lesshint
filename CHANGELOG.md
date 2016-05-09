@@ -1,4 +1,16 @@
 # Changelog
+## 1.5.2 (2016-03-31)
+* Changed `gonzales-pe` full URL to GitHub pattern. ([e83e665](https://github.com/lesshint/lesshint/commit/e83e665f36e8beba0976b9ee32ad478067a117e5))
+
+## 1.5.1 (2016-03-29)
+* Fixed an issue where `zeroUnit` would crash in certain cases. ([34606cc](https://github.com/lesshint/lesshint/commit/34606cc78963be33e988c1061d404f53e1b26d19))
+
+## 1.5.0 (2016-03-24)
+* Added a `at_least_one_space` value for the `style` option in `spaceAfterPropertyColon`. ([5e9fd1e](https://github.com/lesshint/lesshint/commit/5e9fd1e1d6be23a822394e06f9a8d31bddbac018))
+* Added `units` and `exclude` options to `zeroUnit`. ([728f37a](https://github.com/lesshint/lesshint/commit/728f37a73d117d6352d2bf146fa09240be4453a2))
+* Fixed an issue where `decimalZero` wouldn't check all numbers. ([661cc57](https://github.com/lesshint/lesshint/commit/661cc574e6f7d1c04199339daffa1f83475ae66e))
+* Fixed an issue where `zeroUnit` would erroneously report properties without units. ([728f37a](https://github.com/lesshint/lesshint/commit/728f37a73d117d6352d2bf146fa09240be4453a2))
+
 ## 1.4.0 (2016-03-01)
 * Added the following linters:
     * `depthLevel` ([18bb203](https://github.com/lesshint/lesshint/commit/18bb2038be240f9805b0a8a8756fe700cbe47526))

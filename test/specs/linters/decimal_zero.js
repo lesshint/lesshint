@@ -52,6 +52,16 @@ describe('lesshint', function () {
                 });
             });
 
+            it('should allow decimal number greater than 1 without leading zero', function () {
+                var source = 'font-size: 1.25em;';
+
+                return spec.parse(source, function (ast) {
+                    var result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.be.undefined;
+                });
+            });
+
             it('should not allow number without leading decimal zero', function () {
                 var source = 'font-size: .5em;';
                 var expected = [{
@@ -160,6 +170,16 @@ describe('lesshint', function () {
 
             it('should allow "0.0"', function () {
                 var source = 'font-size: 0.0em;';
+
+                return spec.parse(source, function (ast) {
+                    var result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.be.undefined;
+                });
+            });
+
+            it('should allow decimal number greater than 1 without leading zero', function () {
+                var source = 'font-size: 1.250em;';
 
                 return spec.parse(source, function (ast) {
                     var result = spec.linter.lint(options, ast.root.first);

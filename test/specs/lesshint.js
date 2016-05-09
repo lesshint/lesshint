@@ -19,6 +19,17 @@ describe('lesshint', function () {
             });
         });
 
+        it('should strip trailing slashes from directory names', function () {
+            var testPath = path.dirname(__dirname) + '/data/files/sub/';
+            var lesshint = new Lesshint();
+
+            lesshint.configure();
+
+            return lesshint.checkDirectory(testPath).then(function (result) {
+                expect(result[0].fullPath).to.equal(testPath + 'file.less');
+            });
+        });
+
         it('should ignore dotfiles', function () {
             var testPath = path.dirname(__dirname) + '/data/ignored-files';
             var lesshint = new Lesshint();
