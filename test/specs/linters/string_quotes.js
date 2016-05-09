@@ -185,6 +185,70 @@ describe('lesshint', function () {
             });
         });
 
+        it('should allow single quotes in attribute selectors when "style" is "single"', function () {
+            var source = "input[type='text'] {}";
+            var options = {
+                style: 'single'
+            };
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
+        it('should not allow double quotes in attribute selectors when "style" is "single"', function () {
+            var source = 'input[type="text"] {}';
+            var expected = [{
+                column: 12,
+                line: 1,
+                message: 'Strings should use single quotes.'
+            }];
+
+            var options = {
+                style: 'single'
+            };
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.deep.equal(expected);
+            });
+        });
+
+        it('should allow double quotes in attribute selectors when "style" is "double"', function () {
+            var source = 'input[type="text"] {}';
+            var options = {
+                style: 'double'
+            };
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
+        it('should not allow single quotes in attribute selectors when "style" is "double"', function () {
+            var source = "input[type='text'] {}";
+            var expected = [{
+                column: 12,
+                line: 1,
+                message: 'Strings should use double quotes.'
+            }];
+
+            var options = {
+                style: 'double'
+            };
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.deep.equal(expected);
+            });
+        });
+
         it('should throw on invalid "style" value', function () {
             var source = ".foo { content: 'Hello world' }";
             var options = {
