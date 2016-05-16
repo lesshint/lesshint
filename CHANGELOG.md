@@ -1,4 +1,10 @@
 # Changelog
+## 2.0.0-rc1 (2016-05-16)
+* Completely new parser back-end, using PostCSS. Please report any issues! ([1894408](https://github.com/lesshint/lesshint/commit/18944083bbd69dc0f3d607f24617732a15093e2e))
+* Removed support for old reporter style. ([49a2dba](https://github.com/lesshint/lesshint/commit/49a2dbaede9dd2e73fc035f60a80d09bdbaf25f6))
+* Added a `Lesshint.getReporter()` method for loading of reporters using `lesshint`'s logic. ([6fc0041](https://github.com/lesshint/lesshint/commit/6fc0041aa42c8cfac9aadb0d671e88cf37d153b5))
+* Fixed an issue where paths would sometimes include double slashes. ([0a197db](https://github.com/lesshint/lesshint/commit/0a197dbaac095b281d5084686bdd87d024cdb151))
+
 ## 1.5.2 (2016-03-31)
 * Changed `gonzales-pe` full URL to GitHub pattern. ([e83e665](https://github.com/lesshint/lesshint/commit/e83e665f36e8beba0976b9ee32ad478067a117e5))
 
