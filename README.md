@@ -6,6 +6,8 @@
 [![Dependency Status](https://david-dm.org/lesshint/lesshint.svg?theme=shields.io&style=flat)](https://david-dm.org/lesshint/lesshint)
 [![devDependency Status](https://david-dm.org/lesshint/lesshint/dev-status.svg?theme=shields.io&style=flat)](https://david-dm.org/lesshint/lesshint#info=devDependencies)
 
+**Help us out with testing `2.0`, install with `npm install lesshint@next`. Thanks!**
+
 `lesshint` is a tool to aid you in writing clean and consistent [Less](http://lesscss.org/).
 
 * [Requirements](#requirements)
