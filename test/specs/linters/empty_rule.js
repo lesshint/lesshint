@@ -1,70 +1,72 @@
 'use strict';
 
-var path = require('path');
 var expect = require('chai').expect;
-var linter = require('../../../lib/linters/' + path.basename(__filename));
-var parseAST = require('../../../lib/linter').parseAST;
+var spec = require('../util.js').setup();
 
 describe('lesshint', function () {
     describe('#emptyRule()', function () {
+        it('should have the proper node types', function () {
+            var source = '.foo { color: red; }';
+
+            return spec.parse(source, function (ast) {
+                expect(spec.linter.nodeTypes).to.include(ast.root.first.type);
+            });
+        });
+
         it('should allow rules with declarations', function () {
             var source = '.foo { color: red; }';
-            var result;
-            var ast;
 
-            ast = parseAST(source);
-            ast = ast.first();
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint({}, ast.root.first);
 
-            result = linter.lint({}, ast);
-
-            expect(result).to.be.undefined;
+                expect(result).to.be.undefined;
+            });
         });
 
         it('should not allow empty rules', function () {
             var source = '.foo {}';
-            var result;
-            var ast;
-
             var expected = [{
                 message: "There shouldn't be any empty rules present."
             }];
 
-            ast = parseAST(source);
-            ast = ast.first();
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint({}, ast.root.first);
 
-            result = linter.lint({}, ast);
-
-            expect(result).to.deep.equal(expected);
+                expect(result).to.deep.equal(expected);
+            });
         });
 
         it('should not allow empty rules with a space', function () {
             var source = '.foo { }';
-            var result;
-            var ast;
-
             var expected = [{
                 message: "There shouldn't be any empty rules present."
             }];
 
-            ast = parseAST(source);
-            ast = ast.first();
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint({}, ast.root.first);
 
-            result = linter.lint({}, ast);
-
-            expect(result).to.deep.equal(expected);
+                expect(result).to.deep.equal(expected);
+            });
         });
 
         it('should allow rules with only mixins (#16)', function () {
             var source = '.foo { .mixin(); }';
-            var result;
-            var ast;
 
-            ast = parseAST(source);
-            ast = ast.first();
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint({}, ast.root.first);
 
-            result = linter.lint({}, ast);
+                expect(result).to.be.undefined;
+            });
+        });
 
-            expect(result).to.be.undefined;
+        it('should not check mixin calls', function () {
+            var source = '.mixin();';
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint({}, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
         });
     });
 });

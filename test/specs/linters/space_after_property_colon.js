@@ -1,34 +1,33 @@
 'use strict';
 
-var path = require('path');
 var expect = require('chai').expect;
-var linter = require('../../../lib/linters/' + path.basename(__filename));
-var parseAST = require('../../../lib/linter').parseAST;
+var spec = require('../util.js').setup();
 
 describe('lesshint', function () {
     describe('#spaceAfterPropertyColon()', function () {
+        it('should have the proper node types', function () {
+            var source = '.foo { color: red; }';
+
+            return spec.parse(source, function (ast) {
+                expect(spec.linter.nodeTypes).to.include(ast.root.first.first.type);
+            });
+        });
+
         it('should allow one space when "style" is "at_least_one_space"', function () {
             var source = '.foo { color: red; }';
-            var result;
-            var ast;
-
             var options = {
                 style: 'at_least_one_space'
             };
 
-            ast = parseAST(source);
-            ast = ast.first().first('block').first('declaration');
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first.first);
 
-            result = linter.lint(options, ast);
-
-            expect(result).to.be.undefined;
+                expect(result).to.be.undefined;
+            });
         });
 
         it('should not tolerate missing space when "style" is "at_least_one_space"', function () {
             var source = '.foo { color:red; }';
-            var result;
-            var ast;
-
             var expected = [{
                 column: 14,
                 line: 1,
@@ -39,53 +38,41 @@ describe('lesshint', function () {
                 style: 'at_least_one_space'
             };
 
-            ast = parseAST(source);
-            ast = ast.first().first('block').first('declaration');
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first.first);
 
-            result = linter.lint(options, ast);
-
-            expect(result).to.deep.equal(expected);
+                expect(result).to.deep.equal(expected);
+            });
         });
 
         it('should allow more than one space when "style" is "at_least_one_space"', function () {
             var source = '.foo { color:  red; }';
-            var result;
-            var ast;
-
             var options = {
                 style: 'at_least_one_space'
             };
 
-            ast = parseAST(source);
-            ast = ast.first().first('block').first('declaration');
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first.first);
 
-            result = linter.lint(options, ast);
-
-            expect(result).to.be.undefined;
+                expect(result).to.be.undefined;
+            });
         });
 
         it('should allow one space when "style" is "one_space"', function () {
             var source = '.foo { color: red; }';
-            var result;
-            var ast;
-
             var options = {
                 style: 'one_space'
             };
 
-            ast = parseAST(source);
-            ast = ast.first().first('block').first('declaration');
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first.first);
 
-            result = linter.lint(options, ast);
-
-            expect(result).to.be.undefined;
+                expect(result).to.be.undefined;
+            });
         });
 
         it('should not tolerate missing space when "style" is "one_space"', function () {
             var source = '.foo { color:red; }';
-            var result;
-            var ast;
-
             var expected = [{
                 column: 14,
                 line: 1,
@@ -96,19 +83,15 @@ describe('lesshint', function () {
                 style: 'one_space'
             };
 
-            ast = parseAST(source);
-            ast = ast.first().first('block').first('declaration');
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first.first);
 
-            result = linter.lint(options, ast);
-
-            expect(result).to.deep.equal(expected);
+                expect(result).to.deep.equal(expected);
+            });
         });
 
         it('should not tolerate more than one space when "style" is "one_space"', function () {
             var source = '.foo { color:  red; }';
-            var result;
-            var ast;
-
             var expected = [{
                 column: 14,
                 line: 1,
@@ -119,36 +102,28 @@ describe('lesshint', function () {
                 style: 'one_space'
             };
 
-            ast = parseAST(source);
-            ast = ast.first().first('block').first('declaration');
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first.first);
 
-            result = linter.lint(options, ast);
-
-            expect(result).to.deep.equal(expected);
+                expect(result).to.deep.equal(expected);
+            });
         });
 
         it('should not allow any space when "style" is "no_space"', function () {
             var source = '.foo { color:red; }';
-            var result;
-            var ast;
-
             var options = {
                 style: 'no_space'
             };
 
-            ast = parseAST(source);
-            ast = ast.first().first('block').first('declaration');
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first.first);
 
-            result = linter.lint(options, ast);
-
-            expect(result).to.be.undefined;
+                expect(result).to.be.undefined;
+            });
         });
 
         it('should not tolerate one space when "style" is "no_space"', function () {
             var source = '.foo { color: red; }';
-            var result;
-            var ast;
-
             var expected = [{
                 column: 14,
                 line: 1,
@@ -159,19 +134,15 @@ describe('lesshint', function () {
                 style: 'no_space'
             };
 
-            ast = parseAST(source);
-            ast = ast.first().first('block').first('declaration');
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first.first);
 
-            result = linter.lint(options, ast);
-
-            expect(result).to.deep.equal(expected);
+                expect(result).to.deep.equal(expected);
+            });
         });
 
         it('should not tolerate any space when "style" is "no_space"', function () {
             var source = '.foo { color:  red; }';
-            var result;
-            var ast;
-
             var expected = [{
                 column: 14,
                 line: 1,
@@ -182,29 +153,24 @@ describe('lesshint', function () {
                 style: 'no_space'
             };
 
-            ast = parseAST(source);
-            ast = ast.first().first('block').first('declaration');
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first.first);
 
-            result = linter.lint(options, ast);
-
-            expect(result).to.deep.equal(expected);
+                expect(result).to.deep.equal(expected);
+            });
         });
 
         it('should throw on invalid "style" value', function () {
             var source = '.foo { color:red; }';
-            var lint;
-            var ast;
-
             var options = {
                 style: 'invalid'
             };
 
-            ast = parseAST(source);
-            ast = ast.first().first('block').first('declaration');
+            return spec.parse(source, function (ast) {
+                var lint = spec.linter.lint.bind(null, options, ast.root.first.first);
 
-            lint = linter.lint.bind(null, options, ast);
-
-            expect(lint).to.throw(Error);
+                expect(lint).to.throw(Error);
+            });
         });
     });
 });

@@ -1,156 +1,135 @@
 'use strict';
 
-var path = require('path');
 var expect = require('chai').expect;
-var linter = require('../../../lib/linters/' + path.basename(__filename));
-var parseAST = require('../../../lib/linter').parseAST;
+var spec = require('../util.js').setup();
 
 describe('lesshint', function () {
     describe('#selectorNaming()', function () {
-        var result;
-        var ast;
-        var options;
+        it('should have the proper node types', function () {
+            var source = '.foo {}';
+
+            return spec.parse(source, function (ast) {
+                expect(spec.linter.nodeTypes).to.include(ast.root.first.type);
+            });
+        });
 
         it('should skip selector without name', function () {
-            ast = parseAST('[type="text"] {}');
-            ast = ast.first().first('selector');
-            result = linter.lint(options, ast);
-            expect(result).to.be.undefined;
+            var source = '[type="text"] {}';
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint({}, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
         });
 
         it('should check for lowercase', function () {
-            options = {
+            var source = '.fooBar {}';
+            var expected = [{
+                column: 1,
+                line: 1,
+                message: 'Selector "fooBar" should follow naming conventions.'
+            }];
+
+            var options = {
                 disallowUppercase: true
             };
 
-            ast = parseAST('.fooBar {}');
-            ast = ast.first().first('selector');
-            result = linter.lint(options, ast);
-            expect(result.length).to.equal(1);
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.deep.equal(expected);
+            });
         });
 
         it('should check for underscore', function () {
-            options = {
+            var source = '.foo_bar {}';
+            var expected = [{
+                column: 1,
+                line: 1,
+                message: 'Selector "foo_bar" should follow naming conventions.'
+            }];
+
+            var options = {
                 disallowUnderscore: true
             };
 
-            ast = parseAST('.foo_bar {}');
-            ast = ast.first().first('selector');
-            result = linter.lint(options, ast);
-            expect(result.length).to.equal(1);
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.deep.equal(expected);
+            });
         });
 
         it('should check for dash', function () {
-            options = {
+            var source = '.foo-bar {}';
+            var expected = [{
+                column: 1,
+                line: 1,
+                message: 'Selector "foo-bar" should follow naming conventions.'
+            }];
+            var options = {
                 disallowDash: true
             };
 
-            ast = parseAST('.foo-bar {}');
-            ast = ast.first().first('selector');
-            result = linter.lint(options, ast);
-            expect(result.length).to.equal(1);
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.deep.equal(expected);
+            });
         });
 
         it('should allow exceptions with exclude', function () {
-            options = {
+            var source = '.foo-bar {}';
+            var options = {
                 disallowDash: true,
                 exclude: ['foo-bar']
             };
 
-            ast = parseAST('.foo-bar {}');
-            ast = ast.first().first('selector');
-            result = linter.lint(options, ast);
-            expect(result).to.be.undefined;
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
         });
 
-        describe('combinations', function () {
-            it('should approximate "camelCase" style', function () {
-                options = {
-                    disallowDash: true,
-                    disallowUnderscore: true
-                };
+        it('should handle approximate "camelCase" style', function () {
+            var source = '.foo-bar {}';
+            var expected = [{
+                column: 1,
+                line: 1,
+                message: 'Selector "foo-bar" should follow naming conventions.'
+            }];
 
-                ast = parseAST('.foo-bar {}');
-                ast = ast.first().first('selector');
-                result = linter.lint(options, ast);
-                expect(result.length).to.equal(1);
+            var options = {
+                disallowDash: true,
+                disallowUnderscore: true
+            };
 
-                ast = parseAST('.foo_bar {}');
-                ast = ast.first().first('selector');
-                result = linter.lint(options, ast);
-                expect(result.length).to.equal(1);
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
 
-                ast = parseAST('.fooBar {}');
-                ast = ast.first().first('selector');
-                result = linter.lint(options, ast);
-                expect(result).to.be.undefined;
-
-                ast = parseAST('.FooBar {}');
-                ast = ast.first().first('selector');
-                result = linter.lint(options, ast);
-                expect(result).to.be.undefined;
+                expect(result).to.deep.equal(expected);
             });
+        });
 
-            it('should approximate "snake_case" style', function () {
-                options = {
-                    disallowDash: true
-                };
+        it('should handle approximate "snake_case" style', function () {
+            var source = '.fooBar {}';
+            var expected = [{
+                column: 1,
+                line: 1,
+                message: 'Selector "fooBar" should follow naming conventions.'
+            }];
 
-                ast = parseAST('.foo-bar {}');
-                ast = ast.first().first('selector');
-                result = linter.lint(options, ast);
-                expect(result.length).to.equal(1);
+            var options = {
+                disallowDash: true,
+                disallowUppercase: true
+            };
 
-                ast = parseAST('.foo_bar {}');
-                ast = ast.first().first('selector');
-                result = linter.lint(options, ast);
-                expect(result).to.be.undefined;
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
 
-                options = {
-                    disallowDash: true,
-                    disallowUppercase: true
-                };
-
-                ast = parseAST('.foo_Bar {}');
-                ast = ast.first().first('selector');
-                result = linter.lint(options, ast);
-                expect(result.length).to.equal(1);
-
-                ast = parseAST('.foo_bar {}');
-                ast = ast.first().first('selector');
-                result = linter.lint(options, ast);
-                expect(result).to.be.undefined;
-            });
-
-            it('should approximate "train-case" style', function () {
-                options = {
-                    disallowDash: true
-                };
-
-                ast = parseAST('.foo-bar {}');
-                ast = ast.first().first('selector');
-                result = linter.lint(options, ast);
-                expect(result.length).to.equal(1);
-
-                ast = parseAST('.foo_bar {}');
-                ast = ast.first().first('selector');
-                result = linter.lint(options, ast);
-                expect(result).to.be.undefined;
-
-                options = {
-                    disallowDash: true,
-                    disallowUppercase: true
-                };
-
-                ast = parseAST('.foo_Bar {}');
-                ast = ast.first().first('selector');
-                result = linter.lint(options, ast);
-                expect(result.length).to.equal(1);
-
-                ast = parseAST('.foo_bar {}');
-                ast = ast.first().first('selector');
-                result = linter.lint(options, ast);
-                expect(result).to.be.undefined;
+                expect(result).to.deep.equal(expected);
             });
         });
     });

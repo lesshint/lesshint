@@ -15,7 +15,7 @@
 * [Reporters](#reporters)
 
 ## Requirements
-[Node.js](https://nodejs.org/) 0.10 (or later) or [io.js](https://iojs.org/) 1.0 (or later).
+[Node.js](https://nodejs.org/) 0.12 (or later) or [io.js](https://iojs.org/) 1.0 (or later).
 
 ## Installation
 Run the following command from the command line (add -g to install globally):

@@ -1,636 +1,393 @@
 'use strict';
 
-var path = require('path');
 var expect = require('chai').expect;
-var linter = require('../../../lib/linters/' + path.basename(__filename));
-var parseAST = require('../../../lib/linter').parseAST;
+var spec = require('../util.js').setup();
 
 describe('lesshint', function () {
     describe('#spaceAroundComma', function () {
-        it('should allow one space after comma when "style" is "after"', function () {
-            var source = '.foo { color: rgb(255, 255, 255); }';
-            var result;
-            var ast;
+        var options;
 
-            var options = {
-                style: 'after'
-            };
+        it('should have the proper node types', function () {
+            var source = 'color: rgb(255, 255, 255);';
 
-            ast = parseAST(source);
-            ast = ast.first().first('block').first('declaration').first('value').first('function').first('arguments');
-
-            result = linter.lint(options, ast);
-
-            expect(result).to.be.undefined;
+            return spec.parse(source, function (ast) {
+                expect(spec.linter.nodeTypes).to.include(ast.root.first.type);
+            });
         });
 
-        it('should not allow missing space after comma when "style" is "after"', function () {
-            var source = '.foo { color: rgb(255,255,255); }';
-            var result;
-            var ast;
+        describe('when "style" is "after"', function () {
+            beforeEach(function () {
+                options = {
+                    style: 'after'
+                };
+            });
 
-            var expected = [
-                {
-                    column: 23,
-                    line: 1,
+            it('should allow one space after comma', function () {
+                var source = 'color: rgb(255, 255, 255);';
+
+                return spec.parse(source, function (ast) {
+                    var result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.be.undefined;
+                });
+            });
+
+            it('should not allow missing space after comma', function () {
+                var source = 'color: rgb(255,255,255);';
+                var expected = [
+                    {
+                        column: 15,
+                        message: 'Commas should be followed by one space.'
+                    },
+                    {
+                        column: 19,
+                        message: 'Commas should be followed by one space.'
+                    }
+                ];
+
+                return spec.parse(source, function (ast) {
+                    var result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.deep.equal(expected);
+                });
+            });
+
+            it('should allow one space after comma in mixins', function () {
+                var source = '.mixin(@margin, @padding) {}';
+
+                return spec.parse(source, function (ast) {
+                    var result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.be.undefined;
+                });
+            });
+
+            it('should not allow missing space after comma in mixins', function () {
+                var source = '.mixin(@margin,@padding) {}';
+                var expected = [{
+                    column: 15,
                     message: 'Commas should be followed by one space.'
-                },
-                {
-                    column: 27,
-                    line: 1,
-                    message: 'Commas should be followed by one space.'
-                }
-            ];
+                }];
 
-            var options = {
-                style: 'after'
-            };
+                return spec.parse(source, function (ast) {
+                    var result = spec.linter.lint(options, ast.root.first);
 
-            ast = parseAST(source);
-            ast = ast.first().first('block').first('declaration').first('value').first('function').first('arguments');
+                    expect(result).to.deep.equal(expected);
+                });
+            });
+        }); // "after"
 
-            result = linter.lint(options, ast);
+        describe('when "style" is "before"', function () {
+            beforeEach(function () {
+                options = {
+                    style: 'before'
+                };
+            });
 
-            expect(result).to.deep.equal(expected);
-        });
+            it('should allow one space before comma', function () {
+                var source = 'color: rgb(255 ,255 ,255);';
 
-        it('should allow one space after comma in mixins when "style" is "after"', function () {
-            var source = '.mixin(@margin, @padding) {}';
-            var result;
-            var ast;
+                return spec.parse(source, function (ast) {
+                    var result = spec.linter.lint(options, ast.root.first);
 
-            var options = {
-                style: 'after'
-            };
+                    expect(result).to.be.undefined;
+                });
+            });
 
-            ast = parseAST(source);
-            ast = ast.first('mixin').first('arguments');
+            it('should not allow missing space before comma', function () {
+                var source = 'color: rgb(255, 255, 255);';
+                var expected = [
+                    {
+                        column: 15,
+                        message: 'Commas should be preceded by one space.'
+                    },
+                    {
+                        column: 20,
+                        message: 'Commas should be preceded by one space.'
+                    }
+                ];
 
-            result = linter.lint(options, ast);
+                return spec.parse(source, function (ast) {
+                    var result = spec.linter.lint(options, ast.root.first);
 
-            expect(result).to.be.undefined;
-        });
+                    expect(result).to.deep.equal(expected);
+                });
+            });
 
-        it('should not allow missing space after comma in mixins when "style" is "after"', function () {
-            var source = '.mixin(@margin,@padding) {}';
-            var result;
-            var ast;
+            it('should allow one space before comma in mixins', function () {
+                var source = '.mixin(@margin ,@padding) {}';
 
-            var expected = [{
-                column: 16,
-                line: 1,
-                message: 'Commas should be followed by one space.'
-            }];
+                return spec.parse(source, function (ast) {
+                    var result = spec.linter.lint(options, ast.root.first);
 
-            var options = {
-                style: 'after'
-            };
+                    expect(result).to.be.undefined;
+                });
+            });
 
-            ast = parseAST(source);
-            ast = ast.first('mixin').first('arguments');
-
-            result = linter.lint(options, ast);
-
-            expect(result).to.deep.equal(expected);
-        });
-
-        it('should not report on operators other than commas when "style" is "after". See #49', function () {
-            var source = '@var: (4 /2);';
-            var result;
-            var ast;
-
-            var options = {
-                style: 'after'
-            };
-
-            ast = parseAST(source);
-            ast = ast.first('atrule').first('parentheses');
-
-            result = linter.lint(options, ast);
-
-            expect(result).to.be.undefined;
-        });
-
-        it('should allow one space before comma when "style" is "before"', function () {
-            var source = '.foo { color: rgb(255 ,255 ,255); }';
-            var result;
-            var ast;
-
-            var options = {
-                style: 'before'
-            };
-
-            ast = parseAST(source);
-            ast = ast.first().first('block').first('declaration').first('value').first('function').first('arguments');
-
-            result = linter.lint(options, ast);
-
-            expect(result).to.be.undefined;
-        });
-
-        it('should not allow missing space before comma when "style" is "before"', function () {
-            var source = '.foo { color: rgb(255, 255, 255); }';
-            var result;
-            var ast;
-
-            var expected = [
-                {
-                    column: 19,
-                    line: 1,
+            it('should not allow missing space before comma in mixins', function () {
+                var source = '.mixin(@margin, @padding) {}';
+                var expected = [{
+                    column: 15,
                     message: 'Commas should be preceded by one space.'
-                },
-                {
-                    column: 24,
-                    line: 1,
-                    message: 'Commas should be preceded by one space.'
-                }
-            ];
+                }];
 
-            var options = {
-                style: 'before'
-            };
+                return spec.parse(source, function (ast) {
+                    var result = spec.linter.lint(options, ast.root.first);
 
-            ast = parseAST(source);
-            ast = ast.first().first('block').first('declaration').first('value').first('function').first('arguments');
+                    expect(result).to.deep.equal(expected);
+                });
+            });
+        }); // "before"
 
-            result = linter.lint(options, ast);
+        describe('when "style" is "both"', function () {
+            beforeEach(function () {
+                options = {
+                    style: 'both'
+                };
+            });
 
-            expect(result).to.deep.equal(expected);
-        });
+            it('should allow one space before and after comma', function () {
+                var source = 'color: rgb(255 , 255 , 255);';
 
-        it('should allow one space before comma in mixins when "style" is "before"', function () {
-            var source = '.mixin(@margin ,@padding) {}';
-            var result;
-            var ast;
+                return spec.parse(source, function (ast) {
+                    var result = spec.linter.lint(options, ast.root.first);
 
-            var options = {
-                style: 'before'
-            };
+                    expect(result).to.be.undefined;
+                });
+            });
 
-            ast = parseAST(source);
-            ast = ast.first('mixin').first('arguments');
+            it('should not allow missing space before comma', function () {
+                var source = 'color: rgb(255, 255, 255);';
+                var expected = [
+                    {
+                        column: 15,
+                        message: 'Commas should be preceded and followed by one space.'
+                    },
+                    {
+                        column: 20,
+                        message: 'Commas should be preceded and followed by one space.'
+                    }
+                ];
 
-            result = linter.lint(options, ast);
+                return spec.parse(source, function (ast) {
+                    var result = spec.linter.lint(options, ast.root.first);
 
-            expect(result).to.be.undefined;
-        });
+                    expect(result).to.deep.equal(expected);
+                });
+            });
 
-        it('should not allow missing space before comma in mixins when "style" is "before"', function () {
-            var source = '.mixin(@margin, @padding) {}';
-            var result;
-            var ast;
+            it('should not allow missing space after comma', function () {
+                var source = 'color: rgb(255 ,255 ,255);';
+                var expected = [
+                    {
+                        column: 16,
+                        message: 'Commas should be preceded and followed by one space.'
+                    },
+                    {
+                        column: 21,
+                        message: 'Commas should be preceded and followed by one space.'
+                    }
+                ];
 
-            var expected = [{
-                column: 8,
-                line: 1,
-                message: 'Commas should be preceded by one space.'
-            }];
+                return spec.parse(source, function (ast) {
+                    var result = spec.linter.lint(options, ast.root.first);
 
-            var options = {
-                style: 'before'
-            };
+                    expect(result).to.deep.equal(expected);
+                });
+            });
 
-            ast = parseAST(source);
-            ast = ast.first('mixin').first('arguments');
+            it('should not allow missing space before and after comma', function () {
+                var source = 'color: rgb(255,255,255);';
+                var expected = [
+                    {
+                        column: 15,
+                        message: 'Commas should be preceded and followed by one space.'
+                    },
+                    {
+                        column: 19,
+                        message: 'Commas should be preceded and followed by one space.'
+                    }
+                ];
 
-            result = linter.lint(options, ast);
+                return spec.parse(source, function (ast) {
+                    var result = spec.linter.lint(options, ast.root.first);
 
-            expect(result).to.deep.equal(expected);
-        });
+                    expect(result).to.deep.equal(expected);
+                });
+            });
 
-        it('should not report on operators other than commas when "style" is "before". See #49', function () {
-            var source = '@var: (4/ 2);';
-            var result;
-            var ast;
+            it('should allow one space before and after comma in mixins', function () {
+                var source = '.mixin(@margin , @padding) {}';
 
-            var options = {
-                style: 'before'
-            };
+                return spec.parse(source, function (ast) {
+                    var result = spec.linter.lint(options, ast.root.first);
 
-            ast = parseAST(source);
-            ast = ast.first('atrule').first('parentheses');
+                    expect(result).to.be.undefined;
+                });
+            });
 
-            result = linter.lint(options, ast);
-
-            expect(result).to.be.undefined;
-        });
-
-        it('should allow one space before and after comma when "style" is "both"', function () {
-            var source = '.foo { color: rgb(255 , 255 , 255); }';
-            var result;
-            var ast;
-
-            var options = {
-                style: 'both'
-            };
-
-            ast = parseAST(source);
-            ast = ast.first().first('block').first('declaration').first('value').first('function').first('arguments');
-
-            result = linter.lint(options, ast);
-
-            expect(result).to.be.undefined;
-        });
-
-        it('should not allow missing space before comma when "style" is "both"', function () {
-            var source = '.foo { color: rgb(255, 255, 255); }';
-            var result;
-            var ast;
-
-            var expected = [
-                {
-                    column: 19,
-                    line: 1,
+            it('should not allow missing space before comma in mixins', function () {
+                var source = '.mixin(@margin, @padding) {}';
+                var expected = [{
+                    column: 15,
                     message: 'Commas should be preceded and followed by one space.'
-                },
-                {
-                    column: 24,
-                    line: 1,
+                }];
+
+                return spec.parse(source, function (ast) {
+                    var result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.deep.equal(expected);
+                });
+            });
+
+            it('should not allow missing space after comma in mixins', function () {
+                var source = '.mixin(@margin ,@padding) {}';
+                var expected = [{
+                    column: 16,
                     message: 'Commas should be preceded and followed by one space.'
-                }
-            ];
+                }];
 
-            var options = {
-                style: 'both'
-            };
+                return spec.parse(source, function (ast) {
+                    var result = spec.linter.lint(options, ast.root.first);
 
-            ast = parseAST(source);
-            ast = ast.first().first('block').first('declaration').first('value').first('function').first('arguments');
+                    expect(result).to.deep.equal(expected);
+                });
+            });
+        }); // "both"
 
-            result = linter.lint(options, ast);
+        describe('when "style" is "none"', function () {
+            beforeEach(function () {
+                options = {
+                    style: 'none'
+                };
+            });
 
-            expect(result).to.deep.equal(expected);
-        });
+            it('should allow a missing space after comma', function () {
+                var source = 'color: rgb(255,255,255);';
 
-        it('should not allow missing space after comma when "style" is "both"', function () {
-            var source = '.foo { color: rgb(255 ,255 ,255); }';
-            var result;
-            var ast;
+                return spec.parse(source, function (ast) {
+                    var result = spec.linter.lint(options, ast.root.first);
 
-            var expected = [
-                {
-                    column: 24,
-                    line: 1,
-                    message: 'Commas should be preceded and followed by one space.'
-                },
-                {
-                    column: 29,
-                    line: 1,
-                    message: 'Commas should be preceded and followed by one space.'
-                }
-            ];
+                    expect(result).to.be.undefined;
+                });
+            });
 
-            var options = {
-                style: 'both'
-            };
+            it('should not allow one space after comma', function () {
+                var source = 'color: rgb(255, 255, 255);';
+                var expected = [
+                    {
+                        column: 15,
+                        message: 'Commas should not be preceded nor followed by any space.'
+                    },
+                    {
+                        column: 20,
+                        message: 'Commas should not be preceded nor followed by any space.'
+                    }
+                ];
 
-            ast = parseAST(source);
-            ast = ast.first().first('block').first('declaration').first('value').first('function').first('arguments');
+                return spec.parse(source, function (ast) {
+                    var result = spec.linter.lint(options, ast.root.first);
 
-            result = linter.lint(options, ast);
+                    expect(result).to.deep.equal(expected);
+                });
+            });
 
-            expect(result).to.deep.equal(expected);
-        });
+            it('should not allow one space before comma', function () {
+                var source = 'color: rgb(255 ,255 ,255);';
+                var expected = [
+                    {
+                        column: 16,
+                        message: 'Commas should not be preceded nor followed by any space.'
+                    },
+                    {
+                        column: 21,
+                        message: 'Commas should not be preceded nor followed by any space.'
+                    }
+                ];
 
-        it('should allow one space before and after comma in mixins when "style" is "both"', function () {
-            var source = '.mixin(@margin , @padding) {}';
-            var result;
-            var ast;
+                return spec.parse(source, function (ast) {
+                    var result = spec.linter.lint(options, ast.root.first);
 
-            var options = {
-                style: 'both'
-            };
+                    expect(result).to.deep.equal(expected);
+                });
+            });
 
-            ast = parseAST(source);
-            ast = ast.first('mixin').first('arguments');
+            it('should not allow one space before and after comma', function () {
+                var source = 'color: rgb(255 , 255 , 255);';
+                var expected = [
+                    {
+                        column: 16,
+                        message: 'Commas should not be preceded nor followed by any space.'
+                    },
+                    {
+                        column: 22,
+                        message: 'Commas should not be preceded nor followed by any space.'
+                    }
+                ];
 
-            result = linter.lint(options, ast);
+                return spec.parse(source, function (ast) {
+                    var result = spec.linter.lint(options, ast.root.first);
 
-            expect(result).to.be.undefined;
-        });
+                    expect(result).to.deep.equal(expected);
+                });
+            });
 
-        it('should not allow missing space before comma in mixins when "style" is "both"', function () {
-            var source = '.mixin(@margin, @padding) {}';
-            var result;
-            var ast;
+            it('should allow a missing space after comma in mixins', function () {
+                var source = '.mixin(@margin,@padding) {}';
 
-            var expected = [{
-                column: 8,
-                line: 1,
-                message: 'Commas should be preceded and followed by one space.'
-            }];
+                return spec.parse(source, function (ast) {
+                    var result = spec.linter.lint(options, ast.root.first);
 
-            var options = {
-                style: 'both'
-            };
+                    expect(result).to.be.undefined;
+                });
+            });
 
-            ast = parseAST(source);
-            ast = ast.first('mixin').first('arguments');
-
-            result = linter.lint(options, ast);
-
-            expect(result).to.deep.equal(expected);
-        });
-
-        it('should not allow missing space after comma in mixins when "style" is "both"', function () {
-            var source = '.mixin(@margin ,@padding) {}';
-            var result;
-            var ast;
-
-            var expected = [{
-                column: 17,
-                line: 1,
-                message: 'Commas should be preceded and followed by one space.'
-            }];
-
-            var options = {
-                style: 'both'
-            };
-
-            ast = parseAST(source);
-            ast = ast.first('mixin').first('arguments');
-
-            result = linter.lint(options, ast);
-
-            expect(result).to.deep.equal(expected);
-        });
-
-        it('should not report on operators other than commas when "style" is "both". See #49', function () {
-            var source = '@var: (4 / 2);';
-            var result;
-            var ast;
-
-            var options = {
-                style: 'both'
-            };
-
-            ast = parseAST(source);
-            ast = ast.first('atrule').first('parentheses');
-
-            result = linter.lint(options, ast);
-
-            expect(result).to.be.undefined;
-        });
-
-        it('should not allow a missing space before comma when "style" is "none"', function () {
-            var source = '.foo { color: rgb(255, 255, 255); }';
-            var result;
-            var ast;
-
-            var options = {
-                style: 'none'
-            };
-
-            var expected = [
-                {
-                    column: 23,
-                    line: 1,
+            it('should not allow one space after comma in mixins', function () {
+                var source = '.mixin(@margin, @padding) {}';
+                var expected = [{
+                    column: 15,
                     message: 'Commas should not be preceded nor followed by any space.'
-                },
-                {
-                    column: 28,
-                    line: 1,
+                }];
+
+                return spec.parse(source, function (ast) {
+                    var result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.deep.equal(expected);
+                });
+            });
+
+            it('should not allow one space before comma in mixins', function () {
+                var source = '.mixin(@margin ,@padding) {}';
+                var expected = [{
+                    column: 16,
                     message: 'Commas should not be preceded nor followed by any space.'
-                }
-            ];
+                }];
 
-            ast = parseAST(source);
-            ast = ast.first().first('block').first('declaration').first('value').first('function').first('arguments');
+                return spec.parse(source, function (ast) {
+                    var result = spec.linter.lint(options, ast.root.first);
 
-            result = linter.lint(options, ast);
+                    expect(result).to.deep.equal(expected);
+                });
+            });
+        }); // "none"
 
-            expect(result).to.deep.equal(expected);
-        });
+        describe('with invalid "style" value', function () {
+            beforeEach(function () {
+                options = {
+                    style: 'invalid'
+                };
+            });
 
-        it('should not allow one space before comma when "style" is "none"', function () {
-            var source = '.foo { color: rgb(255 ,255 ,255); }';
-            var result;
-            var ast;
+            it('should throw an error', function () {
+                var source = 'color: rgb(255 , 255 , 255);';
 
-            var expected = [
-                {
-                    column: 22,
-                    line: 1,
-                    message: 'Commas should not be preceded nor followed by any space.'
-                },
-                {
-                    column: 27,
-                    line: 1,
-                    message: 'Commas should not be preceded nor followed by any space.'
-                }
-            ];
+                return spec.parse(source, function (ast) {
+                    var node = ast.root.first;
+                    var lint = spec.linter.lint.bind(null, options, node);
 
-            var options = {
-                style: 'none'
-            };
-
-            ast = parseAST(source);
-            ast = ast.first().first('block').first('declaration').first('value').first('function').first('arguments');
-
-            result = linter.lint(options, ast);
-
-            expect(result).to.deep.equal(expected);
-        });
-
-        it('should not allow a missing space before comma in mixins when "style" is "none"', function () {
-            var source = '.mixin(@margin, @padding) {}';
-            var result;
-            var ast;
-
-            var options = {
-                style: 'none'
-            };
-
-            var expected = [{
-                column: 16,
-                line: 1,
-                message: 'Commas should not be preceded nor followed by any space.'
-            }];
-
-            ast = parseAST(source);
-            ast = ast.first('mixin').first('arguments');
-
-            result = linter.lint(options, ast);
-
-            expect(result).to.deep.equal(expected);
-        });
-
-        it('should not allow one space before comma in mixins when "style" is "none"', function () {
-            var source = '.mixin(@margin ,@padding) {}';
-            var result;
-            var ast;
-
-            var expected = [{
-                column: 15,
-                line: 1,
-                message: 'Commas should not be preceded nor followed by any space.'
-            }];
-
-            var options = {
-                style: 'none'
-            };
-
-            ast = parseAST(source);
-            ast = ast.first('mixin').first('arguments');
-
-            result = linter.lint(options, ast);
-
-            expect(result).to.deep.equal(expected);
-        });
-
-        it('should not report on operators other than commas when "style" is "none". See #49', function () {
-            var source = '@var: (4 / 2);';
-            var result;
-            var ast;
-
-            var options = {
-                style: 'none'
-            };
-
-            ast = parseAST(source);
-            ast = ast.first('atrule').first('parentheses');
-
-            result = linter.lint(options, ast);
-
-            expect(result).to.be.undefined;
-        });
-
-        it('should not report on operators other than commas when "style" is "one_space". See #49', function () {
-            var source = '@var: (4/ 2);';
-            var result;
-            var ast;
-
-            var options = {
-                style: 'one_space'
-            };
-
-            ast = parseAST(source);
-            ast = ast.first('atrule').first('parentheses');
-
-            result = linter.lint(options, ast);
-
-            expect(result).to.be.undefined;
-        });
-
-        it('should allow a missing space after comma when "style" is "none"', function () {
-            var source = '.foo { color: rgb(255,255,255); }';
-            var result;
-            var ast;
-
-            var options = {
-                style: 'none'
-            };
-
-            ast = parseAST(source);
-            ast = ast.first().first('block').first('declaration').first('value').first('function').first('arguments');
-
-            result = linter.lint(options, ast);
-
-            expect(result).to.be.undefined;
-        });
-
-        it('should not allow one space after comma when "style" is "none"', function () {
-            var source = '.foo { color: rgb(255, 255, 255); }';
-            var result;
-            var ast;
-
-            var expected = [
-                {
-                    column: 23,
-                    line: 1,
-                    message: 'Commas should not be preceded nor followed by any space.'
-                },
-                {
-                    column: 28,
-                    line: 1,
-                    message: 'Commas should not be preceded nor followed by any space.'
-                }
-            ];
-
-            var options = {
-                style: 'none'
-            };
-
-            ast = parseAST(source);
-            ast = ast.first().first('block').first('declaration').first('value').first('function').first('arguments');
-
-            result = linter.lint(options, ast);
-
-            expect(result).to.deep.equal(expected);
-        });
-
-        it('should allow a missing space after comma in mixins when "style" is "none"', function () {
-            var source = '.mixin(@margin,@padding) {}';
-            var result;
-            var ast;
-
-            var options = {
-                style: 'none'
-            };
-
-            ast = parseAST(source);
-            ast = ast.first('mixin').first('arguments');
-
-            result = linter.lint(options, ast);
-
-            expect(result).to.be.undefined;
-        });
-
-        it('should not allow one space after comma in mixins when "style" is "none"', function () {
-            var source = '.mixin(@margin, @padding) {}';
-            var result;
-            var ast;
-
-            var expected = [{
-                column: 16,
-                line: 1,
-                message: 'Commas should not be preceded nor followed by any space.'
-            }];
-
-            var options = {
-                style: 'none'
-            };
-
-            ast = parseAST(source);
-            ast = ast.first('mixin').first('arguments');
-
-            result = linter.lint(options, ast);
-
-            expect(result).to.deep.equal(expected);
-        });
-
-        it('should not report on operators other than commas when "style" is "none". See #49', function () {
-            var source = '@var: (4 / 2);';
-            var result;
-            var ast;
-
-            var options = {
-                style: 'none'
-            };
-
-            ast = parseAST(source);
-            ast = ast.first('atrule').first('parentheses');
-
-            result = linter.lint(options, ast);
-
-            expect(result).to.be.undefined;
-        });
-
-        it('should throw on invalid "style" value', function () {
-            var source = '.foo { color: rgb(255 , 255 , 255); }';
-            var lint;
-            var ast;
-
-            var options = {
-                style: 'invalid'
-            };
-
-            ast = parseAST(source);
-            ast = ast.first().first('block').first('declaration').first('value').first('function').first('arguments');
-
-            lint = linter.lint.bind(null, options, ast);
-
-            expect(lint).to.throw(Error);
-        });
+                    expect(lint).to.throw(Error);
+                });
+            });
+        }); // "invalid"
     });
 });
