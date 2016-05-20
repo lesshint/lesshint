@@ -84,8 +84,6 @@ describe('lesshint', function () {
             source += '    }';
             source += '}';
 
-            source += '.foo { margin-bottom: 0; }';
-
             return spec.parse(source, function (ast) {
                 var result = spec.linter.lint(options, ast.root.first);
 
