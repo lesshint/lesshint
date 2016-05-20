@@ -71,6 +71,28 @@ describe('lesshint', function () {
             });
         });
 
+        it('should check each rule on its own', function () {
+            var source = '';
+            var options = {
+                style: 'alpha'
+            };
+
+            source += '.form-group {';
+            source += '    margin-bottom: 0;';
+            source += '    .form-control {';
+            source += '        height: auto;';
+            source += '    }';
+            source += '}';
+
+            source += '.foo { margin-bottom: 0; }';
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
         it('should not try to check variables', function () {
             var source = '.foo { @var: auto; }';
             var options = {
