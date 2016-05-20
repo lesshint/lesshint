@@ -94,20 +94,7 @@ describe('lesshint', function () {
         });
 
         it('should not try to check variables', function () {
-            var source = '.foo { @var: auto; }';
-            var options = {
-                style: 'alpha'
-            };
-
-            return spec.parse(source, function (ast) {
-                var result = spec.linter.lint(options, ast.root.first);
-
-                expect(result).to.be.undefined;
-            });
-        });
-
-        it('should not try to check variables', function () {
-            var source = '.foo { @var: auto; }';
+            var source = '.foo { @b: auto; @a: inherit; }';
             var options = {
                 style: 'alpha'
             };
