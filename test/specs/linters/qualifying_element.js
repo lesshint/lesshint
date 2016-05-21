@@ -125,7 +125,7 @@ describe('lesshint', function () {
         it('should check parent selectors. #106', function () {
             var source = 'a { &.active { color: red; } }';
             var expected = [{
-                column: 2,
+                column: 6,
                 line: 1,
                 message: 'Class selectors should not include a qualifying element.'
             }];
