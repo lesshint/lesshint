@@ -16,6 +16,7 @@ describe('lesshint', function () {
         it('should not allow short hand hex values when "style" is "long"', function () {
             var source = 'color: #ABC;';
             var expected = [{
+                column: 8,
                 message: '#ABC should be written in the long-form format.'
             }];
 
@@ -46,6 +47,7 @@ describe('lesshint', function () {
         it('should not allow longhand hex values when "style" is "short"', function () {
             var source = 'color: #AABBCC;';
             var expected = [{
+                column: 8,
                 message: '#AABBCC should be written in the short-form format.'
             }];
 
@@ -89,6 +91,7 @@ describe('lesshint', function () {
         it('should find hex values in background declarations', function () {
             var source = 'background: url(test.png) no-repeat #AABBCC;';
             var expected = [{
+                column: 37,
                 message: '#AABBCC should be written in the short-form format.'
             }];
 
@@ -106,6 +109,7 @@ describe('lesshint', function () {
         it('should not allow short hand hex values in variables when "style" is "long" (#28)', function () {
             var source = '@color: #ABC;';
             var expected = [{
+                column: 9,
                 message: '#ABC should be written in the long-form format.'
             }];
 
@@ -123,6 +127,7 @@ describe('lesshint', function () {
         it('should not allow longhand hex values in variables when "style" is "short" (#28)', function () {
             var source = '@color: #AABBCC;';
             var expected = [{
+                column: 9,
                 message: '#AABBCC should be written in the short-form format.'
             }];
 
