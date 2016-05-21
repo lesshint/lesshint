@@ -26,6 +26,7 @@ describe('lesshint', function () {
         it('should not allow invalid hex values', function () {
             var source = 'color: #AABBC;';
             var expected = [{
+                column: 8,
                 message: 'Hexadecimal color "#AABBC" should be either three or six characters long.'
             }];
 
@@ -39,6 +40,7 @@ describe('lesshint', function () {
         it('should find invalid hex values in background declarations', function () {
             var source = 'background: url(test.png) no-repeat #AABBC;';
             var expected = [{
+                column: 37,
                 message: 'Hexadecimal color "#AABBC" should be either three or six characters long.'
             }];
 
@@ -52,6 +54,7 @@ describe('lesshint', function () {
         it('should not allow invalid hex values in variable declarations (#28)', function () {
             var source = '@color: #AABBC;';
             var expected = [{
+                column: 9,
                 message: 'Hexadecimal color "#AABBC" should be either three or six characters long.'
             }];
 
