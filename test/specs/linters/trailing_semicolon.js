@@ -16,7 +16,7 @@ describe('lesshint', function () {
         it('should not allow missing semicolons', function () {
             var source = '.foo { color: red }';
             var expected = [{
-                column: 1,
+                column: 18,
                 line: 1,
                 message: 'All property declarations should end with a semicolon.'
             }];
