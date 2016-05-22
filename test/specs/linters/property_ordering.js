@@ -71,11 +71,18 @@ describe('lesshint', function () {
             });
         });
 
-        it('should not try to check variables', function () {
-            var source = '.foo { @var: auto; }';
+        it('should check each rule on its own', function () {
+            var source = '';
             var options = {
                 style: 'alpha'
             };
+
+            source += '.form-group {';
+            source += '    margin-bottom: 0;';
+            source += '    .form-control {';
+            source += '        height: auto;';
+            source += '    }';
+            source += '}';
 
             return spec.parse(source, function (ast) {
                 var result = spec.linter.lint(options, ast.root.first);
@@ -85,7 +92,7 @@ describe('lesshint', function () {
         });
 
         it('should not try to check variables', function () {
-            var source = '.foo { @var: auto; }';
+            var source = '.foo { @b: auto; @a: inherit; }';
             var options = {
                 style: 'alpha'
             };
