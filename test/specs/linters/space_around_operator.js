@@ -114,6 +114,16 @@ describe('lesshint', function () {
                 });
             });
 
+            it('should not report on negative variables. See #179', function () {
+                var source = 'margin-left: -@foo;';
+
+                return spec.parse(source, function (ast) {
+                    var result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.be.undefined;
+                });
+            });
+
             it('should not report on font-size/line-height shorthand declaration', function () {
                 var source = 'font: 12px/1.5 Arial;';
 
