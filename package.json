@@ -27,7 +27,6 @@
     "postcss-selector-parser": "^2.0.0",
     "postcss-values-parser": "^0.1.0",
     "rcfinder": "^0.1.8",
-    "strip-bom": "^3.0.0",
     "strip-json-comments": "^2.0.0",
     "vow": "^0.4.9",
     "vow-fs": "^0.3.4"
