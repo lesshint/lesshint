@@ -23,7 +23,7 @@
     "lodash.sortby": "^4.0.1",
     "minimatch": "^3.0.0",
     "postcss": "^5.0.19",
-    "postcss-less": "^0.10.0",
+    "postcss-less": "^0.12.0",
     "postcss-selector-parser": "^2.0.0",
     "postcss-values-parser": "^0.1.0",
     "rcfinder": "^0.1.8",
