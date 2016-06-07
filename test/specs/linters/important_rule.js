@@ -6,7 +6,7 @@ var spec = require('../util.js').setup();
 describe('lesshint', function () {
     describe('#importantRule()', function () {
         it('should have the proper node types', function () {
-            var source = '.foo { color: red; }';
+            var source = 'color: red;';
 
             return spec.parse(source, function (ast) {
                 expect(spec.linter.nodeTypes).to.include(ast.root.first.type);
@@ -14,7 +14,7 @@ describe('lesshint', function () {
         });
 
         it('should not do anything when there is no !important present', function () {
-            var source = '.foo { color: red; }';
+            var source = 'color: red;';
 
             return spec.parse(source, function (ast) {
                 var result = spec.linter.lint({}, ast.root.first);
@@ -24,9 +24,9 @@ describe('lesshint', function () {
         });
 
         it('should not allow !important', function () {
-            var source = '.foo { color: red !important; }';
+            var source = 'color: red !important;';
             var expected = [{
-                column: 8,
+                column: 12,
                 line: 1,
                 message: '!important should not be used.'
             }];

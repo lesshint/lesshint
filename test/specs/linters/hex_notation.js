@@ -16,6 +16,7 @@ describe('lesshint', function () {
         it('should not allow uppercase hex values when "style" is "lowercase"', function () {
             var source = 'color: #AABBCC;';
             var expected = [{
+                column: 8,
                 message: '#AABBCC should be written in lowercase.'
             }];
 
@@ -46,6 +47,7 @@ describe('lesshint', function () {
         it('should not allow lowercase hex values when "style" is "uppercase"', function () {
             var source = 'color: #aabbcc;';
             var expected = [{
+                column: 8,
                 message: '#aabbcc should be written in uppercase.'
             }];
 
@@ -76,6 +78,7 @@ describe('lesshint', function () {
         it('should find hex values in background declarations', function () {
             var source = 'background: url(test.png) no-repeat #AABBCC;';
             var expected = [{
+                column: 37,
                 message: '#AABBCC should be written in lowercase.'
             }];
 
@@ -93,6 +96,7 @@ describe('lesshint', function () {
         it('should not allow uppercase hex values in variables when "style" is "lowercase" (#28)', function () {
             var source = '@color: #AABBCC;';
             var expected = [{
+                column: 9,
                 message: '#AABBCC should be written in lowercase.'
             }];
 
@@ -110,6 +114,7 @@ describe('lesshint', function () {
         it('should not allow lowercase hex values in variables when "style" is "uppercase" (#28)', function () {
             var source = '@color: #aabbcc;';
             var expected = [{
+                column: 9,
                 message: '#aabbcc should be written in uppercase.'
             }];
 

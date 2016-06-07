@@ -160,6 +160,19 @@ describe('lesshint', function () {
             });
         });
 
+        it('should not care about spaces before the colon', function () {
+            var source = '.foo { color : red; }';
+            var options = {
+                style: 'one_space'
+            };
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
         it('should throw on invalid "style" value', function () {
             var source = '.foo { color:red; }';
             var options = {
