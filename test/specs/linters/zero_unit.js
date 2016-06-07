@@ -144,6 +144,19 @@ describe('lesshint', function () {
             });
         });
 
+        it('should not check function arguments', function () {
+            var source = 'color: rgb(0, 0, 0);';
+            var options = {
+                style: 'no_unit'
+            };
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
         it('should throw on invalid "style" value', function () {
             var source = 'margin-right: 0;';
             var options = {
