@@ -119,23 +119,18 @@ Option     | Description
 ### invalid
 ```less
 .foo {
-  font-size: 1.0em;  // leading
-  font-size:  .5em;  // leading, trailing, both
-  font-size: 0.5em;  // trailing, both, none
-  font-size: 1.5em;  // trailing, both
-  font-size: 0.50em; // leading, trailing, none
+  font-size: .5em;  // leading, both
+  font-size: 1em;   // trailing, both
+  font-size: 1.0em; // none
 }
 ```
 
 ### valid
 ```less
 .foo {
-  font-size: 0.5em;  // leading
-  font-size: 1.5em;  // leading, none
-  font-size:  .50em; // trailing
-  font-size: 1.0em;  // trailing, both
-  font-size: 0.50em; // both
-  font-size:  .5em;  // none
+  font-size: 0.5em; // leading, both
+  font-size: 1.0em; // trailing, both
+  font-size: .5em;  // none
 }
 ```
 ## depthLevel
