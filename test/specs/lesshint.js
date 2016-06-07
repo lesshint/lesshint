@@ -4,7 +4,7 @@ var expect = require('chai').expect;
 var path = require('path');
 
 describe('lesshint', function () {
-    var testDir = path.dirname(__dirname) + '/data/files';
+    var testDir = path.join(path.dirname(__dirname), '/data/files');
     var Lesshint = require('../../lib/lesshint');
     var configLoader = require('../../lib/config-loader');
 
@@ -20,7 +20,7 @@ describe('lesshint', function () {
         });
 
         it('should strip trailing slashes from directory names', function () {
-            var testPath = path.dirname(__dirname) + '/data/files/sub/';
+            var testPath = path.join(path.dirname(__dirname), '/data/files/sub/');
             var lesshint = new Lesshint();
 
             lesshint.configure();
@@ -31,7 +31,7 @@ describe('lesshint', function () {
         });
 
         it('should ignore dotfiles', function () {
-            var testPath = path.dirname(__dirname) + '/data/ignored-files';
+            var testPath = path.join(path.dirname(__dirname), '/data/ignored-files');
             var lesshint = new Lesshint();
 
             lesshint.configure();
@@ -42,7 +42,7 @@ describe('lesshint', function () {
         });
 
         it('should ignore excluded files', function () {
-            var testPath = path.dirname(__dirname) + '/data/excluded-files';
+            var testPath = path.join(path.dirname(__dirname), '/data/excluded-files');
             var lesshint = new Lesshint();
             var config = {
                 excludedFiles: ['vendor.less']
@@ -56,7 +56,7 @@ describe('lesshint', function () {
         });
 
         it('should only check files with the correct extension and a leading dot', function () {
-            var testPath = path.dirname(__dirname) + '/data/excluded-files';
+            var testPath = path.join(path.dirname(__dirname), '/data/excluded-files');
             var lesshint = new Lesshint();
             var config = {
                 fileExtensions: ['.less']
@@ -70,7 +70,7 @@ describe('lesshint', function () {
         });
 
         it('should only check files with the correct extension and without a leading dot', function () {
-            var testPath = path.dirname(__dirname) + '/data/excluded-files';
+            var testPath = path.join(path.dirname(__dirname), '/data/excluded-files');
             var lesshint = new Lesshint();
             var config = {
                 fileExtensions: ['less']
@@ -84,7 +84,7 @@ describe('lesshint', function () {
         });
 
         it('should allow all extensions when "*" is passed', function () {
-            var testPath = path.dirname(__dirname) + '/data/excluded-files';
+            var testPath = path.join(path.dirname(__dirname), '/data/excluded-files');
             var lesshint = new Lesshint();
             var config = {
                 fileExtensions: '*'
@@ -161,7 +161,7 @@ describe('lesshint', function () {
         });
 
         it('should throw on non-parse related errors', function () {
-            var config = configLoader(path.dirname(__dirname) + '/data/config/bad.json');
+            var config = configLoader(path.join(path.dirname(__dirname), '/data/config/bad.json'));
             var lesshint = new Lesshint();
             var checker;
 
