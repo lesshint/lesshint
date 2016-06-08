@@ -292,5 +292,22 @@ describe('lesshint', function () {
                 expect(result).to.be.undefined;
             });
         });
+
+        it('should check each rule on its own', function () {
+            var source = '';
+
+            source += '.foo {\n';
+            source += '    margin-bottom: 0;\n';
+            source += '}\n';
+            source += '.bar {\n';
+            source += '    height: auto;\n';
+            source += '}';
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint({}, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
     });
 });
