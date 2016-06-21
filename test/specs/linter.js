@@ -366,13 +366,41 @@ describe('linter', function () {
             expect(result).to.deep.equal(expected);
         });
 
-        it('should load a custom linter', function () {
+        it('should load a custom linter (as a require path)', function () {
             var source = '// boo!\n';
             var path = 'test.less';
             var result;
 
             var config = {
-                linters: ['../test/plugins/sample'],
+                linters: ['../test/plugins/sampleLinter'],
+                sample: {
+                    enabled: true
+                }
+            };
+
+            var expected = [{
+                column: 1,
+                file: 'test.less',
+                fullPath: 'test.less',
+                line: 1,
+                linter: 'sample',
+                message: 'Sample error.',
+                severity: 'warning',
+                source: source.trim()
+            }];
+
+            result = linter.lint(source, path, config);
+
+            expect(result).to.deep.equal(expected);
+        });
+
+        it('should load a custom linter (as a passed linter)', function () {
+            var source = '// boo!\n';
+            var path = 'test.less';
+            var result;
+
+            var config = {
+                linters: [require('../plugins/sampleLinter')],
                 sample: {
                     enabled: true
                 }

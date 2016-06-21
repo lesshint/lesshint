@@ -140,6 +140,55 @@ describe('cli', function () {
         });
     });
 
+    it('should load linters (command-line parameter only)', function () {
+        var result;
+
+        sinon.spy(console, 'log');
+
+        result = cli({
+            args: [path.dirname(__dirname) + '/data/files/file.less'],
+            linters: ['../test/plugins/sampleLinter']
+        });
+
+        return result.fail(function (status) {
+            console.log.restore();
+            expect(status).to.equal(1);
+        });
+    });
+
+    it('should load linters (config file only)', function () {
+        var result;
+
+        sinon.spy(console, 'log');
+
+        result = cli({
+            args: [path.dirname(__dirname) + '/data/files/file.less'],
+            config: path.resolve(process.cwd() + '/test/data/config/linters.json')
+        });
+
+        return result.fail(function (status) {
+            console.log.restore();
+            expect(status).to.equal(1);
+        });
+    });
+
+    it('should load linters (both command-line parameter and config file)', function () {
+        var result;
+
+        sinon.spy(console, 'log');
+
+        result = cli({
+            args: [path.dirname(__dirname) + '/data/files/file.less'],
+            config: path.resolve(process.cwd() + '/test/data/config/linters.json'),
+            linters: ['../test/plugins/otherSampleLinter']
+        });
+
+        return result.fail(function (status) {
+            console.log.restore();
+            expect(status).to.equal(1);
+        });
+    });
+
     it('should exit without errors when passed a built-in reporter name', function () {
         var result;
 
@@ -203,9 +252,8 @@ describe('cli', function () {
         });
 
         return result.fail(function (status) {
-            expect(status).to.equal(2);
-
             console.log.restore();
+            expect(status).to.equal(2);
         });
     });
 });
