@@ -106,6 +106,16 @@ Array of [minimatch glob patterns](https://github.com/isaacs/minimatch) or a fil
 "excludedFiles": ["vendor.less"] // Ignore a file named "vendor.less"
 ```
 
+#### linters
+Since `1.5.3` you can define your own linters to add to the built-in list. These can be the linters themselves or require paths relative to your current working directory. For example:
+
+```js
+"linters": [
+    "./plugins/linters/sampleLinter",
+    require("./plugins/linters/otherSampleLinter")
+]
+```
+
 ## CLI usage
 Run `lesshint` from the command-line by passing one or more files/directories to recursively scan.
 
@@ -117,6 +127,7 @@ Available Flags     | Description
 --------------------|----------------------------------------------
 `-c`/`--config`     | Specify the configuration file to use (will be merged with defaults).
 `-e`/`--exclude`    | A [minimatch glob pattern](https://github.com/isaacs/minimatch) or a file to exclude form being linted.
+`-l`/`--linters`    | Require paths of custom linters to add to the built-in list.
 `-r`/`--reporter`   | The reporter to use. See "Reporters" below for possible values.
 `-V`/`--version`    | Show version.
 
