@@ -1,0 +1,7 @@
+{
+    "linters": ["../test/plugins/sampleLinter"],
+
+    "sample": {
+        "enabled": true
+    }
+}
