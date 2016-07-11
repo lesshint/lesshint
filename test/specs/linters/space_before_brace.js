@@ -338,6 +338,19 @@ describe('lesshint', function () {
             });
         });
 
+        it('should not check imports', function () {
+            var source = '@import \'lib/colors\';';
+            var options = {
+                style: 'one_space'
+            };
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
         it('should ignore nodes without a following block', function () {
             var source = '.foo();';
             var options = {
