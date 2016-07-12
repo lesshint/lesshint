@@ -364,6 +364,19 @@ describe('lesshint', function () {
             });
         });
 
+        it('should ignore atrule nodes without a following block', function () {
+            var source = '@foo();';
+            var options = {
+                style: 'one_space'
+            };
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
         it('should throw on invalid "style" value', function () {
             var source = '.foo{}';
             var options = {
