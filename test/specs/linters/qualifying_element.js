@@ -122,7 +122,7 @@ describe('lesshint', function () {
             });
         });
 
-        it('should check parent selectors. #106', function () {
+        it('should not allow parent selectors when the parent is an element. #106', function () {
             var source = 'a { &.active { color: red; } }';
             var expected = [{
                 column: 6,
@@ -134,6 +134,16 @@ describe('lesshint', function () {
                 var result = spec.linter.lint({}, ast.root.first.first);
 
                 expect(result).to.deep.equal(expected);
+            });
+        });
+
+        it('should allow parent selectors when the parent is selector. #118', function () {
+            var source = '.a { &.active { color: red; } }';
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint({}, ast.root.first);
+
+                expect(result).to.be.undefined;
             });
         });
     });
