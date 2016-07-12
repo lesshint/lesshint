@@ -59,8 +59,8 @@ describe('lesshint', function () {
             });
         });
 
-        it('should not check mixin calls', function () {
-            var source = '.mixin();';
+        it('should allow rules with only atrules (#200)', function () {
+            var source = '.foo { @atrule(); }';
 
             return spec.parse(source, function (ast) {
                 var result = spec.linter.lint({}, ast.root.first);
@@ -71,6 +71,16 @@ describe('lesshint', function () {
 
         it('should not check mixin calls', function () {
             var source = '.mixin();';
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint({}, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
+        it('should not check atrule calls (#200)', function () {
+            var source = '@atrule();';
 
             return spec.parse(source, function (ast) {
                 var result = spec.linter.lint({}, ast.root.first);
