@@ -62,6 +62,16 @@ describe('lesshint', function () {
                 });
             });
 
+            it('should account for multiline rules with commas', function () {
+                var source = '.foo, \n.bar {}';
+
+                return spec.parse(source, function (ast) {
+                    var result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.be.undefined;
+                });
+            });
+
             it('should not allow missing space after comma in mixins', function () {
                 var source = '.mixin(@margin,@padding) {}';
                 var expected = [{
