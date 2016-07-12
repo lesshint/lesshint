@@ -196,6 +196,16 @@ describe('lesshint', function () {
                 });
             });
 
+            it('should allow multiline mixins', function () {
+                var source = '.mixin(\n@a,\n@b\n) {\n \n}';
+
+                return spec.parse(source, function (ast) {
+                    var result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.be.undefined;
+                });
+            });
+
             it('should not allow one space after opening parenthesis in mixins', function () {
                 var source = '.mixin( @margin, @padding) {}';
                 var expected = [{
@@ -297,6 +307,16 @@ describe('lesshint', function () {
                     var result = spec.linter.lint(options, ast.root.first);
 
                     expect(result).to.deep.equal(expected);
+                });
+            });
+
+            it('should allow missing space before closing parenthesis in mixins', function () {
+                var source = '.mixin(@margin, @padding) {}';
+
+                return spec.parse(source, function (ast) {
+                    var result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.be.undefined;
                 });
             });
         }); // "no_space"
@@ -464,6 +484,16 @@ describe('lesshint', function () {
 
             it('should allow one space after opening parenthesis and before closing parenthesis in mixins', function () {
                 var source = '.mixin( @margin, @padding ) {}';
+
+                return spec.parse(source, function (ast) {
+                    var result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.be.undefined;
+                });
+            });
+
+            it('should allow one space before closing paren in multiline mixins', function () {
+                var source = '.mixin( \n@a,\n@b\n ) {\n \n}';
 
                 return spec.parse(source, function (ast) {
                     var result = spec.linter.lint(options, ast.root.first);
