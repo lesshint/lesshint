@@ -6,13 +6,12 @@
 [![Dependency Status](https://david-dm.org/lesshint/lesshint.svg?theme=shields.io&style=flat)](https://david-dm.org/lesshint/lesshint)
 [![devDependency Status](https://david-dm.org/lesshint/lesshint/dev-status.svg?theme=shields.io&style=flat)](https://david-dm.org/lesshint/lesshint#info=devDependencies)
 
-**Help us out with testing `2.0`, install with `npm install lesshint@next`. Thanks!**
-
 `lesshint` is a tool to aid you in writing clean and consistent [Less](http://lesscss.org/).
 
 * [Requirements](#requirements)
 * [Installation](#installation)
 * [Configuration](#configuration)
+* [Custom linters](#custom-linters)
 * [CLI usage](#cli-usage)
 * [Reporters](#reporters)
 
@@ -20,7 +19,7 @@
 [Node.js](https://nodejs.org/) 0.12 (or later) or [io.js](https://iojs.org/) 1.0 (or later).
 
 ## Installation
-Run the following command from the command line (add -g to install globally):
+Run the following command from the command line (add `-g` to install globally):
 
 ```
 npm install lesshint
@@ -45,7 +44,7 @@ Each option is then specified by it's own JSON object, for example:
 ```
 
 ### Inline configuration
-Since `1.4.0` it's possible to configure rules using inline comments in your `.less` files. For example:
+It's also possible to configure rules using inline comments in your `.less` files. For example:
 
 ```less
 // lesshint spaceBeforeBrace: false
@@ -107,7 +106,7 @@ Array of [minimatch glob patterns](https://github.com/isaacs/minimatch) or a fil
 ```
 
 #### linters
-Since `1.5.3` you can define your own linters to add to the built-in list. These can be the linters themselves or require paths relative to your current working directory. For example:
+It's also possible to define your own linters to add to the built-in list. These can be the linters themselves or require paths relative to your current working directory. For example:
 
 ```js
 "linters": [
@@ -115,6 +114,58 @@ Since `1.5.3` you can define your own linters to add to the built-in list. These
     require("./plugins/linters/otherSampleLinter")
 ]
 ```
+
+## Custom linters
+Since `2.0.0` it's possible to create your own linters when needed for something team/project specfic or something that's out of scope for `lesshint`.
+
+To work properly, all linters are required to expose a few things.
+* `name` - The name of the linter. While we don't enforce namespaces, we recommend it to prevent naming collisions.
+* `nodeTypes` - An array of [PostCSS node types](http://api.postcss.org/postcss.html) that the linter wants to check.
+* `lint` - The main lint method which will be called with the following arguments.
+    * `config` - The config object for this linter.
+    * `node` - The current node to lint.
+
+If the linter doesn't find any errors or doesn't need/want to check the passed node for some reason it should return `undefined`. If it finds something it should return an array of result objects which looks like this:
+
+```js
+{
+    column: 5,
+    file: 'file.less',
+    fullPath: 'path/to/file.less',
+    line: 1,
+    linter: 'spaceBeforeBrace',
+    message: 'Opening curly brace should be preceded by one space.',
+    severity: 'warning',
+    source: '.foo{'
+}
+```
+
+If a linter doesn't set a value for a property, `lesshint` will set it. Most of the time, you'll only want to set `column`, `line`, and `message` while leaving the rest to `lesshint`.
+
+A simple linter example:
+```js
+module.exports = {
+    name: 'my-namespace/my-super-awesome-linter',
+    nodeTypes: ['decl'],
+    lint: function (config, node) {
+        var results = [];
+
+        if (true) { // Nothing to lint, return early
+            return;
+        }
+
+        // Check some things...
+
+        // Return the results
+        return results;
+    }
+```
+
+We highly recommend the following resources which are all included with `lesshint`.
+* [postcss](http://api.postcss.org/postcss.html) - Main PostCSS docs.
+* [postcss-less](https://github.com/webschik/postcss-less) - PostCSS Less plugin docs.
+* [postcss-selector-parser](https://github.com/postcss/postcss-selector-parser) - PostCSS plugin for working with selectors.
+* [postcss-values-parser](https://github.com/lesshint/postcss-values-parser) - PostCSS plugin for working with values.
 
 ## CLI usage
 Run `lesshint` from the command-line by passing one or more files/directories to recursively scan.
@@ -138,7 +189,7 @@ Exit status code   | Description
 -------------------|----------------------------------------------
 `0`                | Everything is alright, no linting errors found.
 `1`                | One or more linting errors with a severity of `warning` was found.
-`2`                | One or more linting errors with a severity of `error` was found (since `1.3.0`).
+`2`                | One or more linting errors with a severity of `error` was found.
 `66`               | No files to lint were supplied.
 `70`               | An unknown error occurred within `lesshint`, possibly a bug. [Please file an issue!](https://github.com/lesshint/lesshint/issues/new)
 `78`               | Something is wrong with the config file, most likely invalid JSON.
