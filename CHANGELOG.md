@@ -1,4 +1,15 @@
 # Changelog
+## 2.0.0 (2016-07-13)
+* Added the possibility to use custom linters. ([97e7268](https://github.com/lesshint/lesshint/commit/97e7268f639dfe956cf337885fdd44de2ac61982))
+* Added a `allowNewline` option to `spaceAroundComma`. ([1cb009a](https://github.com/lesshint/lesshint/commit/1cb009a1487c3f609bac6bdc65a8b4ae2f502d32))
+* Made a small behavioral change in decimalZero where it now only checks if there's always/never a leading/trailing decimal number.
+([95e8037](https://github.com/lesshint/lesshint/commit/95e8037250bca1c09d74b282351ab8915fb0ea7b))
+* Fixed an issue where `qualifyingElement` would report `&.classname`. ([af37172](https://github.com/lesshint/lesshint/commit/af371726ca47e073cfe38ab54e2e2b95fd606a10))
+* Fixed an issue where `spaceBetweenParens` would fail on mulitiline definitions. ([846ebb0](https://github.com/lesshint/lesshint/commit/846ebb02c8f7310885e90c6e81dc117969de0a13))
+* Fixed an issue where `decimalZero` would erroneously report whole numbers when `style` was `none`.
+([b46be32](https://github.com/lesshint/lesshint/commit/b46be32dc5653915006e3e62ef924d29d84b5ecf))
+* Fixed a ton of other bugs found after the parser back-end switch. ([Full diff from `2.0.0-rc1`](https://github.com/lesshint/lesshint/compare/v2.0.0-rc1...v2.0.0))
+
 ## 2.0.0-rc1 (2016-05-16)
 * Completely new parser back-end, using PostCSS. Please report any issues! ([1894408](https://github.com/lesshint/lesshint/commit/18944083bbd69dc0f3d607f24617732a15093e2e))
 * Removed support for old reporter style. ([49a2dba](https://github.com/lesshint/lesshint/commit/49a2dbaede9dd2e73fc035f60a80d09bdbaf25f6))
