@@ -366,6 +366,16 @@ describe('linter', function () {
             expect(result).to.deep.equal(expected);
         });
 
+        it('should not report comma spaces for selectors that have pseudos', function () {
+            var source = '.foo,\n.bar:not(.foo){}';
+            var path = 'test.less';
+            var result;
+
+            result = linter.lint(source, path, {});
+
+            expect(result).to.have.length(0);
+        });
+
         it('should load a custom linter (as a require path)', function () {
             var source = '// boo!\n';
             var path = 'test.less';
