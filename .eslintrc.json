@@ -30,7 +30,7 @@
     }],
     "newline-after-var": 2,
     "no-caller": 2,
-    "no-console": 0,
+    "no-console": 2,
     "no-else-return": 2,
     "no-eval": 2,
     "no-extend-native": 2,

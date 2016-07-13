@@ -1,3 +1,5 @@
+/*eslint no-console: 0*/
+
 'use strict';
 
 var expect = require('chai').expect;
