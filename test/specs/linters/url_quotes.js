@@ -21,8 +21,28 @@ describe('lesshint', function () {
             });
         });
 
+        it('should not check nodes without params', function () {
+            var source = '.foo { @bar }';
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint({}, ast.root.first.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
+        it('should not check nodes without values', function () {
+            var source = '.foo { @bar() }';
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint({}, ast.root.first.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
         it('should allow single quotes', function () {
-            var source = ".foo { background-image: url('img/image.jpg'); }";
+            var source = '.foo { background-image: url(\'img/image.jpg\'); }';
 
             return spec.parse(source, function (ast) {
                 var result = spec.linter.lint({}, ast.root.first.first);
