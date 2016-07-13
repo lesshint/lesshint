@@ -8,7 +8,7 @@
 * Fixed an issue where `spaceBetweenParens` would fail on mulitiline definitions. ([846ebb0](https://github.com/lesshint/lesshint/commit/846ebb02c8f7310885e90c6e81dc117969de0a13))
 * Fixed an issue where `decimalZero` would erroneously report whole numbers when `style` was `none`.
 ([b46be32](https://github.com/lesshint/lesshint/commit/b46be32dc5653915006e3e62ef924d29d84b5ecf))
-* Fixed a ton of other bugs found after the parser back-end switch. ([Full diff from `2.0.0-rc1`](https://github.com/lesshint/lesshint/compare/v2.0.0-rc1...v2.0.0))
+* Fixed a ton of other bugs found after the parser back-end switch. ([Full diff from `2.0.0-rc1`](https://github.com/lesshint/lesshint/compare/v2.0.0-rc...v2.0.0))
 
 ## 2.0.0-rc1 (2016-05-16)
 * Completely new parser back-end, using PostCSS. Please report any issues! ([1894408](https://github.com/lesshint/lesshint/commit/18944083bbd69dc0f3d607f24617732a15093e2e))
