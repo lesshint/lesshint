@@ -85,6 +85,41 @@ describe('lesshint', function () {
                     expect(result).to.deep.equal(expected);
                 });
             });
+
+            it('should not allow multiline comma lists when allowNewline is false', function () {
+                var source = 'font: 14px,\n    Roboto,\n    #000000;';
+                var expected = [
+                    {
+                        column: 11,
+                        message: 'Commas should be followed by one space.'
+                    },
+                    {
+                        column: 17,
+                        message: 'Commas should be followed by one space.'
+                    }
+                ];
+
+                options.allowNewline = false;
+
+                return spec.parse(source, function (ast) {
+                    var result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.deep.equal(expected);
+                });
+            });
+
+            it('should  allow multiline comma lists when allowNewline is true', function () {
+                var source = 'font: 14px,\n    Roboto,\n    #000000;';
+
+                options.allowNewline = true;
+
+                return spec.parse(source, function (ast) {
+                    var result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.be.undefined;
+                });
+            });
+
         }); // "after"
 
         describe('when "style" is "before"', function () {

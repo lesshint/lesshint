@@ -606,9 +606,10 @@ Option     | Description
 ## spaceAroundComma
 Defines how commas in functions, mixins, etc. should be formatted by a space to aid readability.
 
-Option     | Description
----------- | ----------
-`style`    | `after` (**default**), `before`, `both`, `none`
+Option          | Description
+----------------| ----------
+`allowNewline`  | `false` (**default**), `boolean`
+`style`         | `after` (**default**), `before`, `both`, `none`
 
 ### after
 ```less
@@ -635,6 +636,16 @@ Option     | Description
 ```less
 .foo {
     color: rgb(255,255,255);
+}
+```
+
+### allowNewline : true
+```less
+.foo {
+  font:
+    14px,
+    Roboto,
+    #000;
 }
 ```
 
