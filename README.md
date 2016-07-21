@@ -30,16 +30,18 @@ npm install lesshint
 
 Start by creating a `.lesshintrc` file in your project root and add your settings to it. It will be automatically loaded and merged with the default values.
 
-Each option is then specified by it's own JSON object, for example:
+Each option is then specified by its own JSON object, for example:
 
 ```js
-"fileExtensions": [".less", ".css"],
-
-"excludedFiles": ["vendor.less"],
-
-"spaceAfterPropertyColon": {
-    "enabled": true,
-    "style": "one_space" // Comments are allowed
+{
+    "fileExtensions": [".less", ".css"],
+    
+    "excludedFiles": ["vendor.less"],
+    
+    "spaceAfterPropertyColon": {
+        "enabled": true,
+        "style": "one_space" // Comments are allowed
+    }
 }
 ```
 
