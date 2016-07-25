@@ -1,4 +1,7 @@
 # Changelog
+## 2.0.1 (2016-07-25)
+* Fixed an issue where `finalNewline` and `trailingWhitespace` weren't called. ([6386b4c](https://github.com/lesshint/lesshint/commit/6386b4c846e5bbb5aa9ba834a78f3a3fb0241925))
+
 ## 2.0.0 (2016-07-13)
 * Added the possibility to use custom linters. ([97e7268](https://github.com/lesshint/lesshint/commit/97e7268f639dfe956cf337885fdd44de2ac61982))
 * Added a `allowNewline` option to `spaceAroundComma`. ([1cb009a](https://github.com/lesshint/lesshint/commit/1cb009a1487c3f609bac6bdc65a8b4ae2f502d32))
