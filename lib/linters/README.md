@@ -1,6 +1,7 @@
 # Available linters
 
 * [attributeQuotes](#attributequotes)
+* [blankLineAfterBlock](#blanklineafterblock)
 * [borderZero](#borderzero)
 * [comment](#comment)
 * [decimalZero](#decimalzero)
@@ -62,6 +63,30 @@ input[type='text'] {
 
 input[type="text"] {
     color: red;
+}
+```
+
+## blankLineAfterBlock
+All blocks should be followed by a blank line.
+
+### invalid
+```less
+.foo {
+    color: red;
+}
+.bar {
+    color: blue;
+}
+```
+
+### valid
+```less
+.foo {
+    color: red;
+}
+
+.bar {
+    color: blue;
 }
 ```
 

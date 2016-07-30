@@ -8,6 +8,10 @@
         "style": "single"
     },
 
+    "blankLineAfterBlock": {
+        "enabled": true
+    },
+
     "borderZero": {
         "enabled": true,
         "style": "zero"
