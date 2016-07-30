@@ -96,5 +96,25 @@ describe('lesshint', function () {
                 expect(result).to.be.undefined;
             });
         });
+
+        it('should allow preceding comments without a blank line', function () {
+            var source = '';
+
+            source += '.foo {';
+            source += '    color: red;';
+            source += '}';
+            source += '\n\n';
+            source += '// A comment';
+            source += '\n';
+            source += '.bar {';
+            source += '    color: blue;';
+            source += '}';
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint({}, ast.root.last);
+
+                expect(result).to.be.undefined;
+            });
+        });
     });
 });
