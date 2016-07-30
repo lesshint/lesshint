@@ -175,7 +175,7 @@ describe('lesshint', function () {
             };
 
             return spec.parse(source, function (ast) {
-                var lint = spec.linter.lint.bind(null, options, ast);
+                var lint = spec.linter.lint.bind(null, options, ast.root.first);
 
                 expect(lint).to.throw(Error);
             });
