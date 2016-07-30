@@ -273,8 +273,7 @@ describe('lesshint', function () {
                 var source = 'font-size: 1.0em;';
 
                 return spec.parse(source, function (ast) {
-                    var node = ast.root.first.first;
-                    var lint = spec.linter.lint.bind(null, options, node);
+                    var lint = spec.linter.lint.bind(null, options, ast.root.first);
 
                     expect(lint).to.throw(Error);
                 });
