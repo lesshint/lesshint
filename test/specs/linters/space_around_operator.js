@@ -133,6 +133,16 @@ describe('lesshint', function () {
                     expect(result).to.be.undefined;
                 });
             });
+
+            it('should not report on browser-prefixed functions', function () {
+                var source = 'background: -webkit-linear-gradient(0);';
+
+                return spec.parse(source, function (ast) {
+                    var result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.be.undefined;
+                });
+            });
         }); // "both"
 
         describe('when "style" is "none"', function () {

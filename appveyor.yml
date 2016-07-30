@@ -23,7 +23,7 @@ shallow_clone: true
 clone_depth: 1
 
 cache:
-  - node_modules
+  - node_modules -> package.json
 
 build: off
 
