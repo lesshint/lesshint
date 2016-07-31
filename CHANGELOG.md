@@ -1,4 +1,10 @@
 # Changelog
+## 2.0.2 (2016-07-31)
+* Fixed an issue where the wrong line was reported in `decimalZero`. ([e0c8e94](https://github.com/lesshint/lesshint/commit/e0c8e942fcf7bd0a741e24e3b26aa1a953400d59))
+* Removed unnecessary `gulp-debug-finder` dependency. ([967968b](https://github.com/lesshint/lesshint/commit/967968bd75a916581517cf85fb97e7725560b317))
+* Bumped `postcss-values-parser` to `0.1.7` and added tests for a bug fixed there. ([22e11eb](https://github.com/lesshint/lesshint/commit/22e11eb0b76dfd8fc5e806b9bb35aaea6a1ee765))
+* Fixed some broken tests. ([44b542f](https://github.com/lesshint/lesshint/commit/44b542fdf5f3c0ed8bf6380f871203d20673575f))
+
 ## 2.0.1 (2016-07-25)
 * Fixed an issue where `finalNewline` and `trailingWhitespace` weren't called. ([6386b4c](https://github.com/lesshint/lesshint/commit/6386b4c846e5bbb5aa9ba834a78f3a3fb0241925))
 
