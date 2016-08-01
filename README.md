@@ -11,6 +11,7 @@
 * [Requirements](#requirements)
 * [Installation](#installation)
 * [Configuration](#configuration)
+* [Code examples](#code-examples)
 * [Custom linters](#custom-linters)
 * [CLI usage](#cli-usage)
 * [Reporters](#reporters)
@@ -116,6 +117,34 @@ It's also possible to define your own linters to add to the built-in list. These
     require("./plugins/linters/otherSampleLinter")
 ]
 ```
+
+
+## Code examples
+
+### Setting custom configuration path
+
+```js
+var path = require('path');
+var fs = require('fs');
+var LessHint = require('lesshint');
+var lesshint = new LessHint();
+
+var lesshintConfigPath = path.resolve('my-custom-path/.lesshintrc');
+let lesshintConfig = JSON.parse(fs.readFileSync(lesshintConfigurePath, 'utf8'));
+
+lesshint.configure(lesshintConfiguration);
+```
+
+### Using the default reporter
+```js
+var defaultReporter = lesshint.getReporter();
+var promise = lesshint.checkFile('my-less-file.less');
+	
+promise.then(function(result){
+  defaultReporter.report(result);
+})
+```
+
 
 ## Custom linters
 Since `2.0.0` it's possible to create your own linters when needed for something team/project specfic or something that's out of scope for `lesshint`.
