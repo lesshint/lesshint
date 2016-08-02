@@ -41,6 +41,11 @@
         "enabled": true
     },
 
+    "maxCharPerLine" : {
+        "enabled": true,
+        "limit" : 30
+    },
+
     "hexLength": {
         "enabled": true,
         "style": "long"
@@ -132,7 +137,6 @@
     },
 
     "spaceAroundComma": {
-        "allowNewline": false,
         "enabled": true,
         "style": "after"
     },
