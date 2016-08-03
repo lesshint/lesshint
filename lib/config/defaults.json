@@ -43,7 +43,7 @@
 
     "maxCharPerLine" : {
         "enabled": true,
-        "limit" : 30
+        "limit" : 100
     },
 
     "hexLength": {
