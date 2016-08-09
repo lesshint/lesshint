@@ -11,7 +11,6 @@
 * [Requirements](#requirements)
 * [Installation](#installation)
 * [Configuration](#configuration)
-* [Code examples](#code-examples)
 * [Custom linters](#custom-linters)
 * [CLI usage](#cli-usage)
 * [Reporters](#reporters)
@@ -44,6 +43,20 @@ Each option is then specified by its own JSON object, for example:
         "style": "one_space" // Comments are allowed
     }
 }
+```
+
+### Setting custom configuration path
+
+```js
+var path = require('path');
+var fs = require('fs');
+var LessHint = require('lesshint');
+var lesshint = new LessHint();
+
+var lesshintConfigPath = path.resolve('my-custom-path/.lesshintrc');
+var lesshintConfig = JSON.parse(fs.readFileSync(lesshintConfigurePath, 'utf8'));
+
+lesshint.configure(lesshintConfiguration);
 ```
 
 ### Inline configuration
@@ -116,33 +129,6 @@ It's also possible to define your own linters to add to the built-in list. These
     "./plugins/linters/sampleLinter",
     require("./plugins/linters/otherSampleLinter")
 ]
-```
-
-
-## Code examples
-
-### Setting custom configuration path
-
-```js
-var path = require('path');
-var fs = require('fs');
-var LessHint = require('lesshint');
-var lesshint = new LessHint();
-
-var lesshintConfigPath = path.resolve('my-custom-path/.lesshintrc');
-let lesshintConfig = JSON.parse(fs.readFileSync(lesshintConfigurePath, 'utf8'));
-
-lesshint.configure(lesshintConfiguration);
-```
-
-### Using the default reporter
-```js
-var defaultReporter = lesshint.getReporter();
-var promise = lesshint.checkFile('my-less-file.less');
-	
-promise.then(function(result){
-  defaultReporter.report(result);
-})
 ```
 
 
@@ -250,13 +236,12 @@ If you're writing code which utilizes `lesshint`, for example a Gulp plugin you 
 Pass the name of a module or a path to the `getReporter` method like this:
 
 ```js
-var Lesshint = require('lesshint');
-
-var lesshint = new Lesshint();
-var reporter = lesshint.getReporter('my-super-awesome-reporter');
-
-var errors = lesshint.checkFile('file.less');
-reporter.report(errors);
+var defaultReporter = lesshint.getReporter(); //Or pass path to your custom reporter in getReporter
+var promise = lesshint.checkFile('my-less-file.less');
+	
+promise.then(function(result){
+  defaultReporter.report(result);
+})
 ```
 
 ### Writing your own reporter
@@ -289,3 +274,5 @@ The reporter will be passed an array of objects representing each error:
 It's then up to the reporter to do something with the errors. No `return`s or anything is needed. If running from the CLI, `lesshint` will handle the setting of correct exit codes.
 
 Take a look at the [default reporter](https://github.com/lesshint/lesshint/blob/master/lib/reporters/default.js) for more information.
+
+
