@@ -51,8 +51,28 @@ describe('lesshint', function () {
             });
         });
 
+        it('should allow single quotes with multiple urls', function () {
+            var source = '.foo { background-image: url(\'img/image.jpg\'), url(\'img/foo.jpg\'); }';
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint({}, ast.root.first.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
         it('should allow double quotes', function () {
             var source = '.foo { background-image: url("img/image.jpg"); }';
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint({}, ast.root.first.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
+        it('should allow double quotes with multiple urls', function () {
+            var source = '.foo { background-image: url("img/image.jpg"), url("img/foo.jpg"); }';
 
             return spec.parse(source, function (ast) {
                 var result = spec.linter.lint({}, ast.root.first.first);
@@ -68,6 +88,28 @@ describe('lesshint', function () {
                 line: 1,
                 message: 'URLs should be enclosed in quotes.'
             }];
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint({}, ast.root.first.first);
+
+                expect(result).to.deep.equal(expected);
+            });
+        });
+
+        it('should not allow missing quotes with multiple urls', function () {
+            var source = '.foo { background-image: url(img/image.jpg), url(img/foo.jpg); }';
+            var expected = [
+                {
+                    column: 30,
+                    line: 1,
+                    message: 'URLs should be enclosed in quotes.'
+                },
+                {
+                    column: 50,
+                    line: 1,
+                    message: 'URLs should be enclosed in quotes.'
+                }
+            ];
 
             return spec.parse(source, function (ast) {
                 var result = spec.linter.lint({}, ast.root.first.first);

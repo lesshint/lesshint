@@ -300,4 +300,89 @@ describe('lesshint', function () {
             });
         });
     });
+
+    describe('#importPath() with Import Option', function () {
+
+        it('should allow filename without extension when "filenameExtension" is "false"', function () {
+            var source = '@import (css) "foo";';
+            var options = {
+                filenameExtension: false,
+                exclude: []
+            };
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
+        it('should allow filename with .css extension when "filenameExtension" is "false"', function () {
+            var source = '@import (inline) "foo.css";';
+            var options = {
+                filenameExtension: false,
+                exclude: []
+            };
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
+        it('should not allow filename with extension when "filenameExtension" is "false"', function () {
+            var source = '@import (inline) "foo.less";';
+            var expected = [{
+                column: 9,
+                line: 1,
+                message: 'Imported file, "foo.less" should not include the file extension.'
+            }];
+
+            var options = {
+                filenameExtension: false,
+                exclude: []
+            };
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.deep.equal(expected);
+            });
+        });
+
+        it('should allow filename with extension when "filenameExtension" is "true"', function () {
+            var source = '@import (inline) "foo.less";';
+            var options = {
+                filenameExtension: true,
+                exclude: []
+            };
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
+        it('should not allow filename without extension when "filenameExtension" is "true"', function () {
+            var source = '@import (inline) "foo";';
+            var expected = [{
+                column: 9,
+                line: 1,
+                message: 'Imported file, "foo" should include the file extension.'
+            }];
+
+            var options = {
+                filenameExtension: true,
+                exclude: []
+            };
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.deep.equal(expected);
+            });
+        });
+    });
 });
