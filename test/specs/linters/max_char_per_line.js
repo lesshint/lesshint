@@ -15,10 +15,13 @@ describe('lesshint', function () {
 
         it('should allow files which do not have any lines exceed 10 characters', function () {
             var source = '.foo {}';
+            var options = {
+                limit: 10
+            };
 
             return spec.parse(source, function (ast) {
             // Set to the limit to 10 characters to simplify test source
-                var result = spec.linter.lint({ limit: 10 }, ast.root);
+                var result = spec.linter.lint(options, ast.root);
 
                 expect(result).to.be.undefined;
             });
@@ -31,9 +34,12 @@ describe('lesshint', function () {
                 line: 1,
                 message: 'Line should not exceed 10 characters, 17 found. '
             }];
+            var options = {
+                limit: 10
+            };
 
             return spec.parse(source, function (ast) {
-                var result = spec.linter.lint({}, ast.root);
+                var result = spec.linter.lint(options, ast.root);
 
                 expect(result).to.deep.equal(expected);
             });
