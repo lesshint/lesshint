@@ -2,6 +2,7 @@
 
 var expect = require('chai').expect;
 var spec = require('../util.js').setup();
+var parser = require('postcss-selector-parser');
 
 describe('lesshint', function () {
     describe('#qualifyingElement()', function () {
@@ -122,7 +123,7 @@ describe('lesshint', function () {
             });
         });
 
-        it('should check parent selectors. #106', function () {
+        it('should not allow parent selectors when the parent is an element. #106', function () {
             var source = 'a { &.active { color: red; } }';
             var expected = [{
                 column: 6,
@@ -134,6 +135,67 @@ describe('lesshint', function () {
                 var result = spec.linter.lint({}, ast.root.first.first);
 
                 expect(result).to.deep.equal(expected);
+            });
+        });
+
+        it('should allow parent selectors when the parent is selector. #118', function () {
+            var source = '.a { &.active { color: red; } }';
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint({}, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
+        it('should inspect the parent selector', function () {
+            var source = '.a { &.active { color: red; } }';
+
+            return spec.parse(source, function (ast) {
+                var node = ast.root.first;
+                var expected = { startsWith: 'class', endsWith: 'class', hasTag: false };
+                var result;
+
+                parser(function (selectors) {
+                    node.selectorAst = selectors;
+                    result = spec.linter.inspectParent(node.first);
+                    expect(result).to.deep.equal(expected);
+
+                }).process(node.selector);
+            });
+        });
+
+        it('should inspect the parent selector, recognize tag', function () {
+            var source = 'a { &.active { color: red; } }';
+
+            return spec.parse(source, function (ast) {
+                var node = ast.root.first;
+                var expected = { startsWith: 'tag', endsWith: 'tag', hasTag: true };
+                var result;
+
+                parser(function (selectors) {
+                    node.selectorAst = selectors;
+                    result = spec.linter.inspectParent(node.first);
+                    expect(result).to.deep.equal(expected);
+
+                }).process(node.selector);
+            });
+        });
+
+        it('should inspect the parent selector, recognize tag and class', function () {
+            var source = '.b a { &.active { color: red; } }';
+
+            return spec.parse(source, function (ast) {
+                var node = ast.root.first;
+                var expected = { startsWith: 'class', endsWith: 'tag', hasTag: true };
+                var result;
+
+                parser(function (selectors) {
+                    node.selectorAst = selectors;
+                    result = spec.linter.inspectParent(node.first);
+                    expect(result).to.deep.equal(expected);
+
+                }).process(node.selector);
             });
         });
     });

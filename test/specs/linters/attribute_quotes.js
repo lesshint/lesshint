@@ -13,6 +13,16 @@ describe('lesshint', function () {
             });
         });
 
+        it('should bail if the node has no selector', function () {
+            var source = "input[type='text'] { width: 0; }";
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint({}, ast.root.first.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
         it('should allow single quotes', function () {
             var source = "input[type='text'] {}";
 

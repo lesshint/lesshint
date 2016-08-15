@@ -250,6 +250,16 @@ describe('lesshint', function () {
                     expect(result).to.deep.equal(expected);
                 });
             });
+
+            it('should allow font-weights ending in zero', function () {
+                var source = 'font-weight: 300;';
+
+                return spec.parse(source, function (ast) {
+                    var result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.be.undefined;
+                });
+            });
         }); //"none"
 
         describe('with invalid "style" value', function () {

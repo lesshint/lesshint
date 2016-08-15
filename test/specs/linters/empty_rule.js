@@ -59,8 +59,38 @@ describe('lesshint', function () {
             });
         });
 
+        it('should allow rules with only atrules (#200)', function () {
+            var source = '.foo { @atrule(); }';
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint({}, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
         it('should not check mixin calls', function () {
             var source = '.mixin();';
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint({}, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
+        it('should not check atrule calls (#200)', function () {
+            var source = '@atrule();';
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint({}, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
+        it('should not check mixin definitions', function () {
+            var source = '.header-def(@rules) {h1,h2,h3,h4,h5,h6 {@rules();}}';
 
             return spec.parse(source, function (ast) {
                 var result = spec.linter.lint({}, ast.root.first);

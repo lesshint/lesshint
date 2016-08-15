@@ -325,8 +325,47 @@ describe('lesshint', function () {
             });
         });
 
+        it('should not throw on atrule use', function () {
+            var source = '.header-def(@rules) {h1,h2,h3,h4,h5,h6 {\n@rules();}}';
+            var options = {
+                style: 'one_space'
+            };
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
+        it('should not check imports', function () {
+            var source = '@import \'lib/colors\';';
+            var options = {
+                style: 'one_space'
+            };
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
         it('should ignore nodes without a following block', function () {
             var source = '.foo();';
+            var options = {
+                style: 'one_space'
+            };
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
+        it('should ignore atrule nodes without a following block', function () {
+            var source = '@foo();';
             var options = {
                 style: 'one_space'
             };
