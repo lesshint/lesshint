@@ -20,34 +20,33 @@ describe('lesshint', function () {
             // Set to the limit to 10 characters to simplify test source
                 var result = spec.linter.lint({ limit: 10 }, ast.root);
 
-                result = undefined;
                 expect(result).to.be.undefined;
             });
         });
 
-        // it('should not allow files which have any lines that exceed 10 characters', function () {
-        //     var source = '.foofoofoofoo { }';
-        //     var expected = [{
-        //         column: 0,
-        //         line: 1,
-        //         message: 'Line should not exceed 10 characters, 17 found. '
-        //     }];
+        it('should not allow files which have any lines that exceed 10 characters', function () {
+            var source = '.foofoofoofoo { }';
+            var expected = [{
+                column: 0,
+                line: 1,
+                message: 'Line should not exceed 10 characters, 17 found. '
+            }];
 
-        //     return spec.parse(source, function (ast) {
-        //         var result = spec.linter.lint({}, ast.root);
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint({}, ast.root);
 
-        //         expect(result).to.deep.equal(expected);
-        //     });
-        // });
+                expect(result).to.deep.equal(expected);
+            });
+        });
 
-        // it('should ignore empty files', function () {
-        //     var source = '';
+        it('should ignore empty files', function () {
+            var source = '';
 
-        //     return spec.parse(source, function (ast) {
-        //         var result = spec.linter.lint({}, ast.root);
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint({}, ast.root);
 
-        //         expect(result).to.be.undefined;
-        //     });
-        // });
+                expect(result).to.be.undefined;
+            });
+        });
     });
 });
