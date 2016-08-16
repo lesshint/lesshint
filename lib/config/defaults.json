@@ -137,6 +137,7 @@
     },
 
     "spaceAroundComma": {
+        "allowNewline": false,
         "enabled": true,
         "style": "after"
     },
