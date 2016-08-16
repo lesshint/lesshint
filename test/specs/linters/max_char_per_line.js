@@ -32,8 +32,33 @@ describe('lesshint', function () {
             var expected = [{
                 column: 0,
                 line: 1,
-                message: 'Line should not exceed 10 characters, 17 found. '
+                message: 'Line should not exceed 10 characters, 17 found.'
             }];
+            var options = {
+                limit: 10
+            };
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root);
+
+                expect(result).to.deep.equal(expected);
+            });
+        });
+
+        it('should report multiple errors if there are multiple lines exceed characters limit', function () {
+            var source = '.foofoofoofoo { }\n.looloolooloo { }';
+            var expected = [
+                {
+                    column: 0,
+                    line: 1,
+                    message: 'Line should not exceed 10 characters, 17 found.'
+                },
+                {
+                    column: 0,
+                    line: 2,
+                    message: 'Line should not exceed 10 characters, 17 found.'
+                }
+            ];
             var options = {
                 limit: 10
             };
