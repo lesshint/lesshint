@@ -1,7 +1,6 @@
 # Available linters
 
 * [attributeQuotes](#attributequotes)
-* [blankLineAfterBlock](#blanklineafterblock)
 * [borderZero](#borderzero)
 * [comment](#comment)
 * [decimalZero](#decimalzero)
@@ -15,6 +14,7 @@
 * [idSelector](#idselector)
 * [importantRule](#importantrule)
 * [importPath](#importpath)
+* [newlineAfterBlock](#newlineafterblock)
 * [propertyOrdering](#propertyordering)
 * [propertyUnits](#propertyunits)
 * [qualifyingElement](#qualifyingelement)
@@ -66,8 +66,8 @@ input[type="text"] {
 }
 ```
 
-## blankLineAfterBlock
-All blocks should be followed by a blank line.
+## newlineAfterBlock
+All blocks should be followed by a new line.
 
 ### invalid
 ```less
