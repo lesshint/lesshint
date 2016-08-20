@@ -191,6 +191,40 @@ describe('cli', function () {
         });
     });
 
+    it('should fail loading linters if a command-line linter errors', function () {
+        var result;
+
+        sinon.spy(console, 'log');
+
+        result = cli({
+            args: [path.dirname(__dirname) + '/data/files/file.less'],
+            config: path.resolve(process.cwd() + '/test/data/config/linters.json'),
+            linters: ['../test/plugins/failingLinter']
+        });
+
+        return result.fail(function (status) {
+            console.log.restore();
+            expect(status).to.equal(70);
+        });
+    });
+
+    it('should fail loading linters if a config file linter errors', function () {
+        var result;
+
+        sinon.spy(console, 'log');
+
+        result = cli({
+            args: [path.dirname(__dirname) + '/data/files/file.less'],
+            config: path.resolve(process.cwd() + '/test/data/config/linters-failing.json'),
+            linters: ['../test/plugins/sampleLinter']
+        });
+
+        return result.fail(function (status) {
+            console.log.restore();
+            expect(status).to.equal(78);
+        });
+    });
+
     it('should exit without errors when passed a built-in reporter name', function () {
         var result;
 

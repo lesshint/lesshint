@@ -1,4 +1,15 @@
 # Changelog
+## 2.0.3 (2016-08-09)
+* Fixed an issue where `importPath` wouldn't handle [Less import options](http://lesscss.org/features/#import-options). ([dc099ee](https://github.com/lesshint/lesshint/commit/dc099eeb8bc11db07e487b01fd3f15245eb1bccc))
+* Fixed two issues where `urlFormat` and `urlQuotes` wouldn't report multiple URLs in the same declaration. ([ec5bd4a](https://github.com/lesshint/lesshint/commit/ec5bd4a46c0c9ee4f4ddb6779bc8bbe4e762f7cf))
+* Updated `gulp-mocha` to `3.x`. ([28c80b8](https://github.com/lesshint/lesshint/commit/28c80b86a3ad42888f019c20e3be0c14fd555747))
+
+## 2.0.2 (2016-07-31)
+* Fixed an issue where the wrong line was reported in `decimalZero`. ([e0c8e94](https://github.com/lesshint/lesshint/commit/e0c8e942fcf7bd0a741e24e3b26aa1a953400d59))
+* Removed unnecessary `gulp-debug-finder` dependency. ([967968b](https://github.com/lesshint/lesshint/commit/967968bd75a916581517cf85fb97e7725560b317))
+* Bumped `postcss-values-parser` to `0.1.7` and added tests for a bug fixed there. ([22e11eb](https://github.com/lesshint/lesshint/commit/22e11eb0b76dfd8fc5e806b9bb35aaea6a1ee765))
+* Fixed some broken tests. ([44b542f](https://github.com/lesshint/lesshint/commit/44b542fdf5f3c0ed8bf6380f871203d20673575f))
+
 ## 2.0.1 (2016-07-25)
 * Fixed an issue where `finalNewline` and `trailingWhitespace` weren't called. ([6386b4c](https://github.com/lesshint/lesshint/commit/6386b4c846e5bbb5aa9ba834a78f3a3fb0241925))
 

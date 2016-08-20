@@ -41,6 +41,11 @@
         "enabled": true
     },
 
+    "maxCharPerLine" : {
+        "enabled": true,
+        "limit" : 100
+    },
+
     "hexLength": {
         "enabled": true,
         "style": "long"

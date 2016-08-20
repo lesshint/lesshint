@@ -26,6 +26,19 @@ describe('lesshint', function () {
             });
         });
 
+        it('should allow multiple relative URLs when "style" is "relative"', function () {
+            var source = '.foo { background-image: url(img/image.jpg), url(img/foo.jpg); }';
+            var options = {
+                style: 'relative'
+            };
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
         it('should not allow absolute URLs when "style" is "relative"', function () {
             var source = '.foo { background-image: url(http://example.com/img/image.jpg); }';
             var expected = [{
@@ -33,6 +46,32 @@ describe('lesshint', function () {
                 line: 1,
                 message: 'URL "http://example.com/img/image.jpg" should be relative.'
             }];
+
+            var options = {
+                style: 'relative'
+            };
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first.first);
+
+                expect(result).to.deep.equal(expected);
+            });
+        });
+
+        it('should not allow multiple absolute URLs when "style" is "relative"', function () {
+            var source = '.foo { background-image: url(http://example.com/img/image.jpg), url(http://example.com/img/foo.jpg); }';
+            var expected = [
+                {
+                    column: 30,
+                    line: 1,
+                    message: 'URL "http://example.com/img/image.jpg" should be relative.'
+                },
+                {
+                    column: 69,
+                    line: 1,
+                    message: 'URL "http://example.com/img/foo.jpg" should be relative.'
+                }
+            ];
 
             var options = {
                 style: 'relative'
