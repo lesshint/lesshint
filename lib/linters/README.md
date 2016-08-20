@@ -14,6 +14,7 @@
 * [idSelector](#idselector)
 * [importantRule](#importantrule)
 * [importPath](#importpath)
+* [newlineAfterBlock](#newlineafterblock)
 * [propertyOrdering](#propertyordering)
 * [propertyUnits](#propertyunits)
 * [qualifyingElement](#qualifyingelement)
@@ -62,6 +63,30 @@ input[type='text'] {
 
 input[type="text"] {
     color: red;
+}
+```
+
+## newlineAfterBlock
+All blocks should be followed by a new line.
+
+### invalid
+```less
+.foo {
+    color: red;
+}
+.bar {
+    color: blue;
+}
+```
+
+### valid
+```less
+.foo {
+    color: red;
+}
+
+.bar {
+    color: blue;
 }
 ```
 

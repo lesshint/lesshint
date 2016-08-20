@@ -76,6 +76,10 @@
         "leadingUnderscore": false
     },
 
+    "newlineAfterBlock": {
+        "enabled": true
+    },
+
     "propertyOrdering": {
         "enabled": true,
         "style": "alpha"
