@@ -14,6 +14,7 @@
 * [idSelector](#idselector)
 * [importantRule](#importantrule)
 * [importPath](#importpath)
+* [maxCharPerLine](#maxcharperline)
 * [newlineAfterBlock](#newlineafterblock)
 * [propertyOrdering](#propertyordering)
 * [propertyUnits](#propertyunits)
@@ -63,30 +64,6 @@ input[type='text'] {
 
 input[type="text"] {
     color: red;
-}
-```
-
-## newlineAfterBlock
-All blocks should be followed by a new line.
-
-### invalid
-```less
-.foo {
-    color: red;
-}
-.bar {
-    color: blue;
-}
-```
-
-### valid
-```less
-.foo {
-    color: red;
-}
-
-.bar {
-    color: blue;
 }
 ```
 
@@ -374,6 +351,51 @@ Option               | Description
 ```less
 @import 'foo';
 @import 'bar';
+```
+
+## maxCharPerLine
+Lines shouldn't exceed the defined length.
+
+Option    | Description
+--------- | ----------
+`limit`  | `100`
+
+### invalid
+```less
+.foo {
+    color: red; // A really long comment that's more than 100 chars...
+}
+```
+
+### valid
+```less
+.foo {
+    color: red; // A short comment that's less than 100 chars
+}
+```
+
+## newlineAfterBlock
+All blocks should be followed by a new line.
+
+### invalid
+```less
+.foo {
+    color: red;
+}
+.bar {
+    color: blue;
+}
+```
+
+### valid
+```less
+.foo {
+    color: red;
+}
+
+.bar {
+    color: blue;
+}
 ```
 
 ## propertyOrdering
