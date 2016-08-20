@@ -1,0 +1,3 @@
+{
+    "linters": ["../test/plugins/failingLinter"]
+}
