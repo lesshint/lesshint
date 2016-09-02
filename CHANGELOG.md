@@ -1,4 +1,12 @@
 # Changelog
+## 2.1.0 (2016-09-02)
+* Added `maxCharPerLine` linter. ([af69e95](https://github.com/lesshint/lesshint/commit/af69e9545ac8fc89ff508064741d77e21e29c926))
+* Added `newlineAfterBlock` linter. ([05d48e1](https://github.com/lesshint/lesshint/commit/05d48e1500a4b0e95b3cceee3d5b137c116a472e))
+* Fixed an issue where `stringQuotes` wouldn't check at-rules. ([aaf1d84](https://github.com/lesshint/lesshint/commit/aaf1d847cc34c20b48903bc65d03202ebfdf90fc))
+* Fixed an issue where `spaceBetweenParens` would report the wrong line. ([fa6ff41](https://github.com/lesshint/lesshint/commit/fa6ff41917744af62e418dfb8489901dfcfde37c))
+* Added tests for failing linter plugins. ([02aeef0](https://github.com/lesshint/lesshint/commit/02aeef0c06f9f2f43f0b885b2b845ba928b41835))
+* Added some examples on how to use `lesshint` from custom code. ([0a87b24](https://github.com/lesshint/lesshint/commit/0a87b24a41e5c4f111493a54aa04d2256f1908b9))
+
 ## 2.0.3 (2016-08-09)
 * Fixed an issue where `importPath` wouldn't handle [Less import options](http://lesscss.org/features/#import-options). ([dc099ee](https://github.com/lesshint/lesshint/commit/dc099eeb8bc11db07e487b01fd3f15245eb1bccc))
 * Fixed two issues where `urlFormat` and `urlQuotes` wouldn't report multiple URLs in the same declaration. ([ec5bd4a](https://github.com/lesshint/lesshint/commit/ec5bd4a46c0c9ee4f4ddb6779bc8bbe4e762f7cf))
