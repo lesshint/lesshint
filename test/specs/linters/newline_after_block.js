@@ -116,5 +116,23 @@ describe('lesshint', function () {
                 expect(result).to.be.undefined;
             });
         });
+
+        it('should not report nested blocks with a preceding new line', function () {
+            var source = '';
+
+            source += '.foo {';
+            source += '    color: red;';
+            source += '\n\n';
+            source += '    .bar {';
+            source += '        color: red;';
+            source += '    }';
+            source += '}';
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint({}, ast.root.last);
+
+                expect(result).to.be.undefined;
+            });
+        });
     });
 });
