@@ -242,6 +242,25 @@ describe('lesshint', function () {
             });
         });
 
+        it('should not allow multiple spaces when multiple simple selectors are used and "style" is "one_space"', function () {
+            var source = '.foo, .bar  {}';
+            var expected = [{
+                column: 11,
+                line: 1,
+                message: 'Opening curly brace should be preceded by one space.'
+            }];
+
+            var options = {
+                style: 'one_space'
+            };
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.deep.equal(expected);
+            });
+        });
+
         it('should allow one new line when "style" is "new_line"', function () {
             var source = '.foo\n{}';
             var options = {
