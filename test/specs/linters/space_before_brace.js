@@ -185,8 +185,46 @@ describe('lesshint', function () {
             });
         });
 
-        it('should not allow multiple spaces when multiple simple selectors are used and "style" is "one_space"', function () {
-            var source = '.foo, .bar  {}';
+        it('should not allow multiple spaces when "style" is "one_space"', function () {
+            var source = '.foo  {}';
+            var expected = [{
+                column: 5,
+                line: 1,
+                message: 'Opening curly brace should be preceded by one space.'
+            }];
+
+            var options = {
+                style: 'one_space'
+            };
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.deep.equal(expected);
+            });
+        });
+
+        it('should not allow new line when "style" is "one_space"', function () {
+            var source = '.foo, .bar\n{}';
+            var expected = [{
+                column: 11,
+                line: 1,
+                message: 'Opening curly brace should be preceded by one space.'
+            }];
+
+            var options = {
+                style: 'one_space'
+            };
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.deep.equal(expected);
+            });
+        });
+
+        it('should not allow tab when "style" is "one_space"', function () {
+            var source = '.foo, .bar\t{}';
             var expected = [{
                 column: 11,
                 line: 1,
@@ -219,6 +257,32 @@ describe('lesshint', function () {
 
         it('should allow one new line when a selector group is used and "style" is "new_line"', function () {
             var source = '.foo, .bar\n{}';
+            var options = {
+                style: 'new_line'
+            };
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
+        it('should allow one new line followed by spaces when "style" is "new_line"', function () {
+            var source = '.foo\n       {}';
+            var options = {
+                style: 'new_line'
+            };
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
+        it('should allow one new line followed by tabs when "style" is "new_line"', function () {
+            var source = '.foo\n\t\t{}';
             var options = {
                 style: 'new_line'
             };
