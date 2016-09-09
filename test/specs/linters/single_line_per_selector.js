@@ -96,5 +96,27 @@ describe('lesshint', function () {
                 expect(result).to.be.undefined;
             });
         });
+
+        it('should not report the same selector multiple times. #239', function () {
+            var source = '.foo .bar, .bar .foo {}';
+            var expected = [
+                {
+                    column: 1,
+                    line: 1,
+                    message: 'Each selector should be on its own line.'
+                },
+                {
+                    column: 12,
+                    line: 1,
+                    message: 'Each selector should be on its own line.'
+                }
+            ];
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint({}, ast.root.first);
+
+                expect(result).to.deep.equal(expected);
+            });
+        });
     });
 });
