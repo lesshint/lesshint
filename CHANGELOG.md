@@ -1,4 +1,11 @@
 # Changelog
+## 2.1.1 (2016-09-11)
+* Fixed a false positive in `newlineAfterBlock` with nested blocks. ([e64c360](https://github.com/lesshint/lesshint/commit/e64c3600abcaef740d04c3154d074accc39395af))
+* Fixed an issue where `singleLinePerSelector` would report the same selector multiple times. ([507e89](https://github.com/lesshint/lesshint/commit/507e89a3bb02e5789126221cd1cbca24a037b18b))
+* Fixed an issue in `spaceBeforeBrace` where indented blocks would be erroneously reported with the `new_line` setting. ([45d166e](https://github.com/lesshint/lesshint/commit/45d166e250a81338ce0aeb0d36c3d9cf589d72df))
+* Fixed an issue in `spaceBeforeBrace` where the `one_space` option would erroneously allow other spaces than just a single one. ([45d166e](https://github.com/lesshint/lesshint/commit/45d166e250a81338ce0aeb0d36c3d9cf589d72df))
+* Removed old `spaceBeforeComma` setting in the default config. ([d7bb4f6](https://github.com/lesshint/lesshint/commit/d7bb4f6a0021aa6c1d9e83edacd261519d9a3b97))
+
 ## 2.1.0 (2016-09-02)
 * Added `maxCharPerLine` linter. ([af69e95](https://github.com/lesshint/lesshint/commit/af69e9545ac8fc89ff508064741d77e21e29c926))
 * Added `newlineAfterBlock` linter. ([05d48e1](https://github.com/lesshint/lesshint/commit/05d48e1500a4b0e95b3cceee3d5b137c116a472e))
