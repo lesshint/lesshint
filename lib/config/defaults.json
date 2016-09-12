@@ -3,6 +3,8 @@
 
     "excludedFiles": [],
 
+    "ignoreSymlinks": false,
+
     "attributeQuotes": {
         "enabled": true,
         "style": "single"
