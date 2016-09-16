@@ -103,7 +103,7 @@ describe('lesshint', function () {
                 expect(result).to.be.undefined;
             });
         });
-        
+
         it('should ignore comma merge properties', function () {
             var source = '.foo { box-shadow+: 0 0 10px #555; box-shadow+: inset 0 0 5px #222; }';
             var options = {
@@ -130,6 +130,5 @@ describe('lesshint', function () {
             });
         });
 
-        
     });
 });
