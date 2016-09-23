@@ -103,5 +103,32 @@ describe('lesshint', function () {
                 expect(result).to.be.undefined;
             });
         });
+
+        it('should ignore comma merge properties', function () {
+            var source = '.foo { box-shadow+: 0 0 10px #555; box-shadow+: inset 0 0 5px #222; }';
+            var options = {
+                exclude: []
+            };
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
+        it('should ignore space merge properties', function () {
+            var source = '.foo { transform+_: scale(2); transform+_: rotate(15deg); }';
+            var options = {
+                exclude: []
+            };
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
     });
 });
