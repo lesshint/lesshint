@@ -126,6 +126,7 @@ describe('lesshint', function () {
             source += '    .bar {';
             source += '        color: red;';
             source += '    }';
+            source += '\n';
             source += '}';
 
             return spec.parse(source, function (ast) {
