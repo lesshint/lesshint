@@ -366,6 +366,14 @@ describe('linter', function () {
             expect(result).to.deep.equal(expected);
         });
 
+        it('should report invalid inline options', function () {
+            var source = fs.readFileSync(path.resolve(process.cwd(), './test/data/inline-options/options-invalid.less'), 'utf8');
+
+            expect(function () {
+                linter.lint(source, 'options-invalid.less', {});
+            }).to.throw('Invalid inline option on line 1');
+        });
+
         it('should not report comma spaces for selectors that have pseudos', function () {
             var source = '.foo,\n.bar:not(.foo){}';
             var path = 'test.less';
