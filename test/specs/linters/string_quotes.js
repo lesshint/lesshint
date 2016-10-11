@@ -339,6 +339,19 @@ describe('lesshint', function () {
             });
         });
 
+        it('should not warn on variables with a lot of spaces. #260', function () {
+            var source = '@var      :       16px;';
+            var options = {
+                style: 'double'
+            };
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.deep.undefined;
+            });
+        });
+
         it('should throw on invalid "style" value', function () {
             var source = ".foo { content: 'Hello world' }";
             var options = {
