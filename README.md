@@ -194,7 +194,7 @@ lesshint src/less/ lib/style.less
 Available Flags     | Description
 --------------------|----------------------------------------------
 `-c`/`--config`     | Specify the configuration file to use (will be merged with defaults).
-`-e`/`--exclude`    | A [minimatch glob pattern](https://github.com/isaacs/minimatch) or a file to exclude form being linted.
+`-e`/`--exclude`    | A [minimatch glob pattern](https://github.com/isaacs/minimatch) or a file to exclude from being linted.
 `-l`/`--linters`    | Require paths of custom linters to add to the built-in list.
 `-r`/`--reporter`   | The reporter to use. See "Reporters" below for possible values.
 `-V`/`--version`    | Show version.
