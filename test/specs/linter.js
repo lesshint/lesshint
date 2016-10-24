@@ -134,9 +134,7 @@ describe('linter', function () {
             ];
 
             var config = {
-                attributeQuotes: {
-                    enabled: true
-                },
+                attributeQuotes: true,
                 duplicateProperty: {
                     enabled: true,
                     exclude: []
@@ -193,9 +191,7 @@ describe('linter', function () {
             var result;
 
             var config = {
-                stringQuotes: {
-                    enabled: true
-                }
+                stringQuotes: true
             };
 
             result = linter.lint(source, path, config);
@@ -249,9 +245,7 @@ describe('linter', function () {
             }];
 
             var config = {
-                emptyRule: {
-                    enabled: true
-                },
+                emptyRule: true,
                 spaceAfterPropertyColon: {
                     enabled: true,
                     style: 'one_space'
@@ -283,9 +277,7 @@ describe('linter', function () {
             }];
 
             var config = {
-                emptyRule: {
-                    enabled: true
-                },
+                emptyRule: true,
                 spaceAfterPropertyColon: {
                     enabled: true,
                     style: 'one_space'
@@ -391,9 +383,7 @@ describe('linter', function () {
 
             var config = {
                 linters: ['../test/plugins/sampleLinter'],
-                sample: {
-                    enabled: true
-                }
+                sample: true
             };
 
             var expected = [{
@@ -419,9 +409,7 @@ describe('linter', function () {
 
             var config = {
                 linters: [require('../plugins/sampleLinter')],
-                sample: {
-                    enabled: true
-                }
+                sample: true
             };
 
             var expected = [{
