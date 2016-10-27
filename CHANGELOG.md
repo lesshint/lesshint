@@ -1,4 +1,15 @@
 # Changelog
+## 2.2.0 (2016-10-27)
+* Rules without any options can now be enabled by just setting it to to `true`. ([5071ce9](https://github.com/lesshint/lesshint/commit/5071ce9d90f922a4690da282cf148d52db22290d))
+* Invalid inline rules are now properly reported. ([df2fcac](https://github.com/lesshint/lesshint/commit/df2fcacd64d26d2d30e936e160a33360db9c4662))
+* When `lesshint` fails for some reason, the currently checked file is now included in the output. ([b783f9c](https://github.com/lesshint/lesshint/commit/b783f9c816b4673e976da90b5a364da6ffc8b74c))
+* Fixed an issue where `duplicateProperty` would erroneously report properties using the Less merge feature. ([317a7af](https://github.com/lesshint/lesshint/commit/317a7afc0782f239ba20317b2946ab9e1437e0e0))
+* Fixed an issue where `newlineAfterBlock` would give false positives with lines containing trailing whitespace.
+([ed2c9f6](https://github.com/lesshint/lesshint/commit/ed2c9f6df2811d696067bf5f29fdde19a53a4467))
+* Fixed an issue `stringQuotes` would erroneously report some at-rules. ([5f1a2b6](https://github.com/lesshint/lesshint/commit/5f1a2b6d0bb00c6d94369d18bc7da19e32831803))
+* Fixed a typo in the "Unknown error" output. ([059e162](https://github.com/lesshint/lesshint/commit/059e162e52c6008a276d596731bc37e8b008a337))
+* Fixed a typo in the CLI flags documentation. ([a77fca0](https://github.com/lesshint/lesshint/commit/a77fca09b024356c09086adec86d2bce01118d42))
+
 ## 2.1.1 (2016-09-11)
 * Fixed a false positive in `newlineAfterBlock` with nested blocks. ([e64c360](https://github.com/lesshint/lesshint/commit/e64c3600abcaef740d04c3154d074accc39395af))
 * Fixed an issue where `singleLinePerSelector` would report the same selector multiple times. ([507e89](https://github.com/lesshint/lesshint/commit/507e89a3bb02e5789126221cd1cbca24a037b18b))
