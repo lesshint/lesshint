@@ -35,13 +35,15 @@ Each option is then specified by its own JSON object, for example:
 ```js
 {
     "fileExtensions": [".less", ".css"],
-    
+
     "excludedFiles": ["vendor.less"],
-    
+
     "spaceAfterPropertyColon": {
         "enabled": true,
         "style": "one_space" // Comments are allowed
-    }
+    },
+
+    "emptyRule": true // If there's no options for a rule, you can simply enable it by setting it to true
 }
 ```
 
@@ -238,7 +240,7 @@ Pass the name of a module or a path to the `getReporter` method like this:
 ```js
 var defaultReporter = lesshint.getReporter(); //Or pass path to your custom reporter in getReporter
 var promise = lesshint.checkFile('my-less-file.less');
-	
+
 promise.then(function(result){
   defaultReporter.report(result);
 })
@@ -274,5 +276,3 @@ The reporter will be passed an array of objects representing each error:
 It's then up to the reporter to do something with the errors. No `return`s or anything is needed. If running from the CLI, `lesshint` will handle the setting of correct exit codes.
 
 Take a look at the [default reporter](https://github.com/lesshint/lesshint/blob/master/lib/reporters/default.js) for more information.
-
-
