@@ -13,7 +13,25 @@ describe('lesshint', function () {
             });
         });
 
-        it('should not allow adjacent blocks without a new line', function () {
+        it('should not allow adjacent blocks without a blank line', function () {
+            var source = [
+                '.foo { color: red; }',
+                '.bar { color: blue; }'
+            ];
+            var expected = [{
+                message: 'All blocks should be followed by a new line.'
+            }];
+
+            source = source.join('\n');
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint({}, ast.root.last);
+
+                expect(result).to.deep.equal(expected);
+            });
+        });
+
+        it('should not allow adjacent blocks on the same line', function () {
             var source = [
                 '.foo { color: red; }',
                 '.bar { color: blue; }'
