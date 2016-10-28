@@ -14,17 +14,15 @@ describe('lesshint', function () {
         });
 
         it('should not allow adjacent blocks without a new line', function () {
-            var source = '';
+            var source = [
+                '.foo { color: red; }',
+                '.bar { color: blue; }'
+            ];
             var expected = [{
                 message: 'All blocks should be followed by a new line.'
             }];
 
-            source += '.foo {';
-            source += '    color: red;';
-            source += '}';
-            source += '.bar {';
-            source += '    color: blue;';
-            source += '}';
+            source = source.join('');
 
             return spec.parse(source, function (ast) {
                 var result = spec.linter.lint({}, ast.root.last);
@@ -34,15 +32,12 @@ describe('lesshint', function () {
         });
 
         it('should allow adjacent blocks with a new line', function () {
-            var source = '';
+            var source = [
+                '.foo { color: red; }',
+                '.bar { color: blue; }'
+            ];
 
-            source += '.foo {';
-            source += '    color: red;';
-            source += '}';
-            source += '\n\n';
-            source += '.bar {';
-            source += '    color: blue;';
-            source += '}';
+            source = source.join('\n\n');
 
             return spec.parse(source, function (ast) {
                 var result = spec.linter.lint({}, ast.root.last);
@@ -52,16 +47,15 @@ describe('lesshint', function () {
         });
 
         it('should not allow adjacent blocks without a new line', function () {
-            var source = '';
+            var source = [
+                '.bar { color: blue; }',
+                '@media (screen) {}'
+            ];
             var expected = [{
                 message: 'All blocks should be followed by a new line.'
             }];
 
-            source += '.bar {';
-            source += '    color: blue;';
-            source += '}';
-            source += '@media (screen) {';
-            source += '}';
+            source = source.join('');
 
             return spec.parse(source, function (ast) {
                 var result = spec.linter.lint({}, ast.root.last);
@@ -71,14 +65,12 @@ describe('lesshint', function () {
         });
 
         it('should allow adjacent at-rule blocks with a new line', function () {
-            var source = '';
+            var source = [
+                '.bar { color: blue; }',
+                '@media (screen) {}'
+            ];
 
-            source += '.bar {';
-            source += '    color: blue;';
-            source += '}';
-            source += '\n\n';
-            source += '@media (screen) {';
-            source += '}';
+            source = source.join('\n\n');
 
             return spec.parse(source, function (ast) {
                 var result = spec.linter.lint({}, ast.root.last);
