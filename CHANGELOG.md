@@ -1,4 +1,7 @@
 # Changelog
+## 2.2.1 (2016-10-30)
+* Fixed a `newlineAfterBlock` regression from `2.2.0`. ([117a2b5](https://github.com/lesshint/lesshint/commit/117a2b55bd44f508a334f1b7b540afc44702bd61))
+
 ## 2.2.0 (2016-10-27)
 * Rules without any options can now be enabled by just setting it to to `true`. ([5071ce9](https://github.com/lesshint/lesshint/commit/5071ce9d90f922a4690da282cf148d52db22290d))
 * Invalid inline rules are now properly reported. ([df2fcac](https://github.com/lesshint/lesshint/commit/df2fcacd64d26d2d30e936e160a33360db9c4662))
