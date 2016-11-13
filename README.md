@@ -273,6 +273,6 @@ The reporter will be passed an array of objects representing each error:
 }
 ```
 
-It's then up to the reporter to do something with the errors. No `return`s or anything is needed. If running from the CLI, `lesshint` will handle the setting of correct exit codes.
+It's then up to the reporter to do something with the errors. No `return`s or anything are needed. If running from the CLI, `lesshint` will handle the setting of correct exit codes.
 
 Take a look at the [default reporter](https://github.com/lesshint/lesshint/blob/master/lib/reporters/default.js) for more information.
