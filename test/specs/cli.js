@@ -77,6 +77,86 @@ describe('cli', function () {
         });
     });
 
+    it('should exit with a non-zero status code when lint warnings pass `--max-warnings`', function () {
+        var result;
+
+        result = cli({
+            args: [
+                path.dirname(__dirname) + '/data/files/file.less',
+            ],
+            config: path.resolve(process.cwd() + '/lib/config/defaults.json'),
+            maxWarnings: '0',
+        });
+
+        return result.fail(function (status) {
+            expect(status).to.equal(1);
+        });
+    });
+
+    it('should exit with a non-zero status code with three warings and `--max-warnings 2`', function () {
+        var result;
+
+        result = cli({
+            args: [
+                path.dirname(__dirname) + '/data/files/file.less',
+            ],
+            config: path.resolve(process.cwd() + '/test/data/config/three-warns.json'),
+            maxWarnings: '2',
+        });
+
+        return result.fail(function (status) {
+            expect(status).to.equal(1);
+        });
+    });
+
+    it('should exit with zero status code with 2 warings and `--max-warnings 2`', function () {
+        var result;
+
+        result = cli({
+            args: [
+                path.dirname(__dirname) + '/data/files/file.less',
+            ],
+            config: path.resolve(process.cwd() + '/test/data/config/two-warns.json'),
+            maxWarnings: '2',
+        });
+
+        return result.then(function (status) {
+            expect(status).to.equal(0);
+        });
+    });
+
+    it('should exit with a zero status code when lint warnings do not pass `--max-warnings`', function () {
+        var result;
+
+        result = cli({
+            args: [
+                path.dirname(__dirname) + '/data/files/file.less',
+            ],
+            config: path.resolve(process.cwd() + '/lib/config/defaults.json'),
+            maxWarnings: '999',
+        });
+
+        return result.then(function (status) {
+            expect(status).to.equal(0);
+        });
+    });
+
+    it('should exit with a zero status code with `--max-warnings -1` even if lint has warings', function () {
+        var result;
+
+        result = cli({
+            args: [
+                path.dirname(__dirname) + '/data/files/file.less',
+            ],
+            config: path.resolve(process.cwd() + '/lib/config/defaults.json'),
+            maxWarnings: '-1',
+        });
+
+        return result.then(function (status) {
+            expect(status).to.equal(0);
+        });
+    });
+
     it('should exit with a non-zero status code when no files were passed', function () {
         var result;
 

@@ -19,6 +19,7 @@ program
     .option('-e, --exclude [pattern]', 'path pattern to exclude')
     .option('-l --linters [linters]', 'paths to custom linters')
     .option('-r, --reporter [reporter]', 'reporter to use (<PATH>|stylish), defaults to "stylish"')
+    .option('-x, --max-warnings [int]', 'Number of warnings to trigger nonzero exit code, defaults to 0')
     .parse(process.argv);
 
 cli(program);
