@@ -36,7 +36,7 @@ describe('reporter:json', function () {
 
         message = console.log.getCall(0).args[0];
 
-        expect(message).to.equal(JSON.stringify(errors[0]));
+        expect(message).to.equal(JSON.stringify(errors));
 
         console.log.restore();
     });
