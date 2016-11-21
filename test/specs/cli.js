@@ -34,7 +34,7 @@ describe('cli', function () {
 
         result = cli({
             args: ['test.less'],
-            config: path.resolve(process.cwd() + '/test/data/config/invalid.json')
+            config: path.join(__dirname, '../data/config/invalid.json')
         });
 
         return result.fail(function () {
@@ -66,7 +66,7 @@ describe('cli', function () {
         sinon.spy(console, 'log');
 
         result = cli({
-            args: [path.dirname(__dirname) + '/data/files/file.less'],
+            args: [path.join(__dirname, '../data/files/file.less')],
             config: path.resolve(process.cwd() + '/lib/config/defaults.json')
         });
 
@@ -228,7 +228,7 @@ describe('cli', function () {
         sinon.spy(console, 'log');
 
         result = cli({
-            args: [path.dirname(__dirname) + '/data/files/file.less'],
+            args: [path.join(__dirname, '../data/files/file.less')],
             linters: ['../test/plugins/sampleLinter']
         });
 
@@ -244,7 +244,7 @@ describe('cli', function () {
         sinon.spy(console, 'log');
 
         result = cli({
-            args: [path.dirname(__dirname) + '/data/files/file.less'],
+            args: [path.join(__dirname, '../data/files/file.less')],
             config: path.resolve(process.cwd() + '/test/data/config/linters.json')
         });
 
@@ -260,7 +260,7 @@ describe('cli', function () {
         sinon.spy(console, 'log');
 
         result = cli({
-            args: [path.dirname(__dirname) + '/data/files/file.less'],
+            args: [path.join(__dirname, '../data/files/file.less')],
             config: path.resolve(process.cwd() + '/test/data/config/linters.json'),
             linters: ['../test/plugins/otherSampleLinter']
         });
@@ -277,7 +277,7 @@ describe('cli', function () {
         sinon.spy(console, 'log');
 
         result = cli({
-            args: [path.dirname(__dirname) + '/data/files/file.less'],
+            args: [path.join(__dirname, '../data/files/file.less')],
             config: path.resolve(process.cwd() + '/test/data/config/linters.json'),
             linters: ['../test/plugins/failingLinter']
         });
@@ -294,7 +294,7 @@ describe('cli', function () {
         sinon.spy(console, 'log');
 
         result = cli({
-            args: [path.dirname(__dirname) + '/data/files/file.less'],
+            args: [path.join(__dirname, '../data/files/file.less')],
             config: path.resolve(process.cwd() + '/test/data/config/linters-failing.json'),
             linters: ['../test/plugins/sampleLinter']
         });
@@ -309,8 +309,8 @@ describe('cli', function () {
         var result;
 
         result = cli({
-            args: [path.dirname(__dirname) + '/data/files/ok.less'],
-            reporter: 'stylish'
+            args: [path.join(__dirname, '../data/files/ok.less')],
+            reporter: 'default'
         });
 
         return result.then(function (status) {
@@ -322,8 +322,8 @@ describe('cli', function () {
         var result;
 
         result = cli({
-            args: [path.dirname(__dirname) + '/data/files/ok.less'],
-            reporter: '../../lib/reporters/stylish.js'
+            args: [path.join(__dirname, '../data/files/ok.less')],
+            reporter: path.join(__dirname, '../../lib/reporters/default.js')
         });
 
         return result.then(function (status) {
@@ -363,7 +363,7 @@ describe('cli', function () {
         sinon.spy(console, 'log');
 
         result = cli({
-            args: [path.dirname(__dirname) + '/data/files/file.less'],
+            args: [path.join(__dirname, '../data/files/file.less')],
             config: path.dirname(__dirname) + '/data/config/severity-error.json'
         });
 
