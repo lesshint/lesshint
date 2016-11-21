@@ -331,6 +331,22 @@ describe('cli', function () {
         });
     });
 
+    it('should exit without errors when passed a reporter object', function () {
+        var result;
+
+        result = cli({
+            args: [path.dirname(__dirname) + '/data/files/ok.less'],
+            reporter: {
+                name: 'test',
+                report: function () {}
+            }
+        });
+
+        return result.then(function (status) {
+            expect(status).to.equal(0);
+        });
+    });
+
     it('should exit with error when passed a invalid reporter name', function () {
         var result;
 
