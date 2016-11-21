@@ -37,10 +37,12 @@ describe('cli', function () {
             config: path.join(__dirname, '../data/config/invalid.json')
         });
 
-        return result.fail(function () {
-            expect(console.error.calledOnce).to.equal(true);
+        return result.then(function () {
+            var calledOnce = console.error.calledOnce;
 
             console.error.restore();
+
+            expect(calledOnce).to.equal(true);
         });
     });
 
@@ -53,10 +55,11 @@ describe('cli', function () {
             args: []
         });
 
-        return result.fail(function () {
-            expect(console.error.calledOnce).to.equal(true);
+        return result.then(function () {
+            var calledOnce = console.error.calledOnce;
 
             console.error.restore();
+            expect(calledOnce).to.equal(true);
         });
     });
 
@@ -70,10 +73,9 @@ describe('cli', function () {
             config: path.resolve(process.cwd() + '/lib/config/defaults.json')
         });
 
-        return result.fail(function (status) {
-            expect(status).to.equal(1);
-
+        return result.then(function (status) {
             console.log.restore();
+            expect(status).to.equal(1);
         });
     });
 
@@ -88,12 +90,12 @@ describe('cli', function () {
             maxWarnings: '0',
         });
 
-        return result.fail(function (status) {
+        return result.then(function (status) {
             expect(status).to.equal(1);
         });
     });
 
-    it('should exit with a non-zero status code with three warings and `--max-warnings 2`', function () {
+    it('should exit with a non-zero status code with three warnings and `--max-warnings 2`', function () {
         var result;
 
         result = cli({
@@ -104,7 +106,7 @@ describe('cli', function () {
             maxWarnings: '2',
         });
 
-        return result.fail(function (status) {
+        return result.then(function (status) {
             expect(status).to.equal(1);
         });
     });
@@ -164,7 +166,7 @@ describe('cli', function () {
             args: []
         });
 
-        return result.fail(function (status) {
+        return result.then(function (status) {
             expect(status).to.equal(66);
         });
     });
@@ -177,7 +179,7 @@ describe('cli', function () {
             config: path.resolve(process.cwd() + '/test/data/config/invalid.json')
         });
 
-        return result.fail(function (status) {
+        return result.then(function (status) {
             expect(status).to.equal(78);
         });
     });
@@ -232,7 +234,7 @@ describe('cli', function () {
             linters: ['../test/plugins/sampleLinter']
         });
 
-        return result.fail(function (status) {
+        return result.then(function (status) {
             console.log.restore();
             expect(status).to.equal(1);
         });
@@ -248,7 +250,7 @@ describe('cli', function () {
             config: path.resolve(process.cwd() + '/test/data/config/linters.json')
         });
 
-        return result.fail(function (status) {
+        return result.then(function (status) {
             console.log.restore();
             expect(status).to.equal(1);
         });
@@ -265,7 +267,7 @@ describe('cli', function () {
             linters: ['../test/plugins/otherSampleLinter']
         });
 
-        return result.fail(function (status) {
+        return result.then(function (status) {
             console.log.restore();
             expect(status).to.equal(1);
         });
@@ -282,7 +284,7 @@ describe('cli', function () {
             linters: ['../test/plugins/failingLinter']
         });
 
-        return result.fail(function (status) {
+        return result.then(function (status) {
             console.log.restore();
             expect(status).to.equal(70);
         });
@@ -299,7 +301,7 @@ describe('cli', function () {
             linters: ['../test/plugins/sampleLinter']
         });
 
-        return result.fail(function (status) {
+        return result.then(function (status) {
             console.log.restore();
             expect(status).to.equal(78);
         });
@@ -331,7 +333,7 @@ describe('cli', function () {
         });
     });
 
-    it('should exit with error when passed a invalid reporter name', function () {
+    it('should exit with error when passed an invalid reporter name', function () {
         var result;
 
         result = cli({
@@ -339,8 +341,8 @@ describe('cli', function () {
             reporter: 'invalid-reporter'
         });
 
-        return result.fail(function (status) {
-            expect(status).to.equal(1);
+        return result.then(function (status) {
+            expect(status).to.equal(2);
         });
     });
 
@@ -352,7 +354,7 @@ describe('cli', function () {
             config: path.dirname(__dirname) + '/data/config/bad.json'
         });
 
-        return result.fail(function (status) {
+        return result.then(function (status) {
             expect(status).to.equal(70);
         });
     });
@@ -367,7 +369,7 @@ describe('cli', function () {
             config: path.dirname(__dirname) + '/data/config/severity-error.json'
         });
 
-        return result.fail(function (status) {
+        return result.then(function (status) {
             console.log.restore();
             expect(status).to.equal(2);
         });
