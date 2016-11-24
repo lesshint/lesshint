@@ -38,9 +38,11 @@ describe('cli', function () {
         });
 
         return result.fail(function () {
-            expect(console.error.calledOnce).to.equal(true);
+            var called = console.error.calledOnce;
 
             console.error.restore();
+
+            expect(called).to.equal(true);
         });
     });
 
@@ -54,9 +56,11 @@ describe('cli', function () {
         });
 
         return result.fail(function () {
-            expect(console.error.calledOnce).to.equal(true);
+            var called = console.error.calledOnce;
 
             console.error.restore();
+
+            expect(called).to.equal(true);
         });
     });
 
@@ -71,9 +75,9 @@ describe('cli', function () {
         });
 
         return result.fail(function (status) {
-            expect(status).to.equal(1);
-
             console.log.restore();
+
+            expect(status).to.equal(1);
         });
     });
 
@@ -234,6 +238,7 @@ describe('cli', function () {
 
         return result.fail(function (status) {
             console.log.restore();
+
             expect(status).to.equal(1);
         });
     });
@@ -250,6 +255,7 @@ describe('cli', function () {
 
         return result.fail(function (status) {
             console.log.restore();
+
             expect(status).to.equal(1);
         });
     });
@@ -267,6 +273,7 @@ describe('cli', function () {
 
         return result.fail(function (status) {
             console.log.restore();
+
             expect(status).to.equal(1);
         });
     });
@@ -284,6 +291,7 @@ describe('cli', function () {
 
         return result.fail(function (status) {
             console.log.restore();
+
             expect(status).to.equal(70);
         });
     });
@@ -301,6 +309,7 @@ describe('cli', function () {
 
         return result.fail(function (status) {
             console.log.restore();
+
             expect(status).to.equal(78);
         });
     });
@@ -385,6 +394,7 @@ describe('cli', function () {
 
         return result.fail(function (status) {
             console.log.restore();
+
             expect(status).to.equal(2);
         });
     });
