@@ -12,39 +12,18 @@
 * [Reporters](#reporters)
 
 ## Installation
-_[Node.js](https://nodejs.org/) 0.12 (or later) or [io.js](https://iojs.org/) 1.0 (or later)._
+_[Node.js](https://nodejs.org/) 0.12 (or later) or [io.js](https://iojs.org/) 1.0 (or later) is required._
 
-Run the following command from the command line (add `-g` to install globally):
+Run the following command from the command line to install `lesshint` (add `-g` to install globally):
 
 ```
 npm install lesshint
 ```
 
 ## Configuration
-`lesshint` is customizable and we highly recommend you to look at the [available linter options](/lib/linters/README.md) to tailor it to your needs.
+For information on how to configure `lesshint` and other available options, see the [user guide](/docs/user-guide/config.md).
 
-Start by creating a `.lesshintrc` file in your project root and add your settings to it. It will be automatically loaded and merged with the default values. If no `.lesshintrc` file is found in the current working directory, it'll traverse up the directory structure looking for one, stopping once it finds one or reaches the root directory.
-
-In the `.lesshintrc` file, each option is specified by its own JSON object, for example:
-
-```js
-{
-    "fileExtensions": [".less", ".css"],
-
-    "excludedFiles": ["vendor.less"],
-
-    "spaceAfterPropertyColon": {
-        "enabled": true,
-        "style": "one_space" // Comments are allowed
-    },
-
-    "emptyRule": true, // If there's no options for a rule, you can simply enable it by setting it to true
-
-    "importantRule": false // To disable a rule completely, set it to false
-}
-```
-
-For more information on available options and inline configuration, see the [user guide](/docs/user-guide/config.md).
+Since `lesshint` is highly customizable we highly recommend you to also take a look at the [available linter options](/lib/linters/README.md) to tailor it to your needs.
 
 ## CLI usage
 Run `lesshint` from the command-line by passing one or more files/directories to recursively scan.

@@ -1,6 +1,26 @@
-# Config
+# Configuring lesshint
+Start by creating a `.lesshintrc` file in your project root and add your settings to it. It will be automatically loaded and merged with the default values. If no `.lesshintrc` file is found in the current working directory, it'll traverse up the directory structure looking for one, stopping once it finds one or reaches the root directory.
 
-_If you're looking for individual linter options, please refer to the [linter documentation](/lib/linters/README.md)._
+In the `.lesshintrc` file, each option is specified by its own JSON object, for example:
+
+```js
+{
+    "fileExtensions": [".less", ".css"],
+
+    "excludedFiles": ["vendor.less"],
+
+    "spaceAfterPropertyColon": {
+        "enabled": true,
+        "style": "one_space" // Comments are allowed
+    },
+
+    "emptyRule": true, // If there's no options for a rule, you can simply enable it by setting it to true
+
+    "importantRule": false // To disable a rule completely, set it to false
+}
+```
+
+Now, take a look at the available [linter options](/lib/linters/README.md).
 
 ## Inline configuration
 It's possible to configure rules using inline comments in your `.less` files. For example:
