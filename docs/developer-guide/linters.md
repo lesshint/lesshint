@@ -1,4 +1,4 @@
-# Devloping linters
+# Developing linters
 If you wish to create your own linter or work on one of the core ones, this is the place for you!
 
 First of all, in order to work properly, all linters are required to expose a few things.

@@ -10,6 +10,7 @@
 * [Configuration](#configuration)
 * [CLI usage](#cli-usage)
 * [Reporters](#reporters)
+* [Developer resources](#developer-resources)
 
 ## Installation
 _[Node.js](https://nodejs.org/) 0.12 (or later) or [io.js](https://iojs.org/) 1.0 (or later) is required._
@@ -60,4 +61,7 @@ Reporters are small modules that can be used to perform actions with the lint re
 
 For more information on using reporters, see the [user guide](/docs/user-guide/reporters.md).
 
-If you're interested in developing reporters, please refer to the [developer guide](/docs/developer-guide/reporters.md).
+## Developer resources
+* [Node API](/docs/developer-guide/API.md) `lesshint`'s public Node API reference.
+* [Developing linters](/docs/developer-guide/linters.md) Guide for hacking on linters.
+* [Developing reporters](/docs/developer-guide/reporters.md) Guide for hacking on reporters.
