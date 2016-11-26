@@ -2,7 +2,7 @@
 If you wish to create your own reporter or work on one of the core ones, this is the place for you!
 
 First of all, in order to work properly, all reporters are required to expose a few things.
-* `name` - The name of the reporter. While we don't enforce namespaces, we recommend it when creating custom linters, to prevent naming collisions.
+* `name` - The name of the reporter. While we don't enforce namespaces, we recommend it when creating custom reporters, to prevent naming collisions.
 * `report` - The main report method which will be called with the following arguments.
     * `results` - An array of all linting results. See a full example below.
 

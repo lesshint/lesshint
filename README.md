@@ -62,6 +62,6 @@ Reporters are small modules that can be used to perform actions with the lint re
 For more information on using reporters, see the [user guide](/docs/user-guide/reporters.md).
 
 ## Developer resources
-* [Node API](/docs/developer-guide/API.md) `lesshint`'s public Node API reference.
-* [Developing linters](/docs/developer-guide/linters.md) Guide for hacking on linters.
-* [Developing reporters](/docs/developer-guide/reporters.md) Guide for hacking on reporters.
+* [Node API](/docs/developer-guide/API.md) - `lesshint`'s public Node API reference.
+* [Developing linters](/docs/developer-guide/linters.md) - Guide for hacking on linters.
+* [Developing reporters](/docs/developer-guide/reporters.md) - Guide for hacking on reporters.
