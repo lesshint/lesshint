@@ -1,4 +1,10 @@
 # Changelog
+## 2.3.0 (2016-11-29)
+* Added a `-x`/`--max-warnings` CLI flag. ([21e184d](https://github.com/lesshint/lesshint/commit/21e184d1006317bd60e7b5b98b2d52edfe0fc90c))
+* Added a JSON reporter. ([a69bdee](https://github.com/lesshint/lesshint/commit/a69bdee9d48502bf1fa266c583d06d7129dfe8f8))
+* Reporters can now also be objects and not just file paths.  ([376940c](https://github.com/lesshint/lesshint/commit/376940c0923bcd6b72138518a8dc6694639d662f))
+* Fixed a "is"/"are" typo in the README. ([282fdea](https://github.com/lesshint/lesshint/commit/282fdea03ad8cc0f4a88e4d96e6ecadb539beef5))
+
 ## 2.2.1 (2016-10-30)
 * Fixed a `newlineAfterBlock` regression from `2.2.0`. ([117a2b5](https://github.com/lesshint/lesshint/commit/117a2b55bd44f508a334f1b7b540afc44702bd61))
 
