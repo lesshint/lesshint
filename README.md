@@ -22,7 +22,7 @@ npm install lesshint
 ```
 
 ## Configuration
-For information on how to configure `lesshint` and other available options, see the [user guide](/docs/user-guide/config.md).
+For information on how to configure `lesshint` and other available options, see the [user guide](/docs/user-guide/configuration.md).
 
 Since `lesshint` is highly customizable we highly recommend you to also take a look at the [available linter options](/lib/linters/README.md) to tailor it to your needs.
 
