@@ -14,7 +14,7 @@ In the `.lesshintrc` file, each option is specified by its own JSON object, for 
         "style": "one_space" // Comments are allowed
     },
 
-    "emptyRule": true, // If there's no options for a rule, you can simply enable it by setting it to true
+    "emptyRule": true, // If there are no options for a rule, you can simply enable it by setting it to true
 
     "importantRule": false // To disable a rule completely, set it to false
 }
