@@ -117,7 +117,8 @@
     },
 
     "singleLinePerProperty": {
-        "enabled": true
+        "enabled": true,
+        "allowSingleLineRules": false
     },
 
     "singleLinePerSelector": {
