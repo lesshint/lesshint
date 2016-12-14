@@ -55,6 +55,31 @@ describe('lesshint', function () {
             });
         });
 
+        it('should follow symlinks', function () {
+            var testPath = path.join(path.dirname(__dirname), '/data/links');
+            var lesshint = new Lesshint();
+
+            lesshint.configure();
+
+            return lesshint.checkDirectory(testPath).then(function (result) {
+                expect(result).to.have.length(1);
+            });
+        });
+
+        it('should not follow symlinks if configured not to', function () {
+            var testPath = path.join(path.dirname(__dirname), '/data/links');
+            var lesshint = new Lesshint();
+            var config = {
+                ignoreSymlinks: true
+            };
+
+            lesshint.configure(config);
+
+            return lesshint.checkDirectory(testPath).then(function (result) {
+                expect(result).to.have.length(0);
+            });
+        });
+
         it('should only check files with the correct extension and a leading dot', function () {
             var testPath = path.join(path.dirname(__dirname), '/data/excluded-files');
             var lesshint = new Lesshint();
@@ -105,6 +130,16 @@ describe('lesshint', function () {
             lesshint.configure();
 
             return lesshint.checkFile(testDir + '/file.less').then(function (result) {
+                expect(result).to.have.length(1);
+            });
+        });
+
+        it('should check symlink\'s target', function () {
+            var testPath = path.join(path.dirname(__dirname), '/data/links/file.less');
+            var lesshint = new Lesshint();
+
+            lesshint.configure();
+            return lesshint.checkFile(testPath).then(function (result) {
                 expect(result).to.have.length(1);
             });
         });
