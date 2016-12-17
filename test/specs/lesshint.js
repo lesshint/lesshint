@@ -55,6 +55,20 @@ describe('lesshint', function () {
             });
         });
 
+        it('should ignore excluded folders', function () {
+            var testPath = path.join(path.dirname(__dirname), '/data/excluded-files');
+            var lesshint = new Lesshint();
+            var config = {
+                excludedFiles: ['**/excluded-files']
+            };
+
+            lesshint.configure(config);
+
+            return lesshint.checkDirectory(testPath).then(function (result) {
+                expect(result).to.have.length(0);
+            });
+        });
+
         it('should only check files with the correct extension and a leading dot', function () {
             var testPath = path.join(path.dirname(__dirname), '/data/excluded-files');
             var lesshint = new Lesshint();
@@ -118,6 +132,34 @@ describe('lesshint', function () {
 
             return lesshint.checkPath(testDir).then(function (result) {
                 expect(result).to.have.length(2);
+            });
+        });
+
+        it('should ignore excluded files', function () {
+            var testPath = path.join(path.dirname(__dirname), '/data/excluded-files/exclude.less');
+            var lesshint = new Lesshint();
+            var config = {
+                excludedFiles: ['**/excluded-files/*']
+            };
+
+            lesshint.configure(config);
+
+            return lesshint.checkPath(testPath).then(function (result) {
+                expect(result).to.have.length(0);
+            });
+        });
+
+        it('should ignore excluded folders', function () {
+            var testPath = path.join(path.dirname(__dirname), '/data/excluded-files');
+            var lesshint = new Lesshint();
+            var config = {
+                excludedFiles: ['**/excluded-files/*']
+            };
+
+            lesshint.configure(config);
+
+            return lesshint.checkPath(testPath).then(function (result) {
+                expect(result).to.have.length(0);
             });
         });
     });
