@@ -2,19 +2,15 @@
 
 'use strict';
 
+var cli = require('../../lib/cli');
 var expect = require('chai').expect;
-var rewire = require('rewire');
 var sinon = require('sinon');
 var path = require('path');
 
 describe('cli', function () {
-    var cli = rewire('../../lib/cli');
-
     beforeEach(function () {
         sinon.stub(process.stdout, 'write');
         sinon.stub(process.stderr, 'write');
-
-        cli.__set__('exit', function () {});
     });
 
     afterEach(function () {
