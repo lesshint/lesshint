@@ -1,7 +1,6 @@
 #! /usr/bin/env node
 
 var cli = require('../lib/cli');
-var exit = require('exit');
 
 /**
  * Command line interface for lesshint.
@@ -24,5 +23,5 @@ program
     .parse(process.argv);
 
 cli(program).always(function (status) {
-    exit(status.valueOf());
+    process.exitCode = status.valueOf();
 });
