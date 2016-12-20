@@ -38,7 +38,6 @@
     "gulp-eslint": "^3.0.1",
     "gulp-istanbul": "^1.1.1",
     "gulp-mocha": "^3.0.0",
-    "rewire": "^2.3.3",
     "rimraf": "^2.4.2",
     "sinon": "^1.14.1"
   },

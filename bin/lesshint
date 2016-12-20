@@ -1,6 +1,7 @@
 #! /usr/bin/env node
 
 var cli = require('../lib/cli');
+var exit = require('exit');
 
 /**
  * Command line interface for lesshint.
@@ -22,4 +23,6 @@ program
     .option('-x, --max-warnings [int]', 'Number of warnings to trigger nonzero exit code, defaults to 0')
     .parse(process.argv);
 
-cli(program);
+cli(program, console).then(function (deferred) {
+    exit(deferred.valueOf());
+});
