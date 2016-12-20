@@ -185,11 +185,21 @@ describe('lesshint', function () {
     });
 
     describe('getReporter', function () {
-        it('should load the specified reporter', function () {
+        it('should load the specified reporter by path', function () {
             var lesshint = new Lesshint();
             var reporter = lesshint.getReporter(path.resolve(process.cwd() + '/lib/reporters/default.js'));
 
             expect(reporter.name).to.equal('default');
+        });
+
+        it('should load the specified reporter directly', function () {
+            var lesshint = new Lesshint();
+            var reporter = lesshint.getReporter({
+                name: 'test',
+                report: function () {}
+            });
+
+            expect(reporter.name).to.equal('test');
         });
 
         it('should load the default when nothing is passed', function () {
