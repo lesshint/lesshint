@@ -55,6 +55,20 @@ describe('lesshint', function () {
             });
         });
 
+        it('should ignore excluded folders', function () {
+            var testPath = path.join(path.dirname(__dirname), '/data/excluded-files');
+            var lesshint = new Lesshint();
+            var config = {
+                excludedFiles: ['**/excluded-files']
+            };
+
+            lesshint.configure(config);
+
+            return lesshint.checkDirectory(testPath).then(function (result) {
+                expect(result).to.have.length(0);
+            });
+        });
+
         it('should only check files with the correct extension and a leading dot', function () {
             var testPath = path.join(path.dirname(__dirname), '/data/excluded-files');
             var lesshint = new Lesshint();
@@ -118,6 +132,34 @@ describe('lesshint', function () {
 
             return lesshint.checkPath(testDir).then(function (result) {
                 expect(result).to.have.length(2);
+            });
+        });
+
+        it('should ignore excluded files', function () {
+            var testPath = path.join(path.dirname(__dirname), '/data/excluded-files/exclude.less');
+            var lesshint = new Lesshint();
+            var config = {
+                excludedFiles: ['**/excluded-files/*']
+            };
+
+            lesshint.configure(config);
+
+            return lesshint.checkPath(testPath).then(function (result) {
+                expect(result).to.have.length(0);
+            });
+        });
+
+        it('should ignore excluded folders', function () {
+            var testPath = path.join(path.dirname(__dirname), '/data/excluded-files');
+            var lesshint = new Lesshint();
+            var config = {
+                excludedFiles: ['**/excluded-files/*']
+            };
+
+            lesshint.configure(config);
+
+            return lesshint.checkPath(testPath).then(function (result) {
+                expect(result).to.have.length(0);
             });
         });
     });
@@ -185,11 +227,21 @@ describe('lesshint', function () {
     });
 
     describe('getReporter', function () {
-        it('should load the specified reporter', function () {
+        it('should load the specified reporter by path', function () {
             var lesshint = new Lesshint();
             var reporter = lesshint.getReporter(path.resolve(process.cwd() + '/lib/reporters/default.js'));
 
             expect(reporter.name).to.equal('default');
+        });
+
+        it('should load the specified reporter directly', function () {
+            var lesshint = new Lesshint();
+            var reporter = lesshint.getReporter({
+                name: 'test',
+                report: function () {}
+            });
+
+            expect(reporter.name).to.equal('test');
         });
 
         it('should load the default when nothing is passed', function () {

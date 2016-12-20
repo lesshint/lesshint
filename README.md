@@ -43,7 +43,7 @@ Each option is then specified by its own JSON object, for example:
         "style": "one_space" // Comments are allowed
     },
 
-    "emptyRule": true // If there's no options for a rule, you can simply enable it by setting it to true
+    "emptyRule": true // If there are no options for a rule, you can simply enable it by setting it to true
 }
 ```
 
@@ -193,13 +193,14 @@ Run `lesshint` from the command-line by passing one or more files/directories to
 lesshint src/less/ lib/style.less
 ```
 
-Available Flags     | Description
---------------------|----------------------------------------------
-`-c`/`--config`     | Specify the configuration file to use (will be merged with defaults).
-`-e`/`--exclude`    | A [minimatch glob pattern](https://github.com/isaacs/minimatch) or a file to exclude from being linted.
-`-l`/`--linters`    | Require paths of custom linters to add to the built-in list.
-`-r`/`--reporter`   | The reporter to use. See "Reporters" below for possible values.
-`-V`/`--version`    | Show version.
+Available Flags       | Description
+----------------------|----------------------------------------------
+`-c`/`--config`       | Specify the configuration file to use (will be merged with defaults).
+`-e`/`--exclude`      | A [minimatch glob pattern](https://github.com/isaacs/minimatch) or a file to exclude from being linted.
+`-l`/`--linters`      | Require paths of custom linters to add to the built-in list.
+`-r`/`--reporter`     | The reporter to use. See "Reporters" below for possible values.
+`-V`/`--version`      | Show version.
+`-x`/`--max-warnings` | Number of warnings to allow before exiting with a non-zero code. Passing `-1` will allow any number of warnings to pass.
 
 ### Exit status codes
 Depending on the linter results and options supplied, the exit status code returned by the CLI will differ.

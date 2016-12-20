@@ -330,5 +330,65 @@ describe('lesshint', function () {
                 expect(result).to.be.undefined;
             });
         });
+
+        it('should allow single line rules when "allowSingleLineRules" is "true"', function () {
+            var source = '.foo { color: red; }';
+            var options = {
+                allowSingleLineRules: true
+            };
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
+        it('should not allow single line rules when "allowSingleLineRules" is "false"', function () {
+            var source = '.foo { color: red; }';
+            var options = {
+                allowSingleLineRules: false
+            };
+
+            var expected = [
+                {
+                    column: 8,
+                    line: 1,
+                    message: 'Each property should be on its own line.'
+                }
+            ];
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.deep.equal(expected);
+            });
+        });
+
+        it('should not allow single line rules with multiple declarations when "allowSingleLineRules" is "true"', function () {
+            var source = '.foo { color: red; margin-right: 10px; }';
+            var options = {
+                allowSingleLineRules: true
+            };
+
+            var expected = [
+                {
+                    column: 8,
+                    line: 1,
+                    message: 'Each property should be on its own line.'
+                },
+                {
+                    column: 20,
+                    line: 1,
+                    message: 'Each property should be on its own line.'
+                }
+            ];
+
+            return spec.parse(source, function (ast) {
+                var result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.deep.equal(expected);
+            });
+        });
     });
 });
