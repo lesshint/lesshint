@@ -22,4 +22,4 @@ program
     .option('-x, --max-warnings [int]', 'Number of warnings to trigger nonzero exit code, defaults to 0')
     .parse(process.argv);
 
-cli(program);
+cli(program, console);
