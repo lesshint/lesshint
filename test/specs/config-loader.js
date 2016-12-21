@@ -57,4 +57,34 @@ describe('config-loader', function () {
 
         expect(loader).to.not.throw(Error);
     });
+
+    it('should load a config file when passed one', function () {
+        var configPath = path.join(path.dirname(__dirname), '/data/config/config.json');
+        var expected = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+        var config;
+
+        config = configLoader(configPath);
+
+        expect(config).to.deep.equal(expected);
+    });
+
+    it('should look for a .lesshintrc file when passed a directory', function () {
+        var configPath = path.resolve(__dirname, '../.lesshintrc');
+        var result;
+
+        var expected = {
+            spaceBeforeBrace: {
+                enabled: true,
+                style: 'one_space'
+            }
+        };
+
+        fs.writeFileSync(configPath, JSON.stringify(expected));
+
+        result = configLoader(__dirname);
+
+        expect(result).to.deep.equal(expected);
+
+        rimraf.sync(configPath);
+    });
 });
