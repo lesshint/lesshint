@@ -2,13 +2,11 @@
 
 'use strict';
 
+var reporter = require('../../../lib/reporters/default.js');
 var expect = require('chai').expect;
-var rewire = require('rewire');
 var sinon = require('sinon');
 
 describe('reporter:default', function () {
-    var reporter = rewire('../../../lib/reporters/default.js');
-
     beforeEach(function () {
         sinon.stub(process.stdout, 'write');
     });

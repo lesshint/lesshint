@@ -2,13 +2,11 @@
 
 'use strict';
 
+var reporter = require('../../../lib/reporters/json.js');
 var expect = require('chai').expect;
-var rewire = require('rewire');
 var sinon = require('sinon');
 
 describe('reporter:json', function () {
-    var reporter = rewire('../../../lib/reporters/json.js');
-
     beforeEach(function () {
         sinon.stub(process.stdout, 'write');
     });
