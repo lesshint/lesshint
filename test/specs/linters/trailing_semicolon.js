@@ -103,7 +103,7 @@ describe('lesshint', function () {
             var expectedFixes = [{
                 insertion: ';',
                 range: {
-                    begin: 17
+                    begin: 15
                 },
                 type: 'text-insert'
             }];
