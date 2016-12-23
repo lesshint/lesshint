@@ -2,6 +2,7 @@
 
 var path = require('path');
 var getParser = require('../../lib/linter').getParser;
+var lint = require('../../lib/linter').lint;
 
 module.exports = {
     setup: function setup () {
@@ -51,6 +52,15 @@ module.exports = {
 
                     callback && callback(ast);
                 });
+            },
+            suggestFixes: function (source) {
+                var config = {
+                    suggestFixes: true
+                };
+
+                config[linter.name] = true;
+
+                return lint(source, filename, config).map(linter.suggestFix);
             }
         };
     }
