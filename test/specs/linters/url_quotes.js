@@ -167,5 +167,36 @@ describe('lesshint', function () {
                 expect(result).to.deep.equal(expected);
             });
         });
+
+        it('should suggest adding quotes to a url', function () {
+            var source = 'background-image: url(img/image.jpg);';
+            var expectedFixes = [{
+                mutations: [
+                    {
+                        insertion: '\'',
+                        range: {
+                            begin: 22
+                        },
+                        type: 'text-insert'
+                    },
+                    {
+                        insertion: '\'',
+                        range: {
+                            begin: 36
+                        },
+                        type: 'text-insert'
+                    }
+                ],
+                range: {
+                    begin: 22,
+                    end: 36
+                },
+                type: 'multiple'
+            }];
+
+            return spec.suggestFixes(source, {}, function (suggestedFixes) {
+                expect(suggestedFixes).to.deep.equal(expectedFixes);
+            });
+        });
     });
 });

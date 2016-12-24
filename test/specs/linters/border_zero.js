@@ -181,7 +181,7 @@ describe('lesshint', function () {
                 style: 'none'
             };
             var expectedFixes = [{
-                insertion: '0',
+                insertion: 'none',
                 range: {
                     begin: 15,
                     end: 16,
