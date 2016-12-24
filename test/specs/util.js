@@ -53,14 +53,15 @@ module.exports = {
                     callback && callback(ast);
                 });
             },
-            suggestFixes: function (source) {
-                var config = {
-                    suggestFixes: true
-                };
+            suggestFixes: function (source, options) {
+                var config = {};
 
-                config[linter.name] = true;
+                config[linter.name] = options || {};
+                config[linter.name].enabled = true;
 
-                return lint(source, filename, config).map(linter.suggestFix);
+                return lint(source, filename, config).map(function (lint) {
+                    return linter.suggestFix(lint, config[linter.name]);
+                });
             }
         };
     }
