@@ -107,9 +107,10 @@ describe('lesshint', function () {
                 },
                 type: 'text-insert'
             }];
-            var suggestedFixes = spec.suggestFixes(source);
 
-            expect(suggestedFixes).to.deep.equal(expectedFixes);
+            return spec.suggestFixes(source, {}, function (suggestedFixes) {
+                expect(suggestedFixes).to.deep.equal(expectedFixes);
+            });
         });
     });
 });

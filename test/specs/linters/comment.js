@@ -49,5 +49,20 @@ describe('lesshint', function () {
                 expect(result).to.be.undefined;
             });
         });
+
+        it('should suggest deleting a multiline comment', function () {
+            var source = '/* Hello world */';
+            var expectedFixes = [{
+                range: {
+                    begin: 0,
+                    end: 17,
+                },
+                type: 'text-delete'
+            }];
+
+            return spec.suggestFixes(source, {}, function (suggestedFixes) {
+                expect(suggestedFixes).to.deep.equal(expectedFixes);
+            });
+        });
     });
 });

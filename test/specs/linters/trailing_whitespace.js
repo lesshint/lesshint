@@ -82,9 +82,10 @@ describe('lesshint', function () {
                 },
                 type: 'text-delete'
             }];
-            var suggestedFixes = spec.suggestFixes(source);
 
-            expect(suggestedFixes).to.deep.equal(expectedFixes);
+            return spec.suggestFixes(source, {}, function (suggestedFixes) {
+                expect(suggestedFixes).to.deep.equal(expectedFixes);
+            });
         });
     });
 });

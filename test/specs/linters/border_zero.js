@@ -169,9 +169,10 @@ describe('lesshint', function () {
                 },
                 type: 'text-swap'
             }];
-            var suggestedFixes = spec.suggestFixes(source, options);
 
-            expect(suggestedFixes).to.deep.equal(expectedFixes);
+            spec.suggestFixes(source, options, function (suggestedFixes) {
+                expect(suggestedFixes).to.deep.equal(expectedFixes);
+            });
         });
 
         it('should suggest changing "0" to "none"', function () {
@@ -187,9 +188,10 @@ describe('lesshint', function () {
                 },
                 type: 'text-swap'
             }];
-            var suggestedFixes = spec.suggestFixes(source, options);
 
-            expect(suggestedFixes).to.deep.equal(expectedFixes);
+            spec.suggestFixes(source, options, function (suggestedFixes) {
+                expect(suggestedFixes).to.deep.equal(expectedFixes);
+            });
         });
     });
 });
