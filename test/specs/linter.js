@@ -118,7 +118,30 @@ describe('linter', function () {
                     message: 'Attribute selectors should use quotes.',
                     position: 21,
                     severity: 'warning',
-                    source: '[type="text"], [type=email] {'
+                    source: '[type="text"], [type=email] {',
+                    suggestedFix: {
+                        mutations: [
+                            {
+                                insertion: '\'',
+                                range: {
+                                    begin: 21
+                                },
+                                type: 'text-insert'
+                            },
+                            {
+                                insertion: '\'',
+                                range: {
+                                    begin: 28
+                                },
+                                type: 'text-insert'
+                            }
+                        ],
+                        range: {
+                            begin: 21,
+                            end: 28
+                        },
+                        type: 'multiple'
+                    }
                 },
                 {
                     column: 1,
