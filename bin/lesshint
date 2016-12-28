@@ -1,6 +1,7 @@
 #! /usr/bin/env node
 
-var cli = require('../lib/cli');
+const program = require('commander');
+const cli = require('../lib/cli');
 
 /**
  * Command line interface for lesshint.
@@ -8,8 +9,6 @@ var cli = require('../lib/cli');
  * Simple usage example:
  * lesshint file1 dir1
  */
-
-var program = require('commander');
 
 program
     .version(require('../package.json').version)
