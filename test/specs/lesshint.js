@@ -226,6 +226,19 @@ describe('lesshint', function () {
         });
     });
 
+    describe('getConfig', function () {
+        it('should load the specified config file', function () {
+            var configPath = path.join(path.dirname(__dirname), '/data/config/config.json');
+            var expected = configLoader(configPath);
+            var lesshint = new Lesshint();
+            var config;
+
+            config = lesshint.getConfig(configPath);
+
+            expect(config).to.deep.equal(expected);
+        });
+    });
+
     describe('getReporter', function () {
         it('should load the specified reporter by path', function () {
             var lesshint = new Lesshint();
