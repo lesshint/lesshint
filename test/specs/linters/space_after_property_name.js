@@ -1,12 +1,12 @@
 'use strict';
 
-var expect = require('chai').expect;
-var spec = require('../util.js').setup();
+const expect = require('chai').expect;
+const spec = require('../util.js').setup();
 
 describe('lesshint', function () {
     describe('#spaceAfterPropertyName()', function () {
         it('should have the proper node types', function () {
-            var source = '.foo { color: red; }';
+            const source = '.foo { color: red; }';
 
             return spec.parse(source, function (ast) {
                 expect(spec.linter.nodeTypes).to.include(ast.root.first.first.type);
@@ -14,13 +14,13 @@ describe('lesshint', function () {
         });
 
         it('should allow a missing space when "style" is "no_space"', function () {
-            var source = '.foo { color: red; }';
-            var options = {
+            const source = '.foo { color: red; }';
+            const options = {
                 style: 'no_space'
             };
 
             return spec.parse(source, function (ast) {
-                var result = spec.linter.lint(options, ast.root.first.first);
+                const result = spec.linter.lint(options, ast.root.first.first);
 
                 expect(result).to.be.undefined;
             });
@@ -28,64 +28,64 @@ describe('lesshint', function () {
         });
 
         it('should not allow any space when "style" is "no_space"', function () {
-            var source = '.foo { color : red; }';
-            var expected = [{
+            const source = '.foo { color : red; }';
+            const expected = [{
                 column: 13,
                 line: 1,
                 message: 'Colon after property should not be preceded by any space.'
             }];
 
-            var options = {
+            const options = {
                 style: 'no_space'
             };
 
             return spec.parse(source, function (ast) {
-                var result = spec.linter.lint(options, ast.root.first.first);
+                const result = spec.linter.lint(options, ast.root.first.first);
 
                 expect(result).to.deep.equal(expected);
             });
         });
 
         it('should allow one space when "style" is "one_space"', function () {
-            var source = '.foo { color : red; }';
-            var options = {
+            const source = '.foo { color : red; }';
+            const options = {
                 style: 'one_space'
             };
 
             return spec.parse(source, function (ast) {
-                var result = spec.linter.lint(options, ast.root.first.first);
+                const result = spec.linter.lint(options, ast.root.first.first);
 
                 expect(result).to.be.undefined;
             });
         });
 
         it('should not allow a missing space when "style" is "one_space"', function () {
-            var source = '.foo { color: red; }';
-            var expected = [{
+            const source = '.foo { color: red; }';
+            const expected = [{
                 column: 13,
                 line: 1,
                 message: 'Colon after property should be preceded by one space.'
             }];
 
-            var options = {
+            const options = {
                 style: 'one_space'
             };
 
             return spec.parse(source, function (ast) {
-                var result = spec.linter.lint(options, ast.root.first.first);
+                const result = spec.linter.lint(options, ast.root.first.first);
 
                 expect(result).to.deep.equal(expected);
             });
         });
 
         it('should throw on invalid "style" value', function () {
-            var source = '.foo { color:red; }';
-            var options = {
+            const source = '.foo { color:red; }';
+            const options = {
                 style: 'invalid'
             };
 
             return spec.parse(source, function (ast) {
-                var lint = spec.linter.lint.bind(null, options, ast.root.first.first);
+                const lint = spec.linter.lint.bind(null, options, ast.root.first.first);
 
                 expect(lint).to.throw(Error);
             });
