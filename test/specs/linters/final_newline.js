@@ -69,5 +69,50 @@ describe('lesshint', function () {
                 expect(result).to.deep.equal(expected);
             });
         });
+
+        it('should suggest adding a final Unix endline for Unix files', function () {
+            var source = '.foo {}\n\n.bar {}';
+            var expectedFixes = [{
+                insertion: '\n',
+                range: {
+                    begin: 22 // see #310
+                },
+                type: 'text-insert'
+            }];
+
+            return spec.suggestFixes(source, {}, function (suggestedFixes) {
+                expect(suggestedFixes).to.deep.equal(expectedFixes);
+            });
+        });
+
+        it('should suggest adding a final Windows endline for Windows files', function () {
+            var source = '.foo {}\r\n\r\n.bar {}';
+            var expectedFixes = [{
+                insertion: '\r\n',
+                range: {
+                    begin: 18
+                },
+                type: 'text-insert'
+            }];
+
+            return spec.suggestFixes(source, {}, function (suggestedFixes) {
+                expect(suggestedFixes).to.deep.equal(expectedFixes);
+            });
+        });
+
+        it('should suggest a platform-specific endline for single-line files', function () {
+            var source = '.foo {}';
+            var expectedFixes = [{
+                insertion: process.platform.indexOf('win') === 0 ? '\r\n' : '\n',
+                range: {
+                    begin: 7
+                },
+                type: 'text-insert'
+            }];
+
+            return spec.suggestFixes(source, {}, function (suggestedFixes) {
+                expect(suggestedFixes).to.deep.equal(expectedFixes);
+            });
+        });
     });
 });

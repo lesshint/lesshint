@@ -72,5 +72,20 @@ describe('lesshint', function () {
                 expect(result).to.be.undefined;
             });
         });
+
+        it('should suggest deleting trailing whitespace', function () {
+            var source = '.foo {}  ';
+            var expectedFixes = [{
+                range: {
+                    begin: 7,
+                    end: 9
+                },
+                type: 'text-delete'
+            }];
+
+            return spec.suggestFixes(source, {}, function (suggestedFixes) {
+                expect(suggestedFixes).to.deep.equal(expectedFixes);
+            });
+        });
     });
 });

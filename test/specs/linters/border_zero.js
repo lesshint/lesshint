@@ -155,5 +155,43 @@ describe('lesshint', function () {
                 expect(lint).to.throw(Error);
             });
         });
+
+        it('should suggest changing "none" to "0"', function () {
+            var source = '.foo { border: none; }';
+            var options = {
+                style: 'zero'
+            };
+            var expectedFixes = [{
+                insertion: '0',
+                range: {
+                    begin: 15,
+                    end: 19,
+                },
+                type: 'text-swap'
+            }];
+
+            spec.suggestFixes(source, options, function (suggestedFixes) {
+                expect(suggestedFixes).to.deep.equal(expectedFixes);
+            });
+        });
+
+        it('should suggest changing "0" to "none"', function () {
+            var source = '.foo { border: 0; }';
+            var options = {
+                style: 'none'
+            };
+            var expectedFixes = [{
+                insertion: 'none',
+                range: {
+                    begin: 15,
+                    end: 16,
+                },
+                type: 'text-swap'
+            }];
+
+            spec.suggestFixes(source, options, function (suggestedFixes) {
+                expect(suggestedFixes).to.deep.equal(expectedFixes);
+            });
+        });
     });
 });

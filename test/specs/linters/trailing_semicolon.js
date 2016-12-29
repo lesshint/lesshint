@@ -97,5 +97,20 @@ describe('lesshint', function () {
                 expect(result).to.be.undefined;
             });
         });
+
+        it('should suggest inserting a missing semicolon', function () {
+            var source = '.foo{ color:red }\n';
+            var expectedFixes = [{
+                insertion: ';',
+                range: {
+                    begin: 15
+                },
+                type: 'text-insert'
+            }];
+
+            return spec.suggestFixes(source, {}, function (suggestedFixes) {
+                expect(suggestedFixes).to.deep.equal(expectedFixes);
+            });
+        });
     });
 });
