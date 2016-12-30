@@ -14,8 +14,28 @@ describe('lesshint', function () {
             });
         });
 
-        it('should allow selectors without any qualifying element', function () {
+        it('should allow class selectors without any qualifying element', function () {
             const source = '.foo {}';
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint({}, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
+        it('should allow ID selectors without any qualifying element', function () {
+            const source = '#foo {}';
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint({}, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
+        it('should allow tag selectors without any qualifying element', function () {
+            const source = 'a {}';
 
             return spec.parse(source, function (ast) {
                 const result = spec.linter.lint({}, ast.root.first);
