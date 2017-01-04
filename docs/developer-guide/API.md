@@ -15,7 +15,7 @@ lesshint.configure();
 ## `Lesshint.checkDirectory(checkPath)`
 Check a directory recursively. Will respect `fileExtensions` and `excludedFiles` options.
 
-A `Promise` will be returned. For compatibility reasons a [Vow](https://github.com/dfilatov/vow) promise will be returned with some non-standard methods. Don't rely on these methods as native `Promise`s might be used in the future.
+A `Promise` will be returned.
 
 ```js
 const result = lesshint.checkDirectory('/path/to/my/directory');
@@ -28,7 +28,7 @@ result.then((results) => {
 ## `Lesshint.checkFile(checkPath)`
 Check a single file asynchronously. Will not check `fileExtensions` and `excludedFiles` options.
 
-A `Promise` will be returned. For compatibility reasons a [Vow](https://github.com/dfilatov/vow) promise will be returned with some non-standard methods. Don't rely on these methods as native `Promise`s might be used in the future.
+A `Promise` will be returned.
 
 ```js
 const result = lesshint.checkFile('/path/to/my/file.less');
@@ -41,7 +41,7 @@ result.then((results) => {
 ## `Lesshint.checkPath(checkPath)`
 Check a path asynchronously. If a file is passed it will check that, if a directory is passed it will check that recursively. Will respect `fileExtensions` and `excludedFiles` options.
 
-A `Promise` will be returned. For compatibility reasons a [Vow](https://github.com/dfilatov/vow) promise will be returned with some non-standard methods. Don't rely on these methods as native `Promise`s might be used in the future.
+A `Promise` will be returned.
 
 ```js
 const result = lesshint.checkPath('/path/to/my/directory');
@@ -52,7 +52,7 @@ result.then((results) => {
 ```
 
 ## `Lesshint.checkString(input, checkPath)`
-Check a Less string synchronously.
+Check a Less string synchronously and return an array of linter results.
 
 The `checkPath` argument can be used to include a file name in lint results.
 
@@ -70,6 +70,24 @@ try {
 Setup the options to use. This method must always be called before doing anything else, otherwise no options will be specified. Not even defaults.
 
 The `config` argument is optional, but if a object is passed it'll be merged with the defaults.
+
+```js
+const config = {
+    emptyRule: false
+};
+
+lesshint.configure(config);
+```
+
+## `Lesshint.getConfig(path)`
+Load a config file using `lesshint`'s logic.
+
+If `path` is a file, it'll be loaded and its contents returned. If `path` is a directory, it will start looking for a `.lesshintrc` file in that directory, traversing up the directory structure until it finds one. If no config file is found, `undefined` will be returned.
+
+```js
+const config = lesshint.getConfig('/path/to/my/config.json');
+```
+
 
 ## `Lesshint.getReporter(reporter)`
 Load a reporter using `lesshint`'s logic.
