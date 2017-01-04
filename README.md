@@ -15,7 +15,7 @@
 ## Installation
 _[Node.js](https://nodejs.org/) 4 (or later) is required._
 
-Run the following command from the command line to install `lesshint` (add `-g` to install globally):
+Run the following from the command line to install `lesshint` (add `-g` to install globally):
 
 ```
 npm install lesshint
@@ -24,7 +24,7 @@ npm install lesshint
 ## Configuration
 For information on how to configure `lesshint` and other available options, see the [user guide](/docs/user-guide/configuration.md).
 
-Since `lesshint` is highly customizable we highly recommend you to also take a look at the [available linter options](/lib/linters/README.md) to tailor it to your needs.
+Since `lesshint` is highly customizable we recommend you to also take a look at the [available linter options](/lib/linters/README.md) to tailor it to your needs.
 
 ## CLI usage
 Run `lesshint` from the command-line by passing one or more files/directories to recursively scan.
@@ -38,7 +38,7 @@ Available Flags         | Description
 `-c`/`--config`       | Specify the configuration file to use (will be merged with defaults).
 `-e`/`--exclude`      | A [minimatch glob pattern](https://github.com/isaacs/minimatch) or a file to exclude from being linted.
 `-l`/`--linters`      | Paths to custom linters to add to the built-in list.
-`-r`/`--reporter`     | The reporter to use. See "Reporters" below for possible values.
+`-r`/`--reporter`     | The reporter to use. See "Reporters" below for more information.
 `-V`/`--version`      | Show the version.
 `-x`/`--max-warnings` | Number of warnings to allow before exiting with a non-zero code. Passing `-1` will allow any number of warnings to pass.
 
