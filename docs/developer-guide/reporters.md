@@ -41,10 +41,10 @@ Pass the name of a module, a path, or a already initialized reporter object to t
 
 ```js
 // Passing nothing will load the default reporter but a module name, path, or reporter object could be passed instead.
-var defaultReporter = lesshint.getReporter();
-var result = lesshint.checkFile('my-less-file.less');
+const defaultReporter = lesshint.getReporter();
+const result = lesshint.checkFile('my-less-file.less');
 
-result.then(function (result) {
+result.then((result) => {
     defaultReporter.report(result);
 });
 ```

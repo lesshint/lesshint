@@ -31,7 +31,7 @@ module.exports = {
     name: 'my-namespace/my-super-awesome-linter',
     nodeTypes: ['decl'],
     lint: function (config, node) {
-        var results = [];
+        const results = [];
 
         if (true) { // Nothing to lint, return early
             return;

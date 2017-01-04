@@ -3,9 +3,9 @@
 Start by initalizing a `lesshint` instance.
 
 ```js
-var Lesshint = require('lesshint');
+const Lesshint = require('lesshint');
 
-var lesshint = new Lesshint();
+const lesshint = new Lesshint();
 
 lesshint.configure();
 
@@ -18,9 +18,9 @@ Check a directory recursively. Will respect `fileExtensions` and `excludedFiles`
 A `Promise` will be returned. For compatibility reasons a [Vow](https://github.com/dfilatov/vow) promise will be returned with some non-standard methods. Don't rely on these methods as native `Promise`s might be used in the future.
 
 ```js
-var result = lesshint.checkDirectory('/path/to/my/directory');
+const result = lesshint.checkDirectory('/path/to/my/directory');
 
-result.then(function (results) {
+result.then((results) => {
 
 });
 ```
@@ -31,9 +31,9 @@ Check a single file asynchronously. Will not check `fileExtensions` and `exclude
 A `Promise` will be returned. For compatibility reasons a [Vow](https://github.com/dfilatov/vow) promise will be returned with some non-standard methods. Don't rely on these methods as native `Promise`s might be used in the future.
 
 ```js
-var result = lesshint.checkFile('/path/to/my/file.less');
+const result = lesshint.checkFile('/path/to/my/file.less');
 
-result.then(function (results) {
+result.then((results) => {
 
 });
 ```
@@ -44,9 +44,9 @@ Check a path asynchronously. If a file is passed it will check that, if a direct
 A `Promise` will be returned. For compatibility reasons a [Vow](https://github.com/dfilatov/vow) promise will be returned with some non-standard methods. Don't rely on these methods as native `Promise`s might be used in the future.
 
 ```js
-var result = lesshint.checkPath('/path/to/my/directory');
+const result = lesshint.checkPath('/path/to/my/directory');
 
-result.then(function (results) {
+result.then((results) => {
 
 });
 ```
@@ -59,11 +59,9 @@ The `checkPath` argument can be used to include a file name in lint results.
 If a error occurs which isn't a Less parse error, an exception will be thrown.
 
 ```js
-var result;
-
 try {
-    result = lesshint.checkString('<my less code>', '/path/to/file');
-} catch (Exception e) {
+    const results = lesshint.checkString('<my less code>', '/path/to/file');
+} catch (e) {
     console.error('Something bad happened.');
 }
 ```
@@ -84,5 +82,5 @@ The `reporter` argument can be one of the following.
 If nothing is passed, the default reporter will be returned. If the reporter loading fails for some reason, `false` will be returned.
 
 ```js
-var reporter = lesshint.getReporter('/path/to/my/reporter.js');
+const reporter = lesshint.getReporter('/path/to/my/reporter.js');
 ```
