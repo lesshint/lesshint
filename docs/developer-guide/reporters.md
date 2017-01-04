@@ -11,10 +11,11 @@ Example results array passed to reporters:
 [{
     column: 5,
     file: 'file.less',
-    fullPath: 'path/to/file.less',
+    fullPath: '/path/to/file.less',
     line: 1,
     linter: 'spaceBeforeBrace',
     message: 'Opening curly brace should be preceded by one space.',
+    position: 4,
     severity: 'warning',
     source: '.foo{'
 }]
