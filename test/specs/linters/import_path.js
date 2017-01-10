@@ -1,12 +1,12 @@
 'use strict';
 
-var expect = require('chai').expect;
-var spec = require('../util.js').setup();
+const expect = require('chai').expect;
+const spec = require('../util.js').setup();
 
 describe('lesshint', function () {
     describe('#importPath()', function () {
         it('should have the proper node types', function () {
-            var source = '@import "foo";';
+            const source = '@import "foo";';
 
             return spec.parse(source, function (ast) {
                 expect(spec.linter.nodeTypes).to.include(ast.root.first.type);
@@ -14,158 +14,158 @@ describe('lesshint', function () {
         });
 
         it('should allow filename without extension when "filenameExtension" is "false"', function () {
-            var source = '@import "foo";';
-            var options = {
+            const source = '@import "foo";';
+            const options = {
                 filenameExtension: false,
                 exclude: []
             };
 
             return spec.parse(source, function (ast) {
-                var result = spec.linter.lint(options, ast.root.first);
+                const result = spec.linter.lint(options, ast.root.first);
 
                 expect(result).to.be.undefined;
             });
         });
 
         it('should allow filename with .css extension when "filenameExtension" is "false"', function () {
-            var source = '@import "foo.css";';
-            var options = {
+            const source = '@import "foo.css";';
+            const options = {
                 filenameExtension: false,
                 exclude: []
             };
 
             return spec.parse(source, function (ast) {
-                var result = spec.linter.lint(options, ast.root.first);
+                const result = spec.linter.lint(options, ast.root.first);
 
                 expect(result).to.be.undefined;
             });
         });
 
         it('should not allow filename with extension when "filenameExtension" is "false"', function () {
-            var source = '@import "foo.less";';
-            var expected = [{
+            const source = '@import "foo.less";';
+            const expected = [{
                 column: 9,
                 line: 1,
                 message: 'Imported file, "foo.less" should not include the file extension.'
             }];
 
-            var options = {
+            const options = {
                 filenameExtension: false,
                 exclude: []
             };
 
             return spec.parse(source, function (ast) {
-                var result = spec.linter.lint(options, ast.root.first);
+                const result = spec.linter.lint(options, ast.root.first);
 
                 expect(result).to.deep.equal(expected);
             });
         });
 
         it('should allow filename with extension when "filenameExtension" is "true"', function () {
-            var source = '@import "foo.less";';
-            var options = {
+            const source = '@import "foo.less";';
+            const options = {
                 filenameExtension: true,
                 exclude: []
             };
 
             return spec.parse(source, function (ast) {
-                var result = spec.linter.lint(options, ast.root.first);
+                const result = spec.linter.lint(options, ast.root.first);
 
                 expect(result).to.be.undefined;
             });
         });
 
         it('should not allow filename without extension when "filenameExtension" is "true"', function () {
-            var source = '@import "foo";';
-            var expected = [{
+            const source = '@import "foo";';
+            const expected = [{
                 column: 9,
                 line: 1,
                 message: 'Imported file, "foo" should include the file extension.'
             }];
 
-            var options = {
+            const options = {
                 filenameExtension: true,
                 exclude: []
             };
 
             return spec.parse(source, function (ast) {
-                var result = spec.linter.lint(options, ast.root.first);
+                const result = spec.linter.lint(options, ast.root.first);
 
                 expect(result).to.deep.equal(expected);
             });
         });
 
         it('should allow filename without leading underscore when "leadingUnderscore" is "false"', function () {
-            var source = '@import "foo";';
-            var options = {
+            const source = '@import "foo";';
+            const options = {
                 leadingUnderscore: false,
                 exclude: []
             };
 
             return spec.parse(source, function (ast) {
-                var result = spec.linter.lint(options, ast.root.first);
+                const result = spec.linter.lint(options, ast.root.first);
 
                 expect(result).to.be.undefined;
             });
         });
 
         it('should not allow filename with leading underscore when "leadingUnderscore" is "false"', function () {
-            var source = '@import "_foo";';
-            var expected = [{
+            const source = '@import "_foo";';
+            const expected = [{
                 column: 9,
                 line: 1,
                 message: 'Imported file, "_foo" should not include a leading underscore.'
             }];
 
-            var options = {
+            const options = {
                 leadingUnderscore: false,
                 exclude: []
             };
 
             return spec.parse(source, function (ast) {
-                var result = spec.linter.lint(options, ast.root.first);
+                const result = spec.linter.lint(options, ast.root.first);
 
                 expect(result).to.deep.equal(expected);
             });
         });
 
         it('should allow filename with leading underscore when "leadingUnderscore" is "true"', function () {
-            var source = '@import "_foo";';
-            var options = {
+            const source = '@import "_foo";';
+            const options = {
                 leadingUnderscore: true,
                 exclude: []
             };
 
             return spec.parse(source, function (ast) {
-                var result = spec.linter.lint(options, ast.root.first);
+                const result = spec.linter.lint(options, ast.root.first);
 
                 expect(result).to.be.undefined;
             });
         });
 
         it('should not allow filename without leading underscore when "leadingUnderscore" is "true"', function () {
-            var source = '@import "foo";';
-            var expected = [{
+            const source = '@import "foo";';
+            const expected = [{
                 column: 9,
                 line: 1,
                 message: 'Imported file, "foo" should include a leading underscore.'
             }];
 
-            var options = {
+            const options = {
                 leadingUnderscore: true,
                 exclude: []
             };
 
             return spec.parse(source, function (ast) {
-                var result = spec.linter.lint(options, ast.root.first);
+                const result = spec.linter.lint(options, ast.root.first);
 
                 expect(result).to.deep.equal(expected);
             });
         });
 
         it('should not allow files with file extension and leading underscore when both options are "false"', function () {
-            var source = '@import "_foo.less";';
-            var expected = [
+            const source = '@import "_foo.less";';
+            const expected = [
                 {
                     column: 9,
                     line: 1,
@@ -178,77 +178,77 @@ describe('lesshint', function () {
                 }
             ];
 
-            var options = {
+            const options = {
                 filenameExtension: false,
                 leadingUnderscore: false,
                 exclude: []
             };
 
             return spec.parse(source, function (ast) {
-                var result = spec.linter.lint(options, ast.root.first);
+                const result = spec.linter.lint(options, ast.root.first);
 
                 expect(result).to.deep.equal(expected);
             });
         });
 
         it('should allow files with file extension and leading underscore when both options are "true"', function () {
-            var source = '@import "_foo.less";';
-            var options = {
+            const source = '@import "_foo.less";';
+            const options = {
                 filenameExtension: true,
                 leadingUnderscore: true,
                 exclude: []
             };
 
             return spec.parse(source, function (ast) {
-                var result = spec.linter.lint(options, ast.root.first);
+                const result = spec.linter.lint(options, ast.root.first);
 
                 expect(result).to.be.undefined;
             });
         });
 
         it('should check url imports with quotes', function () {
-            var source = '@import url("foo.less");';
-            var expected = [{
+            const source = '@import url("foo.less");';
+            const expected = [{
                 column: 13,
                 line: 1,
                 message: 'Imported file, "foo.less" should not include the file extension.'
             }];
 
-            var options = {
+            const options = {
                 filenameExtension: false,
                 exclude: []
             };
 
             return spec.parse(source, function (ast) {
-                var result = spec.linter.lint(options, ast.root.first);
+                const result = spec.linter.lint(options, ast.root.first);
 
                 expect(result).to.deep.equal(expected);
             });
         });
 
         it('should check url imports without quotes', function () {
-            var source = '@import url(foo.less);';
-            var expected = [{
+            const source = '@import url(foo.less);';
+            const expected = [{
                 column: 13,
                 line: 1,
                 message: 'Imported file, "foo.less" should not include the file extension.'
             }];
 
-            var options = {
+            const options = {
                 filenameExtension: false,
                 exclude: []
             };
 
             return spec.parse(source, function (ast) {
-                var result = spec.linter.lint(options, ast.root.first);
+                const result = spec.linter.lint(options, ast.root.first);
 
                 expect(result).to.deep.equal(expected);
             });
         });
 
         it('should ignore @import strings containing absolute URLs', function () {
-            var source = '@import "http://example.com/foo.css";';
-            var options = {
+            const source = '@import "http://example.com/foo.css";';
+            const options = {
                 importPath: {
                     filenameExtension: false,
                     exclude: []
@@ -256,45 +256,45 @@ describe('lesshint', function () {
             };
 
             return spec.parse(source, function (ast) {
-                var result = spec.linter.lint(options, ast.root.first);
+                const result = spec.linter.lint(options, ast.root.first);
 
                 expect(result).to.be.undefined;
             });
         });
 
         it('should ignore @import urls() containing absolute URLs', function () {
-            var source = '@import url("http://example.com/foo.css");';
-            var options = {
+            const source = '@import url("http://example.com/foo.css");';
+            const options = {
                 filenameExtension: false,
                 exclude: []
             };
 
             return spec.parse(source, function (ast) {
-                var result = spec.linter.lint(options, ast.root.first);
+                const result = spec.linter.lint(options, ast.root.first);
 
                 expect(result).to.be.undefined;
             });
         });
 
         it('should not report excluded files', function () {
-            var source = '@import "foo.less";';
-            var options = {
+            const source = '@import "foo.less";';
+            const options = {
                 filenameExtension: false,
                 exclude: ['foo.less']
             };
 
             return spec.parse(source, function (ast) {
-                var result = spec.linter.lint(options, ast.root.first);
+                const result = spec.linter.lint(options, ast.root.first);
 
                 expect(result).to.be.undefined;
             });
         });
 
         it('should ignore other at-rules', function () {
-            var source = '@charset "UTF-8";';
+            const source = '@charset "UTF-8";';
 
             return spec.parse(source, function (ast) {
-                var result = spec.linter.lint({}, ast.root.first);
+                const result = spec.linter.lint({}, ast.root.first);
 
                 expect(result).to.be.undefined;
             });
@@ -304,82 +304,82 @@ describe('lesshint', function () {
     describe('#importPath() with Import Option', function () {
 
         it('should allow filename without extension when "filenameExtension" is "false"', function () {
-            var source = '@import (css) "foo";';
-            var options = {
+            const source = '@import (css) "foo";';
+            const options = {
                 filenameExtension: false,
                 exclude: []
             };
 
             return spec.parse(source, function (ast) {
-                var result = spec.linter.lint(options, ast.root.first);
+                const result = spec.linter.lint(options, ast.root.first);
 
                 expect(result).to.be.undefined;
             });
         });
 
         it('should allow filename with .css extension when "filenameExtension" is "false"', function () {
-            var source = '@import (inline) "foo.css";';
-            var options = {
+            const source = '@import (inline) "foo.css";';
+            const options = {
                 filenameExtension: false,
                 exclude: []
             };
 
             return spec.parse(source, function (ast) {
-                var result = spec.linter.lint(options, ast.root.first);
+                const result = spec.linter.lint(options, ast.root.first);
 
                 expect(result).to.be.undefined;
             });
         });
 
         it('should not allow filename with extension when "filenameExtension" is "false"', function () {
-            var source = '@import (inline) "foo.less";';
-            var expected = [{
+            const source = '@import (inline) "foo.less";';
+            const expected = [{
                 column: 9,
                 line: 1,
                 message: 'Imported file, "foo.less" should not include the file extension.'
             }];
 
-            var options = {
+            const options = {
                 filenameExtension: false,
                 exclude: []
             };
 
             return spec.parse(source, function (ast) {
-                var result = spec.linter.lint(options, ast.root.first);
+                const result = spec.linter.lint(options, ast.root.first);
 
                 expect(result).to.deep.equal(expected);
             });
         });
 
         it('should allow filename with extension when "filenameExtension" is "true"', function () {
-            var source = '@import (inline) "foo.less";';
-            var options = {
+            const source = '@import (inline) "foo.less";';
+            const options = {
                 filenameExtension: true,
                 exclude: []
             };
 
             return spec.parse(source, function (ast) {
-                var result = spec.linter.lint(options, ast.root.first);
+                const result = spec.linter.lint(options, ast.root.first);
 
                 expect(result).to.be.undefined;
             });
         });
 
         it('should not allow filename without extension when "filenameExtension" is "true"', function () {
-            var source = '@import (inline) "foo";';
-            var expected = [{
+            const source = '@import (inline) "foo";';
+            const expected = [{
                 column: 9,
                 line: 1,
                 message: 'Imported file, "foo" should include the file extension.'
             }];
 
-            var options = {
+            const options = {
                 filenameExtension: true,
                 exclude: []
             };
 
             return spec.parse(source, function (ast) {
-                var result = spec.linter.lint(options, ast.root.first);
+                const result = spec.linter.lint(options, ast.root.first);
 
                 expect(result).to.deep.equal(expected);
             });

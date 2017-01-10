@@ -1,14 +1,14 @@
 'use strict';
 
-var expect = require('chai').expect;
-var spec = require('../util.js').setup();
+const expect = require('chai').expect;
+const spec = require('../util.js').setup();
 
 describe('lesshint', function () {
     describe('#decimalZero()', function () {
-        var options;
+        let options;
 
         it('should have the proper node types', function () {
-            var source = 'margin-right: 1.5px;';
+            const source = 'margin-right: 1.5px;';
 
             return spec.parse(source, function (ast) {
                 expect(spec.linter.nodeTypes).to.include(ast.root.first.type);
@@ -23,70 +23,70 @@ describe('lesshint', function () {
             });
 
             it('should allow "0.0"', function () {
-                var source = 'font-size: 0.0em;';
+                const source = 'font-size: 0.0em;';
 
                 return spec.parse(source, function (ast) {
-                    var result = spec.linter.lint(options, ast.root.first);
+                    const result = spec.linter.lint(options, ast.root.first);
 
                     expect(result).to.be.undefined;
                 });
             });
 
             it('should allow number without decimal zero', function () {
-                var source = 'font-size: 1em;';
+                const source = 'font-size: 1em;';
 
                 return spec.parse(source, function (ast) {
-                    var result = spec.linter.lint(options, ast.root.first);
+                    const result = spec.linter.lint(options, ast.root.first);
 
                     expect(result).to.be.undefined;
                 });
             });
 
             it('should allow number with leading decimal zero', function () {
-                var source = 'font-size: 0.5em;';
+                const source = 'font-size: 0.5em;';
 
                 return spec.parse(source, function (ast) {
-                    var result = spec.linter.lint(options, ast.root.first);
+                    const result = spec.linter.lint(options, ast.root.first);
 
                     expect(result).to.be.undefined;
                 });
             });
 
             it('should allow decimal number greater than 1 without leading zero', function () {
-                var source = 'font-size: 1.25em;';
+                const source = 'font-size: 1.25em;';
 
                 return spec.parse(source, function (ast) {
-                    var result = spec.linter.lint(options, ast.root.first);
+                    const result = spec.linter.lint(options, ast.root.first);
 
                     expect(result).to.be.undefined;
                 });
             });
 
             it('should not allow number without leading decimal zero', function () {
-                var source = 'font-size: .5em;';
-                var expected = [{
+                const source = 'font-size: .5em;';
+                const expected = [{
                     column: 12,
                     line: 1,
                     message: '.5 should be written with leading zero.'
                 }];
 
                 return spec.parse(source, function (ast) {
-                    var result = spec.linter.lint(options, ast.root.first);
+                    const result = spec.linter.lint(options, ast.root.first);
 
                     expect(result).to.deep.equal(expected);
                 });
             });
 
             it('should not allow number without leading decimal zero in a function', function () {
-                var source = 'color: rgba(0, 0, 0, .5);';
-                var expected = [{
+                const source = 'color: rgba(0, 0, 0, .5);';
+                const expected = [{
                     column: 22,
                     line: 1,
                     message: '.5 should be written with leading zero.'
                 }];
 
                 return spec.parse(source, function (ast) {
-                    var result = spec.linter.lint(options, ast.root.first);
+                    const result = spec.linter.lint(options, ast.root.first);
 
                     expect(result).to.deep.equal(expected);
                 });
@@ -101,35 +101,35 @@ describe('lesshint', function () {
             });
 
             it('should allow "0.0"', function () {
-                var source = 'font-size: 0.0em;';
+                const source = 'font-size: 0.0em;';
 
                 return spec.parse(source, function (ast) {
-                    var result = spec.linter.lint(options, ast.root.first);
+                    const result = spec.linter.lint(options, ast.root.first);
 
                     expect(result).to.be.undefined;
                 });
             });
 
             it('should allow number with trailing decimal zero', function () {
-                var source = 'font-size: 1.0em;';
+                const source = 'font-size: 1.0em;';
 
                 return spec.parse(source, function (ast) {
-                    var result = spec.linter.lint(options, ast.root.first);
+                    const result = spec.linter.lint(options, ast.root.first);
 
                     expect(result).to.be.undefined;
                 });
             });
 
             it('should not allow number without trailing decimal zero', function () {
-                var source = 'font-size: 1em;';
-                var expected = [{
+                const source = 'font-size: 1em;';
+                const expected = [{
                     column: 12,
                     line: 1,
                     message: '1 should be written with trailing zero.'
                 }];
 
                 return spec.parse(source, function (ast) {
-                    var result = spec.linter.lint(options, ast.root.first);
+                    const result = spec.linter.lint(options, ast.root.first);
 
                     expect(result).to.deep.equal(expected);
                 });
@@ -144,60 +144,60 @@ describe('lesshint', function () {
             });
 
             it('should allow "0.0"', function () {
-                var source = 'font-size: 0.0em;';
+                const source = 'font-size: 0.0em;';
 
                 return spec.parse(source, function (ast) {
-                    var result = spec.linter.lint(options, ast.root.first);
+                    const result = spec.linter.lint(options, ast.root.first);
 
                     expect(result).to.be.undefined;
                 });
             });
 
             it('should allow decimal number less than 1 without trailing zero', function () {
-                var source = 'font-size: 0.5em;';
+                const source = 'font-size: 0.5em;';
 
                 return spec.parse(source, function (ast) {
-                    var result = spec.linter.lint(options, ast.root.first);
+                    const result = spec.linter.lint(options, ast.root.first);
 
                     expect(result).to.be.undefined;
                 });
             });
 
             it('should allow decimal number greater than 1 without leading zero', function () {
-                var source = 'font-size: 1.5em;';
+                const source = 'font-size: 1.5em;';
 
                 return spec.parse(source, function (ast) {
-                    var result = spec.linter.lint(options, ast.root.first);
+                    const result = spec.linter.lint(options, ast.root.first);
 
                     expect(result).to.be.undefined;
                 });
             });
 
             it('should not allow number without leading decimal zero', function () {
-                var source = 'font-size: .5em;';
-                var expected = [{
+                const source = 'font-size: .5em;';
+                const expected = [{
                     column: 12,
                     line: 1,
                     message: '.5 should be written with leading and trailing zero.'
                 }];
 
                 return spec.parse(source, function (ast) {
-                    var result = spec.linter.lint(options, ast.root.first);
+                    const result = spec.linter.lint(options, ast.root.first);
 
                     expect(result).to.deep.equal(expected);
                 });
             });
 
             it('should not allow number without trailing decimal zero', function () {
-                var source = 'font-size: 1em;';
-                var expected = [{
+                const source = 'font-size: 1em;';
+                const expected = [{
                     column: 12,
                     line: 1,
                     message: '1 should be written with leading and trailing zero.'
                 }];
 
                 return spec.parse(source, function (ast) {
-                    var result = spec.linter.lint(options, ast.root.first);
+                    const result = spec.linter.lint(options, ast.root.first);
 
                     expect(result).to.deep.equal(expected);
                 });
@@ -212,50 +212,50 @@ describe('lesshint', function () {
             });
 
             it('should allow "0.0"', function () {
-                var source = 'font-size: 0.0em;';
+                const source = 'font-size: 0.0em;';
 
                 return spec.parse(source, function (ast) {
-                    var result = spec.linter.lint(options, ast.root.first);
+                    const result = spec.linter.lint(options, ast.root.first);
 
                     expect(result).to.be.undefined;
                 });
             });
 
             it('should not allow number with leading decimal zero', function () {
-                var source = 'font-size: 0.5em;';
-                var expected = [{
+                const source = 'font-size: 0.5em;';
+                const expected = [{
                     column: 12,
                     line: 1,
                     message: '0.5 should be written without leading and trailing zero.'
                 }];
 
                 return spec.parse(source, function (ast) {
-                    var result = spec.linter.lint(options, ast.root.first);
+                    const result = spec.linter.lint(options, ast.root.first);
 
                     expect(result).to.deep.equal(expected);
                 });
             });
 
             it('should not allow number with trailing decimal zero', function () {
-                var source = 'font-size: 1.0em;';
-                var expected = [{
+                const source = 'font-size: 1.0em;';
+                const expected = [{
                     column: 12,
                     line: 1,
                     message: '1.0 should be written without leading and trailing zero.'
                 }];
 
                 return spec.parse(source, function (ast) {
-                    var result = spec.linter.lint(options, ast.root.first);
+                    const result = spec.linter.lint(options, ast.root.first);
 
                     expect(result).to.deep.equal(expected);
                 });
             });
 
             it('should allow font-weights ending in zero', function () {
-                var source = 'font-weight: 300;';
+                const source = 'font-weight: 300;';
 
                 return spec.parse(source, function (ast) {
-                    var result = spec.linter.lint(options, ast.root.first);
+                    const result = spec.linter.lint(options, ast.root.first);
 
                     expect(result).to.be.undefined;
                 });
@@ -270,10 +270,10 @@ describe('lesshint', function () {
             });
 
             it('should throw an error', function () {
-                var source = 'font-size: 1.0em;';
+                const source = 'font-size: 1.0em;';
 
                 return spec.parse(source, function (ast) {
-                    var lint = spec.linter.lint.bind(null, options, ast.root.first);
+                    const lint = spec.linter.lint.bind(null, options, ast.root.first);
 
                     expect(lint).to.throw(Error);
                 });
