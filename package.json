@@ -16,6 +16,9 @@
     "lint",
     "hint"
   ],
+  "engines": {
+    "node": ">=4"
+  },
   "dependencies": {
     "commander": "^2.8.0",
     "lodash.merge": "^4.0.1",
