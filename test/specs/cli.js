@@ -31,7 +31,7 @@ describe('cli', function () {
             config: path.resolve(process.cwd() + '/test/data/config/invalid.json')
         });
 
-        return result.fail(function () {
+        return result.catch(function () {
             const called = console.error.calledOnce;
 
             console.error.restore();
@@ -47,7 +47,7 @@ describe('cli', function () {
             args: []
         });
 
-        return result.fail(function () {
+        return result.catch(function () {
             const called = console.error.calledOnce;
 
             console.error.restore();
@@ -64,7 +64,7 @@ describe('cli', function () {
             config: path.resolve(process.cwd() + '/lib/config/defaults.json')
         });
 
-        return result.fail(function (status) {
+        return result.catch(function (status) {
             console.log.restore();
 
             expect(status).to.equal(1);
@@ -80,7 +80,7 @@ describe('cli', function () {
             maxWarnings: '0',
         });
 
-        return result.fail(function (status) {
+        return result.catch(function (status) {
             expect(status).to.equal(1);
         });
     });
@@ -94,7 +94,7 @@ describe('cli', function () {
             maxWarnings: '2',
         });
 
-        return result.fail(function (status) {
+        return result.catch(function (status) {
             expect(status).to.equal(1);
         });
     });
@@ -146,7 +146,7 @@ describe('cli', function () {
             args: []
         });
 
-        return result.fail(function (status) {
+        return result.catch(function (status) {
             expect(status).to.equal(66);
         });
     });
@@ -157,7 +157,7 @@ describe('cli', function () {
             config: path.resolve(process.cwd() + '/test/data/config/invalid.json')
         });
 
-        return result.fail(function (status) {
+        return result.catch(function (status) {
             expect(status).to.equal(78);
         });
     });
@@ -204,7 +204,7 @@ describe('cli', function () {
             linters: ['../test/plugins/sampleLinter']
         });
 
-        return result.fail(function (status) {
+        return result.catch(function (status) {
             console.log.restore();
 
             expect(status).to.equal(1);
@@ -219,7 +219,7 @@ describe('cli', function () {
             config: path.resolve(process.cwd() + '/test/data/config/linters.json')
         });
 
-        return result.fail(function (status) {
+        return result.catch(function (status) {
             console.log.restore();
 
             expect(status).to.equal(1);
@@ -235,7 +235,7 @@ describe('cli', function () {
             linters: ['../test/plugins/otherSampleLinter']
         });
 
-        return result.fail(function (status) {
+        return result.catch(function (status) {
             console.log.restore();
 
             expect(status).to.equal(1);
@@ -251,7 +251,7 @@ describe('cli', function () {
             linters: ['../test/plugins/failingLinter']
         });
 
-        return result.fail(function (status) {
+        return result.catch(function (status) {
             console.log.restore();
 
             expect(status).to.equal(70);
@@ -267,7 +267,7 @@ describe('cli', function () {
             linters: ['../test/plugins/sampleLinter']
         });
 
-        return result.fail(function (status) {
+        return result.catch(function (status) {
             console.log.restore();
 
             expect(status).to.equal(78);
@@ -277,7 +277,7 @@ describe('cli', function () {
     it('should exit without errors when passed a built-in reporter name', function () {
         const result = cli({
             args: [path.dirname(__dirname) + '/data/files/ok.less'],
-            reporter: 'stylish'
+            reporter: 'default'
         });
 
         return result.then(function (status) {
@@ -288,7 +288,7 @@ describe('cli', function () {
     it('should exit without errors when passed a reporter path', function () {
         const result = cli({
             args: [path.dirname(__dirname) + '/data/files/ok.less'],
-            reporter: '../../lib/reporters/stylish.js'
+            reporter: path.resolve(__dirname, '../../lib/reporters/default.js')
         });
 
         return result.then(function (status) {
@@ -316,8 +316,8 @@ describe('cli', function () {
             reporter: 'invalid-reporter'
         });
 
-        return result.fail(function (status) {
-            expect(status).to.equal(1);
+        return result.catch(function (status) {
+            expect(status).to.equal(78);
         });
     });
 
@@ -327,7 +327,7 @@ describe('cli', function () {
             config: path.dirname(__dirname) + '/data/config/bad.json'
         });
 
-        return result.fail(function (status) {
+        return result.catch(function (status) {
             expect(status).to.equal(70);
         });
     });
@@ -340,7 +340,7 @@ describe('cli', function () {
             config: path.dirname(__dirname) + '/data/config/severity-error.json'
         });
 
-        return result.fail(function (status) {
+        return result.catch(function (status) {
             console.log.restore();
 
             expect(status).to.equal(2);

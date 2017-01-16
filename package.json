@@ -29,9 +29,7 @@
     "postcss-selector-parser": "^2.0.0",
     "postcss-values-parser": "^0.1.7",
     "rcfinder": "^0.1.8",
-    "strip-json-comments": "^2.0.0",
-    "vow": "^0.4.9",
-    "vow-fs": "^0.3.4"
+    "strip-json-comments": "^2.0.0"
   },
   "devDependencies": {
     "chai": "^3.4.0",
