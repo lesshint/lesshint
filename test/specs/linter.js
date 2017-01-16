@@ -61,11 +61,11 @@ describe('linter', function () {
 
         it('should pass the filename to the errors list', function () {
             const source = '.foo{ color: red; }\n';
-            const testPath = '/path/to/file.less';
+            const testPath = path.resolve(process.cwd(), './path/to/file.less');
             const expected = [{
                 column: 5,
                 file: 'file.less',
-                fullPath: '/path/to/file.less',
+                fullPath: testPath,
                 line: 1,
                 linter: 'spaceBeforeBrace',
                 message: 'Opening curly brace should be preceded by one space.',
@@ -88,7 +88,7 @@ describe('linter', function () {
 
         it('should sort results by column and line number', function () {
             const source = '[type="text"], [type=email] {\nmargin-right: 10px;\ncolor: red;\ncolor: blue;\n}';
-            const testPath = '/path/to/file.less';
+            const testPath = path.resolve(process.cwd(), './path/to/file.less');
             const expected = [
                 {
                     column: 7,
