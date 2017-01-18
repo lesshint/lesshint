@@ -25,6 +25,12 @@ cli(program)
     .then((status) => {
         process.exitCode = status.valueOf();
     })
-    .catch((status) => {
+    .catch((result) => {
+        const { message, status } = result;
+
+        if (message) {
+            console.error(message);
+        }
+
         process.exitCode = status.valueOf();
     });

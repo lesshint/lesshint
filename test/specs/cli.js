@@ -23,51 +23,14 @@ describe('cli', function () {
         }
     });
 
-    it('should print error on invalid config file', function () {
-        sinon.spy(console, 'error');
-
-        const result = cli({
-            args: ['test.less'],
-            config: path.resolve(process.cwd() + '/test/data/config/invalid.json')
-        });
-
-        return result.catch(function () {
-            const called = console.error.calledOnce;
-
-            console.error.restore();
-
-            expect(called).to.equal(true);
-        });
-    });
-
-    it('should print error when no files are passed', function () {
-        sinon.spy(console, 'error');
-
-        const result = cli({
-            args: []
-        });
-
-        return result.catch(function () {
-            const called = console.error.calledOnce;
-
-            console.error.restore();
-
-            expect(called).to.equal(true);
-        });
-    });
-
     it('should exit with a non-zero status code when lint errors were found', function () {
-        sinon.spy(console, 'log');
-
         const result = cli({
             args: [path.dirname(__dirname) + '/data/files/file.less'],
             config: path.resolve(process.cwd() + '/lib/config/defaults.json')
         });
 
-        return result.catch(function (status) {
-            console.log.restore();
-
-            expect(status).to.equal(1);
+        return result.catch(function (result) {
+            expect(result.status).to.equal(1);
         });
     });
 
@@ -80,8 +43,8 @@ describe('cli', function () {
             maxWarnings: '0',
         });
 
-        return result.catch(function (status) {
-            expect(status).to.equal(1);
+        return result.catch(function (result) {
+            expect(result.status).to.equal(1);
         });
     });
 
@@ -94,8 +57,8 @@ describe('cli', function () {
             maxWarnings: '2',
         });
 
-        return result.catch(function (status) {
-            expect(status).to.equal(1);
+        return result.catch(function (result) {
+            expect(result.status).to.equal(1);
         });
     });
 
@@ -146,8 +109,8 @@ describe('cli', function () {
             args: []
         });
 
-        return result.catch(function (status) {
-            expect(status).to.equal(66);
+        return result.catch(function (result) {
+            expect(result.status).to.equal(66);
         });
     });
 
@@ -157,8 +120,8 @@ describe('cli', function () {
             config: path.resolve(process.cwd() + '/test/data/config/invalid.json')
         });
 
-        return result.catch(function (status) {
-            expect(status).to.equal(78);
+        return result.catch(function (result) {
+            expect(result.status).to.equal(78);
         });
     });
 
@@ -197,80 +160,48 @@ describe('cli', function () {
     });
 
     it('should load linters (command-line parameter only)', function () {
-        sinon.spy(console, 'log');
-
         const result = cli({
             args: [path.dirname(__dirname) + '/data/files/file.less'],
             linters: ['../test/plugins/sampleLinter']
         });
 
-        return result.catch(function (status) {
-            console.log.restore();
-
-            expect(status).to.equal(1);
+        return result.catch(function (result) {
+            expect(result.status).to.equal(1);
         });
     });
 
     it('should load linters (config file only)', function () {
-        sinon.spy(console, 'log');
-
         const result = cli({
             args: [path.dirname(__dirname) + '/data/files/file.less'],
             config: path.resolve(process.cwd() + '/test/data/config/linters.json')
         });
 
-        return result.catch(function (status) {
-            console.log.restore();
-
-            expect(status).to.equal(1);
+        return result.catch(function (result) {
+            expect(result.status).to.equal(1);
         });
     });
 
     it('should load linters (both command-line parameter and config file)', function () {
-        sinon.spy(console, 'log');
-
         const result = cli({
             args: [path.dirname(__dirname) + '/data/files/file.less'],
             config: path.resolve(process.cwd() + '/test/data/config/linters.json'),
             linters: ['../test/plugins/otherSampleLinter']
         });
 
-        return result.catch(function (status) {
-            console.log.restore();
-
-            expect(status).to.equal(1);
-        });
-    });
-
-    it('should fail loading linters if a command-line linter errors', function () {
-        sinon.spy(console, 'log');
-
-        const result = cli({
-            args: [path.dirname(__dirname) + '/data/files/file.less'],
-            config: path.resolve(process.cwd() + '/test/data/config/linters.json'),
-            linters: ['../test/plugins/failingLinter']
-        });
-
-        return result.catch(function (status) {
-            console.log.restore();
-
-            expect(status).to.equal(70);
+        return result.catch(function (result) {
+            expect(result.status).to.equal(1);
         });
     });
 
     it('should fail loading linters if a config file linter errors', function () {
-        sinon.spy(console, 'log');
-
         const result = cli({
             args: [path.dirname(__dirname) + '/data/files/file.less'],
             config: path.resolve(process.cwd() + '/test/data/config/linters-failing.json'),
             linters: ['../test/plugins/sampleLinter']
         });
 
-        return result.catch(function (status) {
-            console.log.restore();
-
-            expect(status).to.equal(78);
+        return result.catch(function (result) {
+            expect(result.status).to.equal(78);
         });
     });
 
@@ -316,8 +247,8 @@ describe('cli', function () {
             reporter: 'invalid-reporter'
         });
 
-        return result.catch(function (status) {
-            expect(status).to.equal(78);
+        return result.catch(function (result) {
+            expect(result.status).to.equal(78);
         });
     });
 
@@ -327,23 +258,19 @@ describe('cli', function () {
             config: path.dirname(__dirname) + '/data/config/bad.json'
         });
 
-        return result.catch(function (status) {
-            expect(status).to.equal(70);
+        return result.catch(function (result) {
+            expect(result.status).to.equal(70);
         });
     });
 
     it('should exit with a error status code when there is at least one result with a severity of "error"', function () {
-        sinon.spy(console, 'log');
-
         const result = cli({
             args: [path.dirname(__dirname) + '/data/files/file.less'],
             config: path.dirname(__dirname) + '/data/config/severity-error.json'
         });
 
-        return result.catch(function (status) {
-            console.log.restore();
-
-            expect(status).to.equal(2);
+        return result.catch(function (result) {
+            expect(result.status).to.equal(2);
         });
     });
 });
