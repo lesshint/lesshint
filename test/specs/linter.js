@@ -15,7 +15,7 @@ describe('linter', function () {
     describe('lint', function () {
         it('should return array of errors', function () {
             const source = '.foo{ color:red; }\n';
-            const path = 'test.less';
+            const testPath = 'test.less';
             const config = {
                 spaceAfterPropertyColon: {
                     enabled: true,
@@ -27,18 +27,18 @@ describe('linter', function () {
                 }
             };
 
-            const results = linter.lint(source, path, config);
+            const results = linter.lint(source, testPath, config);
 
             expect(results).to.have.length(2);
         });
 
         it('should handle all sorts of line endings (#40)', function () {
             const source = '.foo {\r\n margin-right:10px; }\r\n';
-            const path = 'test.less';
+            const testPath = path.resolve(process.cwd(), 'test.less');
             const expected = [{
                 column: 15,
                 file: 'test.less',
-                fullPath: 'test.less',
+                fullPath: testPath,
                 line: 2,
                 linter: 'spaceAfterPropertyColon',
                 message: 'Colon after property name should be followed by one space.',
@@ -54,18 +54,18 @@ describe('linter', function () {
                 }
             };
 
-            const result = linter.lint(source, path, options);
+            const result = linter.lint(source, testPath, options);
 
             expect(result).to.deep.equal(expected);
         });
 
         it('should pass the filename to the errors list', function () {
             const source = '.foo{ color: red; }\n';
-            const path = 'path/to/file.less';
+            const testPath = path.resolve(process.cwd(), './path/to/file.less');
             const expected = [{
                 column: 5,
                 file: 'file.less',
-                fullPath: 'path/to/file.less',
+                fullPath: testPath,
                 line: 1,
                 linter: 'spaceBeforeBrace',
                 message: 'Opening curly brace should be preceded by one space.',
@@ -81,19 +81,19 @@ describe('linter', function () {
                 }
             };
 
-            const result = linter.lint(source, path, config);
+            const result = linter.lint(source, testPath, config);
 
             expect(result).to.deep.equal(expected);
         });
 
         it('should sort results by column and line number', function () {
             const source = '[type="text"], [type=email] {\nmargin-right: 10px;\ncolor: red;\ncolor: blue;\n}';
-            const path = 'path/to/file.less';
+            const testPath = path.resolve(process.cwd(), './path/to/file.less');
             const expected = [
                 {
                     column: 7,
                     file: 'file.less',
-                    fullPath: 'path/to/file.less',
+                    fullPath: testPath,
                     line: 1,
                     linter: 'stringQuotes',
                     message: 'Strings should use single quotes.',
@@ -104,7 +104,7 @@ describe('linter', function () {
                 {
                     column: 22,
                     file: 'file.less',
-                    fullPath: 'path/to/file.less',
+                    fullPath: testPath,
                     line: 1,
                     linter: 'attributeQuotes',
                     message: 'Attribute selectors should use quotes.',
@@ -115,7 +115,7 @@ describe('linter', function () {
                 {
                     column: 1,
                     file: 'file.less',
-                    fullPath: 'path/to/file.less',
+                    fullPath: testPath,
                     line: 3,
                     linter: 'propertyOrdering',
                     message: 'Property ordering is not alphabetized',
@@ -126,7 +126,7 @@ describe('linter', function () {
                 {
                     column: 1,
                     file: 'file.less',
-                    fullPath: 'path/to/file.less',
+                    fullPath: testPath,
                     line: 4,
                     linter: 'duplicateProperty',
                     message: 'Duplicate property: "color".',
@@ -153,45 +153,45 @@ describe('linter', function () {
                 }
             };
 
-            const result = linter.lint(source, path, config);
+            const result = linter.lint(source, testPath, config);
 
             expect(result).to.deep.equal(expected);
         });
 
         it('should not call disabled linters', function () {
             const source = '.foo{}';
-            const path = 'test.less';
+            const testPath = 'test.less';
             const config = {
                 spaceBeforeBrace: {
                     enabled: false
                 }
             };
 
-            const result = linter.lint(source, path, config);
+            const result = linter.lint(source, testPath, config);
 
             expect(result).to.have.length(0);
         });
 
         it('should not call linters disabled via shorthand', function () {
             const source = '.foo{}';
-            const path = 'test.less';
+            const testPath = 'test.less';
             const config = {
                 spaceBeforeBrace: false
             };
 
-            const result = linter.lint(source, path, config);
+            const result = linter.lint(source, testPath, config);
 
             expect(result).to.have.length(0);
         });
 
         it('should not call linter for unwanted node types', function () {
             const source = '.foo {}';
-            const path = 'test.less';
+            const testPath = 'test.less';
             const config = {
                 stringQuotes: true
             };
 
-            const result = linter.lint(source, path, config);
+            const result = linter.lint(source, testPath, config);
 
             // String quotes should never be called since there no strings in the input
             expect(result).to.have.length(0);
@@ -199,11 +199,11 @@ describe('linter', function () {
 
         it('should allow override of result severity', function () {
             const source = '.foo { color:red; }\n';
-            const path = 'test.less';
+            const testPath = path.resolve(process.cwd(), 'test.less');
             const expected = [{
                 column: 14,
                 file: 'test.less',
-                fullPath: 'test.less',
+                fullPath: testPath,
                 line: 1,
                 linter: 'spaceAfterPropertyColon',
                 message: 'Colon after property name should be followed by one space.',
@@ -220,17 +220,18 @@ describe('linter', function () {
                 }
             };
 
-            const result = linter.lint(source, path, config);
+            const result = linter.lint(source, testPath, config);
 
             expect(result).to.deep.equal(expected);
         });
 
         it('should only care about the first inline comment', function () {
+            const testPath = path.resolve(process.cwd(), './test/data/inline-options/file-options-enabled.less');
             const source = readFileSync('./test/data/inline-options/file-options-enabled.less');
             const expected = [{
                 column: 5,
                 file: 'file-options-enabled.less',
-                fullPath: 'file-options-enabled.less',
+                fullPath: testPath,
                 line: 6,
                 linter: 'spaceBeforeBrace',
                 message: 'Opening curly brace should be preceded by one space.',
@@ -251,17 +252,18 @@ describe('linter', function () {
                 }
             };
 
-            const result = linter.lint(source, 'file-options-enabled.less', config);
+            const result = linter.lint(source, testPath, config);
 
             expect(result).to.deep.equal(expected);
         });
 
         it('should not report rules that are disabled inline', function () {
+            const testPath = path.resolve(__dirname, './test/data/inline-options/file-options-enabled.less');
             const source = readFileSync('./test/data/inline-options/file-options-enabled.less');
             const expected = [{
                 column: 5,
-                file: 'rule-options.less',
-                fullPath: 'rule-options.less',
+                file: 'file-options-enabled.less',
+                fullPath: testPath,
                 line: 6,
                 linter: 'spaceBeforeBrace',
                 message: 'Opening curly brace should be preceded by one space.',
@@ -282,17 +284,18 @@ describe('linter', function () {
                 }
             };
 
-            const result = linter.lint(source, 'rule-options.less', config);
+            const result = linter.lint(source, testPath, config);
 
             expect(result).to.deep.equal(expected);
         });
 
         it('should allow disabled rules to be enabled inline', function () {
+            const testPath = path.resolve(__dirname, './test/data/inline-options/file-options-disabled.less');
             const source = readFileSync('./test/data/inline-options/file-options-disabled.less');
             const expected = [{
                 column: 11,
-                file: 'rule-options.less',
-                fullPath: 'rule-options.less',
+                file: 'file-options-disabled.less',
+                fullPath: testPath,
                 line: 3,
                 linter: 'spaceAfterPropertyColon',
                 message: 'Colon after property name should be followed by one space.',
@@ -301,8 +304,8 @@ describe('linter', function () {
                 source: '    color:red;'
             }, {
                 column: 1,
-                file: 'rule-options.less',
-                fullPath: 'rule-options.less',
+                file: 'file-options-disabled.less',
+                fullPath: testPath,
                 line: 6,
                 linter: 'emptyRule',
                 message: "There shouldn't be any empty rules present.",
@@ -320,17 +323,18 @@ describe('linter', function () {
                 }
             };
 
-            const result = linter.lint(source, 'rule-options.less', config);
+            const result = linter.lint(source, testPath, config);
 
             expect(result).to.deep.equal(expected);
         });
 
         it('should not report rules that are disabled on a single line', function () {
+            const testPath = path.resolve(__dirname, './test/data/inline-options/line-options.less');
             const source = readFileSync('./test/data/inline-options/line-options.less');
             const expected = [{
                 column: 5,
                 file: 'line-options.less',
-                fullPath: 'line-options.less',
+                fullPath: testPath,
                 line: 5,
                 linter: 'spaceBeforeBrace',
                 message: 'Opening curly brace should be preceded by one space.',
@@ -346,7 +350,7 @@ describe('linter', function () {
                 }
             };
 
-            const result = linter.lint(source, 'line-options.less', config);
+            const result = linter.lint(source, testPath, config);
 
             expect(result).to.deep.equal(expected);
         });
@@ -361,15 +365,15 @@ describe('linter', function () {
 
         it('should not report comma spaces for selectors that have pseudos', function () {
             const source = '.foo,\n.bar:not(.foo){}';
-            const path = 'test.less';
-            const result = linter.lint(source, path, {});
+            const testPath = 'test.less';
+            const result = linter.lint(source, testPath, {});
 
             expect(result).to.have.length(0);
         });
 
         it('should load a custom linter (as a require path)', function () {
             const source = '// boo!\n';
-            const path = 'test.less';
+            const testPath = path.resolve(process.cwd(), 'test.less');
             const config = {
                 linters: ['../test/plugins/sampleLinter'],
                 sample: true
@@ -378,7 +382,7 @@ describe('linter', function () {
             const expected = [{
                 column: 1,
                 file: 'test.less',
-                fullPath: 'test.less',
+                fullPath: testPath,
                 line: 1,
                 linter: 'sample',
                 message: 'Sample error.',
@@ -387,14 +391,14 @@ describe('linter', function () {
                 source: source.trim()
             }];
 
-            const result = linter.lint(source, path, config);
+            const result = linter.lint(source, testPath, config);
 
             expect(result).to.deep.equal(expected);
         });
 
         it('should load a custom linter (as a passed linter)', function () {
             const source = '// boo!\n';
-            const path = 'test.less';
+            const testPath = path.resolve(process.cwd(), 'test.less');
             const config = {
                 linters: [require('../plugins/sampleLinter')],
                 sample: true
@@ -403,7 +407,7 @@ describe('linter', function () {
             const expected = [{
                 column: 1,
                 file: 'test.less',
-                fullPath: 'test.less',
+                fullPath: testPath,
                 line: 1,
                 linter: 'sample',
                 message: 'Sample error.',
@@ -412,7 +416,7 @@ describe('linter', function () {
                 source: source.trim()
             }];
 
-            const result = linter.lint(source, path, config);
+            const result = linter.lint(source, testPath, config);
 
             expect(result).to.deep.equal(expected);
         });
