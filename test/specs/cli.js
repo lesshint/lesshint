@@ -71,8 +71,8 @@ describe('cli', function () {
             maxWarnings: '2',
         });
 
-        return result.then(function (status) {
-            expect(status).to.equal(0);
+        return result.then(function (result) {
+            expect(result.status).to.equal(0);
         });
     });
 
@@ -85,8 +85,8 @@ describe('cli', function () {
             maxWarnings: '999',
         });
 
-        return result.then(function (status) {
-            expect(status).to.equal(0);
+        return result.then(function (result) {
+            expect(result.status).to.equal(0);
         });
     });
 
@@ -99,8 +99,8 @@ describe('cli', function () {
             maxWarnings: '-1',
         });
 
-        return result.then(function (status) {
-            expect(status).to.equal(0);
+        return result.then(function (result) {
+            expect(result.status).to.equal(0);
         });
     });
 
@@ -131,8 +131,8 @@ describe('cli', function () {
             exclude: '*.less'
         });
 
-        return result.then(function (status) {
-            expect(status).to.equal(0);
+        return result.then(function (result) {
+            expect(result.status).to.equal(0);
         });
     });
 
@@ -142,8 +142,8 @@ describe('cli', function () {
             config: path.dirname(__dirname) + '/data/config/config.json'
         });
 
-        return result.then(function (status) {
-            expect(status).to.equal(0);
+        return result.then(function (result) {
+            expect(result.status).to.equal(0);
         });
     });
 
@@ -154,8 +154,8 @@ describe('cli', function () {
             exclude: 'exclude-me-too.less'
         });
 
-        return result.then(function (status) {
-            expect(status).to.equal(0);
+        return result.then(function (result) {
+            expect(result.status).to.equal(0);
         });
     });
 
@@ -211,8 +211,8 @@ describe('cli', function () {
             reporter: 'default'
         });
 
-        return result.then(function (status) {
-            expect(status).to.equal(0);
+        return result.then(function (result) {
+            expect(result.status).to.equal(0);
         });
     });
 
@@ -222,8 +222,8 @@ describe('cli', function () {
             reporter: path.resolve(__dirname, '../../lib/reporters/default.js')
         });
 
-        return result.then(function (status) {
-            expect(status).to.equal(0);
+        return result.then(function (result) {
+            expect(result.status).to.equal(0);
         });
     });
 
@@ -236,8 +236,8 @@ describe('cli', function () {
             }
         });
 
-        return result.then(function (status) {
-            expect(status).to.equal(0);
+        return result.then(function (result) {
+            expect(result.status).to.equal(0);
         });
     });
 
