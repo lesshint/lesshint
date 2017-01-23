@@ -22,13 +22,11 @@ program
     .parse(process.argv);
 
 const output = function (result) {
-    const { message, status } = result;
-
-    if (message) {
-        console.error(message);
+    if (result.message) {
+        console.error(result.message);
     }
 
-    process.exitCode = status.valueOf();
+    process.exitCode = result.status;
 };
 
 cli(program)
