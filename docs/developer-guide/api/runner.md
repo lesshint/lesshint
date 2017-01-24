@@ -1,6 +1,6 @@
 # Runner class
 
-Start by initializing a `runner` instance.
+The `Runner` class can be used to access the backbone of the CLI. To use it, start by initializing a `runner` instance.
 
 ```js
 const Runner = require('lesshint').Runner;

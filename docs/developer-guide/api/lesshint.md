@@ -1,6 +1,6 @@
 # Lesshint class
 
-Start by initalizing a `lesshint` instance.
+The `Lesshint` class is the core of `lesshint`, from here all operations can be performed. To use it, start by initalizing a `lesshint` instance.
 
 ```js
 const Lesshint = require('lesshint').Lesshint;
