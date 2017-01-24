@@ -26,7 +26,7 @@ const runner = new Runner(options);
 ## `Runner.run()`
 Run `lesshint` as if used through the CLI. All rule checks will be performed and reporters called.
 
-A `Promise` will be returned. On failure, a `Runner` error object with a `status` property corresponding to a [CLI exit status code](/#exit-status-codes) will be returned.
+A `Promise` will be returned. On failure, a `Runner` error object with a `status` property corresponding to a [CLI exit status code](/README.md#exit-status-codes) will be returned.
 
 ```js
 const result = runner.run();
