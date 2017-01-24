@@ -1,5 +1,5 @@
 # Configuring lesshint
-Start by creating a `.lesshintrc` file in your project root and add your settings to it. It will be automatically loaded and merged with the default values. If no `.lesshintrc` file is found in the current working directory, it'll traverse up the directory structure looking for one, stopping once it finds one or reaches the root directory.
+Start by creating a `.lesshintrc` file in your project root and add your settings to it. It will be automatically loaded and merged with the default values. If no `.lesshintrc` file is found in the current working directory, `lesshint` will traverse up the directory structure looking for one, stopping once it finds one or reaches the root directory.
 
 In the `.lesshintrc` file, each option is specified by its own JSON object, for example:
 
@@ -85,11 +85,19 @@ Array of [minimatch glob patterns](https://github.com/isaacs/minimatch) or a fil
 ```
 
 ### linters
-It's also possible to define your own linters to add to the built-in list. These can be the linters themselves or require paths relative to your current working directory. For example:
+It's also possible to define your own linters to add to the built-in list. These can be the linters themselves or require paths relative to your current working directory. Note that any custom linters will need to be enabled before they can be used. For example:
 
 ```js
 "linters": [
     "./plugins/linters/sampleLinter",
     require("./plugins/linters/otherSampleLinter")
 ]
+
+"sample": {
+    "enabled": true
+},
+
+"otherSample": {
+    "enabled": true
+}
 ```

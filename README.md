@@ -9,6 +9,7 @@
 * [Installation](#installation)
 * [Configuration](#configuration)
 * [CLI usage](#cli-usage)
+* [Linters](#linters)
 * [Reporters](#reporters)
 * [Developer resources](#developer-resources)
 
@@ -24,7 +25,7 @@ npm install lesshint
 ## Configuration
 For information on how to configure `lesshint` and other available options, see the [user guide](/docs/user-guide/configuration.md).
 
-Since `lesshint` is highly customizable we recommend you to also take a look at the [available linter options](/lib/linters/README.md) to tailor it to your needs.
+Since `lesshint` is highly customizable we recommend you to also take a look at the [available rule options](/lib/linters/README.md) to tailor it to your needs.
 
 ## CLI usage
 Run `lesshint` from the command-line by passing one or more files/directories to recursively scan.
@@ -37,7 +38,7 @@ Available Flags         | Description
 ----------------------|---------------------
 `-c`/`--config`       | Specify the configuration file to use (will be merged with defaults).
 `-e`/`--exclude`      | A [minimatch glob pattern](https://github.com/isaacs/minimatch) or a file to exclude from being linted.
-`-l`/`--linters`      | Paths to custom linters to add to the built-in list.
+`-l`/`--linters`      | Paths to custom linters to add to the built-in list. See "Linters" below for more information.
 `-r`/`--reporter`     | The reporter to use. See "Reporters" below for more information.
 `-V`/`--version`      | Show the version.
 `-x`/`--max-warnings` | Number of warnings to allow before exiting with a non-zero code. Passing `-1` will allow any number of warnings to pass.
@@ -55,6 +56,11 @@ Exit status code   | Description
 `78`               | Something is wrong with the config file, most likely invalid JSON.
 
 These codes were chosen with regards to the [preferable exit codes](http://www.gsp.com/cgi-bin/man.cgi?section=3&topic=sysexits).
+
+## Linters
+In addition to the linters included with `lesshint`, it's also possible to include custom ones. For example to check something team or project specific.
+
+For more information on using custom linters, see the [user guide](/docs/user-guide/linters.md).
 
 ## Reporters
 Reporters are small modules that can be used to perform actions with the lint results, for example printing something to the terminal or generate custom reports.
