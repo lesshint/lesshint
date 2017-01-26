@@ -89,8 +89,7 @@ It's also possible to define your own linters to add to the built-in list. These
 
 ```js
 "linters": [
-    "./plugins/linters/sampleLinter",
-    require("./plugins/linters/otherSampleLinter")
+    "/path/to/sample-linter.js"
 ]
 
 "sample": {
