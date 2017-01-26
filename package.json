@@ -2,7 +2,7 @@
   "name": "lesshint",
   "description": "A tool to aid you in writing clean and consistent Less.",
   "version": "2.4.0",
-  "main": "./lib/lesshint.js",
+  "main": "./lib/index.js",
   "author": {
     "name": "Jonathan Wilsson",
     "email": "jonathan.wilsson@gmail.com"

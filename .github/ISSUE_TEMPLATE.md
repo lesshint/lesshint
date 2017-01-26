@@ -10,7 +10,15 @@ Not all headers below are relevant for all issues, if something's irrelevant, ju
 
 **What's your `.lesshintrc` configuration?**
 
+```js
+// Code here
+```
+
 **If you're reporting a bug, please show us some code that's failing.**
+
+```less
+// Code here
+```
 
 **What did you expect to happen?**
 

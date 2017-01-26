@@ -21,10 +21,14 @@ program
     .option('-x, --max-warnings [int]', 'Number of warnings to trigger nonzero exit code, defaults to 0')
     .parse(process.argv);
 
+const output = function (result) {
+    if (result.message) {
+        console.error(result.message);
+    }
+
+    process.exitCode = result.status;
+};
+
 cli(program)
-    .then((status) => {
-        process.exitCode = status.valueOf();
-    })
-    .catch((status) => {
-        process.exitCode = status.valueOf();
-    });
+    .then(output)
+    .catch(output);

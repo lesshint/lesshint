@@ -128,9 +128,16 @@ It's also possible to define your own linters to add to the built-in list. These
 
 ```js
 "linters": [
-    "./plugins/linters/sampleLinter",
-    require("./plugins/linters/otherSampleLinter")
-]
+    "/path/to/sample-linter.js"
+],
+
+"sample": {
+    "enabled": true
+},
+
+"otherSample": {
+    "enabled": true
+}
 ```
 
 
@@ -178,6 +185,7 @@ module.exports = {
         // Return the results
         return results;
     }
+};
 ```
 
 We highly recommend the following resources which are all included with `lesshint`.
