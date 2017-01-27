@@ -458,7 +458,7 @@ describe('lesshint', function () {
         }); // "invalid"
     });
 
-    it('should have the proper node types', function () {
+    it('should ignore comma in the wrong place', function () {
         const source = 'color: rgb(255, 255, 255),';
         const options = {
             style: 'after'
