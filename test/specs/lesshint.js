@@ -1,7 +1,9 @@
 'use strict';
 
 const expect = require('chai').expect;
+const rimraf = require('rimraf');
 const path = require('path');
+const fs = require('fs');
 
 describe('lesshint', function () {
     const testDir = path.join(path.dirname(__dirname), '/data/files');
@@ -110,6 +112,23 @@ describe('lesshint', function () {
                 expect(result).to.have.length(3);
             });
         });
+
+        it('should reject on inaccessible paths', function () {
+            const lesshint = new Lesshint();
+
+            lesshint.configure();
+
+            const filePath = testDir + '/tmp.less';
+
+            fs.writeFileSync(filePath, '');
+            fs.chmodSync(filePath, 222); // Don't allow read access
+
+            return lesshint.checkDirectory(filePath).catch(function (err) {
+                expect(err).to.be.an.instanceof(Error);
+
+                rimraf(filePath, function () {});
+            });
+        });
     });
 
     describe('checkFile', function () {
@@ -120,6 +139,23 @@ describe('lesshint', function () {
 
             return lesshint.checkFile(testDir + '/file.less').then(function (result) {
                 expect(result).to.have.length(1);
+            });
+        });
+
+        it('should reject on inaccessible files', function () {
+            const lesshint = new Lesshint();
+
+            lesshint.configure();
+
+            const filePath = testDir + '/tmp.less';
+
+            fs.writeFileSync(filePath, '');
+            fs.chmodSync(filePath, 222); // Don't allow read access
+
+            return lesshint.checkFile(filePath).catch(function (err) {
+                expect(err).to.be.an.instanceof(Error);
+
+                rimraf(filePath, function () {});
             });
         });
     });
@@ -160,6 +196,23 @@ describe('lesshint', function () {
 
             return lesshint.checkPath(testPath).then(function (result) {
                 expect(result).to.have.length(0);
+            });
+        });
+
+        it('should reject on inaccessible paths', function () {
+            const lesshint = new Lesshint();
+
+            lesshint.configure();
+
+            const filePath = testDir + '/tmp.less';
+
+            fs.writeFileSync(filePath, '');
+            fs.chmodSync(filePath, 222); // Don't allow read access
+
+            return lesshint.checkPath(filePath).catch(function (err) {
+                expect(err).to.be.an.instanceof(Error);
+
+                rimraf(filePath, function () {});
             });
         });
     });
