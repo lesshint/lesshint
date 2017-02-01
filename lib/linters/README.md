@@ -34,6 +34,7 @@
 * [trailingWhitespace](#trailingwhitespace)
 * [urlFormat](#urlformat)
 * [urlQuotes](#urlquotes)
+* [variableOnly](#variableonly)
 * [zeroUnit](#zerounit)
 
 In addition to the linter specific options outlined below, each linter also accepts these options:
@@ -851,6 +852,27 @@ The [CSS spec](http://dev.w3.org/csswg/css-values/#url-value) also recommends th
 ```less
 .foo {
     background-image: url('img/image.jpg');
+}
+```
+
+## variableOnly
+Allow variable only as property value.
+
+Option     | Description
+---------- | ----------
+`properties`    | Array of property names
+
+### ['color'] valid
+```less
+.foo {
+    color: @success;
+}
+```
+
+### ['color'] invalid
+```less
+.foo {
+    color: #333;
 }
 ```
 
