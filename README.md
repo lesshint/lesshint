@@ -41,7 +41,7 @@ Available Flags         | Description
 `-l`/`--linters`      | Paths to custom linters to add to the built-in list. See "Linters" below for more information.
 `-r`/`--reporter`     | The reporter to use. See "Reporters" below for more information.
 `-V`/`--version`      | Show the version.
-`-x`/`--max-warnings` | Number of warnings to allow before exiting with a non-zero code. Passing `-1` will allow any number of warnings to pass.
+`-x`/`--max-warnings` | Number of warnings to allow before exiting with a non-zero code.
 
 ### Exit status codes
 Depending on the linter results and options supplied, the exit status code returned by the CLI will differ.
