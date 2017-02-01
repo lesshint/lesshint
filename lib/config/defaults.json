@@ -187,5 +187,10 @@
     "zeroUnit": {
         "enabled": true,
         "style": "keep_unit"
+    },
+
+    "variableOnly": {
+        "enabled": false,
+        "properties": []
     }
 }
