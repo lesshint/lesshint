@@ -4,7 +4,7 @@ const expect = require('chai').expect;
 const spec = require('../util.js').setup();
 
 describe('lesshint', function () {
-    describe('#variableOnly()', function () {
+    describe('#variableValue()', function () {
         it('should have the proper node types', function () {
             const source = 'color: #ABC;';
 

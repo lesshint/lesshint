@@ -34,7 +34,7 @@
 * [trailingWhitespace](#trailingwhitespace)
 * [urlFormat](#urlformat)
 * [urlQuotes](#urlquotes)
-* [variableOnly](#variableonly)
+* [variableValue](#variablevalue)
 * [zeroUnit](#zerounit)
 
 In addition to the linter specific options outlined below, each linter also accepts these options:
@@ -855,8 +855,8 @@ The [CSS spec](http://dev.w3.org/csswg/css-values/#url-value) also recommends th
 }
 ```
 
-## variableOnly
-Allow variable only as property value.
+## variableValue
+Allow variable value only as property value.
 
 Option     | Description
 ---------- | ----------

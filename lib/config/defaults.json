@@ -189,8 +189,8 @@
         "style": "keep_unit"
     },
 
-    "variableOnly": {
-        "enabled": false,
+    "variableValue": {
+        "enabled": true,
         "properties": []
     }
 }
