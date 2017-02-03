@@ -1,4 +1,17 @@
 # Changelog
+## 2.4.0 (2016-12-14)
+* Added a `allowSingleLineRules` option to `singleLinePerProperty`. ([52879a7](https://github.com/lesshint/lesshint/commit/52879a7acfe4bba6d532a8a231b338616a5ce42c))
+* Added a `position` field to results. ([6292387](https://github.com/lesshint/lesshint/commit/62923873b287ed1a347532eac233e8347a5213af))
+* Test console spies are now restored before doing assertions. ([00f2f1d](https://github.com/lesshint/lesshint/commit/00f2f1d8b16740b83e6456676ed16193b942c66c))
+* Added issue and PR templates. ([33f767d](https://github.com/lesshint/lesshint/commit/33f767de2ef3119024088cfecf8ec95f4c927e2e))
+* Fixed a "there's"/"there are" typo in the README. ([31e5eb3](https://github.com/lesshint/lesshint/commit/31e5eb3043c1f0b2d61b9b3c7347fd008d8d04ee))
+
+## 2.3.0 (2016-11-29)
+* Added a `-x`/`--max-warnings` CLI flag. ([21e184d](https://github.com/lesshint/lesshint/commit/21e184d1006317bd60e7b5b98b2d52edfe0fc90c))
+* Added a JSON reporter. ([a69bdee](https://github.com/lesshint/lesshint/commit/a69bdee9d48502bf1fa266c583d06d7129dfe8f8))
+* Reporters can now also be objects and not just file paths.  ([376940c](https://github.com/lesshint/lesshint/commit/376940c0923bcd6b72138518a8dc6694639d662f))
+* Fixed a "is"/"are" typo in the README. ([282fdea](https://github.com/lesshint/lesshint/commit/282fdea03ad8cc0f4a88e4d96e6ecadb539beef5))
+
 ## 2.2.1 (2016-10-30)
 * Fixed a `newlineAfterBlock` regression from `2.2.0`. ([117a2b5](https://github.com/lesshint/lesshint/commit/117a2b55bd44f508a334f1b7b540afc44702bd61))
 

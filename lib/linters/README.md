@@ -532,6 +532,10 @@ camel case         | .btnPrimary        | `disallowUnderscore`, `disallowDash`
 ## singleLinePerProperty
 Each property should be on its own line.
 
+Option                  | Description
+----------------------- | ------------
+`allowSingleLineRules`  | `false` (**default**), `true`
+
 ### invalid
 ```less
 .foo {

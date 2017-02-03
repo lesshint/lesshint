@@ -1,18 +1,16 @@
 'use strict';
 
-var expect = require('chai').expect;
-var rimraf = require('rimraf');
-var path = require('path');
-var fs = require('fs');
+const expect = require('chai').expect;
+const rimraf = require('rimraf');
+const path = require('path');
+const fs = require('fs');
 
 describe('config-loader', function () {
-    var configLoader = require('../../lib/config-loader');
+    const configLoader = require('../../lib/config-loader');
 
     it('should load the specified config file', function () {
-        var config = path.resolve(process.cwd(), './test/data/config/config.json');
-        var result;
-
-        var expected = {
+        const config = path.resolve(process.cwd(), './test/data/config/config.json');
+        const expected = {
             excludedFiles: ['vendor.less', 'exclude-me-too.less'],
 
             spaceAfterPropertyColon: {
@@ -26,16 +24,14 @@ describe('config-loader', function () {
             }
         };
 
-        result = configLoader(config);
+        const result = configLoader(config);
 
         expect(result).to.deep.equal(expected);
     });
 
     it('should load .lesshintrc if no config file is passed', function () {
-        var filePath = path.resolve(process.cwd(), './.lesshintrc');
-        var result;
-
-        var expected = {
+        const filePath = path.resolve(process.cwd(), './.lesshintrc');
+        const expected = {
             spaceBeforeBrace: {
                 enabled: true,
                 style: 'one_space'
@@ -44,7 +40,7 @@ describe('config-loader', function () {
 
         fs.writeFileSync(filePath, JSON.stringify(expected));
 
-        result = configLoader();
+        const result = configLoader();
 
         expect(result).to.deep.equal(expected);
 
@@ -52,9 +48,35 @@ describe('config-loader', function () {
     });
 
     it('should strip BOM from config files', function () {
-        var config = path.resolve(process.cwd(), './test/data/config/bom.json');
-        var loader = configLoader.bind(null, config);
+        const config = path.resolve(process.cwd(), './test/data/config/bom.json');
+        const loader = configLoader.bind(null, config);
 
         expect(loader).to.not.throw(Error);
+    });
+
+    it('should load a config file when passed one', function () {
+        const configPath = path.join(path.dirname(__dirname), '/data/config/config.json');
+        const expected = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+        const config = configLoader(configPath);
+
+        expect(config).to.deep.equal(expected);
+    });
+
+    it('should look for a .lesshintrc file when passed a directory', function () {
+        const configPath = path.resolve(__dirname, '../.lesshintrc');
+        const expected = {
+            spaceBeforeBrace: {
+                enabled: true,
+                style: 'one_space'
+            }
+        };
+
+        fs.writeFileSync(configPath, JSON.stringify(expected));
+
+        const result = configLoader(__dirname);
+
+        expect(result).to.deep.equal(expected);
+
+        rimraf.sync(configPath);
     });
 });

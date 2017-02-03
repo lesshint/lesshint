@@ -1,8 +1,8 @@
 {
   "name": "lesshint",
   "description": "A tool to aid you in writing clean and consistent Less.",
-  "version": "2.2.1",
-  "main": "./lib/lesshint.js",
+  "version": "2.4.0",
+  "main": "./lib/index.js",
   "author": {
     "name": "Jonathan Wilsson",
     "email": "jonathan.wilsson@gmail.com"
@@ -16,29 +16,28 @@
     "lint",
     "hint"
   ],
+  "engines": {
+    "node": ">=4"
+  },
   "dependencies": {
     "commander": "^2.8.0",
-    "exit": "^0.1.2",
     "lodash.merge": "^4.0.1",
     "lodash.sortby": "^4.0.1",
     "minimatch": "^3.0.2",
     "postcss": "^5.0.19",
     "postcss-less": "^0.14.0",
     "postcss-selector-parser": "^2.0.0",
-    "postcss-values-parser": "^0.1.7",
+    "postcss-values-parser": "^1.1.0",
     "rcfinder": "^0.1.8",
-    "strip-json-comments": "^2.0.0",
-    "vow": "^0.4.9",
-    "vow-fs": "^0.3.4"
+    "strip-json-comments": "^2.0.0"
   },
   "devDependencies": {
     "chai": "^3.4.0",
     "gulp": "^3.9.0",
     "gulp-coveralls": "^0.1.4",
-    "gulp-eslint": "^2.0.0",
-    "gulp-istanbul": "^0.10.2",
+    "gulp-eslint": "^3.0.1",
+    "gulp-istanbul": "^1.1.1",
     "gulp-mocha": "^3.0.0",
-    "rewire": "^2.3.3",
     "rimraf": "^2.4.2",
     "sinon": "^1.14.1"
   },

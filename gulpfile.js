@@ -1,8 +1,8 @@
-var gulp = require('gulp');
-var istanbul = require('gulp-istanbul');
+const gulp = require('gulp');
+const istanbul = require('gulp-istanbul');
 
-gulp.task('lint', function () {
-    var eslint = require('gulp-eslint');
+gulp.task('lint', () => {
+    const eslint = require('gulp-eslint');
 
     return gulp.src(['./lib/**/*.js', './test/**/*.js'])
         .pipe(eslint())
@@ -10,14 +10,14 @@ gulp.task('lint', function () {
         .pipe(eslint.failAfterError());
 });
 
-gulp.task('coverage', ['lint'], function () {
+gulp.task('coverage', ['lint'], () => {
     return gulp.src(['./lib/**/*.js'])
         .pipe(istanbul())
         .pipe(istanbul.hookRequire());
 });
 
-gulp.task('test', ['coverage'], function () {
-    var mocha = require('gulp-mocha');
+gulp.task('test', ['coverage'], () => {
+    const mocha = require('gulp-mocha');
 
     return gulp.src(['./test/specs/**/*.js', '!./test/specs/util.js'])
         .pipe(mocha())
@@ -29,8 +29,8 @@ gulp.task('test', ['coverage'], function () {
         }));
 });
 
-gulp.task('coveralls', ['test'], function () {
-    var coveralls = require('gulp-coveralls');
+gulp.task('coveralls', ['test'], () => {
+    const coveralls = require('gulp-coveralls');
 
     return gulp.src('./coverage/lcov.info')
         .pipe(coveralls());

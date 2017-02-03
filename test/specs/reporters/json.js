@@ -2,13 +2,11 @@
 
 'use strict';
 
-var expect = require('chai').expect;
-var rewire = require('rewire');
-var sinon = require('sinon');
+const reporter = require('../../../lib/reporters/json.js');
+const expect = require('chai').expect;
+const sinon = require('sinon');
 
 describe('reporter:json', function () {
-    var reporter = rewire('../../../lib/reporters/json.js');
-
     beforeEach(function () {
         sinon.stub(process.stdout, 'write');
     });
@@ -20,8 +18,7 @@ describe('reporter:json', function () {
     });
 
     it('should print an error completely', function () {
-        var message;
-        var errors = [{
+        const errors = [{
             line: 1,
             file: 'file.less',
             linter: 'spaceBeforeBrace',
@@ -34,7 +31,7 @@ describe('reporter:json', function () {
 
         reporter.report(errors);
 
-        message = console.log.getCall(0).args[0];
+        const message = console.log.getCall(0).args[0];
 
         expect(message).to.equal(JSON.stringify(errors));
 
