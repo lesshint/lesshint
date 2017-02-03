@@ -8,7 +8,9 @@ First of all, in order to work properly, all linters are required to expose a fe
     * `config` - The config object for this linter.
     * `node` - The current node to lint.
 
-If the linter doesn't find any errors or doesn't need/want to check the passed node for some reason it should return `undefined`. If it finds something it should return an array of result objects which looks like this:
+If the linter doesn't find any errors or doesn't need/want to check the passed node for some reason it should return `undefined`. The linter doesn't need to check whether is's enabled or not, this will be checked beforehand by `lesshint`. If it's disabled, it'll never be called.
+
+If the linter finds something it should return an array of result objects which looks like this:
 
 ```js
 {
