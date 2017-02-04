@@ -132,5 +132,33 @@ describe('lesshint', function () {
                 expect(result).to.deep.equal(expected);
             });
         });
+
+        it('should report the correct line', function () {
+            const source = [
+                '.Foo,',
+                '.Bar {}'
+            ].join('\n');
+
+            const expected = [{
+                column: 1,
+                line: 1,
+                message: 'Selector "Foo" should follow naming conventions.'
+            },
+            {
+                column: 1,
+                line: 2,
+                message: 'Selector "Bar" should follow naming conventions.'
+            }];
+
+            const options = {
+                disallowUppercase: true
+            };
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.deep.equal(expected);
+            });
+        });
     });
 });
