@@ -46,7 +46,11 @@ describe('lesshint', function () {
         });
 
         it('should not allow IDs in multiple selectors for a rule', function () {
-            const source = '.foo #bar, .baz #qux {}';
+            const source = [
+                '.foo #bar,',
+                '.baz #qux {}'
+            ].join('\n');
+
             const expected = [
                 {
                     column: 6,
@@ -54,8 +58,8 @@ describe('lesshint', function () {
                     message: 'Selectors should not use IDs.'
                 },
                 {
-                    column: 17,
-                    line: 1,
+                    column: 6,
+                    line: 2,
                     message: 'Selectors should not use IDs.'
                 }
             ];
