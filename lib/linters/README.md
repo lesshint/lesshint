@@ -856,23 +856,38 @@ The [CSS spec](http://dev.w3.org/csswg/css-values/#url-value) also recommends th
 ```
 
 ## variableValue
-Allow variable value only as property value.
+Force variable or non variable value in property.
 
 Option     | Description
 ---------- | ----------
-`properties`    | Array of property names
+`always`    | Array of property names
+`never`    | Array of property names
 
-### ['color'] valid
+### always ['color'] valid
 ```less
 .foo {
     color: @success;
 }
 ```
 
-### ['color'] invalid
+### always ['color'] invalid
 ```less
 .foo {
     color: #333;
+}
+```
+
+### never ['color'] valid
+```less
+.foo {
+    color: #333;
+}
+```
+
+### never ['color'] invalid
+```less
+.foo {
+    color: @success;
 }
 ```
 

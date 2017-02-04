@@ -13,10 +13,11 @@ describe('lesshint', function () {
             });
         });
 
-        it('should ignore if property not for lint', function () {
-            const source = 'color: #333;';
+        it('should ignore if property not in lists', function () {
+            const source = 'font-weight: 700;';
             const options = {
-                properties: ['font-size']
+                always: ['font-size'],
+                never: ['color']
             };
 
             return spec.parse(source, function (ast) {
@@ -26,15 +27,27 @@ describe('lesshint', function () {
             });
         });
 
-        it('should not allow non variable value', function () {
-            const source = 'color: #333;';
+        it('should ignore if no lists', function () {
+            const source = 'font-size: #333;';
             const options = {
-                properties: ['color']
+            };
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
+        it('should not allow variable if in never list', function () {
+            const source = 'color: @app-color;';
+            const options = {
+                never: ['color']
             };
             const expected = [{
                 line: 1,
                 column: 8,
-                message: 'The value of "color" must be a variable.'
+                message: 'Variable is not allowed in "color" property.'
             }];
 
             return spec.parse(source, function (ast) {
@@ -44,10 +57,41 @@ describe('lesshint', function () {
             });
         });
 
-        it('should allow variable value', function () {
-            const source = 'color: @app-color;';
+        it('should allow non variable if in never list', function () {
+            const source = 'color: #333;';
             const options = {
-                properties: ['color']
+                never: ['color']
+            };
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
+        it('should not allow non variable if in always list', function () {
+            const source = 'color: #333;';
+            const options = {
+                always: ['color']
+            };
+            const expected = [{
+                line: 1,
+                column: 8,
+                message: 'Non variable is not allowed in "color" property.'
+            }];
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.deep.equal(expected);
+            });
+        });
+
+        it('should allow non variable if in never list', function () {
+            const source = 'color: #333;';
+            const options = {
+                never: ['color']
             };
 
             return spec.parse(source, function (ast) {
