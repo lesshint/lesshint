@@ -856,6 +856,7 @@ The [CSS spec](http://dev.w3.org/csswg/css-values/#url-value) also recommends th
 ```
 
 ## variableValue
+<<<<<<< HEAD
 Force variable or non variable value in property.
 
 Option     | Description
@@ -864,19 +865,33 @@ Option     | Description
 `never`    | Array of property names
 
 ### always ['color'] valid
+=======
+Allow variable value only as property value.
+
+Option     | Description
+---------- | ----------
+`properties`    | Array of property names
+
+### ['color'] valid
+>>>>>>> 46312e6d47c14b7c50853ac56b0e0be23abdedf3
 ```less
 .foo {
     color: @success;
 }
 ```
 
+<<<<<<< HEAD
 ### always ['color'] invalid
+=======
+### ['color'] invalid
+>>>>>>> 46312e6d47c14b7c50853ac56b0e0be23abdedf3
 ```less
 .foo {
     color: #333;
 }
 ```
 
+<<<<<<< HEAD
 ### never ['color'] valid
 ```less
 .foo {
@@ -891,6 +906,8 @@ Option     | Description
 }
 ```
 
+=======
+>>>>>>> 46312e6d47c14b7c50853ac56b0e0be23abdedf3
 ## zeroUnit
 Zero values should include a unit for consistency with other values.
 
