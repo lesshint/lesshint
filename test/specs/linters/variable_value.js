@@ -88,10 +88,10 @@ describe('lesshint', function () {
             });
         });
 
-        it('should allow non variable if in never list', function () {
-            const source = 'color: #333;';
+        it('should allow variable if in always list', function () {
+            const source = 'color: @app-color;';
             const options = {
-                never: ['color']
+                always: ['color']
             };
 
             return spec.parse(source, function (ast) {
