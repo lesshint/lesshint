@@ -175,6 +175,10 @@
         "enabled": true
     },
 
+    "universalSelector": {
+        "enabled": true
+    },
+
     "urlFormat": {
         "enabled": true,
         "style": "relative"

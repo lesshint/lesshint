@@ -32,6 +32,7 @@
 * [stringQuotes](#stringquotes)
 * [trailingSemicolon](#trailingsemicolon)
 * [trailingWhitespace](#trailingwhitespace)
+* [universalSelector](#universalselector)
 * [urlFormat](#urlformat)
 * [urlQuotes](#urlquotes)
 * [zeroUnit](#zerounit)
@@ -832,6 +833,24 @@ Option     | Description
 ```less
 .foo {
     background-image: url('img/image.jpg');
+}
+```
+
+## universalSelector
+Disallow the usage of the universal selector.
+The universal selector shouldn't be used since it'll cancel out any inheritance.
+
+### invalid
+```less
+* {
+    color: red;
+}
+```
+
+### valid
+```less
+.foo {
+    color: red;
 }
 ```
 
