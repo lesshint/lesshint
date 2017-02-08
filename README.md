@@ -3,29 +3,31 @@
 [![Build Status](https://travis-ci.org/lesshint/lesshint.svg?branch=master)](https://travis-ci.org/lesshint/lesshint)
 [![Build status](https://ci.appveyor.com/api/projects/status/d1u4477uxtv6dygk/branch/master?svg=true)](https://ci.appveyor.com/project/lesshint/lesshint/branch/master)
 [![Coverage Status](https://coveralls.io/repos/lesshint/lesshint/badge.svg?branch=master)](https://coveralls.io/r/lesshint/lesshint?branch=master)
-[![Dependency Status](https://david-dm.org/lesshint/lesshint.svg?theme=shields.io&style=flat)](https://david-dm.org/lesshint/lesshint)
-[![devDependency Status](https://david-dm.org/lesshint/lesshint/dev-status.svg?theme=shields.io&style=flat)](https://david-dm.org/lesshint/lesshint#info=devDependencies)
 
 `lesshint` is a tool to aid you in writing clean and consistent [Less](http://lesscss.org/).
 
-* [Requirements](#requirements)
 * [Installation](#installation)
 * [Configuration](#configuration)
-* [Custom linters](#custom-linters)
 * [CLI usage](#cli-usage)
+* [Linters](#linters)
 * [Reporters](#reporters)
-
-## Requirements
-[Node.js](https://nodejs.org/) 0.12 (or later) or [io.js](https://iojs.org/) 1.0 (or later).
+* [Developer resources](#developer-resources)
 
 ## Installation
-Run the following command from the command line (add `-g` to install globally):
+_[Node.js](https://nodejs.org/) 4 (or later) is required._
+
+Run the following from the command line to install `lesshint` (add `-g` to install globally):
 
 ```
 npm install lesshint
 ```
 
 ## Configuration
+<<<<<<< HEAD
+For information on how to configure `lesshint` and other available options, see the [user guide](/docs/user-guide/configuration.md).
+
+Since `lesshint` is highly customizable we recommend you to also take a look at the [available rule options](/lib/linters/README.md) to tailor it to your needs.
+=======
 `lesshint` is customizable and we highly recommend you to look at the [available options](lib/linters/README.md) to tailor it to your needs.
 
 Start by creating a `.lesshintrc` file in your project root and add your settings to it. It will be automatically loaded and merged with the default values.
@@ -193,6 +195,7 @@ We highly recommend the following resources which are all included with `lesshin
 * [postcss-less](https://github.com/webschik/postcss-less) - PostCSS Less plugin docs.
 * [postcss-selector-parser](https://github.com/postcss/postcss-selector-parser) - PostCSS plugin for working with selectors.
 * [postcss-values-parser](https://github.com/lesshint/postcss-values-parser) - PostCSS plugin for working with values.
+>>>>>>> master
 
 ## CLI usage
 Run `lesshint` from the command-line by passing one or more files/directories to recursively scan.
@@ -201,14 +204,14 @@ Run `lesshint` from the command-line by passing one or more files/directories to
 lesshint src/less/ lib/style.less
 ```
 
-Available Flags       | Description
-----------------------|----------------------------------------------
+Available Flags         | Description
+----------------------|---------------------
 `-c`/`--config`       | Specify the configuration file to use (will be merged with defaults).
 `-e`/`--exclude`      | A [minimatch glob pattern](https://github.com/isaacs/minimatch) or a file to exclude from being linted.
-`-l`/`--linters`      | Require paths of custom linters to add to the built-in list.
-`-r`/`--reporter`     | The reporter to use. See "Reporters" below for possible values.
-`-V`/`--version`      | Show version.
-`-x`/`--max-warnings` | Number of warnings to allow before exiting with a non-zero code. Passing `-1` will allow any number of warnings to pass.
+`-l`/`--linters`      | Paths to custom linters to add to the built-in list. See "Linters" below for more information.
+`-r`/`--reporter`     | The reporter to use. See "Reporters" below for more information.
+`-V`/`--version`      | Show the version.
+`-x`/`--max-warnings` | Number of warnings to allow before exiting with a non-zero code.
 
 ### Exit status codes
 Depending on the linter results and options supplied, the exit status code returned by the CLI will differ.
@@ -224,64 +227,17 @@ Exit status code   | Description
 
 These codes were chosen with regards to the [preferable exit codes](http://www.gsp.com/cgi-bin/man.cgi?section=3&topic=sysexits).
 
+## Linters
+In addition to the linters included with `lesshint`, it's also possible to include custom ones. For example to check something team or project specific.
+
+For more information on using custom linters, see the [user guide](/docs/user-guide/linters.md).
+
 ## Reporters
-Reporters can be used to perform actions with the lint results, for example printing something to the terminal or generate custom reports.
+Reporters are small modules that can be used to perform actions with the lint results, for example printing something to the terminal or generate custom reports.
 
-### The reporter loading steps
+For more information on using reporters, see the [user guide](/docs/user-guide/reporters.md).
 
-1. If nothing is passed, a simple, default reporter will be used. This will just print all the warnings/errors found.
-2. Pass the name of a Node module. If `lesshint` is installed globally only globally installed reporters are available (the normal Node module loading rules apply).
-3. Pass a absolute or relative path to a custom reporter anywhere on the disk. Relative paths will be resolved against [`process.cwd()`](https://nodejs.org/api/process.html#process_process_cwd).
-
-These steps always apply, no matter whether you're using the CLI or calling `lesshint` from code.
-
-### Using reporters from the CLI
-```bash
-lesshint --reporter my-super-awesome-reporter file.less
-lesshint --reporter /path/to/my/super/awesome/reporter.js file.less
-```
-
-### Using reporters from code
-If you're writing code which utilizes `lesshint`, for example a Gulp plugin you can use the `getReporter` method on the `lesshint` object to load a reporter using the same logic as `lesshint` does.
-
-Pass the name of a module or a path to the `getReporter` method like this:
-
-```js
-var defaultReporter = lesshint.getReporter(); //Or pass path to your custom reporter in getReporter
-var promise = lesshint.checkFile('my-less-file.less');
-
-promise.then(function(result){
-  defaultReporter.report(result);
-})
-```
-
-### Writing your own reporter
-In its simplest form, a reporter is just a function accepting some input. The most basic reporter possible:
-
-```js
-module.exports = {
-    name: 'my-super-awesome-reporter', // Not required, but recommended
-    report: function (errors) {
-        console.log(errors.length ? 'Errors found' : 'No errors');
-    }
-};
-```
-
-The reporter will be passed an array of objects representing each error:
-
-```js
-{
-    column: 5,
-    file: 'file.less',
-    fullPath: 'path/to/file.less',
-    line: 1,
-    linter: 'spaceBeforeBrace',
-    message: 'Opening curly brace should be preceded by one space.',
-    severity: 'warning',
-    source: '.foo{'
-}
-```
-
-It's then up to the reporter to do something with the errors. No `return`s or anything are needed. If running from the CLI, `lesshint` will handle the setting of correct exit codes.
-
-Take a look at the [default reporter](https://github.com/lesshint/lesshint/blob/master/lib/reporters/default.js) for more information.
+## Developer resources
+* [Node API](/docs/developer-guide/API.md) - `lesshint`'s public Node API reference.
+* [Developing linters](/docs/developer-guide/linters.md) - Guide for hacking on linters.
+* [Developing reporters](/docs/developer-guide/reporters.md) - Guide for hacking on reporters.
