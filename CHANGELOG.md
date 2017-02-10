@@ -1,4 +1,7 @@
 # Changelog
+## 3.0.1 (2017-02-10)
+* Lockdown `postcss-values-parser` to `~` range. ([7e03dbc](https://github.com/lesshint/lesshint/commit/7e03dbcd7db5a61498bc9f3bad1c23f78067877c))
+
 ## 3.0.0 (2017-02-08)
 * **Breaking** Dropped support for Node < 4. ([7a142ee](https://github.com/lesshint/lesshint/commit/7a142eec6a51c124270a4baa865cba7d8a700a7d))
 * **Breaking** The public Node API now exposes multiple classes instead of just the `Lesshint` class. ([5013aae](https://github.com/lesshint/lesshint/commit/5013aaee0d551923f3dba63d3ee832a0d4bee543))
