@@ -44,12 +44,6 @@ Available Flags         | Description
 `-V`/`--version`      | Show the version.
 `-x`/`--max-warnings` | Number of warnings to allow before exiting with a non-zero code.
 
-## Complementary tools
-* [AtomLinter plugin](https://atom.io/packages/linter-lesshint) - A Linter plugin for [Atom](https://atom.io/).
-* [autolesshint](https://www.npmjs.com/package/autolesshint) - Automagically fix errors reported by `lesshint`.
-* [Gulp plugin](https://www.npmjs.com/package/gulp-lesshint) - A gulp plugin for `lesshint`.
-* [Grunt plugin](https://www.npmjs.com/package/grunt-lesshint) - A Grunt plugin `lesshint`.
-
 ### Exit status codes
 Depending on the linter results and options supplied, the exit status code returned by the CLI will differ.
 
@@ -63,6 +57,12 @@ Exit status code   | Description
 `78`               | Something is wrong with the config file, most likely invalid JSON.
 
 These codes were chosen with regards to the [preferable exit codes](http://www.gsp.com/cgi-bin/man.cgi?section=3&topic=sysexits).
+
+## Complementary tools
+* [AtomLinter plugin](https://atom.io/packages/linter-lesshint) - A Linter plugin for [Atom](https://atom.io/).
+* [autolesshint](https://www.npmjs.com/package/autolesshint) - Automagically fix errors reported by `lesshint`.
+* [Gulp plugin](https://www.npmjs.com/package/gulp-lesshint) - A gulp plugin for `lesshint`.
+* [Grunt plugin](https://www.npmjs.com/package/grunt-lesshint) - A Grunt for plugin `lesshint`.
 
 ## Linters
 In addition to the linters included with `lesshint`, it's also possible to include custom ones. For example to check something team or project specific.
@@ -78,10 +78,3 @@ For more information on using reporters, see the [user guide](/docs/user-guide/r
 * [Node API](/docs/developer-guide/API.md) - `lesshint`'s public Node API reference.
 * [Developing linters](/docs/developer-guide/linters.md) - Guide for hacking on linters.
 * [Developing reporters](/docs/developer-guide/reporters.md) - Guide for hacking on reporters.
-
-## Other tools
-* gulp
-* grunt
-* atom
-* webpack
-* autolesshint
