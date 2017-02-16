@@ -1,4 +1,14 @@
 # Changelog
+## 3.1.0 (2017-02-16)
+* Added a `variableValue` linter. ([1a9d48d](https://github.com/lesshint/lesshint/commit/1a9d48d09e8d5eada852b428330eea40214f7c73))
+* Added a `universalSelector` linter. ([781e372](https://github.com/lesshint/lesshint/commit/781e372b48523def310fac7b32de5675952a8b0b))
+* Fixed an issue where `spaceAroundComma` would crash on stray commas. ([37aaa9a](https://github.com/lesshint/lesshint/commit/37aaa9abdc0726f7f9ac0583e7c253b51612f4ca))
+* Fixed faulty line reporting issues in:
+    * `attributeQuotes` ([998045e](https://github.com/lesshint/lesshint/commit/998045e976129287a96217acdf3efa60916c2593))
+    * `idSelector` ([c1f2808](https://github.com/lesshint/lesshint/commit/c1f28083ff6b2cd35fada47b3cd06b71415ba7c0))
+    * `propertyUnits` ([34e3c83](https://github.com/lesshint/lesshint/commit/34e3c83502f676bbf7dbc7218ff8b899d093a1a8))
+    * `selectorNaming` ([da04c37](https://github.com/lesshint/lesshint/commit/da04c370f4241c1e879fe3de19748b755ed45765))
+
 ## 3.0.1 (2017-02-10)
 * Lockdown `postcss-values-parser` to `~` range. ([7e03dbc](https://github.com/lesshint/lesshint/commit/7e03dbcd7db5a61498bc9f3bad1c23f78067877c))
 
