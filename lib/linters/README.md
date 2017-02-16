@@ -916,4 +916,4 @@ Option      | Description
 
 *Note: This rule doesn't apply to [angles](https://developer.mozilla.org/en-US/docs/Web/CSS/angle) or [time units](https://developer.mozilla.org/en-US/docs/Web/CSS/time) since they always require a unit.*
 
-Most of these rules are based on [@mdo](twitter.com/mdo)s [code guide](http://codeguide.co/#css).
+Most of these rules are based on [@mdo](https://twitter.com/mdo)'s [code guide](http://codeguide.co/#css).
