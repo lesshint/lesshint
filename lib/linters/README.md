@@ -558,6 +558,15 @@ Option                  | Description
 }
 ```
 
+### valid with `singleLineRules: true`
+```less
+.bar {
+    color: red;
+}
+
+.bar { color: red; }
+```
+
 ## singleLinePerSelector
 Each selector should be on its own line.
 
