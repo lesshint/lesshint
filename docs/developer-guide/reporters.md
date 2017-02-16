@@ -24,7 +24,7 @@ Example results array passed to reporters:
 Now, in its simplest form, a reporter is just a function accepting some input. The most basic reporter possible:
 ```js
 module.exports = {
-    name: 'my-super-awesome-reporter',
+    name: 'my-namespace/my-super-awesome-reporter',
     report: function (results) {
         console.log(results.length ? 'Errors found' : 'No errors');
     }
@@ -41,7 +41,6 @@ If you're writing code which utilizes `lesshint`, for example a Gulp plugin, you
 Pass the name of a module, a path, or a already initialized reporter object to the `getReporter` method like this:
 
 ```js
-// Passing nothing will load the default reporter but a module name, path, or reporter object could be passed instead.
 const defaultReporter = lesshint.getReporter();
 const result = lesshint.checkFile('my-less-file.less');
 
