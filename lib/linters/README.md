@@ -35,6 +35,7 @@
 * [universalSelector](#universalselector)
 * [urlFormat](#urlformat)
 * [urlQuotes](#urlquotes)
+* [variableValue](#variablevalue)
 * [zeroUnit](#zerounit)
 
 In addition to the linter specific options outlined below, each linter also accepts these options:
@@ -873,6 +874,42 @@ The [CSS spec](http://dev.w3.org/csswg/css-values/#url-value) also recommends th
 }
 ```
 
+## variableValue
+Force variable or non variable value in property.
+
+Option     | Description
+---------- | ----------
+`always`    | Array of property names
+`never`    | Array of property names
+
+### always ['color'] valid
+```less
+.foo {
+    color: @success;
+}
+```
+
+### always ['color'] invalid
+```less
+.foo {
+    color: #333;
+}
+```
+
+### never ['color'] valid
+```less
+.foo {
+    color: #333;
+}
+```
+
+### never ['color'] invalid
+```less
+.foo {
+    color: @success;
+}
+```
+
 ## zeroUnit
 Zero values should include a unit for consistency with other values.
 
@@ -898,4 +935,4 @@ Option      | Description
 
 *Note: This rule doesn't apply to [angles](https://developer.mozilla.org/en-US/docs/Web/CSS/angle) or [time units](https://developer.mozilla.org/en-US/docs/Web/CSS/time) since they always require a unit.*
 
-Most of these rules are based on [@mdo](twitter.com/mdo)s [code guide](http://codeguide.co/#css).
+Most of these rules are based on [@mdo](https://twitter.com/mdo)'s [code guide](http://codeguide.co/#css).

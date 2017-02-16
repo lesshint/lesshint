@@ -457,4 +457,17 @@ describe('lesshint', function () {
             });
         }); // "invalid"
     });
+
+    it('should ignore comma in the wrong place', function () {
+        const source = 'color: rgb(255, 255, 255),';
+        const options = {
+            style: 'after'
+        };
+
+        return spec.parse(source, function (ast) {
+            const result = spec.linter.lint(options, ast.root.first);
+            expect(result).to.be.undefined;
+        });
+    });
+
 });

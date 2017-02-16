@@ -191,5 +191,11 @@
     "zeroUnit": {
         "enabled": true,
         "style": "keep_unit"
+    },
+
+    "variableValue": {
+        "enabled": true,
+        "always": [],
+        "never": []
     }
 }

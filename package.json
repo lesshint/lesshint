@@ -1,7 +1,7 @@
 {
   "name": "lesshint",
   "description": "A tool to aid you in writing clean and consistent Less.",
-  "version": "2.4.0",
+  "version": "3.0.1",
   "main": "./lib/index.js",
   "author": {
     "name": "Jonathan Wilsson",
@@ -27,7 +27,7 @@
     "postcss": "^5.0.19",
     "postcss-less": "^0.14.0",
     "postcss-selector-parser": "^2.0.0",
-    "postcss-values-parser": "^1.1.0",
+    "postcss-values-parser": "~1.1.0",
     "rcfinder": "^0.1.8",
     "strip-json-comments": "^2.0.0"
   },

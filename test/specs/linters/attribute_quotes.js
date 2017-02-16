@@ -79,7 +79,11 @@ describe('lesshint', function () {
         });
 
         it('should check all selectors in a selector group', function () {
-            const source = 'input[type=text], input[type=text] {}';
+            const source = [
+                'input[type=text],',
+                'input[type=text] {}'
+            ].join('\n');
+
             const expected = [
                 {
                     column: 12,
@@ -87,8 +91,8 @@ describe('lesshint', function () {
                     message: 'Attribute selectors should use quotes.'
                 },
                 {
-                    column: 30,
-                    line: 1,
+                    column: 12,
+                    line: 2,
                     message: 'Attribute selectors should use quotes.'
                 }
             ];
