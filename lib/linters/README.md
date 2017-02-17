@@ -559,7 +559,7 @@ Option                  | Description
 }
 ```
 
-### valid with `singleLineRules: true`
+### valid with `allowSingleLineRules: true`
 ```less
 .bar {
     color: red;
