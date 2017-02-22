@@ -1,5 +1,4 @@
 const gulp = require('gulp');
-const istanbul = require('gulp-istanbul');
 
 gulp.task('lint', () => {
     const eslint = require('gulp-eslint');
@@ -10,23 +9,13 @@ gulp.task('lint', () => {
         .pipe(eslint.failAfterError());
 });
 
-gulp.task('coverage', ['lint'], () => {
-    return gulp.src(['./lib/**/*.js'])
-        .pipe(istanbul())
-        .pipe(istanbul.hookRequire());
-});
-
-gulp.task('test', ['coverage'], () => {
+gulp.task('test', ['lint'], () => {
     const mocha = require('gulp-mocha');
 
-    return gulp.src(['./test/specs/**/*.js', '!./test/specs/util.js'])
-        .pipe(mocha())
-        .pipe(istanbul.writeReports())
-        .pipe(istanbul.enforceThresholds({
-            thresholds: {
-                global: 95
-            }
-        }));
+    return gulp.src(['./test/specs/**/*.js', '!./test/specs/util.js'], {
+            read: false
+        })
+        .pipe(mocha());
 });
 
 gulp.task('coveralls', ['test'], () => {
