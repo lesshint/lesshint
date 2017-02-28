@@ -235,7 +235,7 @@ describe('linter', function () {
                 line: 6,
                 linter: 'spaceBeforeBrace',
                 message: 'Opening curly brace should be preceded by one space.',
-                position: 95,
+                position: 90,
                 severity: 'warning',
                 source: '.bar{'
             }];
@@ -267,7 +267,7 @@ describe('linter', function () {
                 line: 6,
                 linter: 'spaceBeforeBrace',
                 message: 'Opening curly brace should be preceded by one space.',
-                position: 95,
+                position: 90,
                 severity: 'warning',
                 source: '.bar{'
             }];
@@ -309,7 +309,7 @@ describe('linter', function () {
                 line: 6,
                 linter: 'emptyRule',
                 message: "There shouldn't be any empty rules present.",
-                position: 124,
+                position: 118,
                 severity: 'warning',
                 source: '.bar {'
             }];
@@ -338,7 +338,7 @@ describe('linter', function () {
                 line: 5,
                 linter: 'spaceBeforeBrace',
                 message: 'Opening curly brace should be preceded by one space.',
-                position: 70,
+                position: 65,
                 severity: 'warning',
                 source: '.bar{'
             }];
