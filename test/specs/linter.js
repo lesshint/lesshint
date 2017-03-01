@@ -355,6 +355,33 @@ describe('linter', function () {
             expect(result).to.deep.equal(expected);
         });
 
+        it('reports positions after multiple consecutive endline characters', function () {
+            const testPath = path.resolve(__dirname, './test/data/inline-options/endlines.less');
+            const source = readFileSync('./test/data/inline-options/endlines.less');
+            const expected = [{
+                column: 5,
+                file: 'endlines.less',
+                fullPath: testPath,
+                line: 10,
+                linter: 'spaceBeforeBrace',
+                message: 'Opening curly brace should be preceded by one space.',
+                position: 58,
+                severity: 'warning',
+                source: '.baz{'
+            }];
+
+            const config = {
+                spaceBeforeBrace: {
+                    enabled: true,
+                    style: 'one_space'
+                }
+            };
+
+            const result = linter.lint(source, testPath, config);
+
+            expect(result).to.deep.equal(expected);
+        });
+
         it('should report invalid inline options', function () {
             const source = readFileSync('./test/data/inline-options/options-invalid.less');
 
