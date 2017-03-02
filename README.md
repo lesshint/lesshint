@@ -8,6 +8,7 @@
 
 * [Installation](#installation)
 * [Configuration](#configuration)
+* [Rules](/lib/linters/README.md)
 * [CLI usage](#cli-usage)
 * [Complementary tools](#complementary-tools)
 * [Linters](#linters)
