@@ -407,6 +407,22 @@ Option       | Description
 ------------ | ----------
 `style`       | `alpha` (**default**)
 
+### invalid
+```less
+.foo {
+    color: red;
+    border: 0;
+}
+```
+
+### valid
+```less
+.foo {
+    border: 0;
+    color: red;
+}
+```
+
 ## propertyUnits
 Specify which units are allowed for property values.
 
