@@ -84,6 +84,16 @@ describe('lesshint', function () {
                 });
             });
 
+            it('should not report on negative values before a (', function () {
+                const source = 'margin-left: -(10px);';
+
+                return spec.parse(source, function (ast) {
+                    const result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.be.undefined;
+                });
+            });
+
             it('should not report on negative values in shorthands', function () {
                 const source = 'margin: -10px -1px 0px 20px;';
 
