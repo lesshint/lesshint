@@ -1,12 +1,11 @@
 'use strict';
 
+const Linter = require('../../lib/linter');
 const expect = require('chai').expect;
 const path = require('path');
 const fs = require('fs');
 
 describe('linter', function () {
-    const linter = require('../../lib/linter');
-
     const readFileSync = function (filePath) {
         return fs.readFileSync(path.resolve(process.cwd(), filePath), 'utf8')
             .replace(/\r\n|\r|\n/g, '\n'); // Normalize line endings
@@ -27,9 +26,10 @@ describe('linter', function () {
                 }
             };
 
-            const results = linter.lint(source, testPath, config);
+            const linter = new Linter(source, testPath, config);
+            const result = linter.lint();
 
-            expect(results).to.have.length(2);
+            expect(result).to.have.length(2);
         });
 
         it('should handle all sorts of line endings (#40)', function () {
@@ -47,14 +47,15 @@ describe('linter', function () {
                 source: ' margin-right:10px; }'
             }];
 
-            const options = {
+            const config = {
                 spaceAfterPropertyColon: {
                     enabled: true,
                     style: 'one_space'
                 }
             };
 
-            const result = linter.lint(source, testPath, options);
+            const linter = new Linter(source, testPath, config);
+            const result = linter.lint();
 
             expect(result).to.deep.equal(expected);
         });
@@ -81,7 +82,8 @@ describe('linter', function () {
                 }
             };
 
-            const result = linter.lint(source, testPath, config);
+            const linter = new Linter(source, testPath, config);
+            const result = linter.lint();
 
             expect(result).to.deep.equal(expected);
         });
@@ -153,7 +155,8 @@ describe('linter', function () {
                 }
             };
 
-            const result = linter.lint(source, testPath, config);
+            const linter = new Linter(source, testPath, config);
+            const result = linter.lint();
 
             expect(result).to.deep.equal(expected);
         });
@@ -167,7 +170,8 @@ describe('linter', function () {
                 }
             };
 
-            const result = linter.lint(source, testPath, config);
+            const linter = new Linter(source, testPath, config);
+            const result = linter.lint();
 
             expect(result).to.have.length(0);
         });
@@ -179,7 +183,8 @@ describe('linter', function () {
                 spaceBeforeBrace: false
             };
 
-            const result = linter.lint(source, testPath, config);
+            const linter = new Linter(source, testPath, config);
+            const result = linter.lint();
 
             expect(result).to.have.length(0);
         });
@@ -191,7 +196,8 @@ describe('linter', function () {
                 stringQuotes: true
             };
 
-            const result = linter.lint(source, testPath, config);
+            const linter = new Linter(source, testPath, config);
+            const result = linter.lint();
 
             // String quotes should never be called since there no strings in the input
             expect(result).to.have.length(0);
@@ -220,7 +226,8 @@ describe('linter', function () {
                 }
             };
 
-            const result = linter.lint(source, testPath, config);
+            const linter = new Linter(source, testPath, config);
+            const result = linter.lint();
 
             expect(result).to.deep.equal(expected);
         });
@@ -252,7 +259,8 @@ describe('linter', function () {
                 }
             };
 
-            const result = linter.lint(source, testPath, config);
+            const linter = new Linter(source, testPath, config);
+            const result = linter.lint();
 
             expect(result).to.deep.equal(expected);
         });
@@ -284,7 +292,8 @@ describe('linter', function () {
                 }
             };
 
-            const result = linter.lint(source, testPath, config);
+            const linter = new Linter(source, testPath, config);
+            const result = linter.lint();
 
             expect(result).to.deep.equal(expected);
         });
@@ -323,7 +332,8 @@ describe('linter', function () {
                 }
             };
 
-            const result = linter.lint(source, testPath, config);
+            const linter = new Linter(source, testPath, config);
+            const result = linter.lint();
 
             expect(result).to.deep.equal(expected);
         });
@@ -350,7 +360,8 @@ describe('linter', function () {
                 }
             };
 
-            const result = linter.lint(source, testPath, config);
+            const linter = new Linter(source, testPath, config);
+            const result = linter.lint();
 
             expect(result).to.deep.equal(expected);
         });
@@ -377,7 +388,8 @@ describe('linter', function () {
                 }
             };
 
-            const result = linter.lint(source, testPath, config);
+            const linter = new Linter(source, testPath, config);
+            const result = linter.lint();
 
             expect(result).to.deep.equal(expected);
         });
@@ -386,13 +398,17 @@ describe('linter', function () {
             const source = readFileSync('./test/data/inline-options/options-invalid.less');
 
             expect(function () {
-                linter.lint(source, 'options-invalid.less', {});
+                const linter = new Linter(source, 'options-invalid.less', {});
+
+                linter.lint();
             }).to.throw('Invalid inline option on line 1');
         });
 
         it('should not report comma spaces for selectors that have pseudos', function () {
             const source = '.foo,\n.bar:not(.foo){}';
             const testPath = 'test.less';
+
+            const linter = new Linter(source, testPath, {});
             const result = linter.lint(source, testPath, {});
 
             expect(result).to.have.length(0);
@@ -418,7 +434,8 @@ describe('linter', function () {
                 source: source.trim()
             }];
 
-            const result = linter.lint(source, testPath, config);
+            const linter = new Linter(source, testPath, config);
+            const result = linter.lint();
 
             expect(result).to.deep.equal(expected);
         });
@@ -443,18 +460,10 @@ describe('linter', function () {
                 source: source.trim()
             }];
 
-            const result = linter.lint(source, testPath, config);
+            const linter = new Linter(source, testPath, config);
+            const result = linter.lint();
 
             expect(result).to.deep.equal(expected);
-        });
-    });
-
-    describe('getParser', function () {
-        it('should return a parser promise', function () {
-            const source = '.foo { color: red; }';
-            const parser = linter.getParser(source);
-
-            expect(parser).to.have.property('then'); // If the returned object has a 'then' method, we'll consider it a success
         });
     });
 });

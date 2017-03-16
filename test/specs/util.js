@@ -1,6 +1,6 @@
 'use strict';
 
-const getParser = require('../../lib/linter').getParser;
+const Linter = require('../../lib/linter');
 const path = require('path');
 
 module.exports = {
@@ -14,6 +14,7 @@ module.exports = {
         delete require.cache[__filename];
 
         const filename = path.join('../../lib/linters/', path.basename(module.parent.filename));
+        const linterObj = new Linter('', '', {});
         let linter;
 
         try {
@@ -27,9 +28,9 @@ module.exports = {
 
         return {
             linter: linter,
-            parser: getParser,
+            parser: linterObj.parse,
             parse: function (source, callback) {
-                return getParser(source).then(function (ast) {
+                return linterObj.parse(source).then(function (ast) {
                     /**
                      * If we're dealing with a regular Rule (or other) node, which isn't
                      * an actual Mixin or AtRule, and its selector contains a pseudo
