@@ -167,5 +167,16 @@ describe('lesshint', function () {
                 expect(result).to.deep.equal(expected);
             });
         });
+
+        it('should ignore variables', function () {
+            const source = '.foo { background-image: url(@bar) }';
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint({}, ast.root.first.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
     });
 });
