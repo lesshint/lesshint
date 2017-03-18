@@ -414,6 +414,20 @@ describe('linter', function () {
             expect(result).to.have.length(0);
         });
 
+        it('should throw if a linter does not return an array', function () {
+            const source = '// foo\n';
+            const config = {
+                linters: ['../test/plugins/noArrayLinter'],
+                noArray: true
+            };
+
+            expect(function () {
+                const linter = new Linter(source, 'test.less', config);
+
+                linter.lint();
+            }).to.throw('Linter "noArray" must return an array.');
+        });
+
         it('should load a custom linter (as a require path)', function () {
             const source = '// boo!\n';
             const testPath = path.resolve(process.cwd(), 'test.less');
@@ -464,6 +478,18 @@ describe('linter', function () {
             const result = linter.lint();
 
             expect(result).to.deep.equal(expected);
+        });
+    });
+
+    describe('configure', function () {
+        it('should throw on invalid "linters" value', function () {
+            const config = {
+                linters: 'invalid'
+            };
+
+            expect(function () {
+                new Linter('', '', config);
+            }).to.throw('Linters should be an array of file paths and/or linters');
         });
     });
 });
