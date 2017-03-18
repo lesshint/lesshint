@@ -57,6 +57,9 @@
     "functions": 95,
     "branches": 95,
     "check-coverage": true,
+    "exclude": [
+        "gulpfile.js"
+    ],
     "reporter": [
       "lcov",
       "text-summary"
