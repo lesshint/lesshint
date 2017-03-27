@@ -1,7 +1,7 @@
 {
   "name": "lesshint",
   "description": "A tool to aid you in writing clean and consistent Less.",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "main": "./lib/index.js",
   "author": {
     "name": "Jonathan Wilsson",
@@ -58,7 +58,7 @@
     "branches": 95,
     "check-coverage": true,
     "exclude": [
-        "gulpfile.js"
+      "gulpfile.js"
     ],
     "reporter": [
       "lcov",
