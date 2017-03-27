@@ -1,4 +1,15 @@
 # Changelog
+## 3.1.1 (2017-03-27)
+* Fixed an issue where `finalNewline` would report the wrong position when double `\n` characters were used. ([d234a20](https://github.com/lesshint/lesshint/commit/d234a20b91184e842685d87c646eed122e24bbe5))
+* Fixed an issue where `spaceAroundOperator` would erroneously report numbers surrounded by parentheses. ([98953c0](https://github.com/lesshint/lesshint/commit/98953c0f4a0b1d6c2e4bf03ff3c8a92701e27ae7))
+* Made sure internal error classes can handle both strings and error objects. ([2a8a52a](https://github.com/lesshint/lesshint/commit/2a8a52a150e0615ea3d6f46a12a6389ea09890ab))
+* Fixed an issue where `urlQuotes` would erroneously report variables. ([4508e81](https://github.com/lesshint/lesshint/commit/4508e81a6cdd5ddc6b380ee58fea64be57fff6b9))
+* Updated `gulp-mocha` to `4.x`. ([7f392ee](https://github.com/lesshint/lesshint/commit/7f392eea547692e80e8e72f0fff4bfb5d4028446))
+* Replaced `istanbul` with `nyc`. ([92d59f8](https://github.com/lesshint/lesshint/commit/92d59f832904012dbc73b213c584edf9faf56a3a))
+* Updated `sinon` to `2.x`. ([f94cae6](https://github.com/lesshint/lesshint/commit/f94cae67eb3b61993335cc216cd3a8525af57b18))
+* Fixed an `singleLinePerProperty` example config typo. ([5acc9d7](https://github.com/lesshint/lesshint/commit/5acc9d709abdc1f92624d8158d0e963fcd47638c))
+* Added a more prominent way to access rule docs from the `README`. ([bc6cc3e](https://github.com/lesshint/lesshint/commit/bc6cc3e06c30e4e84569845f87d591f1a9a8f84f))
+
 ## 3.1.0 (2017-02-16)
 * Added a `variableValue` linter. ([1a9d48d](https://github.com/lesshint/lesshint/commit/1a9d48d09e8d5eada852b428330eea40214f7c73))
 * Added a `universalSelector` linter. ([781e372](https://github.com/lesshint/lesshint/commit/781e372b48523def310fac7b32de5675952a8b0b))
