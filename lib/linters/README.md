@@ -2,7 +2,7 @@
 
 * [attributeQuotes](#attributequotes)
 * [borderZero](#borderzero)
-* [colorVariables](#colorVariables)
+* [colorVariables](#colorvariables)
 * [comment](#comment)
 * [decimalZero](#decimalzero)
 * [depthLevel](#depthlevel)
