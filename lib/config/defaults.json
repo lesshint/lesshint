@@ -14,7 +14,7 @@
     },
     
     "colorVariables": {
-        "enabled": true   
+        "enabled": false   
     },
 
     "comment": {
