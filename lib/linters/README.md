@@ -2,6 +2,7 @@
 
 * [attributeQuotes](#attributequotes)
 * [borderZero](#borderzero)
+* [colorVariables](#colorVariables)
 * [comment](#comment)
 * [decimalZero](#decimalzero)
 * [depthLevel](#depthlevel)
@@ -108,6 +109,23 @@ Option     | Description
 // Won't get rendered
 
 /*! Will get rendered, but it's OK */
+```
+
+## colorVariables
+Disallow hexidecimal colors when not used as a variable assignment.
+
+### invalid
+```less
+border: 1px solid #000;
+```
+
+### valid
+```less
+@black: #000;
+
+...
+
+border: 1px solid @black;
 ```
 
 ## decimalZero
