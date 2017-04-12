@@ -2,6 +2,7 @@
 
 * [attributeQuotes](#attributequotes)
 * [borderZero](#borderzero)
+* [colorVariables](#colorvariables)
 * [comment](#comment)
 * [decimalZero](#decimalzero)
 * [depthLevel](#depthlevel)
@@ -88,6 +89,23 @@ Option     | Description
 .foo {
     border: 0;
 }
+```
+
+## colorVariables
+Disallow hexidecimal colors when not used as a variable assignment.
+
+### invalid
+```less
+border: 1px solid #000;
+```
+
+### valid
+```less
+@black: #000;
+
+...
+
+border: 1px solid @black;
 ```
 
 ## Comment
