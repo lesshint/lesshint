@@ -15,7 +15,7 @@
     
     "colorVariables": {
         "enabled": true   
-    }
+    },
 
     "comment": {
         "allowed": "^!",
