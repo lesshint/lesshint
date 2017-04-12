@@ -91,6 +91,23 @@ Option     | Description
 }
 ```
 
+## colorVariables
+Disallow hexidecimal colors when not used as a variable assignment.
+
+### invalid
+```less
+border: 1px solid #000;
+```
+
+### valid
+```less
+@black: #000;
+
+...
+
+border: 1px solid @black;
+```
+
 ## Comment
 Prefer single-line comments (`//`) over multi-line (`/* ... */`) since they're not rendered in the final CSS.
 This linter is disabled by default.
@@ -109,23 +126,6 @@ Option     | Description
 // Won't get rendered
 
 /*! Will get rendered, but it's OK */
-```
-
-## colorVariables
-Disallow hexidecimal colors when not used as a variable assignment.
-
-### invalid
-```less
-border: 1px solid #000;
-```
-
-### valid
-```less
-@black: #000;
-
-...
-
-border: 1px solid @black;
 ```
 
 ## decimalZero
