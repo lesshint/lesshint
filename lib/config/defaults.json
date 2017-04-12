@@ -12,6 +12,10 @@
         "enabled": true,
         "style": "zero"
     },
+    
+    "colorVariables": {
+        "enabled": true   
+    }
 
     "comment": {
         "allowed": "^!",
