@@ -61,7 +61,7 @@ describe('config-loader', function () {
         const expected = JSON.parse(fs.readFileSync(configPath, 'utf8'));
         const config = configLoader(configPath);
         delete config._path;
-        
+
         expect(config).to.deep.equal(expected);
     });
 
