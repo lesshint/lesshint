@@ -25,7 +25,7 @@ describe('config-loader', function () {
         };
 
         const result = configLoader(config);
-        delete result._path;
+        delete result.configPath;
 
         expect(result).to.deep.equal(expected);
     });
@@ -42,7 +42,7 @@ describe('config-loader', function () {
         fs.writeFileSync(filePath, JSON.stringify(expected));
 
         const result = configLoader();
-        delete result._path;
+        delete result.configPath;
 
         expect(result).to.deep.equal(expected);
 
@@ -60,7 +60,7 @@ describe('config-loader', function () {
         const configPath = path.join(path.dirname(__dirname), '/data/config/config.json');
         const expected = JSON.parse(fs.readFileSync(configPath, 'utf8'));
         const config = configLoader(configPath);
-        delete config._path;
+        delete config.configPath;
 
         expect(config).to.deep.equal(expected);
     });
@@ -77,7 +77,7 @@ describe('config-loader', function () {
         fs.writeFileSync(configPath, JSON.stringify(expected));
 
         const result = configLoader(__dirname);
-        delete result._path;
+        delete result.configPath;
 
         expect(result).to.deep.equal(expected);
 

@@ -458,7 +458,7 @@ describe('linter', function () {
             const source = '// boo!\n';
             const testPath = path.resolve(process.cwd(), 'test.less');
             const config = {
-                _path: '../test/.lesshintrc',
+                configPath: '../test/.lesshintrc',
                 linters: ['plugins/sampleLinter'],
                 sample: true
             };
