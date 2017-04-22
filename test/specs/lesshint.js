@@ -160,6 +160,48 @@ describe('lesshint', function () {
         });
     });
 
+    describe('checkFiles', function () {
+        const glob = path.join(path.dirname(__dirname), '/data/files/**/*.less');
+
+        it('should check all files matched by glob', function () {
+            const lesshint = new Lesshint();
+
+            lesshint.configure();
+
+            return lesshint.checkFiles(glob).then(function (result) {
+                expect(result).to.have.length(2);
+            });
+        });
+
+        it('should ignore excluded folders', function () {
+            const testPath = path.join(path.dirname(__dirname), '/data/excluded-files');
+            const lesshint = new Lesshint();
+            const config = {
+                excludedFiles: ['**/excluded-files']
+            };
+
+            lesshint.configure(config);
+
+            return lesshint.checkFiles(testPath).then(function (result) {
+                expect(result).to.have.length(0);
+            });
+        });
+
+        it('should only check files with the correct extension', function () {
+            const testPath = path.join(path.dirname(__dirname), '/data/excluded-files');
+            const lesshint = new Lesshint();
+            const config = {
+                fileExtensions: ['.less']
+            };
+
+            lesshint.configure(config);
+
+            return lesshint.checkFiles(testPath).then(function (result) {
+                expect(result).to.have.length(2);
+            });
+        });
+    });
+
     describe('checkPath', function () {
         it('should check all files and directories on all levels of a path', function () {
             const lesshint = new Lesshint();

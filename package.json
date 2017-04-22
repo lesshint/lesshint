@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "commander": "^2.8.0",
+    "globby": "^7.0.0",
     "lodash.merge": "^4.0.1",
     "lodash.sortby": "^4.0.1",
     "minimatch": "^3.0.2",
