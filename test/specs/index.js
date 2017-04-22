@@ -12,4 +12,8 @@ describe('lesshint', function () {
     it('should expose Runner class in public API', function () {
         expect(api.Runner).to.be.a('function');
     });
+
+    it('should expose utils class in public API', function () {
+        expect(api.utils).to.be.a('object');
+    });
 });
