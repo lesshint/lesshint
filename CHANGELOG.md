@@ -1,4 +1,9 @@
 # Changelog
+## 3.2.0 (2017-04-22)
+* Added a custom linter loading fallback where the path will be resolved against the `.lesshintrc` location. ([40cffa2](https://github.com/lesshint/lesshint/commit/40cffa2972f381305ed06f1a7a2b0d4163bd4591))
+* The `Linter` class was refactored. ([49b7e3b](https://github.com/lesshint/lesshint/commit/49b7e3b47832bb095402f7c4bea71001c046637f))
+* Added docs on linter loading. ([0101934](https://github.com/lesshint/lesshint/commit/0101934d5a1a15de29688c5ad323e37a3e0555b4))
+
 ## 3.1.1 (2017-03-27)
 * Fixed an issue where `finalNewline` would report the wrong position when double `\n` characters were used. ([d234a20](https://github.com/lesshint/lesshint/commit/d234a20b91184e842685d87c646eed122e24bbe5))
 * Fixed an issue where `spaceAroundOperator` would erroneously report numbers surrounded by parentheses. ([98953c0](https://github.com/lesshint/lesshint/commit/98953c0f4a0b1d6c2e4bf03ff3c8a92701e27ae7))
