@@ -38,19 +38,6 @@ result.then((results) => {
 });
 ```
 
-## `Lesshint.checkFiles(pattern)`
-Check a glob pattern asynchronously. Will not check `fileExtensions` and `excludedFiles` options.
-
-A `Promise` will be returned.
-
-```js
-const result = lesshint.checkFiles('/path/**/*.less');
-
-result.then((results) => {
-
-});
-```
-
 ## `Lesshint.checkPath(checkPath)`
 Check a path asynchronously. If a file is passed it will check that, if a directory is passed it will check that recursively. Will respect `fileExtensions` and `excludedFiles` options.
 

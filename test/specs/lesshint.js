@@ -160,20 +160,6 @@ describe('lesshint', function () {
         });
     });
 
-    describe('checkFiles', function () {
-        const glob = path.join(path.dirname(__dirname), '/data/files/**/*.less');
-
-        it('should check all files matched by glob', function () {
-            const lesshint = new Lesshint();
-
-            lesshint.configure();
-
-            return lesshint.checkFiles(glob).then(function (result) {
-                expect(result).to.have.length(2);
-            });
-        });
-    });
-
     describe('checkPath', function () {
         it('should check all files and directories on all levels of a path', function () {
             const lesshint = new Lesshint();
