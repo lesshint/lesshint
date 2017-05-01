@@ -29,7 +29,7 @@ describe('lesshint', function () {
 
         it('should allow hex values when assigned to a variable', function () {
             const source = '@myvariable: #ABC;';
-            const expected = null;
+            const expected = undefined;
 
             return spec.parse(source, function (ast) {
                 const result = spec.linter.lint({}, ast.root.first);
