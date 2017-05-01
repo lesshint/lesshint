@@ -51,18 +51,5 @@ describe('lesshint', function () {
                 expect(result).to.deep.equal(expected);
             });
         });
-
-        it('should throw on invalid "style" value', function () {
-            const source = 'color: #aabbcc;';
-            const options = {
-                style: 'invalid'
-            };
-
-            return spec.parse(source, function (ast) {
-                const lint = spec.linter.lint.bind(null, options, ast.root.first);
-
-                expect(lint).to.throw(Error);
-            });
-        });
     });
 });
