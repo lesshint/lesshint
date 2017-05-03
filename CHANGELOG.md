@@ -1,4 +1,13 @@
 # Changelog
+## 3.3.0 (2017-05-03)
+* Added a `colorVariables` linter. ([a4b46fc](https://github.com/lesshint/lesshint/commit/a4b46fc0a8709c67f0f7ab71eae17b9ccb5efa72))
+* Added utils to help with common operations:
+    * `isAbsoluteURL` ([87a4cd1](https://github.com/lesshint/lesshint/commit/87a4cd138eec08e568fb33eb284ce74669648a06))
+    * `isVariable` ([c212054](https://github.com/lesshint/lesshint/commit/c2120541a6ed0b2fdafe0a3c7abe5d90b60c8268))
+    * `parseSelector` ([6b5bd0f](https://github.com/lesshint/lesshint/commit/6b5bd0ffec9e18a0fd044ced7871406038b461fa))
+    * `parseValue` ([6ac05d7](https://github.com/lesshint/lesshint/commit/6ac05d72907980098015ddba8d5382e55a9223ce))
+* Fixed an issue with `spaceAfterPropertyValue` and `!important`. ([b69ff98](https://github.com/lesshint/lesshint/commit/b69ff9848ead0621bd71795bcacaf12309588252))
+
 ## 3.2.0 (2017-04-22)
 * Added a custom linter loading fallback where the path will be resolved against the `.lesshintrc` location. ([40cffa2](https://github.com/lesshint/lesshint/commit/40cffa2972f381305ed06f1a7a2b0d4163bd4591))
 * The `Linter` class was refactored. ([49b7e3b](https://github.com/lesshint/lesshint/commit/49b7e3b47832bb095402f7c4bea71001c046637f))
