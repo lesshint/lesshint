@@ -13,6 +13,7 @@
 * [Complementary tools](#complementary-tools)
 * [Linters](#linters)
 * [Reporters](#reporters)
+* [`autolesshint`](#autolesshint)
 * [Developer resources](#developer-resources)
 
 ## Installation
@@ -74,6 +75,9 @@ For more information on using custom linters, see the [user guide](/docs/user-gu
 Reporters are small modules that can be used to perform actions with the lint results, for example printing something to the terminal or generate custom reports.
 
 For more information on using reporters, see the [user guide](/docs/user-guide/reporters.md).
+
+## `autolesshint`
+[`autolesshint`](https://github.com/automutate/autolesshint) can automatically some style warnings for you. It's configured using the same `.lesshintrc` settings as `lesshint`.
 
 ## Developer resources
 * [Node API](/docs/developer-guide/API.md) - `lesshint`'s public Node API reference.
