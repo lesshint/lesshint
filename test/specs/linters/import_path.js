@@ -289,16 +289,6 @@ describe('lesshint', function () {
                 expect(result).to.be.undefined;
             });
         });
-
-        it('should ignore other at-rules', function () {
-            const source = '@charset "UTF-8";';
-
-            return spec.parse(source, function (ast) {
-                const result = spec.linter.lint({}, ast.root.first);
-
-                expect(result).to.be.undefined;
-            });
-        });
     });
 
     describe('#importPath() with Import Option', function () {
