@@ -37,7 +37,7 @@
     "gulp-coveralls": "^0.1.4",
     "gulp-eslint": "^3.0.1",
     "gulp-mocha": "^4.1.0",
-    "nyc": "^10.1.2",
+    "nyc": "^11.0.1",
     "rimraf": "^2.4.2",
     "sinon": "^2.0.0"
   },
