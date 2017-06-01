@@ -32,7 +32,7 @@
     "strip-json-comments": "^2.0.0"
   },
   "devDependencies": {
-    "chai": "^3.4.0",
+    "chai": "^4.0.1",
     "gulp": "^3.9.0",
     "gulp-coveralls": "^0.1.4",
     "gulp-eslint": "^3.0.1",
