@@ -82,21 +82,6 @@ describe('cli', function () {
                 path.dirname(__dirname) + '/data/files/file.less',
             ],
             config: path.resolve(process.cwd() + '/lib/config/defaults.json'),
-            maxWarnings: '999',
-        });
-
-        return result.then(function (result) {
-            expect(result.status).to.equal(0);
-        });
-    });
-
-    it('should exit with a zero status code with `--max-warnings -1` even if lint has warings', function () {
-        const result = cli({
-            args: [
-                path.dirname(__dirname) + '/data/files/file.less',
-            ],
-            config: path.resolve(process.cwd() + '/lib/config/defaults.json'),
-            maxWarnings: '-1',
         });
 
         return result.then(function (result) {
