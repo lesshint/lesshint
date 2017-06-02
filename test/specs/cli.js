@@ -23,14 +23,14 @@ describe('cli', function () {
         }
     });
 
-    it('should exit with a non-zero status code when lint errors were found', function () {
+    it('should exit with a zero status code when lint errors were found', function () {
         const result = cli({
             args: [path.dirname(__dirname) + '/data/files/file.less'],
             config: path.resolve(process.cwd() + '/lib/config/defaults.json')
         });
 
-        return result.catch(function (result) {
-            expect(result.status).to.equal(1);
+        return result.then(function (result) {
+            expect(result.status).to.equal(0);
         });
     });
 
@@ -150,8 +150,8 @@ describe('cli', function () {
             linters: ['../test/plugins/sampleLinter']
         });
 
-        return result.catch(function (result) {
-            expect(result.status).to.equal(1);
+        return result.then(function (result) {
+            expect(result.status).to.equal(0);
         });
     });
 
@@ -161,8 +161,8 @@ describe('cli', function () {
             config: path.resolve(process.cwd() + '/test/data/config/linters.json')
         });
 
-        return result.catch(function (result) {
-            expect(result.status).to.equal(1);
+        return result.then(function (result) {
+            expect(result.status).to.equal(0);
         });
     });
 
@@ -173,8 +173,8 @@ describe('cli', function () {
             linters: ['../test/plugins/otherSampleLinter']
         });
 
-        return result.catch(function (result) {
-            expect(result.status).to.equal(1);
+        return result.then(function (result) {
+            expect(result.status).to.equal(0);
         });
     });
 
