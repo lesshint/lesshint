@@ -255,7 +255,7 @@ describe('cli', function () {
         });
 
         return result.catch(function (result) {
-            expect(result.status).to.equal(2);
+            expect(result.status).to.equal(1);
         });
     });
 });

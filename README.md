@@ -50,9 +50,8 @@ Depending on the linter results and options supplied, the exit status code retur
 
 Exit status code   | Description
 -------------------|----------------------------------------------
-`0`                | Everything is alright, no linting errors found.
-`1`                | One or more linting errors with a severity of `warning` was found.
-`2`                | One or more linting errors with a severity of `error` was found.
+`0`                | Everything is alright or only linting errors with a severity of `warning` were found.
+`1`                | One or more linting errors with a severity of `error` were found. Also when `--max-warnings` flag is set and the number of linting errors with a severity of `warning` found is greater than the given value.
 `66`               | No files to lint were supplied.
 `70`               | An unknown error occurred within `lesshint`, possibly a bug. [Please file an issue!](https://github.com/lesshint/lesshint/issues/new)
 `78`               | Something is wrong with the config file, most likely invalid JSON.
