@@ -1,4 +1,14 @@
 # Changelog
+## 4.0.0 (2017-06-25)
+* **Breaking** Updated `postcss-less` to `1.0.0`, could cause issues if custom linters are used. ([03107e5](https://github.com/lesshint/lesshint/commit/0a020df33c3cf04c7e0f12305311efeeb0a3611d))
+* **Breaking** Updated `postcss` to `6.0.0`, could cause issues if custom linters are used. ([4e49588](https://github.com/lesshint/lesshint/commit/4e495883b1c510cb2a3aee23e3a27e37af57f03a))
+* **Breaking** Warnings no longer give exit code `1`, and errors give exit code `1` instead of `2`. ([5bc9e3f](https://github.com/lesshint/lesshint/commit/5bc9e3faae8a7326e53a65ec388240fac217fe30))
+* Fixed an issue where config objects passed to the `Linter` class would be modified. ([da93ccb](https://github.com/lesshint/lesshint/commit/da93ccb8359df9602c64afcd228dd97105a05589))
+* Added docs for the `at_least_one_space` option on `spaceAfterPropertyColon`. ([767e022](https://github.com/lesshint/lesshint/commit/767e022a5c4d9534c32948923cd6655cc25fa667))
+* Updated ESLint to `4.0`. ([63c2a11](https://github.com/lesshint/lesshint/commit/63c2a119802ec15217dd63e86664b51ea45b926d))
+* Updated `nyc` to `11.0`. ([e6318a5](https://github.com/lesshint/lesshint/commit/e6318a5bd7459c13ce7293e12d65cac9ae979b13))
+* Updated `chai` to `4.0`. ([f79cea4](https://github.com/lesshint/lesshint/commit/f79cea4d7f34d5fb34bb84c309fbf404efb32048))
+
 ## 3.3.1 (2017-05-08)
 * Updated `postcss-less` to `0.16.0`. ([03107e5](https://github.com/lesshint/lesshint/commit/03107e5837a872d3a0f2ba8e063f2c7025e0dcfb))
 * Updated `postcss-values-parser` to `1.2.1`. ([1728ff1](https://github.com/lesshint/lesshint/commit/1728ff1234f56180a0e1ef7af57f5c6515313a73))
