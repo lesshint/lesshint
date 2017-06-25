@@ -24,7 +24,7 @@
     "lodash.merge": "^4.0.1",
     "lodash.sortby": "^4.0.1",
     "minimatch": "^3.0.2",
-    "postcss": "^5.0.19",
+    "postcss": "^6.0.0",
     "postcss-less": "^1.0.0",
     "postcss-selector-parser": "^2.0.0",
     "postcss-values-parser": "^1.2.1",
