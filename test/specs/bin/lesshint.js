@@ -34,9 +34,18 @@ describe('bin/lesshint', () => {
         return assertCode(child, 0);
     });
 
-    it('should exit with 1 when errors are found', function () {
+
+    it('should exit with 0 when warnings are found', function () {
         const filePath = path.resolve(__dirname, '../../data/files/file.less');
         const child = runLesshint([filePath]);
+
+        return assertCode(child, 0);
+    });
+
+    it('should exit with 1 when errors are found', function () {
+        const configPath = path.resolve(__dirname, '../../data/config/severity-error.json');
+        const filePath = path.resolve(__dirname, '../../data/files/file.less');
+        const child = runLesshint([`--config=${ configPath }`, filePath]);
 
         return assertCode(child, 1);
     });

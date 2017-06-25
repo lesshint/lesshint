@@ -43,16 +43,15 @@ Available Flags         | Description
 `-l`/`--linters`      | Paths to custom linters to add to the built-in list. See "Linters" below for more information.
 `-r`/`--reporter`     | The reporter to use. See "Reporters" below for more information.
 `-V`/`--version`      | Show the version.
-`-x`/`--max-warnings` | Number of warnings to allow before exiting with a non-zero code.
+`-x`/`--max-warnings` | Number of warnings to allow before exiting with a non-zero code. Omit it to always exit with zero code.
 
 ### Exit status codes
 Depending on the linter results and options supplied, the exit status code returned by the CLI will differ.
 
 Exit status code   | Description
 -------------------|----------------------------------------------
-`0`                | Everything is alright, no linting errors found.
-`1`                | One or more linting errors with a severity of `warning` was found.
-`2`                | One or more linting errors with a severity of `error` was found.
+`0`                | Everything is alright or only linting errors with a severity of `warning` were found.
+`1`                | One or more linting errors with a severity of `error` were found. Or when `--max-warnings` flag is set and the number of linting errors with a severity of `warning` found is greater than the given value.
 `66`               | No files to lint were supplied.
 `70`               | An unknown error occurred within `lesshint`, possibly a bug. [Please file an issue!](https://github.com/lesshint/lesshint/issues/new)
 `78`               | Something is wrong with the config file, most likely invalid JSON.
