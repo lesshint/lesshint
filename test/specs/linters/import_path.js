@@ -44,7 +44,7 @@ describe('lesshint', function () {
         it('should not allow filename with extension when "filenameExtension" is "false"', function () {
             const source = '@import "foo.less";';
             const expected = [{
-                column: 9,
+                column: 10,
                 line: 1,
                 message: 'Imported file, "foo.less" should not include the file extension.'
             }];
@@ -78,7 +78,7 @@ describe('lesshint', function () {
         it('should not allow filename without extension when "filenameExtension" is "true"', function () {
             const source = '@import "foo";';
             const expected = [{
-                column: 9,
+                column: 10,
                 line: 1,
                 message: 'Imported file, "foo" should include the file extension.'
             }];
@@ -112,7 +112,7 @@ describe('lesshint', function () {
         it('should not allow filename with leading underscore when "leadingUnderscore" is "false"', function () {
             const source = '@import "_foo";';
             const expected = [{
-                column: 9,
+                column: 10,
                 line: 1,
                 message: 'Imported file, "_foo" should not include a leading underscore.'
             }];
@@ -146,7 +146,7 @@ describe('lesshint', function () {
         it('should not allow filename without leading underscore when "leadingUnderscore" is "true"', function () {
             const source = '@import "foo";';
             const expected = [{
-                column: 9,
+                column: 10,
                 line: 1,
                 message: 'Imported file, "foo" should include a leading underscore.'
             }];
@@ -167,12 +167,12 @@ describe('lesshint', function () {
             const source = '@import "_foo.less";';
             const expected = [
                 {
-                    column: 9,
+                    column: 10,
                     line: 1,
                     message: 'Imported file, "_foo.less" should not include the file extension.'
                 },
                 {
-                    column: 9,
+                    column: 10,
                     line: 1,
                     message: 'Imported file, "_foo.less" should not include a leading underscore.'
                 }
@@ -209,7 +209,7 @@ describe('lesshint', function () {
         it('should check url imports with quotes', function () {
             const source = '@import url("foo.less");';
             const expected = [{
-                column: 13,
+                column: 14,
                 line: 1,
                 message: 'Imported file, "foo.less" should not include the file extension.'
             }];
@@ -289,16 +289,6 @@ describe('lesshint', function () {
                 expect(result).to.be.undefined;
             });
         });
-
-        it('should ignore other at-rules', function () {
-            const source = '@charset "UTF-8";';
-
-            return spec.parse(source, function (ast) {
-                const result = spec.linter.lint({}, ast.root.first);
-
-                expect(result).to.be.undefined;
-            });
-        });
     });
 
     describe('#importPath() with Import Option', function () {
@@ -334,7 +324,7 @@ describe('lesshint', function () {
         it('should not allow filename with extension when "filenameExtension" is "false"', function () {
             const source = '@import (inline) "foo.less";';
             const expected = [{
-                column: 9,
+                column: 19,
                 line: 1,
                 message: 'Imported file, "foo.less" should not include the file extension.'
             }];
@@ -368,7 +358,7 @@ describe('lesshint', function () {
         it('should not allow filename without extension when "filenameExtension" is "true"', function () {
             const source = '@import (inline) "foo";';
             const expected = [{
-                column: 9,
+                column: 19,
                 line: 1,
                 message: 'Imported file, "foo" should include the file extension.'
             }];
