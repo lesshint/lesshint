@@ -23,7 +23,7 @@ In the `.lesshintrc` file, each option is specified by its own JSON object, for 
 Now, take a look at the available [linter options](/lib/linters/README.md).
 
 ## Inline configuration
-It's possible to configure rules using inline comments in your `.less` files. For example:
+It's possible to configure rules using inline comments in your `.less` files. This needs to be on the first line of your `.less` file. For example:
 
 ```less
 // lesshint spaceBeforeBrace: false

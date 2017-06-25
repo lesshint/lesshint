@@ -1,4 +1,8 @@
 # Changelog
+## 3.3.1 (2017-05-08)
+* Updated `postcss-less` to `0.16.0`. ([03107e5](https://github.com/lesshint/lesshint/commit/03107e5837a872d3a0f2ba8e063f2c7025e0dcfb))
+* Updated `postcss-values-parser` to `1.2.1`. ([1728ff1](https://github.com/lesshint/lesshint/commit/1728ff1234f56180a0e1ef7af57f5c6515313a73))
+
 ## 3.3.0 (2017-05-03)
 * Added a `colorVariables` linter. ([a4b46fc](https://github.com/lesshint/lesshint/commit/a4b46fc0a8709c67f0f7ab71eae17b9ccb5efa72))
 * Added utils to help with common operations:

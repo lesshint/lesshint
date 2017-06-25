@@ -121,7 +121,7 @@ describe('lesshint', function () {
         it('should not allow missing quotes in imports', function () {
             const source = '@import url(http://example.com)';
             const expected = [{
-                column: 11,
+                column: 13,
                 line: 1,
                 message: 'URLs should be enclosed in quotes.'
             }];

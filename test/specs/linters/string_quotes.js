@@ -249,7 +249,7 @@ describe('lesshint', function () {
             });
         });
 
-        it('should not allow double quotes in @-rules when "style" is "single"', function () {
+        it('should not allow double quotes in @import-rules when "style" is "single"', function () {
             const source = '@import "foo.less";';
             const expected = [{
                 column: 9,
@@ -268,7 +268,7 @@ describe('lesshint', function () {
             });
         });
 
-        it('should not allow single quotes in @-rules when "style" is "double"', function () {
+        it('should not allow single quotes in @import-rules when "style" is "double"', function () {
             const source = "@import 'foo.less';";
             const expected = [{
                 column: 9,
@@ -287,7 +287,7 @@ describe('lesshint', function () {
             });
         });
 
-        it('should allow single quotes in @-rules when "style" is "single"', function () {
+        it('should allow single quotes in @import-rules when "style" is "single"', function () {
             const source = "@import 'foo.less';";
             const options = {
                 style: 'single'
@@ -300,8 +300,72 @@ describe('lesshint', function () {
             });
         });
 
-        it('should allow double quotes in @-rules when "style" is "double"', function () {
+        it('should allow double quotes in @import-rules when "style" is "double"', function () {
             const source = '@import "foo.less";';
+            const options = {
+                style: 'double'
+            };
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.deep.undefined;
+            });
+        });
+
+        it('should not allow double quotes in @-rules when "style" is "single"', function () {
+            const source = '@charset "utf-8";';
+            const expected = [{
+                column: 10,
+                line: 1,
+                message: 'Strings should use single quotes.'
+            }];
+
+            const options = {
+                style: 'single'
+            };
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.deep.equal(expected);
+            });
+        });
+
+        it('should not allow single quotes in @-rules when "style" is "double"', function () {
+            const source = "@charset 'utf-8';";
+            const expected = [{
+                column: 10,
+                line: 1,
+                message: 'Strings should use double quotes.'
+            }];
+
+            const options = {
+                style: 'double'
+            };
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.deep.equal(expected);
+            });
+        });
+
+        it('should allow single quotes in @-rules when "style" is "single"', function () {
+            const source = "@charset 'utf-8';";
+            const options = {
+                style: 'single'
+            };
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.deep.undefined;
+            });
+        });
+
+        it('should allow double quotes in @-rules when "style" is "double"', function () {
+            const source = '@charset "utf-8";';
             const options = {
                 style: 'double'
             };

@@ -641,7 +641,7 @@ Each colon in property declarations should be followed by a space to aid readabi
 
 Option     | Description
 ---------- | ----------
-`style`    | `no_space`, `one_space` (**default**)
+`style`    | `no_space`, `one_space` (**default**), `at_least_one_space`
 
 ### no_space
 ```less
@@ -654,6 +654,16 @@ Option     | Description
 ```less
 .foo {
     margin: 0;
+}
+```
+
+### at_least_one_space
+This is useful when values should be aligned. For example:
+
+```less
+.foo {
+    height: 20px;
+    width:  20px;
 }
 ```
 
