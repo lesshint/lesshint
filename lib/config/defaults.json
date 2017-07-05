@@ -12,9 +12,9 @@
         "enabled": true,
         "style": "zero"
     },
-    
+
     "colorVariables": {
-        "enabled": false   
+        "enabled": false
     },
 
     "comment": {
@@ -99,7 +99,7 @@
             "ms", "s",                               // Duration
             "Hz", "kHz",                             // Frequency
             "dpi", "dpcm", "dppx",                   // Resolution
-            "%"                                      // Other
+            "%", "fr"                                // Other
         ],
         "invalid": [],
         "properties": {}
