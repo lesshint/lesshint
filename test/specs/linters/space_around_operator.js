@@ -35,7 +35,8 @@ describe('lesshint', function () {
             it('should not allow missing space before operator', function () {
                 const source = 'height: calc(10px+ 10px);';
                 const expected = [{
-                    column: 20,
+                    column: 18,
+                    line: 1,
                     message: 'Operators should be preceded and followed by one space.'
                 }];
 
@@ -49,7 +50,8 @@ describe('lesshint', function () {
             it('should not allow missing space after operator', function () {
                 const source = 'height: calc(10px +10px);';
                 const expected = [{
-                    column: 22,
+                    column: 19,
+                    line: 1,
                     message: 'Operators should be preceded and followed by one space.'
                 }];
 
@@ -63,7 +65,8 @@ describe('lesshint', function () {
             it('should not allow missing space before and after operator', function () {
                 const source = 'height: calc(10px+10px);';
                 const expected = [{
-                    column: 20,
+                    column: 18,
+                    line: 1,
                     message: 'Operators should be preceded and followed by one space.'
                 }];
 
@@ -175,7 +178,8 @@ describe('lesshint', function () {
             it('should not allow one space before operator', function () {
                 const source = 'height: calc(10px +10px);';
                 const expected = [{
-                    column: 21,
+                    column: 19,
+                    line: 1,
                     message: 'Operators should not be preceded nor followed by any space.'
                 }];
 
@@ -189,7 +193,8 @@ describe('lesshint', function () {
             it('should not allow one space after operator', function () {
                 const source = 'height: calc(10px+ 10px);';
                 const expected = [{
-                    column: 22,
+                    column: 18,
+                    line: 1,
                     message: 'Operators should not be preceded nor followed by any space.'
                 }];
 
@@ -203,7 +208,8 @@ describe('lesshint', function () {
             it('should not allow a space after operator in shorthand values', function () {
                 const source = 'margin: 10px - 1px 0px 20px;';
                 const expected = [{
-                    column: 16,
+                    column: 14,
+                    line: 1,
                     message: 'Operators should not be preceded nor followed by any space.'
                 }];
 
