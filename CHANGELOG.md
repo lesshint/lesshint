@@ -1,4 +1,10 @@
 # Changelog
+## 4.0.1 (2017-07-10)
+* Fixed an issue where incomplete rules would crash `lesshint`. ([31b54c1](https://github.com/lesshint/lesshint/commit/31b54c1ef48840d457ddbfd04c9b08dd4fad936d))
+* Fixed faulty column reporting in `spaceAroundOperator`. ([87cb546](https://github.com/lesshint/lesshint/commit/87cb546697c5424800393b1bc6902c875fac3650))
+* Added `fr` to `propertyUnits` defaults. ([80fb2b4](https://github.com/lesshint/lesshint/commit/80fb2b4b18d4657a9944d79a149e20d9a1d61f4a))
+* The `isColor` from `postcss-values-parser` is now used where applicable. ([2c038af](https://github.com/lesshint/lesshint/commit/2c038afa8c04399427b4eb7b2ee4acddcd0e5f02))
+
 ## 4.0.0 (2017-06-25)
 * **Breaking** Updated `postcss-less` to `1.0.0`, could cause issues if custom linters are used. ([03107e5](https://github.com/lesshint/lesshint/commit/0a020df33c3cf04c7e0f12305311efeeb0a3611d))
 * **Breaking** Updated `postcss` to `6.0.0`, could cause issues if custom linters are used. ([4e49588](https://github.com/lesshint/lesshint/commit/4e495883b1c510cb2a3aee23e3a27e37af57f03a))
