@@ -71,6 +71,8 @@ Setup the options to use. This method must always be called before doing anythin
 
 The `config` argument is optional, but if a object is passed it'll be merged with the defaults.
 
+The merged, final, config object will be returned.
+
 ```js
 const config = {
     emptyRule: false
