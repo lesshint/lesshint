@@ -107,9 +107,10 @@
 
     "qualifyingElement": {
         "enabled": true,
-        "allowWithId": false,
+        "severity": "error",
+        "allowWithAttribute": false,
         "allowWithClass": false,
-        "allowWithAttribute": false
+        "allowWithId": false
     },
 
     "selectorNaming": {
