@@ -1,4 +1,7 @@
 # Changelog
+## 4.0.2 (2017-07-20)
+* Lockdown `postcss-values-parser` to `~` range. ([d198ed6](https://github.com/lesshint/lesshint/commit/d198ed6b6807464a0d9b443c4e592368bb4ede05))
+
 ## 4.0.1 (2017-07-10)
 * Fixed an issue where incomplete rules would crash `lesshint`. ([31b54c1](https://github.com/lesshint/lesshint/commit/31b54c1ef48840d457ddbfd04c9b08dd4fad936d))
 * Fixed faulty column reporting in `spaceAroundOperator`. ([87cb546](https://github.com/lesshint/lesshint/commit/87cb546697c5424800393b1bc6902c875fac3650))
