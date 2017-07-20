@@ -17,6 +17,7 @@ describe('lesshint', function () {
             const source = 'color: #AABBCC;';
             const expected = [{
                 column: 8,
+                line: 1,
                 message: '#AABBCC should be written in lowercase.'
             }];
 
@@ -48,6 +49,7 @@ describe('lesshint', function () {
             const source = 'color: #aabbcc;';
             const expected = [{
                 column: 8,
+                line: 1,
                 message: '#aabbcc should be written in uppercase.'
             }];
 
@@ -79,6 +81,7 @@ describe('lesshint', function () {
             const source = 'background: url(test.png) no-repeat #AABBCC;';
             const expected = [{
                 column: 37,
+                line: 1,
                 message: '#AABBCC should be written in lowercase.'
             }];
 
@@ -97,6 +100,7 @@ describe('lesshint', function () {
             const source = '@color: #AABBCC;';
             const expected = [{
                 column: 9,
+                line: 1,
                 message: '#AABBCC should be written in lowercase.'
             }];
 
@@ -115,6 +119,7 @@ describe('lesshint', function () {
             const source = '@color: #aabbcc;';
             const expected = [{
                 column: 9,
+                line: 1,
                 message: '#aabbcc should be written in uppercase.'
             }];
 
