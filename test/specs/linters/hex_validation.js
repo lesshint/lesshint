@@ -27,6 +27,7 @@ describe('lesshint', function () {
             const source = 'color: #AABBC;';
             const expected = [{
                 column: 8,
+                line: 1,
                 message: 'Hexadecimal color "#AABBC" should be either three or six characters long.'
             }];
 
@@ -41,6 +42,7 @@ describe('lesshint', function () {
             const source = 'background: url(test.png) no-repeat #AABBC;';
             const expected = [{
                 column: 37,
+                line: 1,
                 message: 'Hexadecimal color "#AABBC" should be either three or six characters long.'
             }];
 
@@ -55,6 +57,7 @@ describe('lesshint', function () {
             const source = '@color: #AABBC;';
             const expected = [{
                 column: 9,
+                line: 1,
                 message: 'Hexadecimal color "#AABBC" should be either three or six characters long.'
             }];
 
