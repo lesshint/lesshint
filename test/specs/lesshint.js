@@ -273,6 +273,13 @@ describe('lesshint', function () {
 
             expect(lesshint.config).to.deep.equal(expected);
         });
+
+        it('should return the final config object', function () {
+            const expected = configLoader(path.resolve(process.cwd() + '/lib/config/defaults.json'));
+            const lesshint = new Lesshint();
+
+            expect(lesshint.configure(expected)).to.deep.equal(expected);
+        });
     });
 
     describe('getConfig', function () {
