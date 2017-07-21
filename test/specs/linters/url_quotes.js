@@ -156,7 +156,7 @@ describe('lesshint', function () {
         it('should not allow unquoted URLs strings surrounded by spaces (#22)', function () {
             const source = '.foo { background-image: url( img/image.jpg ); }';
             const expected = [{
-                column: 30,
+                column: 31,
                 line: 1,
                 message: 'URLs should be enclosed in quotes.'
             }];
