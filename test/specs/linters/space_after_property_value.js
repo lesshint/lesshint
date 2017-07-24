@@ -61,7 +61,7 @@ describe('lesshint', function () {
         it('should not allow any space after "!important" when "style" is "no_space"', function () {
             const source = '.foo { color: red !important ; }';
             const expected = [{
-                column: 18,
+                column: 29,
                 line: 1,
                 message: 'Semicolon after property value should not be preceded by any space.'
             }];
@@ -125,7 +125,7 @@ describe('lesshint', function () {
         it('should not allow a missing space after "!important" when "style" is "one_space"', function () {
             const source = '.foo { color: red !important; }';
             const expected = [{
-                column: 18,
+                column: 29,
                 line: 1,
                 message: 'Semicolon after property value should be preceded by one space.'
             }];
