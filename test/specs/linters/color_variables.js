@@ -17,6 +17,7 @@ describe('lesshint', function () {
             const source = 'color: #ABC;';
             const expected = [{
                 column: 8,
+                line: 1,
                 message: '#ABC should be replaced with an existing variable.'
             }];
 
@@ -42,6 +43,7 @@ describe('lesshint', function () {
             const source = 'border: 1px solid #ABC;';
             const expected = [{
                 column: 19,
+                line: 1,
                 message: '#ABC should be replaced with an existing variable.'
             }];
 
