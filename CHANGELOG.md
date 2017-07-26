@@ -1,4 +1,7 @@
 # Changelog
+## 4.1.1 (2017-07-26)
+* Downgraded `postcss-values-parser` to `1.2.2`. ([c26f1e6](https://github.com/lesshint/lesshint/commit/c26f1e6842fbe02051069961df1875e7e7cbc8e1))
+
 ## 4.1.0 (2017-07-24)
 * `Lesshint.configure()` now returns the final config object. ([076f8fe](https://github.com/lesshint/lesshint/commit/076f8fe06a900e432c48b40a510dc7f865ad90cb))
 * The `parseValue` util can now accept `postcss-values-parser` options. ([c2f8d53](https://github.com/lesshint/lesshint/commit/c2f8d53fd10c668be797194c586339731883e8f7))
