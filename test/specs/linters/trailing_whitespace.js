@@ -38,7 +38,7 @@ describe('lesshint', function () {
             const expected = [{
                 column: 9,
                 line: 1,
-                message: "There should't be any trailing whitespace."
+                message: "There shouldn't be any trailing whitespace."
             }];
 
             return spec.parse(source, function (ast) {
@@ -53,7 +53,7 @@ describe('lesshint', function () {
             const expected = [{
                 column: 9,
                 line: 1,
-                message: "There should't be any trailing whitespace."
+                message: "There shouldn't be any trailing whitespace."
             }];
 
             return spec.parse(source, function (ast) {

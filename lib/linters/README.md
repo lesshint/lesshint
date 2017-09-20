@@ -866,7 +866,7 @@ Semicolons are optional after the last property in a ruleset but it's a good hab
 ```
 
 ## trailingWhitespace
-There should't be any trailing whitespace since this will mess up diffs etc.
+There shouldn't be any trailing whitespace since this will mess up diffs etc.
 
 ## urlFormat
 All URLs should be relative.
