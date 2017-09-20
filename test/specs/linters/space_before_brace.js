@@ -281,8 +281,60 @@ describe('lesshint', function () {
             });
         });
 
+        it('should allow one new line preceded by spaces when "style" is "new_line"', function () {
+            const source = '.foo       \n{}';
+            const options = {
+                style: 'new_line'
+            };
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
+        it('should allow one new line surrounded by spaces when "style" is "new_line"', function () {
+            const source = '.foo       \n       {}';
+            const options = {
+                style: 'new_line'
+            };
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
         it('should allow one new line followed by tabs when "style" is "new_line"', function () {
             const source = '.foo\n\t\t{}';
+            const options = {
+                style: 'new_line'
+            };
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
+        it('should allow one new line preceded by tabs when "style" is "new_line"', function () {
+            const source = '.foo\t\t\n{}';
+            const options = {
+                style: 'new_line'
+            };
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
+        it('should allow one new line surrounded by tabs when "style" is "new_line"', function () {
+            const source = '.foo\t\t\n\t\t{}';
             const options = {
                 style: 'new_line'
             };
