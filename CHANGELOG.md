@@ -1,4 +1,11 @@
 # Changelog
+## 4.1.2 (2017-09-20)
+* Fixed an issue where `spaceBeforeBrace` would erroneously report whitespace before a new line. ([8078c85](https://github.com/lesshint/lesshint/commit/8078c855676f4497c658693a23264fa84c7dbc20))
+* Fixed an issue where the inline config rule name check wouldn't properly accept all characters in rule names. ([9fde6bf](https://github.com/lesshint/lesshint/commit/9fde6bf9c9ed67e14393ae2b71bb5ffe3e55eac7))
+* Fixed a typo in the `trailingWhitespace` error message. ([a5fa514](https://github.com/lesshint/lesshint/commit/a5fa5146c9904b855e70f344a144c3dd30264758))
+* Fixed a typo in the `trailingWhitespace` docs. ([bc94cdc](https://github.com/lesshint/lesshint/commit/bc94cdc7a0e00429820c7e6c2b53f09079374f00))
+* Added docs on allowed characters in rule names. ([3bb78af](https://github.com/lesshint/lesshint/commit/3bb78afb5e1f7efc2da235891c8d307196bbc3e5))
+
 ## 4.1.1 (2017-07-26)
 * Downgraded `postcss-values-parser` to `1.2.2`. ([c26f1e6](https://github.com/lesshint/lesshint/commit/c26f1e6842fbe02051069961df1875e7e7cbc8e1))
 
