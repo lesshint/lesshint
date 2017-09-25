@@ -1,4 +1,7 @@
 # Changelog
+## 4.1.3 (2017-09-25)
+* Fixed an issue where `finalNewline` would erroneously report files with CRLF line endings. ([5aff629](https://github.com/lesshint/lesshint/commit/5aff62999cb00dbf323a0001cefe640f3f48334c))
+
 ## 4.1.2 (2017-09-20)
 * Fixed an issue where `spaceBeforeBrace` would erroneously report whitespace before a new line. ([8078c85](https://github.com/lesshint/lesshint/commit/8078c855676f4497c658693a23264fa84c7dbc20))
 * Fixed an issue where the inline config rule name check wouldn't properly accept all characters in rule names. ([9fde6bf](https://github.com/lesshint/lesshint/commit/9fde6bf9c9ed67e14393ae2b71bb5ffe3e55eac7))
