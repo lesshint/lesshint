@@ -23,10 +23,11 @@ utils.isVariable('blue'); // false
 ```
 
 ## `parseSelector(selector)`
-Parse a selector using [`postcss-selector-parser`](https://github.com/postcss/postcss-selector-parser).
+Parse a selector using [`postcss-selector-parser`](https://github.com/postcss/postcss-selector-parser). Accepts a selector string or a PostCSS `Rule` node.
 
 ```js
 utils.parseSelector('.foo'); // Parser tree
+utils.parseSelector(ruleNode); // Parser tree
 ```
 
 ## `parseValue(value, options)`
