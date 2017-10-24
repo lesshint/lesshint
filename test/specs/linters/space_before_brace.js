@@ -29,7 +29,7 @@ describe('lesshint', function () {
         it('should not allow one space when "style" is "no_space"', function () {
             const source = '.foo {}';
             const expected = [{
-                column: 5,
+                column: 6,
                 line: 1,
                 message: 'Opening curly brace should not be preceded by a space or new line.'
             }];
@@ -48,7 +48,7 @@ describe('lesshint', function () {
         it('should not allow multiple spaces when "style" is "no_space"', function () {
             const source = '.foo  {}';
             const expected = [{
-                column: 5,
+                column: 7,
                 line: 1,
                 message: 'Opening curly brace should not be preceded by a space or new line.'
             }];
@@ -67,8 +67,8 @@ describe('lesshint', function () {
         it('should not allow one new line when "style" is "no_space"', function () {
             const source = '.foo\n{}';
             const expected = [{
-                column: 5,
-                line: 1,
+                column: 1,
+                line: 2,
                 message: 'Opening curly brace should not be preceded by a space or new line.'
             }];
 
@@ -86,8 +86,8 @@ describe('lesshint', function () {
         it('should not allow multiple new lines when "style" is "no_space"', function () {
             const source = '.foo\n\n{}';
             const expected = [{
-                column: 5,
-                line: 1,
+                column: 1,
+                line: 3,
                 message: 'Opening curly brace should not be preceded by a space or new line.'
             }];
 
@@ -169,26 +169,7 @@ describe('lesshint', function () {
         it('should not allow multiple spaces when "style" is "one_space"', function () {
             const source = '.foo  {}';
             const expected = [{
-                column: 5,
-                line: 1,
-                message: 'Opening curly brace should be preceded by one space.'
-            }];
-
-            const options = {
-                style: 'one_space'
-            };
-
-            return spec.parse(source, function (ast) {
-                const result = spec.linter.lint(options, ast.root.first);
-
-                expect(result).to.deep.equal(expected);
-            });
-        });
-
-        it('should not allow multiple spaces when "style" is "one_space"', function () {
-            const source = '.foo  {}';
-            const expected = [{
-                column: 5,
+                column: 7,
                 line: 1,
                 message: 'Opening curly brace should be preceded by one space.'
             }];
@@ -207,8 +188,8 @@ describe('lesshint', function () {
         it('should not allow new line when "style" is "one_space"', function () {
             const source = '.foo, .bar\n{}';
             const expected = [{
-                column: 11,
-                line: 1,
+                column: 1,
+                line: 2,
                 message: 'Opening curly brace should be preceded by one space.'
             }];
 
@@ -226,7 +207,7 @@ describe('lesshint', function () {
         it('should not allow tab when "style" is "one_space"', function () {
             const source = '.foo, .bar\t{}';
             const expected = [{
-                column: 11,
+                column: 12,
                 line: 1,
                 message: 'Opening curly brace should be preceded by one space.'
             }];
@@ -245,7 +226,7 @@ describe('lesshint', function () {
         it('should not allow multiple spaces when multiple simple selectors are used and "style" is "one_space"', function () {
             const source = '.foo, .bar  {}';
             const expected = [{
-                column: 11,
+                column: 13,
                 line: 1,
                 message: 'Opening curly brace should be preceded by one space.'
             }];
@@ -300,8 +281,60 @@ describe('lesshint', function () {
             });
         });
 
+        it('should allow one new line preceded by spaces when "style" is "new_line"', function () {
+            const source = '.foo       \n{}';
+            const options = {
+                style: 'new_line'
+            };
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
+        it('should allow one new line surrounded by spaces when "style" is "new_line"', function () {
+            const source = '.foo       \n       {}';
+            const options = {
+                style: 'new_line'
+            };
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
         it('should allow one new line followed by tabs when "style" is "new_line"', function () {
             const source = '.foo\n\t\t{}';
+            const options = {
+                style: 'new_line'
+            };
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
+        it('should allow one new line preceded by tabs when "style" is "new_line"', function () {
+            const source = '.foo\t\t\n{}';
+            const options = {
+                style: 'new_line'
+            };
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
+        it('should allow one new line surrounded by tabs when "style" is "new_line"', function () {
+            const source = '.foo\t\t\n\t\t{}';
             const options = {
                 style: 'new_line'
             };
@@ -316,8 +349,8 @@ describe('lesshint', function () {
         it('should not allow multiple new lines when "style" is "new_line"', function () {
             const source = '.foo\n\n{}';
             const expected = [{
-                column: 5,
-                line: 1,
+                column: 1,
+                line: 3,
                 message: 'Opening curly brace should be on its own line.'
             }];
 
@@ -335,8 +368,8 @@ describe('lesshint', function () {
         it('should not allow multiple new lines when a selector group is used and "style" is "new_line"', function () {
             const source = '.foo, .bar\n\n{}';
             const expected = [{
-                column: 11,
-                line: 1,
+                column: 1,
+                line: 3,
                 message: 'Opening curly brace should be on its own line.'
             }];
 
@@ -421,19 +454,6 @@ describe('lesshint', function () {
             });
         });
 
-        it('should not check imports', function () {
-            const source = '@import \'lib/colors\';';
-            const options = {
-                style: 'one_space'
-            };
-
-            return spec.parse(source, function (ast) {
-                const result = spec.linter.lint(options, ast.root.first);
-
-                expect(result).to.be.undefined;
-            });
-        });
-
         it('should ignore nodes without a following block', function () {
             const source = '.foo();';
             const options = {
@@ -457,6 +477,26 @@ describe('lesshint', function () {
                 const result = spec.linter.lint(options, ast.root.first);
 
                 expect(result).to.be.undefined;
+            });
+        });
+
+        it('should report the correct line on multi-line selectors (#231)', function () {
+            const source = '.foo,\n.bar  { color: red; }';
+
+            const expected = [{
+                column: 7,
+                line: 2,
+                message: 'Opening curly brace should be preceded by one space.'
+            }];
+
+            const options = {
+                style: 'one_space'
+            };
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.deep.equal(expected);
             });
         });
 

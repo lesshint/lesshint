@@ -2,7 +2,7 @@
 If you wish to create your own linter or work on one of the core ones, this is the place for you!
 
 First of all, in order to work properly, all linters are required to expose a few things.
-* `name` - The name of the linter. While we don't enforce namespaces, we recommend it when creating custom linters, to prevent naming collisions.
+* `name` - The name of the linter. While we don't enforce namespaces, we recommend it when creating custom linters, to prevent naming collisions. The name should only contain `a-z 0-9 _ - /`.
 * `nodeTypes` - An array of [PostCSS node types](http://api.postcss.org/postcss.html) that the linter wants to check.
 * `lint` - The main lint method which will be called with the following arguments.
     * `config` - The config object for this linter.

@@ -17,6 +17,7 @@ describe('lesshint', function () {
             const source = 'color: #ABC;';
             const expected = [{
                 column: 8,
+                line: 1,
                 message: '#ABC should be written in the long-form format.'
             }];
 
@@ -48,6 +49,7 @@ describe('lesshint', function () {
             const source = 'color: #AABBCC;';
             const expected = [{
                 column: 8,
+                line: 1,
                 message: '#AABBCC should be written in the short-form format.'
             }];
 
@@ -92,6 +94,7 @@ describe('lesshint', function () {
             const source = 'background: url(test.png) no-repeat #AABBCC;';
             const expected = [{
                 column: 37,
+                line: 1,
                 message: '#AABBCC should be written in the short-form format.'
             }];
 
@@ -110,6 +113,7 @@ describe('lesshint', function () {
             const source = '@color: #ABC;';
             const expected = [{
                 column: 9,
+                line: 1,
                 message: '#ABC should be written in the long-form format.'
             }];
 
@@ -128,6 +132,7 @@ describe('lesshint', function () {
             const source = '@color: #AABBCC;';
             const expected = [{
                 column: 9,
+                line: 1,
                 message: '#AABBCC should be written in the short-form format.'
             }];
 
