@@ -1,4 +1,10 @@
 # Changelog
+## 4.2.0 (2017-10-24)
+* Updated `postcss-selector-parser` to `3.0.0`. ([6fac21a](https://github.com/lesshint/lesshint/commit/6fac21a404a8c8ff48564fa21e5357efaca9b94d))
+* The `parseSelector` util can also accept PostCSS `Rule` nodes which gives better errors. ([6fac21a](https://github.com/lesshint/lesshint/commit/6fac21a404a8c8ff48564fa21e5357efaca9b94d))
+* Updated `sinon` to `4.0.0`.
+([82ee2aa](https://github.com/lesshint/lesshint/commit/82ee2aa8c4bb2116dc7010375cec46483e506c3c))
+
 ## 4.1.3 (2017-09-25)
 * Fixed an issue where `finalNewline` would erroneously report files with CRLF line endings. ([5aff629](https://github.com/lesshint/lesshint/commit/5aff62999cb00dbf323a0001cefe640f3f48334c))
 
