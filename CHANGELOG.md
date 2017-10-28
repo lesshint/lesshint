@@ -1,4 +1,9 @@
 # Changelog
+## 4.3.0 (2017-10-28)
+* Updated `postcss-values-parser` to `1.3.0`. ([218ca20](https://github.com/lesshint/lesshint/commit/218ca20d0b8ba54b64bd24c0ded10f1ded978bb2))
+* Added a `hasQuotes` util. ([86feef6](https://github.com/lesshint/lesshint/commit/86feef6af64723dba4b35d31ab14e0468ca033fb))
+* Replaced some instances of string concatenation with template strings. ([73fd66e](https://github.com/lesshint/lesshint/commit/73fd66e1e3c94f869ed62e52d0466d4235122d8e))
+
 ## 4.2.0 (2017-10-24)
 * Updated `postcss-selector-parser` to `3.0.0`. ([6fac21a](https://github.com/lesshint/lesshint/commit/6fac21a404a8c8ff48564fa21e5357efaca9b94d))
 * The `parseSelector` util can also accept PostCSS `Rule` nodes which gives better errors. ([6fac21a](https://github.com/lesshint/lesshint/commit/6fac21a404a8c8ff48564fa21e5357efaca9b94d))
