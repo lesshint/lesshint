@@ -1,6 +1,6 @@
 # Utils
 
-There are a copule of utilities included with `lesshint` which can be used when creating custom linters.
+There are a couple of utilities included with `lesshint` which can be used when creating custom linters.
 
 ```js
 const utils = require('lesshint').utils;
@@ -20,6 +20,26 @@ Check if a value is a Less variable.
 ```js
 utils.isVariable('@foo'); // true
 utils.isVariable('blue'); // false
+```
+
+## `hasQuotes(str, style)`
+Check if a string is enclosed in quotes.
+
+`style` values | Description
+-------------- | -----------
+`any`          | Check for any kind of quotes (**default**).
+`double`       | Check for double quotes.
+`single`       | Check for single quotes.
+
+```js
+utils.hasQuotes'"foo"', 'any'); // true
+utils.hasQuotes('foo', 'any'); // false
+
+utils.hasQuotes('"foo"', 'double'); // true
+utils.hasQuotes("'foo'", 'double'); // false
+
+utils.hasQuotes("'foo'", 'single'); // true
+utils.hasQuotes('"foo"', 'single'); // false
 ```
 
 ## `parseSelector(selector)`
