@@ -1,4 +1,8 @@
 # Changelog
+## 4.4.0 (2017-11-10)
+* Added a `spaceAroundBang` linter. ([b459b8b](https://github.com/lesshint/lesshint/commit/b459b8b6e72960a4fae0ed5ef23baa1305028c8a))
+* CI tests are run on Node 9. ([7f8e58a](https://github.com/lesshint/lesshint/commit/7f8e58ae4078ca13176ae0ac7f84a3c074c94f5e))
+
 ## 4.3.0 (2017-10-28)
 * Updated `postcss-values-parser` to `1.3.0`. ([218ca20](https://github.com/lesshint/lesshint/commit/218ca20d0b8ba54b64bd24c0ded10f1ded978bb2))
 * Added a `hasQuotes` util. ([86feef6](https://github.com/lesshint/lesshint/commit/86feef6af64723dba4b35d31ab14e0468ca033fb))
