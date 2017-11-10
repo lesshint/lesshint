@@ -26,6 +26,7 @@
 * [spaceAfterPropertyColon](#spaceafterpropertycolon)
 * [spaceAfterPropertyName](#spaceafterpropertyname)
 * [spaceAfterPropertyValue](#spaceafterpropertyvalue)
+* [spaceAroundBang](#spacearoundbang)
 * [spaceAroundComma](#spacearoundcomma)
 * [spaceAroundOperator](#spacearoundoperator)
 * [spaceBeforeBrace](#spacebeforebrace)
@@ -706,6 +707,41 @@ Option     | Description
 ```less
 .foo {
     margin: 0 ;
+}
+```
+
+## spaceAroundBang
+Defines how the exclamation mark (bang) in `!important` etc. should be formatted by a space to aid readability.
+
+Option  | Description
+--------| ------------
+`style` | `after`, `before` (**default**), `both`, `none`
+
+### after
+```less
+.foo {
+    color: red! important;
+}
+```
+
+### before
+```less
+.foo {
+    color: red !important;
+}
+```
+
+### both
+```less
+.foo {
+    color: red ! important;
+}
+```
+
+### none
+```less
+.foo {
+    color: red!important;
 }
 ```
 
