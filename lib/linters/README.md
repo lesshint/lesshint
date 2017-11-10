@@ -715,7 +715,7 @@ Defines how the exclamation mark (bang) in `!important` etc. should be formatted
 
 Option  | Description
 --------| ------------
-`style` | `after`, `before`, (**default**) `both`, `none`
+`style` | `after`, `before` (**default**), `both`, `none`
 
 ### after
 ```less
