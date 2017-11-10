@@ -145,6 +145,11 @@
         "style": "no_space"
     },
 
+    "spaceAroundBang": {
+      "enabled": true,
+      "style": "before"
+    },
+
     "spaceAroundComma": {
         "allowNewline": false,
         "enabled": true,
