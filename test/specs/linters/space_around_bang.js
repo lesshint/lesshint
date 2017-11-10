@@ -4,7 +4,7 @@ const expect = require('chai').expect;
 const spec = require('../util.js').setup();
 
 describe('lesshint', function () {
-    describe('#spaceAroundComma', function () {
+    describe('#spaceAroundBang', function () {
         let options;
 
         it('should have the proper node types', function () {
