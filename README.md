@@ -30,10 +30,10 @@ For information on how to configure `lesshint` and other available options, see 
 Since `lesshint` is highly customizable we recommend you to also take a look at the [available rule options](/lib/linters/README.md) to tailor it to your needs.
 
 ## CLI usage
-Run `lesshint` from the command-line by passing one or more files/directories to recursively scan.
+Run `lesshint` from the command-line by passing one or more files/directories to recursively scan. Quote the glob patterns for optimal cross-platform results.
 
 ```
-lesshint src/less/ lib/style.less
+lesshint "src/less/" "lib/style.less"
 ```
 
 Available Flags         | Description
