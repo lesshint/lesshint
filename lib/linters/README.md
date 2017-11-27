@@ -975,14 +975,22 @@ The [CSS spec](http://dev.w3.org/csswg/css-values/#url-value) also recommends th
 Force variable or non variable value in property.
 
 Option     | Description
----------- | ----------
-`always`    | Array of property names
-`never`    | Array of property names
+--------------- | ----------
+`always`        | Array of property names
+`never`         | Array of property names
+`allowedValues` | Array of allowed non variables values
 
 ### always ['color'] valid
 ```less
 .foo {
     color: @success;
+}
+```
+
+### always ['color'] allowedValues ['none'] valid
+```less
+.foo {
+    color: none;
 }
 ```
 

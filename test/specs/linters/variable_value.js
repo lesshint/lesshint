@@ -100,5 +100,19 @@ describe('lesshint', function () {
                 expect(result).to.be.undefined;
             });
         });
+
+        it('should allow value if in allowedValues list', function () {
+            const source = 'color: none;';
+            const options = {
+                always: ['color'],
+                allowedValues: ['none']
+            };
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
     });
 });
