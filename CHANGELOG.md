@@ -1,4 +1,12 @@
 # Changelog
+## 4.5.0 (2017-11-27)
+* Added a `Lesshint.checkFiles()` method. This is a more general-purpose method working on globs instead of directories/file names. ([dc939cd](https://github.com/lesshint/lesshint/commit/dc939cdfa1b99aba08ec2bdbb028c550bcc2ac35))
+* Deprecated the following methods: ([dc939cd](https://github.com/lesshint/lesshint/commit/dc939cdfa1b99aba08ec2bdbb028c550bcc2ac35))
+    * `Lesshint.checkDirectory()`
+    * `Lesshint.checkFile()`
+    * `Lesshint.checkPath()`
+* The CLI will now also utilize the `Lesshint.checkFiles()` method. ([dc939cd](https://github.com/lesshint/lesshint/commit/dc939cdfa1b99aba08ec2bdbb028c550bcc2ac35))
+
 ## 4.4.0 (2017-11-10)
 * Added a `spaceAroundBang` linter. ([b459b8b](https://github.com/lesshint/lesshint/commit/b459b8b6e72960a4fae0ed5ef23baa1305028c8a))
 * CI tests are run on Node 9. ([7f8e58a](https://github.com/lesshint/lesshint/commit/7f8e58ae4078ca13176ae0ac7f84a3c074c94f5e))
