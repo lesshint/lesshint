@@ -1,11 +1,13 @@
-.foo{ // lesshint spaceBeforeBrace: false
+// lesshint-disable-next-line spaceBeforeBrace
+.foo{
     color: red;
 }
 
 .bar{
-    color:blue; // lesshint spaceAfterPropertyColon: false
+    color:blue; // lesshint-disable-line spaceAfterPropertyColon
+    margin-left:10px;
 }
 
 .baz {
-    color: #FFF; // lesshint hexLength: false, hexNotation: false
+    color: #FFF; // lesshint-disable-line hexLength, hexNotation
 }

@@ -23,7 +23,66 @@ In the `.lesshintrc` file, each option is specified by its own JSON object, for 
 Now, take a look at the available [linter options](/lib/linters/README.md).
 
 ## Inline configuration
-It's possible to configure rules using inline comments in your `.less` files. This needs to be on the first line of your `.less` file. For example:
+Sometimes, you may want to temporarily disable one or more rules in your `.less` files. This can be accomplished with the use of special inline configuration comments. For example:
+
+```less
+.foo {
+    color: red !important; // Will be reported since it's outside a disable/enable range
+}
+
+// lesshint-disable
+.bar {
+    color: blue !important; // This won't be reported
+}
+// lesshint-enable
+
+.baz {
+    color: green !important; // This will also be reported since it's outside the disable/enable range
+}
+```
+
+It's also possible to disable and enable a specific rule:
+
+```less
+// lesshint-disable importantRule
+.bar {
+    color: blue !important; // This won't be reported
+}
+// lesshint-enable importantRule
+```
+
+Multiple rules can be disabled and enabled at once. It's even possible to disable multiple rules and then just enabling one of them. For example:
+
+```less
+// lesshint-disable emptyRule, spaceBeforeBrace
+.foo{
+    // Won't report anything here
+}
+// lesshint-enable emptyRule
+.bar{
+    // Will report this empty rule, but not the missing space before the brace
+}
+```
+
+To disable rules on the current or next line, use `lesshint-disable-line` and `lesshint-disable-next-line`. They can of course also accept a single rule to disable.
+
+```less
+.foo {
+    color: red !important; // lesshint-disable-line
+}
+
+// lesshint-disable-next-line universalSelector
+* {
+    box-sizing: border-box;
+}
+```
+
+__Note:__ Comments in selector and value lists are currently ignored.
+
+### Old inline configuration style
+While we still support the old style of inline configuration comments, they are deprecated and their usage highly discouraged in favor of the new style documented above.
+
+When using the old style of inline configuration comments, they need to be on the first line of your `.less` file. For example:
 
 ```less
 // lesshint spaceBeforeBrace: false
