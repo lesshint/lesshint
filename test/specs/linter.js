@@ -298,7 +298,7 @@ describe('linter', function () {
                 {
                     column: 5,
                     file: 'line-options.less',
-                    fullPath: '/Users/jonathan/web/lesshint/lesshint/test/data/inline-options/line-options.less',
+                    fullPath: testPath,
                     line: 6,
                     linter: 'spaceBeforeBrace',
                     message: 'Opening curly brace should be preceded by one space.',
@@ -309,7 +309,7 @@ describe('linter', function () {
                 {
                     column: 17,
                     file: 'line-options.less',
-                    fullPath: '/Users/jonathan/web/lesshint/lesshint/test/data/inline-options/line-options.less',
+                    fullPath: testPath,
                     line: 8,
                     linter: 'spaceAfterPropertyColon',
                     message: 'Colon after property name should be followed by one space.',
