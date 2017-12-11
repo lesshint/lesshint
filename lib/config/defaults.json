@@ -205,6 +205,7 @@
     "variableValue": {
         "enabled": true,
         "always": [],
-        "never": []
+        "never": [],
+        "allowedValues": []
     }
 }
