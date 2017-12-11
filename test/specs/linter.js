@@ -232,9 +232,143 @@ describe('linter', function () {
             expect(result).to.deep.equal(expected);
         });
 
-        it('should only care about the first inline comment', function () {
-            const testPath = path.resolve(process.cwd(), './test/data/inline-options/file-options-enabled.less');
-            const source = readFileSync('./test/data/inline-options/file-options-enabled.less');
+        it('should honor inline configuration comments', function () {
+            const testPath = path.resolve(process.cwd(), './test/data/inline-options/file-options.less');
+            const source = readFileSync('./test/data/inline-options/file-options.less');
+            const expected = [{
+                column: 1,
+                file: 'file-options.less',
+                fullPath: testPath,
+                line: 11,
+                linter: 'emptyRule',
+                message: "There shouldn't be any empty rules present.",
+                position: 119,
+                severity: 'warning',
+                source: '.baz {'
+            }];
+
+            const config = {
+                emptyRule: true,
+                spaceAfterPropertyColon: {
+                    enabled: true,
+                    style: 'one_space'
+                }
+            };
+
+            const linter = new Linter(source, testPath, config);
+            const result = linter.lint();
+
+            expect(result).to.deep.equal(expected);
+        });
+
+        it('should allow inline disabling/enabling of all rules', function () {
+            const testPath = path.resolve(process.cwd(), './test/data/inline-options/file-options-all.less');
+            const source = readFileSync('./test/data/inline-options/file-options-all.less');
+            const expected = [{
+                column: 1,
+                file: 'file-options-all.less',
+                fullPath: testPath,
+                line: 11,
+                linter: 'universalSelector',
+                message: "The universal selector shouldn't be used.",
+                position: 75,
+                severity: 'warning',
+                source: '* {'
+            }];
+
+            const config = {
+                emptyRule: true,
+                spaceAfterPropertyColon: {
+                    enabled: true,
+                    style: 'one_space'
+                },
+                universalSelector: true
+            };
+
+            const linter = new Linter(source, testPath, config);
+            const result = linter.lint();
+
+            expect(result).to.deep.equal(expected);
+        });
+
+        it('should honor single line inline configuration comments', function () {
+            const testPath = path.resolve(process.cwd(), './test/data/inline-options/line-options.less');
+            const source = readFileSync('./test/data/inline-options/line-options.less');
+            const expected = [
+                {
+                    column: 5,
+                    file: 'line-options.less',
+                    fullPath: testPath,
+                    line: 6,
+                    linter: 'spaceBeforeBrace',
+                    message: 'Opening curly brace should be preceded by one space.',
+                    position: 76,
+                    severity: 'warning',
+                    source: '.bar{'
+                },
+                {
+                    column: 17,
+                    file: 'line-options.less',
+                    fullPath: testPath,
+                    line: 8,
+                    linter: 'spaceAfterPropertyColon',
+                    message: 'Colon after property name should be followed by one space.',
+                    position: 159,
+                    severity: 'warning',
+                    source: '    margin-left:10px;'
+                }
+            ];
+
+            const config = {
+                hexLength: {
+                    enabled: true,
+                    style: 'long'
+                },
+                hexNotation: {
+                    enabled: true,
+                    style: 'lowercase'
+                },
+                spaceAfterPropertyColon: {
+                    enabled: true,
+                    style: 'one_space'
+                },
+                spaceBeforeBrace: {
+                    enabled: true,
+                    style: 'one_space'
+                },
+                universalSelector: true
+            };
+
+            const linter = new Linter(source, testPath, config);
+            const result = linter.lint();
+
+            expect(result).to.deep.equal(expected);
+        });
+
+        it('should report invalid inline configuration comments', function () {
+            const testPath = path.resolve(process.cwd(), './test/data/inline-options/options-invalid.less');
+            const source = readFileSync('./test/data/inline-options/options-invalid.less');
+            const expected = [{
+                column: 1,
+                file: 'options-invalid.less',
+                fullPath: testPath,
+                line: 1,
+                linter: 'parse error',
+                message: 'Invalid inline configuration comment: "lesshint-disbale foobar"',
+                severity: 'error'
+            }];
+
+            const config = {};
+
+            const linter = new Linter(source, testPath, config);
+            const result = linter.lint();
+
+            expect(result).to.deep.equal(expected);
+        });
+
+        it('should only care about the first inline comment (old style)', function () {
+            const testPath = path.resolve(process.cwd(), './test/data/old-inline-options/file-options-enabled.less');
+            const source = readFileSync('./test/data/old-inline-options/file-options-enabled.less');
             const expected = [{
                 column: 5,
                 file: 'file-options-enabled.less',
@@ -265,9 +399,9 @@ describe('linter', function () {
             expect(result).to.deep.equal(expected);
         });
 
-        it('should not report rules that are disabled inline', function () {
-            const testPath = path.resolve(__dirname, './test/data/inline-options/file-options-enabled.less');
-            const source = readFileSync('./test/data/inline-options/file-options-enabled.less');
+        it('should not report rules that are disabled inline (old style)', function () {
+            const testPath = path.resolve(__dirname, './test/data/old-inline-options/file-options-enabled.less');
+            const source = readFileSync('./test/data/old-inline-options/file-options-enabled.less');
             const expected = [{
                 column: 5,
                 file: 'file-options-enabled.less',
@@ -298,9 +432,9 @@ describe('linter', function () {
             expect(result).to.deep.equal(expected);
         });
 
-        it('should allow disabled rules to be enabled inline', function () {
-            const testPath = path.resolve(__dirname, './test/data/inline-options/file-options-disabled.less');
-            const source = readFileSync('./test/data/inline-options/file-options-disabled.less');
+        it('should allow disabled rules to be enabled inline (old style)', function () {
+            const testPath = path.resolve(__dirname, './test/data/old-inline-options/file-options-disabled.less');
+            const source = readFileSync('./test/data/old-inline-options/file-options-disabled.less');
             const expected = [{
                 column: 11,
                 file: 'file-options-disabled.less',
@@ -338,9 +472,9 @@ describe('linter', function () {
             expect(result).to.deep.equal(expected);
         });
 
-        it('should not report rules that are disabled on a single line', function () {
-            const testPath = path.resolve(__dirname, './test/data/inline-options/line-options.less');
-            const source = readFileSync('./test/data/inline-options/line-options.less');
+        it('should not report rules that are disabled on a single line (old style)', function () {
+            const testPath = path.resolve(__dirname, './test/data/old-inline-options/line-options.less');
+            const source = readFileSync('./test/data/old-inline-options/line-options.less');
             const expected = [{
                 column: 5,
                 file: 'line-options.less',
@@ -366,9 +500,19 @@ describe('linter', function () {
             expect(result).to.deep.equal(expected);
         });
 
+        it('should report invalid inline options (old style)', function () {
+            const source = readFileSync('./test/data/old-inline-options/options-invalid.less');
+
+            expect(function () {
+                const linter = new Linter(source, 'options-invalid.less', {});
+
+                linter.lint();
+            }).to.throw('Invalid inline option on line 1');
+        });
+
         it('reports positions after multiple consecutive endline characters', function () {
-            const testPath = path.resolve(__dirname, './test/data/inline-options/endlines.less');
-            const source = readFileSync('./test/data/inline-options/endlines.less');
+            const testPath = path.resolve(__dirname, './test/data/endlines.less');
+            const source = readFileSync('./test/data/endlines.less');
             const expected = [{
                 column: 5,
                 file: 'endlines.less',
@@ -392,16 +536,6 @@ describe('linter', function () {
             const result = linter.lint();
 
             expect(result).to.deep.equal(expected);
-        });
-
-        it('should report invalid inline options', function () {
-            const source = readFileSync('./test/data/inline-options/options-invalid.less');
-
-            expect(function () {
-                const linter = new Linter(source, 'options-invalid.less', {});
-
-                linter.lint();
-            }).to.throw('Invalid inline option on line 1');
         });
 
         it('should not report comma spaces for selectors that have pseudos', function () {
