@@ -1,4 +1,8 @@
 # Changelog
+## 4.6.0 (2017-12-11)
+* Improved the inline configuration comments. Read more about it in the [docs](https://github.com/lesshint/lesshint/blob/master/docs/user-guide/configuration.md#inline-configuration). ([4c546bc](https://github.com/lesshint/lesshint/commit/4c546bc687e5f5a3eaab4d71bbdbaa213afce7bf))
+* Added an `allowedValues` option to `variableValue` ([dbceb6d](https://github.com/lesshint/lesshint/commit/dbceb6d48b592d6990f415ca385fad55f83d1cd4))
+
 ## 4.5.0 (2017-11-27)
 * Added a `Lesshint.checkFiles()` method. This is a more general-purpose method working on globs instead of directories/file names. ([dc939cd](https://github.com/lesshint/lesshint/commit/dc939cdfa1b99aba08ec2bdbb028c550bcc2ac35))
 * Deprecated the following methods: ([dc939cd](https://github.com/lesshint/lesshint/commit/dc939cdfa1b99aba08ec2bdbb028c550bcc2ac35))
