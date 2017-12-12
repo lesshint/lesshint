@@ -345,6 +345,34 @@ describe('linter', function () {
             expect(result).to.deep.equal(expected);
         });
 
+        it('should enable all disabled rules even when no rules to enable are specified', function () {
+            const testPath = path.resolve(process.cwd(), './test/data/inline-options/disable-enable-all.less');
+            const source = readFileSync('./test/data/inline-options/disable-enable-all.less');
+            const expected = [{
+                column: 1,
+                file: 'disable-enable-all.less',
+                fullPath: testPath,
+                line: 7,
+                linter: 'idSelector',
+                message: 'Selectors should not use IDs.',
+                position: 82,
+                severity: 'warning',
+                source: '#bar {'
+            }];
+
+            const config = {
+                idSelector: {
+                    enabled: true,
+                    exclude: []
+                }
+            };
+
+            const linter = new Linter(source, testPath, config);
+            const result = linter.lint();
+
+            expect(result).to.deep.equal(expected);
+        });
+
         it('should report invalid inline configuration comments', function () {
             const testPath = path.resolve(process.cwd(), './test/data/inline-options/options-invalid.less');
             const source = readFileSync('./test/data/inline-options/options-invalid.less');
