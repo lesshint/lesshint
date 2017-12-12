@@ -1,4 +1,8 @@
 # Changelog
+## 4.6.1 (2017-12-12)
+* Fixed an issue where `idSelector` would sometimes report the incorrect position. ([8f12cb1](https://github.com/lesshint/lesshint/commit/8f12cb19773f1dedaf6cf58294da83cdc26f76cb))
+* Fixed an issue with enabling all comments with inline configuration comments. ([8840589](https://github.com/lesshint/lesshint/commit/88405898763453958792e8520263093a47ffb530))
+
 ## 4.6.0 (2017-12-11)
 * Improved the inline configuration comments. Read more about it in the [docs](https://github.com/lesshint/lesshint/blob/master/docs/user-guide/configuration.md#inline-configuration). ([4c546bc](https://github.com/lesshint/lesshint/commit/4c546bc687e5f5a3eaab4d71bbdbaa213afce7bf))
 * Added an `allowedValues` option to `variableValue` ([dbceb6d](https://github.com/lesshint/lesshint/commit/dbceb6d48b592d6990f415ca385fad55f83d1cd4))
