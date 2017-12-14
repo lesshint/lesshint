@@ -1,4 +1,7 @@
 # Changelog
+## 4.6.2 (2017-12-14)
+* The full file path will now be passed to `postcss` so it'll be available on all AST nodes. ([3d409fc](https://github.com/lesshint/lesshint/commit/3d409fcab4001f1a5d606589ca750c163ad861e6))
+
 ## 4.6.1 (2017-12-12)
 * Fixed an issue where `idSelector` would sometimes report the incorrect position. ([8f12cb1](https://github.com/lesshint/lesshint/commit/8f12cb19773f1dedaf6cf58294da83cdc26f76cb))
 * Fixed an issue with enabling all comments with inline configuration comments. ([8840589](https://github.com/lesshint/lesshint/commit/88405898763453958792e8520263093a47ffb530))
