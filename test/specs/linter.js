@@ -7,8 +7,7 @@ const fs = require('fs');
 
 describe('linter', function () {
     const readFileSync = function (filePath) {
-        return fs.readFileSync(path.resolve(process.cwd(), filePath), 'utf8')
-            .replace(/\r\n|\r|\n/g, '\n'); // Normalize line endings
+        return fs.readFileSync(path.resolve(process.cwd(), filePath), 'utf8');
     };
 
     describe('lint', function () {

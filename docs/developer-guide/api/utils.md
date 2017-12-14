@@ -22,6 +22,16 @@ utils.isVariable('@foo'); // true
 utils.isVariable('blue'); // false
 ```
 
+## `hasNewline(str)`
+Check if a value contains new line characters.
+
+```js
+utils.hasNewline('\n'); // true
+utils.hasNewline('\r\n'); // true
+utils.hasNewline('\t'); // false
+utils.hasNewline('foo'); // false
+```
+
 ## `hasQuotes(str, style)`
 Check if a string is enclosed in quotes.
 
