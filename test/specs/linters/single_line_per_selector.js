@@ -27,11 +27,6 @@ describe('lesshint', function () {
             const source = '.foo, .bar {}';
             const expected = [
                 {
-                    column: 1,
-                    line: 1,
-                    message: 'Each selector should be on its own line.'
-                },
-                {
                     column: 7,
                     line: 1,
                     message: 'Each selector should be on its own line.'
@@ -69,7 +64,7 @@ describe('lesshint', function () {
         });
 
         it('should not allow selectors with long names on the same line when "style" is "18f"', function () {
-            const source = '.foobar, .bar {}';
+            const source = '.foobar, .bar, {}';
             const options = {
                 style: '18f'
             };
@@ -97,20 +92,14 @@ describe('lesshint', function () {
             });
         });
 
-        it('should not report the same selector multiple times. #239', function () {
-            const source = '.foo .bar, .bar .foo {}';
-            const expected = [
-                {
-                    column: 1,
-                    line: 1,
-                    message: 'Each selector should be on its own line.'
-                },
-                {
-                    column: 12,
-                    line: 1,
-                    message: 'Each selector should be on its own line.'
-                }
-            ];
+        it('should warn on selectors without an accompanying newline. #346', function () {
+            const source = '.aaa, .bbb,\n.ccc {}';
+
+            const expected = [{
+                column: 7,
+                line: 1,
+                message: 'Each selector should be on its own line.'
+            }];
 
             return spec.parse(source, function (ast) {
                 const result = spec.linter.lint({}, ast.root.first);
