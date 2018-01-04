@@ -109,14 +109,15 @@ If `path` is a file, it'll be loaded and its contents returned. If `path` is a d
 const config = lesshint.getConfig('/path/to/my/config.json');
 ```
 
-
 ## `Lesshint.getReporter(reporter)`
 Load a reporter using `lesshint`'s logic.
 
 The `reporter` argument can be one of the following.
 * The name of a module. The normal Node.js loading rules for global/local modules apply.
-* Path to a reporter. Relative paths will be resolved against [`process.cwd()`](https://nodejs.org/api/process.html#process_process_cwd).
 * A already initialized reporter object which will just be returned again.
+* Path to a reporter. Relative paths will be resolved against [`process.cwd()`](https://nodejs.org/api/process.html#process_process_cwd). If this fails, it'll look relative to the `.lesshintrc` file in use.
+
+**Note:** When relying on path resolving against the `.lesshintrc` file in use, you might run into unexpected results if this method is called before the `Lesshint` instance has been completely configured with `Lesshint.getConfig()` and `Lesshint.configure()`.
 
 If nothing is passed, the default reporter will be returned. If the reporter loading fails for some reason, `false` will be returned.
 
