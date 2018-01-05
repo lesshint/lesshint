@@ -1,4 +1,7 @@
 # Changelog
+## 4.6.3 (2018-01-05)
+* Fixed a CLI glob matching/excluded files regression introduced in `4.5.0`. ([c4fea99](https://github.com/lesshint/lesshint/commit/c4fea992dc1cc3047315232b3daa1be506815c0e))
+
 ## 4.6.2 (2017-12-14)
 * The full file path will now be passed to `postcss` so it'll be available on all AST nodes. ([3d409fc](https://github.com/lesshint/lesshint/commit/3d409fcab4001f1a5d606589ca750c163ad861e6))
 
