@@ -1,7 +1,7 @@
 {
   "name": "lesshint",
   "description": "A tool to aid you in writing clean and consistent Less.",
-  "version": "4.6.2",
+  "version": "4.6.3",
   "main": "./lib/index.js",
   "author": {
     "name": "Jonathan Wilsson",
@@ -38,7 +38,7 @@
     "gulp": "^3.9.0",
     "gulp-coveralls": "^0.1.4",
     "gulp-eslint": "^4.0.0",
-    "gulp-mocha": "^4.1.0",
+    "gulp-mocha": "^5.0.0",
     "nyc": "^11.0.1",
     "rimraf": "^2.4.2",
     "sinon": "^4.0.0"
