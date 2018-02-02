@@ -1,4 +1,7 @@
 # Changelog
+## 4.6.4 (2018-02-02)
+* Fixed an issue where multiple inline disables of same the rule wouldn't disable each one properly. ([80e8475](https://github.com/lesshint/lesshint/commit/80e84752b31ae139d9f33f6ed64a1fcd01f335a1))
+
 ## 4.6.3 (2018-01-05)
 * Fixed a CLI glob matching/excluded files regression introduced in `4.5.0`. ([c4fea99](https://github.com/lesshint/lesshint/commit/c4fea992dc1cc3047315232b3daa1be506815c0e))
 
