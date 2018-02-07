@@ -8,7 +8,7 @@ const Runner = require('lesshint').Runner;
 // Any CLI option is valid
 const options = {
     maxWarnings: 10, // Dashes in CLI flags are converted to camel case
-    paths: ['file.less'] // An array of path(s) to check
+    args: ['file.less'] // An array of path(s) to check (can be globs)
 };
 
 const runner = new Runner(options);
