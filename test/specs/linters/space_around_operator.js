@@ -23,6 +23,16 @@ describe('lesshint', function () {
             });
 
             it('should allow one space before and after operator', function () {
+                const source = 'height: 10px + 10px;';
+
+                return spec.parse(source, function (ast) {
+                    const result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.be.undefined;
+                });
+            });
+
+            it('should allow one space before and after operator in calc', function () {
                 const source = 'height: calc(10px + 10px);';
 
                 return spec.parse(source, function (ast) {
@@ -33,6 +43,21 @@ describe('lesshint', function () {
             });
 
             it('should not allow missing space before operator', function () {
+                const source = 'height: 10px+ 10px;';
+                const expected = [{
+                    column: 13,
+                    line: 1,
+                    message: 'Operators should be preceded and followed by one space.'
+                }];
+
+                return spec.parse(source, function (ast) {
+                    const result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.deep.equal(expected);
+                });
+            });
+
+            it('should not allow missing space before operator in calc', function () {
                 const source = 'height: calc(10px+ 10px);';
                 const expected = [{
                     column: 18,
@@ -48,6 +73,21 @@ describe('lesshint', function () {
             });
 
             it('should not allow missing space after operator', function () {
+                const source = 'height: 10px +10px;';
+                const expected = [{
+                    column: 14,
+                    line: 1,
+                    message: 'Operators should be preceded and followed by one space.'
+                }];
+
+                return spec.parse(source, function (ast) {
+                    const result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.deep.equal(expected);
+                });
+            });
+
+            it('should not allow missing space after operator in calc', function () {
                 const source = 'height: calc(10px +10px);';
                 const expected = [{
                     column: 19,
@@ -63,6 +103,21 @@ describe('lesshint', function () {
             });
 
             it('should not allow missing space before and after operator', function () {
+                const source = 'height: 10px+10px;';
+                const expected = [{
+                    column: 13,
+                    line: 1,
+                    message: 'Operators should be preceded and followed by one space.'
+                }];
+
+                return spec.parse(source, function (ast) {
+                    const result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.deep.equal(expected);
+                });
+            });
+
+            it('should not allow missing space before and after operator in calc', function () {
                 const source = 'height: calc(10px+10px);';
                 const expected = [{
                     column: 18,
@@ -84,6 +139,31 @@ describe('lesshint', function () {
                     const result = spec.linter.lint(options, ast.root.first);
 
                     expect(result).to.be.undefined;
+                });
+            });
+
+            it('should not report on negative values in shorthand', function () {
+                const source = 'margin: 10px -1px 0px 20px;';
+
+                return spec.parse(source, function (ast) {
+                    const result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.be.undefined;
+                });
+            });
+
+            it('should not allow negative values in shorthand-like parens', function () {
+                const source = 'margin: (10px -1px) 0px 20px;';
+                const expected = [{
+                    column: 15,
+                    line: 1,
+                    message: 'Operators should be preceded and followed by one space.'
+                }];
+
+                return spec.parse(source, function (ast) {
+                    const result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.deep.equal(expected);
                 });
             });
 
@@ -156,6 +236,16 @@ describe('lesshint', function () {
                     expect(result).to.be.undefined;
                 });
             });
+
+            it('should not report on browser-prefixed properties', function () {
+                const source = 'transition-property: opacity -webkit-filter;';
+
+                return spec.parse(source, function (ast) {
+                    const result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.be.undefined;
+                });
+            });
         }); // "both"
 
         describe('when "style" is "none"', function () {
@@ -166,6 +256,16 @@ describe('lesshint', function () {
             });
 
             it('should allow missing space before and after operator', function () {
+                const source = 'height: 10px+10px;';
+
+                return spec.parse(source, function (ast) {
+                    const result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.be.undefined;
+                });
+            });
+
+            it('should allow missing space before and after operator in calc', function () {
                 const source = 'height: calc(10px+10px);';
 
                 return spec.parse(source, function (ast) {
@@ -176,6 +276,21 @@ describe('lesshint', function () {
             });
 
             it('should not allow one space before operator', function () {
+                const source = 'height: 10px +10px;';
+                const expected = [{
+                    column: 14,
+                    line: 1,
+                    message: 'Operators should not be preceded nor followed by any space.'
+                }];
+
+                return spec.parse(source, function (ast) {
+                    const result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.deep.equal(expected);
+                });
+            });
+
+            it('should not allow one space before operator in calc', function () {
                 const source = 'height: calc(10px +10px);';
                 const expected = [{
                     column: 19,
@@ -191,6 +306,21 @@ describe('lesshint', function () {
             });
 
             it('should not allow one space after operator', function () {
+                const source = 'height: 10px+ 10px;';
+                const expected = [{
+                    column: 13,
+                    line: 1,
+                    message: 'Operators should not be preceded nor followed by any space.'
+                }];
+
+                return spec.parse(source, function (ast) {
+                    const result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.deep.equal(expected);
+                });
+            });
+
+            it('should not allow one space after operator in calc', function () {
                 const source = 'height: calc(10px+ 10px);';
                 const expected = [{
                     column: 18,
