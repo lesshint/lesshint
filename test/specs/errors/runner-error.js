@@ -1,7 +1,7 @@
 'use strict';
 
 const RunnerError = require('../../../lib/errors/runner-error');
-const expect = require('chai').expect;
+const { expect } = require('chai');
 
 describe('RunnerError', function () {
     it('should handle an Error object', function () {

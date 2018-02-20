@@ -1,6 +1,6 @@
 'use strict';
 
-const expect = require('chai').expect;
+const { expect } = require('chai');
 const spec = require('../util.js').setup();
 const parser = require('postcss-selector-parser');
 

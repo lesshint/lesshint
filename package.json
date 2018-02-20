@@ -17,7 +17,7 @@
     "hint"
   ],
   "engines": {
-    "node": ">=4"
+    "node": ">=6"
   },
   "dependencies": {
     "commander": "^2.8.0",

@@ -3,7 +3,7 @@
 'use strict';
 
 const cli = require('../../lib/cli');
-const expect = require('chai').expect;
+const { expect } = require('chai');
 const sinon = require('sinon');
 const path = require('path');
 

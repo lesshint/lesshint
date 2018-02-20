@@ -3,7 +3,7 @@
 'use strict';
 
 const childProcess = require('child_process');
-const expect = require('chai').expect;
+const { expect } = require('chai');
 const path = require('path');
 
 const awaitExit = function (exitingProcess) {

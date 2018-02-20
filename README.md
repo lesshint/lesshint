@@ -16,7 +16,7 @@
 * [Developer resources](#developer-resources)
 
 ## Installation
-_[Node.js](https://nodejs.org/) 4 (or later) is required._
+_[Node.js](https://nodejs.org/) 6 (or later) is required._
 
 Run the following from the command line to install `lesshint` (add `-g` to install globally):
 
