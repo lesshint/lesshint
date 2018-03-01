@@ -1,4 +1,7 @@
 # Changelog
+## 4.6.5 (2018-03-01)
+* Fixed an issue where `propertyOrdering` wouldn't check at-rules with only declarations. ([1441a55](https://github.com/lesshint/lesshint/commit/1441a55fa5272c31dea1b8280e6631b20c8c509a))
+
 ## 4.6.4 (2018-02-02)
 * Fixed an issue where multiple inline disables of same the rule wouldn't disable each one properly. ([80e8475](https://github.com/lesshint/lesshint/commit/80e84752b31ae139d9f33f6ed64a1fcd01f335a1))
 
