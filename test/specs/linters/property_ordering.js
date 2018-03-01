@@ -104,6 +104,26 @@ describe('lesshint', function () {
             });
         });
 
+        it('should check at-rules without rules (#460)', function () {
+            const source = '@media (screen) { opacity: 1; color: red; }';
+
+            const expected = [{
+                column: 31,
+                line: 1,
+                message: 'Property ordering is not alphabetized'
+            }];
+
+            const options = {
+                style: 'alpha'
+            };
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.deep.equal(expected);
+            });
+        });
+
         it('should throw on invalid "style" value', function () {
             const source = '.foo { color: red; color: blue; }';
             const options = {
