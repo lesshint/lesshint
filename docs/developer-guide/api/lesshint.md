@@ -12,36 +12,6 @@ lesshint.configure();
 // Do your thing using the methods below
 ```
 
-## `Lesshint.checkDirectory(checkPath)`
-**Deprecated. Use Lesshint.checkFiles() instead.**
-
-Check a directory recursively. Will respect `fileExtensions` and `excludedFiles` options.
-
-A `Promise` will be returned.
-
-```js
-const result = lesshint.checkDirectory('/path/to/my/directory');
-
-result.then((results) => {
-
-});
-```
-
-## `Lesshint.checkFile(checkPath)`
-**Deprecated. Use Lesshint.checkFiles() instead.**
-
-Check a single file asynchronously. Will not check `fileExtensions` and `excludedFiles` options.
-
-A `Promise` will be returned.
-
-```js
-const result = lesshint.checkFile('/path/to/my/file.less');
-
-result.then((results) => {
-
-});
-```
-
 ## `Lesshint.checkFiles(patterns)`
 Check a string or an array of glob patterns asynchronously. Will respect `fileExtensions` and `excludedFiles` options.
 
@@ -49,21 +19,6 @@ A `Promise` will be returned.
 
 ```js
 const result = lesshint.checkFiles('/path/**/*.less');
-
-result.then((results) => {
-
-});
-```
-
-## `Lesshint.checkPath(checkPath)`
-**Deprecated. Use Lesshint.checkFiles() instead.**
-
-Check a path asynchronously. If a file is passed it will check that, if a directory is passed it will check that recursively. Will respect `fileExtensions` and `excludedFiles` options.
-
-A `Promise` will be returned.
-
-```js
-const result = lesshint.checkPath('/path/to/my/directory');
 
 result.then((results) => {
 
