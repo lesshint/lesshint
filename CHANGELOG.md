@@ -1,4 +1,15 @@
 # Changelog
+## 5.0.0 (2018-03-29)
+* **Breaking** Support for Node versions below 6 has been dropped. ([65ad429](https://github.com/lesshint/lesshint/commit/65ad429013509e089a6300134d418500a9ccd565))
+* **Breaking** Unified plugin (reporters/custom linters) loading. Depending on your setup, you might experience a slight change in the lookup order. ([425f616](https://github.com/lesshint/lesshint/commit/425f616829b14a95a1552dd95b9cc4337f76722d))
+* **Breaking** Line endings are no longer normalized, custom linters will recieve whichever line endings the source files contain. A new helper, `hasNewline` has been added to aid with checking this. ([ba3c7a8](https://github.com/lesshint/lesshint/commit/ba3c7a831484f2a3734ad720396ee2ec1caad007))
+* **Breaking** `singleLinePerSelector` will no longer report the first selector on a line, only the following ones. ([d58f791](https://github.com/lesshint/lesshint/commit/d58f791c97c63fb06167e89ca5882adf95de1d5e))
+* **Breaking** Removed the following, deprecated, methods: ([d58f791](https://github.com/lesshint/lesshint/commit/d93dc58fdd0e7082599b1a02bba3a6143a4f7675))
+    * `Lesshint.checkDirectory()`
+    * `Lesshint.checkFile()`
+    * `Lesshint.checkPath()`
+* Updated to `globby@8`. ([1ef433a](https://github.com/lesshint/lesshint/commit/1ef433a67925795b6e5be6067fd216407766bde4))
+
 ## 4.6.5 (2018-03-01)
 * Fixed an issue where `propertyOrdering` wouldn't check at-rules with only declarations. ([1441a55](https://github.com/lesshint/lesshint/commit/1441a55fa5272c31dea1b8280e6631b20c8c509a))
 
