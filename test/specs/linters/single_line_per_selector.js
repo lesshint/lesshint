@@ -107,5 +107,15 @@ describe('lesshint', function () {
                 expect(result).to.deep.equal(expected);
             });
         });
+
+        it('should not report selectors with sub-selectors. #466', function () {
+            const source = '.foo + .foo,\n.bar {}';
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint({}, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
     });
 });
