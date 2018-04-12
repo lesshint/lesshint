@@ -1,4 +1,7 @@
 # Changelog
+## 5.0.1 (2018-04-12)
+* Fixed an sub-selector regression in `singleLinePerSelector`. ([29328aa](https://github.com/lesshint/lesshint/commit/29328aae31a63075301edc1e9c322db52fee894b))
+
 ## 5.0.0 (2018-03-29)
 * **Breaking** Support for Node versions below 6 has been dropped. ([65ad429](https://github.com/lesshint/lesshint/commit/65ad429013509e089a6300134d418500a9ccd565))
 * **Breaking** Unified plugin (reporters/custom linters) loading. Depending on your setup, you might experience a slight change in the lookup order. ([425f616](https://github.com/lesshint/lesshint/commit/425f616829b14a95a1552dd95b9cc4337f76722d))
