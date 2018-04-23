@@ -1,4 +1,7 @@
 # Changelog
+## 5.0.2 (2018-04-23)
+* `zeroUnit` will now exclude `flex-grow` and `flex-shrink`. ([920900c](https://github.com/lesshint/lesshint/commit/920900ce1609082923839b59d78cba94a5a33980))
+
 ## 5.0.1 (2018-04-12)
 * Fixed an sub-selector regression in `singleLinePerSelector`. ([29328aa](https://github.com/lesshint/lesshint/commit/29328aae31a63075301edc1e9c322db52fee894b))
 
