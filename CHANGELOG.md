@@ -1,4 +1,8 @@
 # Changelog
+## 5.0.3 (2018-05-05)
+* Fixed a globby@8 directory expansion regression. ([a100a54](https://github.com/lesshint/lesshint/commit/a100a545b7cc5833b6e3f21107285632989fc11b))
+* CI tests are now run on Node 10. ([cadd6da](https://github.com/lesshint/lesshint/commit/cadd6da5967c493588ca23afa7331d1ac052e05d))
+
 ## 5.0.2 (2018-04-23)
 * `zeroUnit` will now exclude `flex-grow` and `flex-shrink`. ([920900c](https://github.com/lesshint/lesshint/commit/920900ce1609082923839b59d78cba94a5a33980))
 
