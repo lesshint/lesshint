@@ -135,7 +135,7 @@ Array of file extensions to check. Either an array of extensions or `"*"` to all
 ```
 
 ### excludedFiles
-Array of [minimatch glob patterns](https://github.com/isaacs/minimatch) or a file to exclude. For example:
+Array of [globby glob patterns](https://www.npmjs.com/package/globby) or a file to exclude. For example:
 
 ```js
 "excludedFiles": ["vendor/*.less"] // Ignore all files in "vendor/"
