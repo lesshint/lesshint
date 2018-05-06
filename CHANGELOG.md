@@ -1,4 +1,10 @@
 # Changelog
+## 5.1.0 (2018-05-06)
+* More configuration file formats are now supported. [See docs](https://github.com/lesshint/lesshint/blob/master/docs/user-guide/configuration.md) for more info. ([32f6771](https://github.com/lesshint/lesshint/commit/32f6771b28509e50c596a1feb5c20ea74d30d9a4))
+* Replaced `lodash.sortBy()` with `lodash.orderBy()`. ([5c15a59](https://github.com/lesshint/lesshint/commit/5c15a5935bd2d789ac28b2167ce1f839ed9ec997))
+* Removed `minimatch` since it's no longer in use. ([d13c0b4](https://github.com/lesshint/lesshint/commit/d13c0b4659f974a513e57a194efd4495afe48fca))
+* Updated `postcss-selector-parser` to `4.x`. ([149829a](https://github.com/lesshint/lesshint/commit/149829a2208c18521c50034719e2cf5d3afdc90f))
+
 ## 5.0.3 (2018-05-05)
 * Fixed a globby@8 directory expansion regression. ([a100a54](https://github.com/lesshint/lesshint/commit/a100a545b7cc5833b6e3f21107285632989fc11b))
 * CI tests are now run on Node 10. ([cadd6da](https://github.com/lesshint/lesshint/commit/cadd6da5967c493588ca23afa7331d1ac052e05d))
