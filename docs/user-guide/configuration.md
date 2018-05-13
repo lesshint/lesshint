@@ -9,7 +9,7 @@ To create a configuration object there's mainly two different ways, a `lesshint`
 * A JavaScript file exporting an configuration object.
 * An rc-file containing JSON (inline comments supported).
 
-When you're running `lesshint` and haven't specified a configuraiton file, it'll automatically start looking for a configuration file starting in the current directory, working its way up until it finds one or reaches the root directory.
+When you're running `lesshint` and haven't specified a configuration file, it'll automatically start looking for a one starting in the current directory, working its way up until it finds one or reaches the root directory.
 
 If multiple `.lesshintrc.*` files exist in the same directory, only one will be used. The priority order is:
 
