@@ -9,7 +9,7 @@ To create a configuration object there's mainly two different ways, a `lesshint`
 * A JavaScript file exporting an configuration object.
 * An rc-file containing JSON (inline comments supported).
 
-When you're running `lesshint` and haven't specified a configuration file, it'll automatically start looking for a one starting in the current directory, working its way up until it finds one or reaches the root directory.
+When you're running `lesshint` and haven't specified a configuration file, it'll automatically start looking for one starting in the current directory, working its way up until it finds one or reaches the root directory.
 
 If multiple `.lesshintrc.*` files exist in the same directory, only one will be used. The priority order is:
 
@@ -47,12 +47,16 @@ In the `.lesshint.*` file, each option is specified by its own object, for examp
     fileExtensions:
         - ".less"
         - ".css"
+
     excludedFiles:
         - vendor.less
+
     spaceAfterPropertyColon:
         enabled: true
         style: one_space
+
     emptyRule: true # If there are no options for a rule, you can simply enable it by setting it to true
+
     importantRule: false # To disable a rule completely, set it to false
 ```
 
@@ -113,6 +117,7 @@ Multiple rules can be disabled and enabled at once. It's even possible to disabl
     // Won't report anything here
 }
 // lesshint-enable emptyRule
+
 .bar{
     // Will report this empty rule, but not the missing space before the brace
 }
