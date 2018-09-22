@@ -271,15 +271,5 @@ describe('lesshint', function () {
                 expect(result).to.be.undefined;
             });
         });
-
-        it('should return undefined on variable declaration', function () {
-            const source = '@var-name: 12px;';
-
-            return spec.parse(source, function (ast) {
-                const result = spec.linter.lint({}, ast.root.first);
-
-                expect(result).to.be.undefined;
-            });
-        });
     });
 });

@@ -278,7 +278,7 @@ describe('lesshint', function () {
                 });
             });
 
-            it('should not allow one space before comma', function () {
+            it('should not allow one space before bang', function () {
                 const source = 'color: red !important;';
                 const expected = [
                     {
@@ -295,7 +295,7 @@ describe('lesshint', function () {
                 });
             });
 
-            it('should not allow one space before and after comma', function () {
+            it('should not allow one space before and after bang', function () {
                 const source = 'color: red ! important;';
                 const expected = [
                     {

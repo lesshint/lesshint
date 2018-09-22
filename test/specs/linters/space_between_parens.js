@@ -166,7 +166,7 @@ describe('lesshint', function () {
                 });
             });
 
-            it('should allow missing space after opening parenthesis in mixins', function () {
+            it('should allow missing space after opening parenthesis in mixin declarations', function () {
                 const source = '.mixin(@margin, @padding) {}';
 
                 return spec.parse(source, function (ast) {
@@ -176,7 +176,7 @@ describe('lesshint', function () {
                 });
             });
 
-            it('should allow missing space before closing parenthesis in mixins', function () {
+            it('should allow missing space before closing parenthesis in mixin declarations', function () {
                 const source = '.mixin(@margin, @padding) {}';
 
                 return spec.parse(source, function (ast) {
@@ -186,7 +186,7 @@ describe('lesshint', function () {
                 });
             });
 
-            it('should allow missing space after opening parenthesis and before closing parenthesis in mixins', function () {
+            it('should allow missing space after opening parenthesis and before closing parenthesis in mixin declarations', function () {
                 const source = '.mixin(@margin, @padding) {}';
 
                 return spec.parse(source, function (ast) {
@@ -196,7 +196,7 @@ describe('lesshint', function () {
                 });
             });
 
-            it('should allow multiline mixins', function () {
+            it('should allow multiline mixin declarations', function () {
                 const source = '.mixin(\n@a,\n@b\n) {\n \n}';
 
                 return spec.parse(source, function (ast) {
@@ -206,7 +206,7 @@ describe('lesshint', function () {
                 });
             });
 
-            it('should not allow one space after opening parenthesis in mixins', function () {
+            it('should not allow one space after opening parenthesis in mixin declarations', function () {
                 const source = '.mixin( @margin, @padding) {}';
                 const expected = [{
                     column: 8,
@@ -221,7 +221,7 @@ describe('lesshint', function () {
                 });
             });
 
-            it('should not allow one space before closing parenthesis in mixins', function () {
+            it('should not allow one space before closing parenthesis in mixin declarations', function () {
                 const source = '.mixin(@margin, @padding ) {}';
                 const expected = [{
                     column: 25,
@@ -236,7 +236,7 @@ describe('lesshint', function () {
                 });
             });
 
-            it('should not allow one space after opening parenthesis and before closing parenthesis in mixins', function () {
+            it('should not allow one space after opening parenthesis and before closing parenthesis in mixin declarations', function () {
                 const source = '.mixin( @margin, @padding ) {}';
                 const expected = [
                     {
@@ -258,7 +258,7 @@ describe('lesshint', function () {
                 });
             });
 
-            it('should not allow multiple spaces after opening parenthesis in mixins', function () {
+            it('should not allow multiple spaces after opening parenthesis in mixin declarations', function () {
                 const source = '.mixin(  @margin, @padding) {}';
                 const expected = [{
                     column: 8,
@@ -273,7 +273,7 @@ describe('lesshint', function () {
                 });
             });
 
-            it('should not allow multiple spaces before closing parenthesis in mixins', function () {
+            it('should not allow multiple spaces before closing parenthesis in mixin declarations', function () {
                 const source = '.mixin(@margin, @padding  ) {}';
                 const expected = [{
                     column: 25,
@@ -288,7 +288,7 @@ describe('lesshint', function () {
                 });
             });
 
-            it('should not allow multiple spaces after opening parenthesis and before closing parenthesis in mixins', function () {
+            it('should not allow multiple spaces after opening parenthesis and before closing parenthesis in mixin declarations', function () {
                 const source = '.mixin(  @margin, @padding  ) {}';
                 const expected = [
                     {
@@ -310,11 +310,21 @@ describe('lesshint', function () {
                 });
             });
 
-            it('should allow missing space before closing parenthesis in mixins', function () {
+            it('should allow missing space before closing parenthesis in mixin declarations', function () {
                 const source = '.mixin(@margin, @padding) {}';
 
                 return spec.parse(source, function (ast) {
                     const result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.be.undefined;
+                });
+            });
+
+            it('should allow missing spaces between parens in mixin includes', function () {
+                const source = '.foo {.mixin(@margin, @padding);}';
+
+                return spec.parse(source, function (ast) {
+                    const result = spec.linter.lint(options, ast.root.first.first);
 
                     expect(result).to.be.undefined;
                 });
@@ -462,7 +472,7 @@ describe('lesshint', function () {
                 });
             });
 
-            it('should allow one space after opening parenthesis in mixins', function () {
+            it('should allow one space after opening parenthesis in mixin declarationss', function () {
                 const source = '.mixin( @margin, @padding ) {}';
 
                 return spec.parse(source, function (ast) {
@@ -472,7 +482,7 @@ describe('lesshint', function () {
                 });
             });
 
-            it('should allow one space before closing parenthesis in mixins', function () {
+            it('should allow one space before closing parenthesis in mixin declarations', function () {
                 const source = '.mixin( @margin, @padding ) {}';
 
                 return spec.parse(source, function (ast) {
@@ -482,7 +492,7 @@ describe('lesshint', function () {
                 });
             });
 
-            it('should allow one space after opening parenthesis and before closing parenthesis in mixins', function () {
+            it('should allow one space after opening parenthesis and before closing parenthesis in mixin declarations', function () {
                 const source = '.mixin( @margin, @padding ) {}';
 
                 return spec.parse(source, function (ast) {
@@ -492,7 +502,7 @@ describe('lesshint', function () {
                 });
             });
 
-            it('should allow one space before closing paren in multiline mixins', function () {
+            it('should allow one space before closing paren in multiline mixin declarations', function () {
                 const source = '.mixin( \n@a,\n@b\n ) {\n \n}';
 
                 return spec.parse(source, function (ast) {
@@ -502,7 +512,7 @@ describe('lesshint', function () {
                 });
             });
 
-            it('should not allow missing space after opening parenthesis in mixins', function () {
+            it('should not allow missing space after opening parenthesis in mixin declarations', function () {
                 const source = '.mixin(@margin, @padding ) {}';
                 const expected = [{
                     column: 8,
@@ -517,7 +527,7 @@ describe('lesshint', function () {
                 });
             });
 
-            it('should not allow missing space before closing parenthesis in mixins', function () {
+            it('should not allow missing space before closing parenthesis in mixin declarations', function () {
                 const source = '.mixin( @margin, @padding) {}';
                 const expected = [{
                     column: 26,
@@ -532,7 +542,7 @@ describe('lesshint', function () {
                 });
             });
 
-            it('should not allow missing space after opening parenthesis and before closing parenthesis in mixins', function () {
+            it('should not allow missing space after opening parenthesis and before closing parenthesis in mixin declarations', function () {
                 const source = '.mixin(@margin, @padding) {}';
                 const expected = [
                     {
@@ -554,7 +564,7 @@ describe('lesshint', function () {
                 });
             });
 
-            it('should not allow multiple spaces after opening parenthesis in mixins', function () {
+            it('should not allow multiple spaces after opening parenthesis in mixin declarations', function () {
                 const source = '.mixin(  @margin, @padding ) {}';
                 const expected = [{
                     column: 8,
@@ -569,7 +579,7 @@ describe('lesshint', function () {
                 });
             });
 
-            it('should not allow multiple spaces before closing parenthesis in mixins', function () {
+            it('should not allow multiple spaces before closing parenthesis in mixin declarations', function () {
                 const source = '.mixin( @margin, @padding  ) {}';
                 const expected = [{
                     column: 26,
@@ -584,7 +594,7 @@ describe('lesshint', function () {
                 });
             });
 
-            it('should not allow multiple spaces after opening parenthesis and before closing parenthesis in mixins', function () {
+            it('should not allow multiple spaces after opening parenthesis and before closing parenthesis in mixin declarations', function () {
                 const source = '.mixin(  @margin, @padding  ) {}';
                 const expected = [
                     {
@@ -603,6 +613,16 @@ describe('lesshint', function () {
                     const result = spec.linter.lint(options, ast.root.first);
 
                     expect(result).to.deep.equal(expected);
+                });
+            });
+
+            it('should allow spaces between parens in mixin includes', function () {
+                const source = '.foo {.mixin( @margin, @padding );}';
+
+                return spec.parse(source, function (ast) {
+                    const result = spec.linter.lint(options, ast.root.first.first);
+
+                    expect(result).to.be.undefined;
                 });
             });
         }); // "one_space"

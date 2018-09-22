@@ -374,5 +374,15 @@ describe('lesshint', function () {
                 expect(result).to.deep.equal(expected);
             });
         });
+
+        it('should ignore other at-rules', function () {
+            const source = '@charset "utf-8";';
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint({}, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
     });
 });

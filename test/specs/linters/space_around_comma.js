@@ -52,7 +52,7 @@ describe('lesshint', function () {
                 });
             });
 
-            it('should allow one space after comma in mixins', function () {
+            it('should allow one space after comma in mixin declarations', function () {
                 const source = '.mixin(@margin, @padding) {}';
 
                 return spec.parse(source, function (ast) {
@@ -62,18 +62,20 @@ describe('lesshint', function () {
                 });
             });
 
-            it('should account for multiline rules with commas', function () {
-                const source = '.foo, \n.bar {}';
+            it('should allow one space after comma in mixin includes', function () {
+                const source = '.foo {.mixin(@margin, @padding);}';
 
                 return spec.parse(source, function (ast) {
-                    const result = spec.linter.lint(options, ast.root.first);
+                    const result = spec.linter.lint(options, ast.root.first.first);
 
                     expect(result).to.be.undefined;
                 });
             });
 
-            it('should account for multiline rules with commas containing pseudo classes', function () {
-                const source = '.test1,\n.test2:not(.test3),\n.test3:not(.test2) {\n    width: 100%;\n}';
+            it('should account for multiline rules with commas', function () {
+                const source = '.foo,\n.bar {}';
+
+                options.allowNewline = true;
 
                 return spec.parse(source, function (ast) {
                     const result = spec.linter.lint(options, ast.root.first);
@@ -169,11 +171,33 @@ describe('lesshint', function () {
                 });
             });
 
-            it('should allow one space before comma in mixins', function () {
+            it('should account for multiline rules with commas', function () {
+                const source = '.foo\n,.bar {}';
+
+                options.allowNewline = true;
+
+                return spec.parse(source, function (ast) {
+                    const result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.be.undefined;
+                });
+            });
+
+            it('should allow one space before comma in mixin declarations', function () {
                 const source = '.mixin(@margin ,@padding) {}';
 
                 return spec.parse(source, function (ast) {
                     const result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.be.undefined;
+                });
+            });
+
+            it('should allow one space after comma in mixin includes', function () {
+                const source = '.foo {.mixin(@margin ,@padding);}';
+
+                return spec.parse(source, function (ast) {
+                    const result = spec.linter.lint(options, ast.root.first.first);
 
                     expect(result).to.be.undefined;
                 });

@@ -779,7 +779,7 @@ Option  | Description
 ```
 
 ## spaceAroundComma
-Defines how commas in functions, mixins, etc. should be formatted by a space to aid readability.
+Defines how commas in functions, mixins, selectors, etc. should be formatted by a space to aid readability.
 
 Option          | Description
 ----------------| ----------
@@ -791,12 +791,20 @@ Option          | Description
 .foo {
     color: rgb(255, 255, 255);
 }
+
+.foo, .bar {
+
+}
 ```
 
 ### before
 ```less
 .foo {
     color: rgb(255 ,255 ,255);
+}
+
+.foo ,.bar {
+
 }
 ```
 
@@ -805,12 +813,20 @@ Option          | Description
 .foo {
     color: rgb(255 , 255 , 255);
 }
+
+.foo , .bar {
+
+}
 ```
 
 ### none
 ```less
 .foo {
     color: rgb(255,255,255);
+}
+
+.foo,.bar {
+
 }
 ```
 
@@ -821,6 +837,11 @@ Option          | Description
     14px,
     Roboto,
     #000;
+}
+
+.foo,
+.bar {
+
 }
 ```
 

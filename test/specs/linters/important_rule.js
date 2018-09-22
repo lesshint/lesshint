@@ -23,7 +23,7 @@ describe('lesshint', function () {
             });
         });
 
-        it('should not allow !important', function () {
+        it('should not allow !important in declarations', function () {
             const source = 'color: red !important;';
             const expected = [{
                 column: 12,
@@ -33,6 +33,21 @@ describe('lesshint', function () {
 
             return spec.parse(source, function (ast) {
                 const result = spec.linter.lint({}, ast.root.first);
+
+                expect(result).to.deep.equal(expected);
+            });
+        });
+
+        it('should not allow !important in mixins', function () {
+            const source = '.foo { .mixin() !important; }';
+            const expected = [{
+                column: 17,
+                line: 1,
+                message: '!important should not be used.'
+            }];
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint({}, ast.root.first.first);
 
                 expect(result).to.deep.equal(expected);
             });
