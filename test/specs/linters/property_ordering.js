@@ -122,5 +122,130 @@ describe('lesshint', function () {
                 });
             });
         });
+
+        describe('when using "concentric"', function () {
+            beforeEach(function () {
+                options = {
+                    style: 'concentric',
+                };
+            });
+
+            it('should allow blocks with only one property', function () {
+                const source = '.foo { color: red; }';
+
+                return spec.parse(source, function (ast) {
+                    const result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.be.undefined;
+                });
+            });
+
+            it('should allow blocks with concentric properties', function () {
+                const source = '.foo {right: 5px; padding-top: 4px; color: red;}';
+
+                return spec.parse(source, function (ast) {
+                    const result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.be.undefined;
+                });
+            });
+
+            it('should not allow blocks with non-concentric properties', function () {
+                const source = '.foo {padding-top: 4px; color: red; right: 5px}';
+                const expected = [{
+                    column: 37,
+                    line: 1,
+                    message: 'Property ordering is not concentric',
+                }];
+
+                return spec.parse(source, function (ast) {
+                    const result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.deep.equal(expected);
+                });
+            });
+
+            it('should not report identical property names. See #59', function () {
+                const source = '.foo { color: red; color: blue; }';
+
+                return spec.parse(source, function (ast) {
+                    const result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.be.undefined;
+                });
+            });
+
+            it('should check each rule on its own', function () {
+                let source = '';
+
+                source += '.form-group {';
+                source += '    margin-bottom: 0;';
+                source += '    .form-control {';
+                source += '        height: auto;';
+                source += '    }';
+                source += '}';
+
+                return spec.parse(source, function (ast) {
+                    const result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.be.undefined;
+                });
+            });
+
+            it('should not try to check variables', function () {
+                const source = '.foo { @b: auto; @a: inherit; }';
+
+                return spec.parse(source, function (ast) {
+                    const result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.be.undefined;
+                });
+            });
+
+            it('should check at-rules without rules (#460)', function () {
+                const source = '@media (screen) { color: red; opacity: 1; }';
+                const expected = [{
+                    column: 31,
+                    line: 1,
+                    message: 'Property ordering is not concentric',
+                }];
+
+                return spec.parse(source, function (ast) {
+                    const result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.deep.equal(expected);
+                });
+            });
+
+            it('should report "unknown" properties not in alphabatical order', function () {
+                const source = '.foo {display: block; foo: 1; bar: 10;}';
+                const expected = [{
+                    column: 31,
+                    line: 1,
+                    message: 'Property ordering is not concentric',
+                }];
+
+                return spec.parse(source, function (ast) {
+                    const result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.deep.equal(expected);
+                });
+            });
+
+            it('should report "unknown" properties at the end', function () {
+                const source = '.foo {foo: bar; display: block;}';
+                const expected = [{
+                    column: 17,
+                    line: 1,
+                    message: 'Property ordering is not concentric',
+                }];
+
+                return spec.parse(source, function (ast) {
+                    const result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.deep.equal(expected);
+                });
+            });
+        });
     });
 });
