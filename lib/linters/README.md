@@ -424,7 +424,9 @@ Make sure properties are sorted in a particular order.
 
 Option       | Description
 ------------ | ----------
-`style`       | `alpha` (**default**)
+`style`      | `alpha` (**default**), `concentric`
+
+The `concentric` option refer to the [Concentric CSS order](https://rhodesmill.org/brandon/2011/concentric-css/).
 
 ### invalid
 ```less
