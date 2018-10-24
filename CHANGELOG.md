@@ -1,10 +1,10 @@
 # Changelog
 ## 5.2.1 (2018-10-24)
-* Messages from `propertyOrdering` now include the offending property name. ([23d1324](https://github.com/lesshint/lesshint/commit/23d132449f95f82be35bd3df1e11eeeb1e836489)
-* CI tests are now run on Node 11. ([d4d37a4](https://github.com/lesshint/lesshint/commit/d4d37a48d04f60b7b895e074c541f554d3031d8e)
+* Messages from `propertyOrdering` now include the offending property name. ([23d1324](https://github.com/lesshint/lesshint/commit/23d132449f95f82be35bd3df1e11eeeb1e836489))
+* CI tests are now run on Node 11. ([d4d37a4](https://github.com/lesshint/lesshint/commit/d4d37a48d04f60b7b895e074c541f554d3031d8e))
 
 ## 5.2.0 (2018-10-23)
-* Added a `concentric` option to `propertyOrdering`. ([4de2d06](https://github.com/lesshint/lesshint/commit/4de2d06e771fe2f758b2adf14c7a085bb7eec0ad)
+* Added a `concentric` option to `propertyOrdering`. ([4de2d06](https://github.com/lesshint/lesshint/commit/4de2d06e771fe2f758b2adf14c7a085bb7eec0ad))
 * Updated `postcss` to `7.x`. ([7b0b5bc](https://github.com/lesshint/lesshint/commit/7b0b5bcdb9ab9dd126b4c36da691cc785c3aad65))
 * Updated `postcss-less` to `2.x`. ([4ba534f](https://github.com/lesshint/lesshint/commit/4ba534f6389146766c3ff5b9bcb80f3c7ee9207b))
 * Updated `postcss-values-parser` to `2.x`. ([26060cf](https://github.com/lesshint/lesshint/commit/26060cf2467322fc8e7c16bfed56f0e6dc7d7921))
