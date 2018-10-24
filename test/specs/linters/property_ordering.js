@@ -60,7 +60,7 @@ describe('lesshint', function () {
                 const expected = [{
                     column: 26,
                     line: 1,
-                    message: 'Property ordering is not alphabetized'
+                    message: '"color" should be before "padding-top"'
                 }];
 
                 return spec.parse(source, function (ast) {
@@ -112,7 +112,7 @@ describe('lesshint', function () {
                 const expected = [{
                     column: 31,
                     line: 1,
-                    message: 'Property ordering is not alphabetized'
+                    message: '"color" should be before "opacity"'
                 }];
 
                 return spec.parse(source, function (ast) {
@@ -155,7 +155,7 @@ describe('lesshint', function () {
                 const expected = [{
                     column: 37,
                     line: 1,
-                    message: 'Property ordering is not concentric',
+                    message: '"right" should be before "color"',
                 }];
 
                 return spec.parse(source, function (ast) {
@@ -207,7 +207,7 @@ describe('lesshint', function () {
                 const expected = [{
                     column: 31,
                     line: 1,
-                    message: 'Property ordering is not concentric',
+                    message: '"opacity" should be before "color"',
                 }];
 
                 return spec.parse(source, function (ast) {
@@ -222,7 +222,7 @@ describe('lesshint', function () {
                 const expected = [{
                     column: 31,
                     line: 1,
-                    message: 'Property ordering is not concentric',
+                    message: '"bar" should be before "foo"',
                 }];
 
                 return spec.parse(source, function (ast) {
@@ -237,7 +237,7 @@ describe('lesshint', function () {
                 const expected = [{
                     column: 17,
                     line: 1,
-                    message: 'Property ordering is not concentric',
+                    message: '"display" should be before "foo"',
                 }];
 
                 return spec.parse(source, function (ast) {
