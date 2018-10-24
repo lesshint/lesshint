@@ -119,7 +119,7 @@ describe('linter', function () {
                     fullPath: testPath,
                     line: 3,
                     linter: 'propertyOrdering',
-                    message: 'Property ordering is not alphabetized',
+                    message: '"color" should be before "margin-right"',
                     position: 50,
                     severity: 'warning',
                     source: 'color: red;'
