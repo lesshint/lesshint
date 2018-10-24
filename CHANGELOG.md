@@ -1,9 +1,9 @@
 # Changelog
 ## 5.2.0 (2018-10-23)
-* Added a `concentric` option to `propertyOrdering` ([4de2d06](https://github.com/lesshint/lesshint/commit/4de2d06e771fe2f758b2adf14c7a085bb7eec0ad)
-* Updated `postcss` to `7.x` ([7b0b5bc](https://github.com/lesshint/lesshint/commit/7b0b5bcdb9ab9dd126b4c36da691cc785c3aad65))
-* Updated `postcss-less` to `2.x` ([4ba534f](https://github.com/lesshint/lesshint/commit/4ba534f6389146766c3ff5b9bcb80f3c7ee9207b))
-* Updated `postcss-values-parser` to `2.x` ([26060cf](https://github.com/lesshint/lesshint/commit/26060cf2467322fc8e7c16bfed56f0e6dc7d7921))
+* Added a `concentric` option to `propertyOrdering`. ([4de2d06](https://github.com/lesshint/lesshint/commit/4de2d06e771fe2f758b2adf14c7a085bb7eec0ad)
+* Updated `postcss` to `7.x`. ([7b0b5bc](https://github.com/lesshint/lesshint/commit/7b0b5bcdb9ab9dd126b4c36da691cc785c3aad65))
+* Updated `postcss-less` to `2.x`. ([4ba534f](https://github.com/lesshint/lesshint/commit/4ba534f6389146766c3ff5b9bcb80f3c7ee9207b))
+* Updated `postcss-values-parser` to `2.x`. ([26060cf](https://github.com/lesshint/lesshint/commit/26060cf2467322fc8e7c16bfed56f0e6dc7d7921))
 
 ## 5.1.0 (2018-05-06)
 * More configuration file formats are now supported. [See docs](https://github.com/lesshint/lesshint/blob/master/docs/user-guide/configuration.md) for more info. ([32f6771](https://github.com/lesshint/lesshint/commit/32f6771b28509e50c596a1feb5c20ea74d30d9a4))
