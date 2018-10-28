@@ -19,6 +19,7 @@
 * [newlineAfterBlock](#newlineafterblock)
 * [propertyOrdering](#propertyordering)
 * [propertyUnits](#propertyunits)
+* [pseudoElements](#pseudoelements)
 * [qualifyingElement](#qualifyingelement)
 * [selectorNaming](#selectornaming)
 * [singleLinePerProperty](#singlelineperproperty)
@@ -473,6 +474,36 @@ Option        | Description
 .foo {
     font-size: 1.5rem; // Allowed
     line-height: 30px; // Not allowed
+}
+```
+
+## pseudoElements
+Pseudo-elements should be written two colons (CSS 3 style) and pseudo-classes should have only one.
+
+Option               | Description
+-------------------- | ----------
+`exclude`            | `array` additional "pseudo" to exclude (without colons)
+
+### invalid
+```less
+.foo:before {
+    color: red;
+}
+
+.bar::focus {
+    color: red;
+}
+```
+
+### valid
+
+```less
+.foo::before {
+    color: red;
+}
+
+.bar:focus {
+    color: red;
 }
 ```
 
