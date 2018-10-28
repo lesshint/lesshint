@@ -151,6 +151,22 @@ describe('lesshint', function () {
                     expect(result).to.deep.equal(expected);
                 });
             });
+
+            it('should exclude configurable "pseudo"', function () {
+                const source = '.foo:bar::baz {}';
+                const config = {
+                    exclude: [
+                        'bar',
+                        'baz',
+                    ],
+                };
+
+                return spec.parse(source, function (ast) {
+                    const result = spec.linter.lint(config, ast.root.first);
+
+                    expect(result).to.be.undefined;
+                });
+            });
         });
     });
 });
