@@ -28,4 +28,8 @@ gulp.task('coveralls', ['test'], () => {
         .pipe(coveralls());
 });
 
+gulp.task('watch', () => {
+    gulp.watch(['./test/**/*.js', './lib/**/*.js'], ['test']);
+});
+
 gulp.task('default', ['test']);
