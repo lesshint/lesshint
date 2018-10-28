@@ -129,5 +129,28 @@ describe('lesshint', function () {
                 });
             });
         });
+
+        describe('with both', function () {
+            it('should report both if chained', function () {
+                const source = '.foo:before::hover {}';
+                const expected = [{
+                    column: 5,
+                    line: 1,
+                    message: 'Pseudo-elements should have 2 colons.'
+                }, {
+                    column: 12,
+                    line: 1,
+                    message: 'Pseudo-classes should have 1 colon.'
+                }];
+
+                const options = {};
+
+                return spec.parse(source, function (ast) {
+                    const result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.deep.equal(expected);
+                });
+            });
+        });
     });
 });
