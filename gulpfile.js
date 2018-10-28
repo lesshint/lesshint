@@ -1,3 +1,5 @@
+'use strict';
+
 const gulp = require('gulp');
 
 gulp.task('lint', () => {
@@ -11,10 +13,11 @@ gulp.task('lint', () => {
 
 gulp.task('test', ['lint'], () => {
     const mocha = require('gulp-mocha');
+    const options = {
+        read: false
+    };
 
-    return gulp.src(['./test/specs/**/*.js', '!./test/specs/util.js'], {
-            read: false
-        })
+    return gulp.src(['./test/specs/**/*.js', '!./test/specs/util.js'], options)
         .pipe(mocha());
 });
 
