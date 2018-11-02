@@ -62,7 +62,8 @@ These codes were chosen with regards to the [preferable exit codes](http://www.g
 * [AtomLinter plugin](https://atom.io/packages/linter-lesshint) - A Linter plugin for [Atom](https://atom.io/).
 * [autolesshint](https://www.npmjs.com/package/autolesshint) - Automagically fix errors reported by `lesshint`.
 * [Gulp plugin](https://www.npmjs.com/package/gulp-lesshint) - A gulp plugin for `lesshint`.
-* [Grunt plugin](https://www.npmjs.com/package/grunt-lesshint) - A Grunt for plugin `lesshint`.
+* [Grunt plugin](https://www.npmjs.com/package/grunt-lesshint) - A Grunt plugin for `lesshint`.
+* [vscode-lesshint](https://github.com/tohjustin/vscode-lesshint) - A VS Code extension for `lesshint`.
 
 ## Linters
 In addition to the linters included with `lesshint`, it's also possible to include custom ones. For example to check something team or project specific.
