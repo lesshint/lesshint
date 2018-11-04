@@ -105,6 +105,11 @@
         "properties": {}
     },
 
+    "pseudoElements": {
+        "enable": true,
+        "exclude": []
+    },
+
     "qualifyingElement": {
         "enabled": true,
         "allowWithId": false,
