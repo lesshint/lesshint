@@ -1,4 +1,6 @@
 # Changelog
+* Added a `pseudoElements` rule. ([e4b1717](https://github.com/lesshint/lesshint/commit/e4b17179384c4ff5eb0f97c3d789ded1db87f812))
+
 ## 5.2.1 (2018-10-24)
 * Messages from `propertyOrdering` now include the offending property name. ([23d1324](https://github.com/lesshint/lesshint/commit/23d132449f95f82be35bd3df1e11eeeb1e836489))
 * CI tests are now run on Node 11. ([d4d37a4](https://github.com/lesshint/lesshint/commit/d4d37a48d04f60b7b895e074c541f554d3031d8e))
