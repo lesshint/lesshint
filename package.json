@@ -33,11 +33,10 @@
   },
   "devDependencies": {
     "chai": "^4.0.1",
+    "coveralls": "^3.0.2",
+    "eslint": "^5.10.0",
     "eslint-config-lesshint": "^1.0.3",
-    "gulp": "^3.9.0",
-    "gulp-coveralls": "^0.1.4",
-    "gulp-eslint": "^5.0.0",
-    "gulp-mocha": "^6.0.0",
+    "mocha": "^5.2.0",
     "nyc": "^12.0.1",
     "rimraf": "^2.4.2",
     "sinon": "^6.0.0"
@@ -46,7 +45,10 @@
     "lesshint": "bin/lesshint"
   },
   "scripts": {
-    "test": "nyc gulp"
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "pretest": "eslint lib test",
+    "test": "nyc mocha 'test/specs/**/*.js'",
+    "watch": "mocha --watch 'test/specs/**/*.js'"
   },
   "license": "MIT",
   "bugs": {

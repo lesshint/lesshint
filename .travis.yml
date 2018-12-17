@@ -16,7 +16,7 @@ script:
   - npm test
 
 after_script:
-  - gulp coveralls
+  - npm run coverage
 
 matrix:
   fast_finish: true
