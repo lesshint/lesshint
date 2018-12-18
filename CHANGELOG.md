@@ -1,4 +1,5 @@
 # Changelog
+## 5.3.0 (2018-11-04)
 * Added a `pseudoElements` rule. ([e4b1717](https://github.com/lesshint/lesshint/commit/e4b17179384c4ff5eb0f97c3d789ded1db87f812))
 
 ## 5.2.1 (2018-10-24)
