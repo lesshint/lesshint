@@ -246,6 +246,16 @@ describe('lesshint', function () {
                     expect(result).to.deep.equal(expected);
                 });
             });
+
+            it('should not report error when an unknown property is alphabatically before knowned ones', function () {
+                const source = '.btn {border: 0; appearance: none;}';
+
+                return spec.parse(source, function (ast) {
+                    const result = spec.linter.lint(options, ast.root.first);
+
+                    expect(result).to.be.undefined;
+                });
+            });
         });
     });
 });
