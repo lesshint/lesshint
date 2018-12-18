@@ -1,4 +1,7 @@
 # Changelog
+## 5.3.1 (2018-12-18)
+* Fixed an issue with concentric ordering and unknown properties in `propertyOrdering`. ([11f6195](https://github.com/lesshint/lesshint/commit/11f61950e2a440721fea7b339c89da8a5f19f77e))
+
 ## 5.3.0 (2018-11-04)
 * Added a `pseudoElements` rule. ([e4b1717](https://github.com/lesshint/lesshint/commit/e4b17179384c4ff5eb0f97c3d789ded1db87f812))
 
