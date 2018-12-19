@@ -1,5 +1,5 @@
 # Changelog
-## 6.0.0 (2018-12-XX)
+## 6.0.0 (2018-12-19)
 * **Breaking** Updated `postcss-less` to `3.x`. If you're using custom linters this update might affect you. ([5588aaf](https://github.com/lesshint/lesshint/commit/5588aaf3ba4b7dc199f4c94ae8233e5b835ed7e3))
 * Updated `isVariable` to also check `AtRule` nodes. ([d7f8ffd](https://github.com/lesshint/lesshint/commit/d7f8ffd9d3b4c33947919e395d65da62508c75ea))
 * Switched from `gulp` to npm scripts for testing etc. ([f8fc7db](https://github.com/lesshint/lesshint/commit/f8fc7dba19a9996860d0500aadee67608473448d))
