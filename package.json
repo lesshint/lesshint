@@ -47,8 +47,8 @@
   "scripts": {
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "pretest": "eslint lib test",
-    "test": "nyc mocha 'test/specs/**/*.js'",
-    "watch": "mocha --watch 'test/specs/**/*.js'"
+    "test": "nyc mocha \"test/specs/**/*.js\"",
+    "watch": "mocha --watch \"test/specs/**/*.js\""
   },
   "license": "MIT",
   "bugs": {
