@@ -1,4 +1,10 @@
 # Changelog
+## 6.1.0 (2018-12-22)
+* Added an `avoidEscape` option to `stringQuotes`. ([96b3ce4050aeb2695dfb5c55a52a3c613d907c21](https://github.com/lesshint/lesshint/commit/96b3ce4050aeb2695dfb5c55a52a3c613d907c21))
+* Fixed an issue where `hasQuotes` wouldn't check the whole string for quotes. ([9cadda2](https://github.com/lesshint/lesshint/commit/9cadda28aa170c2b5379eb7396ba5d6676dab811))
+* Fixed an issue where `newlineAfterBlock` would erroneously report blocks with multiple preceding single-line comments. ([dd4977d](https://github.com/lesshint/lesshint/commit/dd4977dd407e8ad475f54c810b04738a85e971bd))
+* Fixed an issue where `singleLinePerProperty` would erroneously report blocks with preceding single-line comments. ([873e128](https://github.com/lesshint/lesshint/commit/873e1282275370f33c121556efd48a5b99fb81d1))
+
 ## 6.0.0 (2018-12-19)
 * **Breaking** Updated `postcss-less` to `3.x`. If you're using custom linters this update might affect you. ([5588aaf](https://github.com/lesshint/lesshint/commit/5588aaf3ba4b7dc199f4c94ae8233e5b835ed7e3))
 * Updated `isVariable` to also check `AtRule` nodes. ([d7f8ffd](https://github.com/lesshint/lesshint/commit/d7f8ffd9d3b4c33947919e395d65da62508c75ea))
