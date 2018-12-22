@@ -164,5 +164,21 @@ describe('lesshint', function () {
                 expect(result).to.be.undefined;
             });
         });
+
+        it('should not report blocks with multiple preceding single-line comments', function () {
+            const source = `
+                // A comment
+                // Another comment
+                .foo {
+                    color: red;
+                }
+            `;
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint({}, ast.root.last);
+
+                expect(result).to.be.undefined;
+            });
+        });
     });
 });
