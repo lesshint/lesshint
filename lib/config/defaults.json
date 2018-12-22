@@ -178,6 +178,7 @@
 
     "stringQuotes": {
         "enabled": true,
+        "avoidEscape": false,
         "style": "single"
     },
 

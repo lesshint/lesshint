@@ -3,6 +3,7 @@
 const { expect } = require('chai');
 const spec = require('../util.js').setup();
 
+/* eslint-disable quotes */
 describe('lesshint', function () {
     describe('#stringQuotes()', function () {
         it('should have the proper node types', function () {
@@ -413,6 +414,48 @@ describe('lesshint', function () {
                 const result = spec.linter.lint(options, ast.root.first);
 
                 expect(result).to.deep.undefined;
+            });
+        });
+
+        it('should not warn on at-rules when "avoidEscape" is used', function () {
+            const source = `@import "'foo.less'"`;
+            const options = {
+                style: 'single',
+                avoidEscape: true
+            };
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.deep.undefined;
+            });
+        });
+
+        it('should not warn on declarations when "avoidEscape" is used', function () {
+            const source = `.foo { content: "This shouldn't warn"; }`;
+            const options = {
+                style: 'single',
+                avoidEscape: true
+            };
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint(options, ast.root.first.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
+        it('should not warn on selectors when "avoidEscape" is used', function () {
+            const source = `input[bar="baz'"] {}`;
+            const options = {
+                style: 'single',
+                avoidEscape: true
+            };
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint(options, ast.root.first);
+
+                expect(result).to.be.undefined;
             });
         });
 

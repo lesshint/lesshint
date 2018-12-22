@@ -919,9 +919,10 @@ Option     | Description
 ## stringQuotes
 All strings should use single quotes since they are often easier to type since the `Shift` key doesn't need to be pressed.
 
-Option     | Description
----------- | ----------
-`style`    | `double`, `single` (**default**)
+Option        | Description
+------------- | ----------
+`avoidEscape` | `false` (**default**), `boolean`
+`style`       | `double`, `single` (**default**)
 
 ### invalid
 ```less
@@ -934,6 +935,20 @@ Option     | Description
 ```less
 .foo {
     content: 'Hello world';
+}
+```
+
+### avoidEscape: true
+```less
+.foo {
+    content: "This doesn't warn";
+}
+```
+
+### avoidEscape: false
+```less
+.foo {
+    content: "This does warn";
 }
 ```
 
