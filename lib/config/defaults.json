@@ -45,11 +45,6 @@
         "enabled": true
     },
 
-    "maxCharPerLine" : {
-        "enabled": true,
-        "limit" : 100
-    },
-
     "hexLength": {
         "enabled": true,
         "style": "long"
@@ -78,6 +73,11 @@
         "exclude": [],
         "filenameExtension": false,
         "leadingUnderscore": false
+    },
+
+    "maxCharPerLine" : {
+        "enabled": true,
+        "limit" : 100
     },
 
     "newlineAfterBlock": {
@@ -151,19 +151,19 @@
     },
 
     "spaceAroundBang": {
-      "enabled": true,
-      "style": "before"
+        "enabled": true,
+        "style": "before"
     },
 
     "spaceAroundComma": {
-        "allowNewline": false,
         "enabled": true,
+        "allowNewline": false,
         "style": "after"
     },
 
     "spaceAroundOperator": {
-      "enabled": true,
-      "style": "both"
+        "enabled": true,
+        "style": "both"
     },
 
     "spaceBeforeBrace": {
@@ -209,8 +209,8 @@
 
     "variableValue": {
         "enabled": true,
+        "allowedValues": [],
         "always": [],
-        "never": [],
-        "allowedValues": []
+        "never": []
     }
 }
