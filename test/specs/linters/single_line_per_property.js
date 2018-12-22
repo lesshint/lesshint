@@ -390,5 +390,22 @@ describe('lesshint', function () {
                 expect(result).to.deep.equal(expected);
             });
         });
+
+        it('should not report single line comments on the line above', function () {
+            const source = `
+            .foo {
+                // A comment
+                &--bar {
+                    color: red;
+                }
+            }
+            `;
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint({}, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
     });
 });
