@@ -1,6 +1,9 @@
 # Changelog
+## 6.2.0 (2018-12-26)
+* Updated `postcss-selector-parser` to `5.x`. ([330c7ad](https://github.com/lesshint/lesshint/commit/330c7ad849841aab4dd82ecc4a9a98c071fbb4ab))
+
 ## 6.1.0 (2018-12-22)
-* Added an `avoidEscape` option to `stringQuotes`. ([96b3ce4050aeb2695dfb5c55a52a3c613d907c21](https://github.com/lesshint/lesshint/commit/96b3ce4050aeb2695dfb5c55a52a3c613d907c21))
+* Added an `avoidEscape` option to `stringQuotes`. ([96b3ce4](https://github.com/lesshint/lesshint/commit/96b3ce4050aeb2695dfb5c55a52a3c613d907c21))
 * Fixed an issue where `hasQuotes` wouldn't check the whole string for quotes. ([9cadda2](https://github.com/lesshint/lesshint/commit/9cadda28aa170c2b5379eb7396ba5d6676dab811))
 * Fixed an issue where `newlineAfterBlock` would erroneously report blocks with multiple preceding single-line comments. ([dd4977d](https://github.com/lesshint/lesshint/commit/dd4977dd407e8ad475f54c810b04738a85e971bd))
 * Fixed an issue where `singleLinePerProperty` would erroneously report blocks with preceding single-line comments. ([873e128](https://github.com/lesshint/lesshint/commit/873e1282275370f33c121556efd48a5b99fb81d1))
