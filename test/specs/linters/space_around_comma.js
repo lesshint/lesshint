@@ -37,10 +37,12 @@ describe('lesshint', function () {
                 const expected = [
                     {
                         column: 15,
+                        line: 1,
                         message: 'Commas should be followed by one space.'
                     },
                     {
                         column: 19,
+                        line: 1,
                         message: 'Commas should be followed by one space.'
                     }
                 ];
@@ -88,6 +90,7 @@ describe('lesshint', function () {
                 const source = '.mixin(@margin,@padding) {}';
                 const expected = [{
                     column: 15,
+                    line: 1,
                     message: 'Commas should be followed by one space.'
                 }];
 
@@ -103,10 +106,12 @@ describe('lesshint', function () {
                 const expected = [
                     {
                         column: 11,
+                        line: 1,
                         message: 'Commas should be followed by one space.'
                     },
                     {
-                        column: 17,
+                        column: 11,
+                        line: 2,
                         message: 'Commas should be followed by one space.'
                     }
                 ];
@@ -156,10 +161,12 @@ describe('lesshint', function () {
                 const expected = [
                     {
                         column: 15,
+                        line: 1,
                         message: 'Commas should be preceded by one space.'
                     },
                     {
                         column: 20,
+                        line: 1,
                         message: 'Commas should be preceded by one space.'
                     }
                 ];
@@ -207,6 +214,7 @@ describe('lesshint', function () {
                 const source = '.mixin(@margin, @padding) {}';
                 const expected = [{
                     column: 15,
+                    line: 1,
                     message: 'Commas should be preceded by one space.'
                 }];
 
@@ -252,10 +260,12 @@ describe('lesshint', function () {
                 const expected = [
                     {
                         column: 15,
+                        line: 1,
                         message: 'Commas should be preceded and followed by one space.'
                     },
                     {
                         column: 20,
+                        line: 1,
                         message: 'Commas should be preceded and followed by one space.'
                     }
                 ];
@@ -272,10 +282,12 @@ describe('lesshint', function () {
                 const expected = [
                     {
                         column: 16,
+                        line: 1,
                         message: 'Commas should be preceded and followed by one space.'
                     },
                     {
                         column: 21,
+                        line: 1,
                         message: 'Commas should be preceded and followed by one space.'
                     }
                 ];
@@ -292,10 +304,12 @@ describe('lesshint', function () {
                 const expected = [
                     {
                         column: 15,
+                        line: 1,
                         message: 'Commas should be preceded and followed by one space.'
                     },
                     {
                         column: 19,
+                        line: 1,
                         message: 'Commas should be preceded and followed by one space.'
                     }
                 ];
@@ -321,6 +335,7 @@ describe('lesshint', function () {
                 const source = '.mixin(@margin, @padding) {}';
                 const expected = [{
                     column: 15,
+                    line: 1,
                     message: 'Commas should be preceded and followed by one space.'
                 }];
 
@@ -335,6 +350,7 @@ describe('lesshint', function () {
                 const source = '.mixin(@margin ,@padding) {}';
                 const expected = [{
                     column: 16,
+                    line: 1,
                     message: 'Commas should be preceded and followed by one space.'
                 }];
 
@@ -368,10 +384,12 @@ describe('lesshint', function () {
                 const expected = [
                     {
                         column: 15,
+                        line: 1,
                         message: 'Commas should not be preceded nor followed by any space.'
                     },
                     {
                         column: 20,
+                        line: 1,
                         message: 'Commas should not be preceded nor followed by any space.'
                     }
                 ];
@@ -388,10 +406,12 @@ describe('lesshint', function () {
                 const expected = [
                     {
                         column: 16,
+                        line: 1,
                         message: 'Commas should not be preceded nor followed by any space.'
                     },
                     {
                         column: 21,
+                        line: 1,
                         message: 'Commas should not be preceded nor followed by any space.'
                     }
                 ];
@@ -408,10 +428,12 @@ describe('lesshint', function () {
                 const expected = [
                     {
                         column: 16,
+                        line: 1,
                         message: 'Commas should not be preceded nor followed by any space.'
                     },
                     {
                         column: 22,
+                        line: 1,
                         message: 'Commas should not be preceded nor followed by any space.'
                     }
                 ];
@@ -437,6 +459,7 @@ describe('lesshint', function () {
                 const source = '.mixin(@margin, @padding) {}';
                 const expected = [{
                     column: 15,
+                    line: 1,
                     message: 'Commas should not be preceded nor followed by any space.'
                 }];
 
@@ -451,6 +474,7 @@ describe('lesshint', function () {
                 const source = '.mixin(@margin ,@padding) {}';
                 const expected = [{
                     column: 16,
+                    line: 1,
                     message: 'Commas should not be preceded nor followed by any space.'
                 }];
 
