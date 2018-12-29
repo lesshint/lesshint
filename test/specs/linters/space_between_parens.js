@@ -80,7 +80,7 @@ describe('lesshint', function () {
             it('should not allow one space before closing parenthesis', function () {
                 const source = 'color: rgb(255, 255, 255 );';
                 const expected = [{
-                    column: 25,
+                    column: 26,
                     line: 1,
                     message: 'Closing parenthesis should not be preceded by any space.'
                 }];
@@ -101,7 +101,7 @@ describe('lesshint', function () {
                         message: 'Opening parenthesis should not be followed by any space.'
                     },
                     {
-                        column: 26,
+                        column: 27,
                         line: 1,
                         message: 'Closing parenthesis should not be preceded by any space.'
                     }
@@ -132,7 +132,7 @@ describe('lesshint', function () {
             it('should not allow multiple spaces before closing parenthesis', function () {
                 const source = 'color: rgb(255, 255, 255  );';
                 const expected = [{
-                    column: 25,
+                    column: 27,
                     line: 1,
                     message: 'Closing parenthesis should not be preceded by any space.'
                 }];
@@ -153,7 +153,7 @@ describe('lesshint', function () {
                         message: 'Opening parenthesis should not be followed by any space.'
                     },
                     {
-                        column: 27,
+                        column: 29,
                         line: 1,
                         message: 'Closing parenthesis should not be preceded by any space.'
                     }
@@ -224,7 +224,7 @@ describe('lesshint', function () {
             it('should not allow one space before closing parenthesis in mixin declarations', function () {
                 const source = '.mixin(@margin, @padding ) {}';
                 const expected = [{
-                    column: 25,
+                    column: 26,
                     line: 1,
                     message: 'Closing parenthesis should not be preceded by any space.'
                 }];
@@ -245,7 +245,7 @@ describe('lesshint', function () {
                         message: 'Opening parenthesis should not be followed by any space.'
                     },
                     {
-                        column: 26,
+                        column: 27,
                         line: 1,
                         message: 'Closing parenthesis should not be preceded by any space.'
                     }
@@ -276,7 +276,7 @@ describe('lesshint', function () {
             it('should not allow multiple spaces before closing parenthesis in mixin declarations', function () {
                 const source = '.mixin(@margin, @padding  ) {}';
                 const expected = [{
-                    column: 25,
+                    column: 27,
                     line: 1,
                     message: 'Closing parenthesis should not be preceded by any space.'
                 }];
@@ -297,7 +297,7 @@ describe('lesshint', function () {
                         message: 'Opening parenthesis should not be followed by any space.'
                     },
                     {
-                        column: 27,
+                        column: 29,
                         line: 1,
                         message: 'Closing parenthesis should not be preceded by any space.'
                     }
@@ -438,7 +438,7 @@ describe('lesshint', function () {
             it('should not allow multiple spaces before closing parenthesis', function () {
                 const source = 'color: rgb( 255, 255, 255  );';
                 const expected = [{
-                    column: 26,
+                    column: 28,
                     line: 1,
                     message: 'Closing parenthesis should be preceded by one space.'
                 }];
@@ -459,7 +459,7 @@ describe('lesshint', function () {
                         message: 'Opening parenthesis should be followed by one space.'
                     },
                     {
-                        column: 27,
+                        column: 29,
                         line: 1,
                         message: 'Closing parenthesis should be preceded by one space.'
                     }
@@ -582,7 +582,7 @@ describe('lesshint', function () {
             it('should not allow multiple spaces before closing parenthesis in mixin declarations', function () {
                 const source = '.mixin( @margin, @padding  ) {}';
                 const expected = [{
-                    column: 26,
+                    column: 28,
                     line: 1,
                     message: 'Closing parenthesis should be preceded by one space.'
                 }];
@@ -603,7 +603,7 @@ describe('lesshint', function () {
                         message: 'Opening parenthesis should be followed by one space.'
                     },
                     {
-                        column: 27,
+                        column: 29,
                         line: 1,
                         message: 'Closing parenthesis should be preceded by one space.'
                     }
