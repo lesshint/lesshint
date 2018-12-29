@@ -1,4 +1,11 @@
 # Changelog
+## 6.3.0 (2018-12-29)
+* Added a new `nodeToString` util. ([6e66d02](https://github.com/lesshint/lesshint/commit/6e66d029b2a9e6f7d2fcfbf97d1e91bedb6dc49c))
+* Refactored position reporting in `attributeQuotes`. ([7a4b6f7](https://github.com/lesshint/lesshint/commit/7a4b6f794820e68303228fc82ffcda9de4b1b835))
+* Refactored position reporting in `spaceAfterPropertyColon`. ([121eb7b](https://github.com/lesshint/lesshint/commit/121eb7bec89804871c138579529ffc7fc5518bca))
+* Refactored position reporting in `spaceAroundComma`. ([3473b03](https://github.com/lesshint/lesshint/commit/3473b037dd92b3f91449db9564d869ff770b2f8e))
+* Refactored position reporting in `spaceBetweenParens`. ([bddec6d](https://github.com/lesshint/lesshint/commit/bddec6db5e9f91478ffc63ec0f247815e23ae445))
+
 ## 6.2.0 (2018-12-26)
 * Updated `postcss-selector-parser` to `5.x`. ([330c7ad](https://github.com/lesshint/lesshint/commit/330c7ad849841aab4dd82ecc4a9a98c071fbb4ab))
 
