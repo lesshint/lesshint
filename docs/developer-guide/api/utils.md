@@ -52,6 +52,13 @@ utils.hasQuotes("'foo'", 'single'); // true
 utils.hasQuotes('"foo"', 'single'); // false
 ```
 
+## `nodeToString(node)`
+Stringify a Node using the [`postcss-less`](https://github.com/shellscape/postcss-less/) stringifier.
+
+```js
+const nodeString = nodeToString(node); // Stringified node
+```
+
 ## `parseSelector(selector)`
 Parse a selector using [`postcss-selector-parser`](https://github.com/postcss/postcss-selector-parser). Accepts a selector string or a PostCSS `Rule` node.
 
