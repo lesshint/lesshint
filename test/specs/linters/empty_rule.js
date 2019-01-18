@@ -23,6 +23,16 @@ describe('lesshint', function () {
             });
         });
 
+        it('should allow rules with rules', function () {
+            const source = '.foo { .bar { color: red; } }';
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint({}, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
         it('should not allow empty rules', function () {
             const source = '.foo {}';
             const expected = [{
