@@ -180,5 +180,26 @@ describe('lesshint', function () {
                 expect(result).to.be.undefined;
             });
         });
+
+        it('should check mixin calls (#510)', function () {
+            const source = `
+            .foo {
+                @media (min-width: 100px) {
+                    color: red;
+                }
+                .bar(@baz);
+            }
+            `;
+
+            const expected = [{
+                message: 'All blocks should be followed by a new line.'
+            }];
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint({}, ast.root.first.last);
+
+                expect(result).to.deep.equal(expected);
+            });
+        });
     });
 });
