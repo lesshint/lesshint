@@ -1,4 +1,9 @@
 # Changelog
+## 6.3.1 (2019-01-24)
+* Fixed an issue where `newlineAfterBlock` wouldn't work properly with mixins. ([599af9a](https://github.com/lesshint/lesshint/commit/599af9a24c926fa07f1da490f61566273499a39f))
+* Performed some code clean up. ([d46bf4e](https://github.com/lesshint/lesshint/commit/d46bf4eae29ffc218ddf5989c1c0bec45d4ea5f4))
+* Updated to `sinon@7`. ([5b53193](https://github.com/lesshint/lesshint/commit/5b5319324854f0a104a7f745f29107cdbe916daf))
+
 ## 6.3.0 (2018-12-29)
 * Added a new `nodeToString` util. ([6e66d02](https://github.com/lesshint/lesshint/commit/6e66d029b2a9e6f7d2fcfbf97d1e91bedb6dc49c))
 * Refactored position reporting in `attributeQuotes`. ([7a4b6f7](https://github.com/lesshint/lesshint/commit/7a4b6f794820e68303228fc82ffcda9de4b1b835))
