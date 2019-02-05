@@ -201,5 +201,22 @@ describe('lesshint', function () {
                 expect(result).to.deep.equal(expected);
             });
         });
+
+
+        it('should not check adjacent mixin calls (#513)', function () {
+            const source = `
+            .foo {
+                .bar();
+                .baz();
+                color: red;
+            }
+            `;
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint({}, ast.root.last);
+
+                expect(result).to.be.undefined;
+            });
+        });
     });
 });
