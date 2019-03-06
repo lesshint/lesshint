@@ -27,7 +27,7 @@
     "lodash.orderby": "^4.6.0",
     "postcss": "^7.0.14",
     "postcss-less": "^3.1.1",
-    "postcss-selector-parser": "^5.0.0",
+    "postcss-selector-parser": "^6.0.2",
     "postcss-values-parser": "^2.0.0",
     "strip-json-comments": "^2.0.0"
   },
