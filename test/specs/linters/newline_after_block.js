@@ -171,7 +171,7 @@ describe('lesshint', function () {
             `;
 
             return spec.parse(source, function (ast) {
-                const result = spec.linter.lint({}, ast.root.first);
+                const result = spec.linter.lint({}, ast.root.first.first);
 
                 expect(result).to.be.undefined;
             });
