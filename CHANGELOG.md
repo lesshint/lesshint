@@ -1,4 +1,8 @@
 # Changelog
+## 6.3.3 (2019-03-17)
+* Fixed an issue where `newlineAfterBlock` would erroneously check mixin calls. ([148b877](https://github.com/lesshint/lesshint/commit/148b877bd667a18d52d30aef53e86d48a6f98788))
+
+
 ## 6.3.2 (2019-02-05)
 * Fixed an issue where `newlineAfterBlock` would erroneously check mixin calls. ([1f03e9a](https://github.com/lesshint/lesshint/commit/1f03e9a66d8ca600cbdff654f9d187a1243ab691))
 
