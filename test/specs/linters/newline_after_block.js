@@ -14,84 +14,78 @@ describe('lesshint', function () {
         });
 
         it('should not allow adjacent blocks without a blank line', function () {
-            let source = [
-                '.foo { color: red; }',
-                '.bar { color: blue; }'
-            ];
+            const source = `
+                .foo { color: red; }
+                .bar { color: blue; }
+            `;
+
             const expected = [{
                 message: 'All blocks should be followed by a new line.'
             }];
 
-            source = source.join('\n');
-
             return spec.parse(source, function (ast) {
-                const result = spec.linter.lint({}, ast.root.last);
+                const result = spec.linter.lint({}, ast.root.first);
 
                 expect(result).to.deep.equal(expected);
             });
         });
 
         it('should not allow adjacent blocks on the same line', function () {
-            let source = [
-                '.foo { color: red; }',
-                '.bar { color: blue; }'
-            ];
+            const source = `
+                .foo { color: red; }
+                .bar { color: blue; }
+            `;
             const expected = [{
                 message: 'All blocks should be followed by a new line.'
             }];
 
-            source = source.join('');
-
             return spec.parse(source, function (ast) {
-                const result = spec.linter.lint({}, ast.root.last);
+                const result = spec.linter.lint({}, ast.root.first);
 
                 expect(result).to.deep.equal(expected);
             });
         });
 
         it('should allow adjacent blocks with a new line', function () {
-            let source = [
-                '.foo { color: red; }',
-                '.bar { color: blue; }'
-            ];
+            const source = `
+                .foo { color: red; }
 
-            source = source.join('\n\n');
+                .bar { color: blue; }
+            `;
 
             return spec.parse(source, function (ast) {
-                const result = spec.linter.lint({}, ast.root.last);
+                const result = spec.linter.lint({}, ast.root.first);
 
                 expect(result).to.be.undefined;
             });
         });
 
         it('should not allow adjacent blocks without a new line', function () {
-            let source = [
-                '.bar { color: blue; }',
-                '@media (screen) {}'
-            ];
+            const source = `
+                .bar { color: blue; }
+                @media (screen) {}
+            `;
+
             const expected = [{
                 message: 'All blocks should be followed by a new line.'
             }];
 
-            source = source.join('');
-
             return spec.parse(source, function (ast) {
-                const result = spec.linter.lint({}, ast.root.last);
+                const result = spec.linter.lint({}, ast.root.first);
 
                 expect(result).to.deep.equal(expected);
             });
         });
 
         it('should allow adjacent at-rule blocks with a new line', function () {
-            let source = [
-                '.bar { color: blue; }',
-                '@media (screen) {}'
-            ];
+            const source = `
+                .bar { color: blue; }
 
-            source = source.join('\n\n');
+                @media (screen) {}
+            `;
 
             return spec.parse(source, function (ast) {
-                const result = spec.linter.lint({}, ast.root.last);
+                const result = spec.linter.lint({}, ast.root.first);
 
                 expect(result).to.be.undefined;
             });
@@ -101,27 +95,7 @@ describe('lesshint', function () {
             const source = '@import "foo";';
 
             return spec.parse(source, function (ast) {
-                const result = spec.linter.lint({}, ast.root.last);
-
-                expect(result).to.be.undefined;
-            });
-        });
-
-        it('should allow preceding comments without a new line', function () {
-            let source = '';
-
-            source += '.foo {';
-            source += '    color: red;';
-            source += '}';
-            source += '\n\n';
-            source += '// A comment';
-            source += '\n';
-            source += '.bar {';
-            source += '    color: blue;';
-            source += '}';
-
-            return spec.parse(source, function (ast) {
-                const result = spec.linter.lint({}, ast.root.last);
+                const result = spec.linter.lint({}, ast.root.first);
 
                 expect(result).to.be.undefined;
             });
@@ -165,23 +139,7 @@ describe('lesshint', function () {
             });
         });
 
-        it('should not report blocks with multiple preceding single-line comments', function () {
-            const source = `
-                // A comment
-                // Another comment
-                .foo {
-                    color: red;
-                }
-            `;
-
-            return spec.parse(source, function (ast) {
-                const result = spec.linter.lint({}, ast.root.last);
-
-                expect(result).to.be.undefined;
-            });
-        });
-
-        it('should check mixin calls (#510)', function () {
+        it('should report mixin calls after other blocks (#510)', function () {
             const source = `
             .foo {
                 @media (min-width: 100px) {
@@ -196,7 +154,7 @@ describe('lesshint', function () {
             }];
 
             return spec.parse(source, function (ast) {
-                const result = spec.linter.lint({}, ast.root.first.last);
+                const result = spec.linter.lint({}, ast.root.first.first);
 
                 expect(result).to.deep.equal(expected);
             });
@@ -213,9 +171,81 @@ describe('lesshint', function () {
             `;
 
             return spec.parse(source, function (ast) {
-                const result = spec.linter.lint({}, ast.root.last);
+                const result = spec.linter.lint({}, ast.root.first);
 
                 expect(result).to.be.undefined;
+            });
+        });
+
+        it('should not report mixin calls after properties (#520)', function () {
+            const source = `
+            .foo {
+                color: red;
+                .baz();
+            }
+            `;
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint({}, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
+        it('should ignore comments after a node', function () {
+            const source = `
+            .foo {
+                color: red;
+                .baz(); // comment
+            }
+            `;
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint({}, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
+        it('should not report blocks following a comment and a newline', function () {
+            const source = `
+            .foo {
+                color: red;
+            }
+            // comment
+            // another comment
+
+            .bar {
+                color: blue;
+            }
+            `;
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint({}, ast.root.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
+        it('should report blocks following a comment without a newline', function () {
+            const source = `
+            .foo {
+                color: red;
+            }
+            // comment
+            .bar {
+                color: blue;
+            }
+            `;
+
+            const expected = [{
+                message: 'All blocks should be followed by a new line.'
+            }];
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint({}, ast.root.first);
+
+                expect(result).to.deep.equal(expected);
             });
         });
     });
