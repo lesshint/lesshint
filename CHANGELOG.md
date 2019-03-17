@@ -1,4 +1,7 @@
 # Changelog
+## 6.3.4 (2019-03-17)
+* Fixed a `newlineAfterBlock` regression where it wouldn't ignore mixin calls. ([2265c04](https://github.com/lesshint/lesshint/commit/2265c04b56fbf961ab957fe9cfc9a7911744ea63))
+
 ## 6.3.3 (2019-03-17)
 * Refactor `newlineAfterBlock` fixing a faulty mixin call check in the process. ([148b877](https://github.com/lesshint/lesshint/commit/148b877bd667a18d52d30aef53e86d48a6f98788))
 
