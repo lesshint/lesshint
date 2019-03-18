@@ -1,4 +1,7 @@
 # Changelog
+## 6.3.6 (2019-03-18)
+* Fixed a `newlineAfterBlock` regression where it would erroneously check at-rules without a body. ([64a05f2](https://github.com/lesshint/lesshint/commit/64a05f2f38294d7c21b410c72a55f53abd0f0204))
+
 ## 6.3.5 (2019-03-18)
 * Fixed a `newlineAfterBlock` regression where it wouldn't ignore variable declarations. ([f47115e](https://github.com/lesshint/lesshint/commit/f47115e6a53a8b5b00dd0d39752a6cab4864a789))
 
