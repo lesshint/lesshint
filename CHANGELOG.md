@@ -1,4 +1,7 @@
 # Changelog
+## 6.3.5 (2019-03-18)
+* Fixed a `newlineAfterBlock` regression where it wouldn't ignore variable declarations. ([f47115e](https://github.com/lesshint/lesshint/commit/f47115e6a53a8b5b00dd0d39752a6cab4864a789))
+
 ## 6.3.4 (2019-03-17)
 * Fixed a `newlineAfterBlock` regression where it wouldn't ignore mixin calls. ([2265c04](https://github.com/lesshint/lesshint/commit/2265c04b56fbf961ab957fe9cfc9a7911744ea63))
 
