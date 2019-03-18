@@ -92,7 +92,12 @@ describe('lesshint', function () {
         });
 
         it('should not check at-rules without a body', function () {
-            const source = '@import "foo";';
+            const source = `
+                @import "foo";
+                .foo {
+                    color: red;
+                }
+            `;
 
             return spec.parse(source, function (ast) {
                 const result = spec.linter.lint({}, ast.root.first);
