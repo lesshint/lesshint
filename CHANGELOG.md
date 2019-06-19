@@ -1,4 +1,10 @@
 # Changelog
+## 6.3.7 (2019-06-19)
+* Fixed an issue where `spaceAfterPropertyColon` would erroneously check `&:extend()` syntax. ([8459b37](https://github.com/lesshint/lesshint/commit/8459b37921812a908675fa7c3863ac6d7ff17569))
+* Updated to `globby@9`. ([3b4c989](https://github.com/lesshint/lesshint/commit/3b4c989b0290bc0f3d0d0cb3e9826ebdce048e65))
+* Updated to `strip-json-comments@3`. ([6fd5df4](https://github.com/lesshint/lesshint/commit/6fd5df4aa880f31a57c7120c9e23707e808fa415))
+* Updated to `nyc@14`. ([aa58522](https://github.com/lesshint/lesshint/commit/aa58522f930328649859a32cd3bccc768db3d887))
+
 ## 6.3.6 (2019-03-18)
 * Fixed a `newlineAfterBlock` regression where it would erroneously check at-rules without a body. ([64a05f2](https://github.com/lesshint/lesshint/commit/64a05f2f38294d7c21b410c72a55f53abd0f0204))
 
