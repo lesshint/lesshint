@@ -173,6 +173,19 @@ describe('lesshint', function () {
             });
         });
 
+        it('should not care about &:extend syntax', function () {
+            const source = '.foo { &:extend(bar) }';
+            const options = {
+                style: 'one_space'
+            };
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint(options, ast.root.first.first);
+
+                expect(result).to.be.undefined;
+            });
+        });
+
         it('should throw on invalid "style" value', function () {
             const source = '.foo { color:red; }';
             const options = {
