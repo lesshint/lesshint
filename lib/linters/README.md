@@ -13,6 +13,7 @@
 * [hexNotation](#hexnotation)
 * [hexValidation](#hexvalidation)
 * [idSelector](#idselector)
+* [importRestrict](#importrestrict)
 * [importantRule](#importantrule)
 * [importPath](#importpath)
 * [maxCharPerLine](#maxcharperline)
@@ -333,6 +334,33 @@ Option     | Description
 .foo {
     color: red;
 }
+```
+
+## importRestrict
+Restrict imports of files with provided prefix. Restrict imports of files with provided pattern.
+
+Option               | Description
+-------------------- | ----------
+`restrictPrefix`     | Array(string[]) of import prefixes you wish to restrict usage
+`restrictPattern`    | Array(string[]) of import patterns you wish to restrict usage
+
+```js
+"importRestrict": {
+    "restrictPrefix": ["lodash"], // Restrict the usage of imports from lodash library
+    "restrictPattern": ["colors"] // Restrict the usage of imports containing "colors" in the import path
+}
+```
+
+### invalid
+```less
+@import 'lodash/foo';
+@import '../../colors/bar.less';
+```
+
+### valid
+```less
+@import 'foo';
+@import 'bar';
 ```
 
 ## importantRule

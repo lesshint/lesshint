@@ -64,6 +64,10 @@
         "exclude": []
     },
 
+    "importRestrict": {
+        "enabled": false
+    },
+
     "importantRule": {
         "enabled": true
     },
