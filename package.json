@@ -20,7 +20,7 @@
     "node": ">=6"
   },
   "dependencies": {
-    "commander": "^2.8.0",
+    "commander": "^4.0.0",
     "cosmiconfig": "^5.0.1",
     "globby": "^9.1.0",
     "lodash.merge": "^4.0.1",
