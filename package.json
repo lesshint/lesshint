@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "commander": "^2.8.0",
-    "cosmiconfig": "^5.0.1",
+    "cosmiconfig": "^6.0.0",
     "globby": "^9.1.0",
     "lodash.merge": "^4.0.1",
     "lodash.orderby": "^4.6.0",
