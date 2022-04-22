@@ -39,7 +39,7 @@ describe('lesshint', function () {
             });
         });
 
-        it('should should find hex values in multi part declarations', function () {
+        it('should find hex values in multi part declarations', function () {
             const source = 'border: 1px solid #ABC;';
             const expected = [{
                 column: 19,
@@ -51,6 +51,16 @@ describe('lesshint', function () {
                 const result = spec.linter.lint({}, ast.root.first);
 
                 expect(result).to.deep.equal(expected);
+            });
+        });
+
+        it('should not check nodes without values', function () {
+            const source = '.foo { @bar() }';
+
+            return spec.parse(source, function (ast) {
+                const result = spec.linter.lint({}, ast.root.first);
+
+                expect(result).to.be.undefined;
             });
         });
     });
